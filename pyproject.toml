@@ -1,0 +1,59 @@
+[build-system]
+requires = [ "setuptools>=80.9.0", "wheel",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ciso-assistant-api"
+version = "0.1.0"
+description = "CISO Assistant API + MCP Server + A2A Agent — 100% API coverage"
+readme = "README.md"
+classifiers = [ "Development Status :: 4 - Beta", "License :: OSI Approved :: MIT License", "Environment :: Console", "Operating System :: POSIX :: Linux", "Programming Language :: Python :: 3",]
+requires-python = ">=3.11, <3.15"
+dependencies = [ "agent-utilities>=0.51.0", "python-dotenv>=1.0.0", "requests>=2.32.0",]
+[[project.authors]]
+name = "Audel Rouhi"
+email = "knucklessg1@gmail.com"
+
+[project.license]
+text = "MIT"
+
+[project.optional-dependencies]
+mcp = [ "agent-utilities[mcp]>=0.51.0",]
+agent = [ "agent-utilities[agent,logfire]>=0.51.0",]
+all = [ "ciso-assistant-api[mcp,agent]>=0.1.0",]
+test = [
+    "pytest-xdist>=3.6.0", "pytest", "pytest-asyncio", "pytest-cov",]
+
+[project.scripts]
+ciso-assistant-mcp = "ciso_assistant_api.mcp_server:mcp_server"
+ciso-assistant-agent = "ciso_assistant_api.agent_server:agent_server"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+check_untyped_defs = true
+
+[dependency-groups]
+dev = [
+    "pytest-timeout>=2.4.0",
+]
+
+[tool.setuptools.package-data]
+ciso_assistant_api = [ "mcp_config.json", "agent/**", "specs/*.json",]
+
+[tool.ruff.lint]
+select = [ "E", "F", "I", "UP", "B",]
+ignore = [ "E402", "E501", "B008",]
+
+[tool.setuptools.packages.find]
+where = [ ".",]
+
+[tool.vulture]
+ignore_names = ["request", "config"]
