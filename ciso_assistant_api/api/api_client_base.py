@@ -1,22 +1,21 @@
-#!/usr/bin/python
-"""Base HTTP client for the CISO Assistant API.
+import logging
+import threading
+import time
+from typing import Any, TypeVar
+import requests
+import urllib3
+from urllib.parse import quote
+from agent_utilities.base_utilities import get_logger
+from agent_utilities.core.exceptions import (
+    AuthError,
+    MissingParameterError,
+    ParameterError,
+    UnauthorizedError,
+)
+from pydantic import ValidationError
 
-Handles the cross-cutting concerns shared by every generated domain client:
+from ciso_assistant_api.ciso_assistant_models import Response
 
-* **Authentication** — CISO Assistant (intuitem) uses Django-REST-Knox **token**
-  auth. Provide a pre-minted token (``CISO_ASSISTANT_TOKEN``) or a
-  username/password pair (``CISO_ASSISTANT_USERNAME`` / ``CISO_ASSISTANT_PASSWORD``)
-  which is exchanged for a token at ``POST /api/iam/login/``. The token is sent as
-  ``Authorization: Token <token>`` on every request.
-* **Single host** — all operations target one backend host (``CISO_ASSISTANT_URL``,
-  e.g. ``https://ciso.arpa``). The generated methods carry the relative path
-  (``/api/...``); this base prefixes the configured host.
-* **Pagination** — DRF list endpoints (``page`` / ``limit`` + ``offset``) return
-  ``{"count", "next", "previous", "results"}``; this base transparently follows the
-  ``next`` links and concatenates ``results``.
-* **Rate limiting / transient errors** — honours ``429`` ``Retry-After`` and retries
-  ``429``/``502``/``503``/``504`` with bounded exponential backoff.
-"""
 
 import logging
 import threading
@@ -25,6 +24,9 @@ from typing import Any, TypeVar
 
 import requests
 import urllib3
+from urllib.parse import quote
+from typing import Any, TypeVar
+from typing import Any, TypeVar
 from agent_utilities.base_utilities import get_logger
 from agent_utilities.core.exceptions import (
     AuthError,
@@ -134,7 +136,7 @@ class CisoAssistantApiBase:
         """
         path = url_template
         for key, value in (path_kwargs or {}).items():
-            path = path.replace("{" + key + "}", str(value))
+            path = path.replace("{" + key + "}", quote(str(value)))
         if "{" in path:
             missing = (
                 path[path.index("{") + 1 : path.index("}")] if "}" in path else "?"
