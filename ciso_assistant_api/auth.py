@@ -13,10 +13,10 @@ Authentication priority:
 See ``docs/guides/oauth_sso.md`` in agent-utilities for full details.
 """
 
-import os
 import threading
 
-from agent_utilities.base_utilities import get_logger, to_boolean
+from agent_utilities.base_utilities import get_logger
+from agent_utilities.core.config import setting
 from agent_utilities.core.exceptions import AuthError, UnauthorizedError
 
 local = threading.local()
@@ -26,11 +26,11 @@ logger = get_logger(__name__)
 
 
 def get_client(
-    instance: str | None = os.getenv("CISO_ASSISTANT_URL", None),
-    token: str | None = os.getenv("CISO_ASSISTANT_TOKEN", None),
-    username: str | None = os.getenv("CISO_ASSISTANT_USERNAME", None),
-    password: str | None = os.getenv("CISO_ASSISTANT_PASSWORD", None),
-    verify: bool = to_boolean(string=os.getenv("CISO_ASSISTANT_SSL_VERIFY", "True")),
+    instance: str | None = None,
+    token: str | None = None,
+    username: str | None = None,
+    password: str | None = None,
+    verify: bool | None = None,
     config: dict | None = None,
 ) -> Api:
     """Factory function to create the CISO Assistant :class:`Api` client.
@@ -38,6 +38,17 @@ def get_client(
     Supports OIDC delegation, a fixed Knox token, and the username/password login
     flow. Uses the shared ``delegated_auth`` helper from agent-utilities.
     """
+    if instance is None:
+        instance = setting("CISO_ASSISTANT_URL", None)
+    if token is None:
+        token = setting("CISO_ASSISTANT_TOKEN", None)
+    if username is None:
+        username = setting("CISO_ASSISTANT_USERNAME", None)
+    if password is None:
+        password = setting("CISO_ASSISTANT_PASSWORD", None)
+    if verify is None:
+        verify = setting("CISO_ASSISTANT_SSL_VERIFY", True)
+
     from agent_utilities.mcp.delegated_auth import (
         get_delegated_token,
         get_user_identity,

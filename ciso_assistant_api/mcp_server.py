@@ -1,14 +1,20 @@
 #!/usr/bin/python
 
 import logging
-import os
 import sys
 from typing import Any
 
-from agent_utilities.base_utilities import to_boolean
-from agent_utilities.mcp_utilities import create_mcp_server, load_config
+from agent_utilities.mcp_utilities import (
+    create_mcp_server,
+    load_config,
+    register_tool_surface,
+)
 from fastmcp import FastMCP
 from fastmcp.utilities.logging import get_logger
+
+from ciso_assistant_api.api._operation_manifest import OPERATIONS
+from ciso_assistant_api.api_client import Api
+from ciso_assistant_api.auth import get_client
 
 __version__ = "0.1.0"
 
@@ -34,15 +40,19 @@ def get_mcp_instance() -> tuple[Any, Any, Any, Any]:
         instructions="CISO Assistant MCP Server",
     )
 
-    # Each domain is a consolidated, action-routed tool gated by a {TAG}TOOL env var
-    # (default True). TOOL_REGISTRY is generated from the vendored OpenAPI specs.
+    # One central call selects the surface per MCP_TOOL_MODE: condensed gates each
+    # generated TOOL_REGISTRY domain via setting("<TAG>TOOL", True); verbose adds
+    # the fully-typed 1:1 tools sourced from the OpenAPI manifest (OPERATIONS).
     from ciso_assistant_api.mcp import TOOL_REGISTRY
 
-    registered_tags = []
-    for tag, env_var, register_fn in TOOL_REGISTRY:
-        if to_boolean(os.getenv(env_var, "True")):
-            register_fn(mcp)
-            registered_tags.append(tag)
+    registered_tags = register_tool_surface(
+        mcp,
+        client_cls=Api,
+        get_client=get_client,
+        service="ciso-assistant-api",
+        tool_registry=TOOL_REGISTRY,
+        manifest=OPERATIONS,
+    )
 
     register_prompts(mcp)
 
