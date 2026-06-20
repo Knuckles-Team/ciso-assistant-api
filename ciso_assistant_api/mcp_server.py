@@ -6,8 +6,7 @@ import sys
 from typing import Any
 
 from agent_utilities.base_utilities import to_boolean
-from agent_utilities.mcp_utilities import create_mcp_server
-from dotenv import find_dotenv, load_dotenv
+from agent_utilities.mcp_utilities import create_mcp_server, load_config
 from fastmcp import FastMCP
 from fastmcp.utilities.logging import get_logger
 
@@ -27,7 +26,7 @@ def register_prompts(mcp: FastMCP):
 
 def get_mcp_instance() -> tuple[Any, Any, Any, Any]:
     """Initialize and return the CISO Assistant MCP instance, args, and middlewares."""
-    load_dotenv(find_dotenv())
+    load_config()
 
     args, mcp, middlewares = create_mcp_server(
         name="CISO Assistant MCP",
