@@ -88,13 +88,37 @@ export CISO_ASSISTANT_TOKEN="your_token"
 ciso-assistant-mcp --transport "streamable-http" --host "0.0.0.0" --port "8000"
 ```
 
-### Tool Domains
+### Available MCP Tools
 
-`analytics_metrology`, `assets`, `auth_users`, `chat`, `compliance`, `crq`,
-`ebios_rm`, `evidence`, `frameworks_libraries`, `governance`, `incidents`,
-`integrations`, `privacy`, `resilience`, `risk_management`, `security_findings`,
-`settings`, `tasks_timeline`, `third_party` — plus `custom_api` (a raw REST
-escape hatch).
+_Auto-generated — do not edit (synced by the `mcp-readme-table` pre-commit hook)._
+
+<!-- MCP-TOOLS-TABLE:START -->
+
+| MCP Tool | Toggle Env Var | Description |
+|----------|----------------|-------------|
+| `ciso_assistant_analytics_metrology` | `ANALYTICS-METROLOGYTOOL` | Manage CISO Assistant analytics metrology operations. |
+| `ciso_assistant_api_request` | `CUSTOM-APITOOL` | Execute an arbitrary CISO Assistant REST API request directly. |
+| `ciso_assistant_assets` | `ASSETSTOOL` | Manage CISO Assistant assets operations. |
+| `ciso_assistant_auth_users` | `AUTH-USERSTOOL` | Manage CISO Assistant auth users operations. |
+| `ciso_assistant_chat` | `CHATTOOL` | Manage CISO Assistant chat operations. |
+| `ciso_assistant_compliance` | `COMPLIANCETOOL` | Manage CISO Assistant compliance operations. |
+| `ciso_assistant_crq` | `CRQTOOL` | Manage CISO Assistant crq operations. |
+| `ciso_assistant_ebios_rm` | `EBIOS-RMTOOL` | Manage CISO Assistant ebios rm operations. |
+| `ciso_assistant_evidence` | `EVIDENCETOOL` | Manage CISO Assistant evidence operations. |
+| `ciso_assistant_frameworks_libraries` | `FRAMEWORKS-LIBRARIESTOOL` | Manage CISO Assistant frameworks libraries operations. |
+| `ciso_assistant_governance` | `GOVERNANCETOOL` | Manage CISO Assistant governance operations. |
+| `ciso_assistant_incidents` | `INCIDENTSTOOL` | Manage CISO Assistant incidents operations. |
+| `ciso_assistant_integrations` | `INTEGRATIONSTOOL` | Manage CISO Assistant integrations operations. |
+| `ciso_assistant_privacy` | `PRIVACYTOOL` | Manage CISO Assistant privacy operations. |
+| `ciso_assistant_resilience` | `RESILIENCETOOL` | Manage CISO Assistant resilience operations. |
+| `ciso_assistant_risk_management` | `RISK-MANAGEMENTTOOL` | Manage CISO Assistant risk management operations. |
+| `ciso_assistant_security_findings` | `SECURITY-FINDINGSTOOL` | Manage CISO Assistant security findings operations. |
+| `ciso_assistant_settings` | `SETTINGSTOOL` | Manage CISO Assistant settings operations. |
+| `ciso_assistant_tasks_timeline` | `TASKS-TIMELINETOOL` | Manage CISO Assistant tasks timeline operations. |
+| `ciso_assistant_third_party` | `THIRD-PARTYTOOL` | Manage CISO Assistant third party operations. |
+
+_20 action-routed tools (default `MCP_TOOL_MODE=condensed`). Each is enabled unless its toggle is set false; set `MCP_TOOL_MODE=verbose` (or `both`) for the 1:1 per-operation surface. Auto-generated — do not edit._
+<!-- MCP-TOOLS-TABLE:END -->
 
 ## A2A Agent
 
