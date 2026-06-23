@@ -52,7 +52,7 @@ dev = [
 ]
 
 [tool.setuptools.package-data]
-ciso_assistant_api = [ "mcp_config.json", "agent/**", "specs/*.json", "prompts/**", "skills/**",]
+ciso_assistant_api = [ "mcp_config.json", "specs/*.json", "prompts/**", "skills/**",]
 
 [tool.ruff.lint]
 select = [ "E", "F", "I", "UP", "B",]
