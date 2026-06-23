@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   ciso-assistant-api-mcp:
-    image: knucklessg1/ciso-assistant-api:latest
+    image: knucklessg1/ciso-assistant-api:mcp
     container_name: ciso-assistant-api-mcp
     hostname: ciso-assistant-api-mcp
     restart: always
