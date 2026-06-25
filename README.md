@@ -72,7 +72,32 @@ so you can scope the surface (e.g. set `CHATTOOL=False` to drop the chat domain)
 | `CISO_ASSISTANT_TOKEN` | Pre-minted Knox token. |
 | `CISO_ASSISTANT_USERNAME` / `CISO_ASSISTANT_PASSWORD` | Credentials exchanged for a token at `POST /api/iam/login/`. |
 | `CISO_ASSISTANT_SSL_VERIFY` | Verify TLS (default `True`). |
-| `<DOMAIN>TOOL` | Toggle a domain tool, e.g. `INCIDENTSTOOL`, `COMPLIANCETOOL`, `RISK_MANAGEMENTTOOL` (default `True`). |
+| `<DOMAIN>TOOL` | Toggle a domain tool, e.g. `INCIDENTSTOOL`, `COMPLIANCETOOL`, `RISK_MANAGEMENTTOOL` (default `True`). See the [Available MCP Tools](#available-mcp-tools) table for the authoritative names. |
+
+The server also reads the standard MCP-transport, telemetry, governance, and agent-CLI
+variables:
+
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `TRANSPORT` | `stdio`, `streamable-http`, or `sse` | `stdio` |
+| `HOST` | Bind host (HTTP transports) | `0.0.0.0` |
+| `PORT` | Bind port (HTTP transports) | `8000` |
+| `MCP_TOOL_MODE` | Tool surface: `condensed`, `verbose`, or `both` | `condensed` |
+| `MCP_ENABLED_TOOLS` / `MCP_DISABLED_TOOLS` | Comma-separated tool allow/deny list | — |
+| `MCP_ENABLED_TAGS` / `MCP_DISABLED_TAGS` | Comma-separated tag allow/deny list | — |
+| `DEBUG` | Verbose logging | `False` |
+| `PYTHONUNBUFFERED` | Unbuffered stdout (recommended in containers) | `1` |
+| `ENABLE_OTEL` | Enable OpenTelemetry export | `True` |
+| `OTEL_EXPORTER_OTLP_ENDPOINT` | OTLP collector endpoint | — |
+| `OTEL_EXPORTER_OTLP_PUBLIC_KEY` / `OTEL_EXPORTER_OTLP_SECRET_KEY` | OTLP auth keys | — |
+| `OTEL_EXPORTER_OTLP_PROTOCOL` | OTLP protocol (e.g. `http/protobuf`) | — |
+| `EUNOMIA_TYPE` | Authorization mode: `none`, `embedded`, `remote` | `none` |
+| `EUNOMIA_POLICY_FILE` | Embedded policy file | `mcp_policies.json` |
+| `EUNOMIA_REMOTE_URL` | Remote Eunomia server URL | — |
+| `MCP_URL` | (Agent only) URL of the MCP server the agent connects to | `http://localhost:8000/mcp` |
+| `PROVIDER` | (Agent only) LLM provider (e.g. `openai`) | `openai` |
+| `MODEL_ID` | (Agent only) Model id (e.g. `gpt-4o`) | `gpt-4o` |
+| `ENABLE_WEB_UI` | (Agent only) Serve the AG-UI web interface | `True` |
 
 #### Run in stdio mode (default):
 ```bash
@@ -146,15 +171,22 @@ docker run -d \
   -e TRANSPORT=http \
   -e CISO_ASSISTANT_URL="https://ciso.arpa" \
   -e CISO_ASSISTANT_TOKEN="your_token" \
-  knucklessg1/ciso-assistant-api:latest
+  knucklessg1/ciso-assistant-api:mcp
 ```
+
+> The `:mcp` tag is the **slim MCP-server image** (built from
+> `docker/Dockerfile --target mcp`, installing `ciso-assistant-api[mcp]`). The default
+> `:latest` tag is the **full agent image** (`--target agent`, `ciso-assistant-api[agent]`)
+> which also bundles the Pydantic AI agent and the epistemic-graph engine — use it
+> when you run `ciso-assistant-agent` (the agent), not just the MCP server. See
+> [Container images](#container-images-mcp-vs-agent).
 
 ### Deploy with Docker Compose
 
 ```yaml
 services:
   ciso-assistant-api:
-    image: knucklessg1/ciso-assistant-api:latest
+    image: knucklessg1/ciso-assistant-api:mcp
     environment:
       - HOST=0.0.0.0
       - PORT=8000
@@ -167,6 +199,14 @@ services:
 
 #### Configure `mcp.json` for AI Integration (e.g. Claude Desktop)
 
+> **Install the slim `[mcp]` extra.** The example below installs
+> `ciso-assistant-api[mcp]` — the MCP-server extra that pulls only the FastMCP /
+> FastAPI tooling (`agent-utilities[mcp]`). It deliberately **excludes** the heavy
+> agent runtime (the epistemic-graph engine, `pydantic-ai`, `dspy`, `llama-index`,
+> `tree-sitter`), so `uvx`/container installs are dramatically smaller and faster.
+> Use the full `[agent]` extra only when you need the integrated Pydantic AI agent
+> (see [Installation](#install-python-package)).
+
 ```json
 {
   "mcpServers": {
@@ -175,7 +215,7 @@ services:
       "args": [
         "run",
         "--with",
-        "ciso-assistant-api",
+        "ciso-assistant-api[mcp]",
         "ciso-assistant-mcp"
       ],
       "env": {
@@ -189,12 +229,51 @@ services:
 
 ## Install Python Package
 
+Pick the extra that matches what you want to run:
+
+| Extra | Installs | Use when |
+|-------|----------|----------|
+| `ciso-assistant-api[mcp]` | Slim MCP server only (`agent-utilities[mcp]` — FastMCP/FastAPI) | You only run the **MCP server** (smallest install / image) |
+| `ciso-assistant-api[agent]` | Full agent runtime (`agent-utilities[agent,logfire]` — Pydantic AI + the epistemic-graph engine) | You run the **integrated agent** |
+| `ciso-assistant-api[all]` | Everything (`mcp` + `agent`) | Development / both surfaces |
+
 ```bash
-python -m pip install ciso-assistant-api
+# MCP server only (recommended for tool hosting — slim deps)
+uv pip install "ciso-assistant-api[mcp]"
+
+# Full agent runtime (Pydantic AI + epistemic-graph engine)
+uv pip install "ciso-assistant-api[agent]"
+
+# Everything (development)
+uv pip install "ciso-assistant-api[all]"      # or: python -m pip install "ciso-assistant-api[all]"
 ```
+
+### Container images (`:mcp` vs `:agent`)
+
+One multi-stage `docker/Dockerfile` builds two right-sized images, selected by `--target`:
+
+| Image tag | Build target | Contents | Entrypoint |
+|-----------|--------------|----------|------------|
+| `knucklessg1/ciso-assistant-api:mcp` | `--target mcp` | `ciso-assistant-api[mcp]` — **slim**, no engine/`pydantic-ai`/`dspy`/`llama-index`/`tree-sitter` | `ciso-assistant-mcp` |
+| `knucklessg1/ciso-assistant-api:latest` | `--target agent` (default) | `ciso-assistant-api[agent]` — **full** agent runtime + epistemic-graph engine | `ciso-assistant-agent` |
+
 ```bash
-uv pip install ciso-assistant-api
+docker build --target mcp   -t knucklessg1/ciso-assistant-api:mcp    docker/   # slim MCP server
+docker build --target agent -t knucklessg1/ciso-assistant-api:latest docker/   # full agent
 ```
+
+`docker/mcp.compose.yml` runs the slim `:mcp` server; `docker/agent.compose.yml` runs the
+agent (`:latest`) with a co-located `:mcp` sidecar.
+
+### Knowledge-graph database (`epistemic-graph`)
+
+The **full agent** (`[agent]` / `:latest`) embeds the **epistemic-graph** engine (pulled in
+transitively via `agent-utilities[agent]`). For production — or to share one knowledge graph
+across multiple agents — run **epistemic-graph as its own database container** and point the
+agent at it instead of embedding it. Deployment recipes (single-node + Raft HA), connection
+config, and the full database architecture (with diagrams) are documented in the
+[epistemic-graph deployment guide](https://knuckles-team.github.io/epistemic-graph/deployment/).
+The slim `[mcp]` server does **not** require the database.
 
 ## Documentation
 
