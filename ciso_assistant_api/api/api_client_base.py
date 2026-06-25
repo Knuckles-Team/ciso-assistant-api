@@ -22,6 +22,7 @@ import logging
 import threading
 import time
 from typing import Any, TypeVar
+from urllib.parse import quote
 
 import requests
 import urllib3
@@ -134,7 +135,7 @@ class CisoAssistantApiBase:
         """
         path = url_template
         for key, value in (path_kwargs or {}).items():
-            path = path.replace("{" + key + "}", str(value))
+            path = path.replace("{" + key + "}", quote(str(value)))
         if "{" in path:
             missing = (
                 path[path.index("{") + 1 : path.index("}")] if "}" in path else "?"
