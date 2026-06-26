@@ -7,6 +7,7 @@
         "ciso-assistant-mcp"
       ],
       "env": {
+        "MCP_TOOL_MODE": "condensed",
         "FASTMCP_LOG_LEVEL": "<YOUR_FASTMCP_LOG_LEVEL>",
         "CISO_ASSISTANT_URL": "<YOUR_CISO_ASSISTANT_URL>",
         "CISO_ASSISTANT_TOKEN": "<YOUR_CISO_ASSISTANT_TOKEN>",
