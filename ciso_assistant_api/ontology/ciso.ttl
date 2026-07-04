@@ -1,0 +1,161 @@
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix : <http://knuckles.team/kg#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# CISO Assistant GRC ontology — governance, risk & compliance managed by the intuitem
+# CISO Assistant platform. All classes and properties live in the SHARED `:` (kg#)
+# namespace; only the owl:Ontology node below carries the per-package IRI. Shared classes
+# (:Document, :Blob, :MediaAsset, :Person) are REUSED, never redefined. Backs the
+# ciso-assistant-api MCP tool surface and the ciso_ingest_* native-ingestion tools.
+
+# --- classes (owl:Class) ---
+
+:RiskAssessment a owl:Class ;
+    rdfs:label "Risk Assessment" ;
+    rdfs:comment "A scoped risk study evaluating scenarios against a risk matrix (api_risk_assessments)." .
+
+:RiskScenario a owl:Class ;
+    rdfs:label "Risk Scenario" ;
+    rdfs:comment "A single risk within an assessment, scored inherent/current/residual (api_risk_scenarios)." .
+
+:Control a owl:Class ;
+    rdfs:label "Applied Control" ;
+    rdfs:comment "A security measure applied to treat risk or satisfy a requirement (api_applied_controls)." .
+
+:Audit a owl:Class ;
+    rdfs:label "Compliance Assessment" ;
+    rdfs:comment "An assessment (audit) of compliance against a framework, with progress and outcome (api_compliance_assessments)." .
+
+:Framework a owl:Class ;
+    rdfs:label "Framework" ;
+    rdfs:comment "A compliance framework / standard the organization is assessed against (api_frameworks)." .
+
+:Threat a owl:Class ;
+    rdfs:label "Threat" ;
+    rdfs:comment "A catalogued threat that can be realized against assets (api_threats)." .
+
+:Vulnerability a owl:Class ;
+    rdfs:label "Vulnerability" ;
+    rdfs:comment "A weakness with a severity and remediation state (api_vulnerabilities)." .
+
+:Incident a owl:Class ;
+    rdfs:label "Incident" ;
+    rdfs:comment "A security incident with severity, detection and resolution timeline (api_incidents)." .
+
+:Asset a owl:Class ;
+    rdfs:label "Asset" ;
+    rdfs:comment "A primary or supporting asset under protection (api_assets)." .
+
+:Evidence a owl:Class ;
+    rdfs:label "Evidence" ;
+    rdfs:comment "A piece of evidence supporting a control or requirement; its file is a :Blob/:MediaAsset (api_evidences)." .
+
+# --- links (owl:ObjectProperty) ---
+
+:includesScenario a owl:ObjectProperty ;
+    rdfs:label "includes scenario" ;
+    rdfs:comment "Links a RiskAssessment to a RiskScenario it contains." ;
+    rdfs:domain :RiskAssessment ;
+    rdfs:range :RiskScenario .
+
+:mitigatedBy a owl:ObjectProperty ;
+    rdfs:label "mitigated by" ;
+    rdfs:comment "Links a RiskScenario or Vulnerability to a Control that treats it." ;
+    rdfs:range :Control .
+
+:hasThreat a owl:ObjectProperty ;
+    rdfs:label "has threat" ;
+    rdfs:comment "Links a RiskScenario to a Threat it realizes." ;
+    rdfs:domain :RiskScenario ;
+    rdfs:range :Threat .
+
+:affectsAsset a owl:ObjectProperty ;
+    rdfs:label "affects asset" ;
+    rdfs:comment "Links a RiskScenario, Incident, or Vulnerability to an Asset it impacts." ;
+    rdfs:range :Asset .
+
+:assessesFramework a owl:ObjectProperty ;
+    rdfs:label "assesses framework" ;
+    rdfs:comment "Links a compliance Audit to the Framework it is scored against." ;
+    rdfs:domain :Audit ;
+    rdfs:range :Framework .
+
+:evidencedBy a owl:ObjectProperty ;
+    rdfs:label "evidenced by" ;
+    rdfs:comment "Links a Control or Audit to an Evidence record substantiating it." ;
+    rdfs:range :Evidence .
+
+:hasAttachment a owl:ObjectProperty ;
+    rdfs:label "has attachment" ;
+    rdfs:comment "Links an Evidence record to the stored :Blob / :MediaAsset holding its file bytes." ;
+    rdfs:domain :Evidence ;
+    rdfs:range :MediaAsset .
+
+:ownedBy a owl:ObjectProperty ;
+    rdfs:label "owned by" ;
+    rdfs:comment "Links a Control, RiskScenario, Asset, or Evidence to the Person accountable for it." ;
+    rdfs:range :Person .
+
+# --- fields (owl:DatatypeProperty) ---
+
+:refId a owl:DatatypeProperty ;
+    rdfs:label "ref id" ;
+    rdfs:comment "Human-facing reference identifier of a GRC object (ref_id)." ;
+    rdfs:range xsd:string .
+
+:riskTreatment a owl:DatatypeProperty ;
+    rdfs:label "risk treatment" ;
+    rdfs:comment "Treatment decision for a RiskScenario (open, mitigate, accept, avoid, transfer)." ;
+    rdfs:domain :RiskScenario ;
+    rdfs:range xsd:string .
+
+:residualLevel a owl:DatatypeProperty ;
+    rdfs:label "residual level" ;
+    rdfs:comment "Residual risk level of a RiskScenario after applied controls." ;
+    rdfs:domain :RiskScenario ;
+    rdfs:range xsd:string .
+
+:currentLevel a owl:DatatypeProperty ;
+    rdfs:label "current level" ;
+    rdfs:comment "Current risk level of a RiskScenario given existing controls." ;
+    rdfs:domain :RiskScenario ;
+    rdfs:range xsd:string .
+
+:controlStatus a owl:DatatypeProperty ;
+    rdfs:label "control status" ;
+    rdfs:comment "Lifecycle status of a Control (to_do, in_progress, active, on_hold, deprecated)." ;
+    rdfs:range xsd:string .
+
+:controlPriority a owl:DatatypeProperty ;
+    rdfs:label "control priority" ;
+    rdfs:comment "Priority ranking of a Control (P1-P4)." ;
+    rdfs:range xsd:string .
+
+:severity a owl:DatatypeProperty ;
+    rdfs:label "severity" ;
+    rdfs:comment "Severity of an Incident or Vulnerability." ;
+    rdfs:range xsd:string .
+
+:complianceProgress a owl:DatatypeProperty ;
+    rdfs:label "compliance progress" ;
+    rdfs:comment "Percent completion of a compliance Audit." ;
+    rdfs:domain :Audit ;
+    rdfs:range xsd:integer .
+
+:complianceStatus a owl:DatatypeProperty ;
+    rdfs:label "compliance status" ;
+    rdfs:comment "Workflow status of an Audit (planned, in_progress, in_review, done, deprecated)." ;
+    rdfs:range xsd:string .
+
+<http://knuckles.team/kg/ciso> a owl:Ontology ;
+    rdfs:label "CISO Assistant GRC Ontology" ;
+    rdfs:comment """CISO Assistant governance-risk-compliance model — risk assessments and
+    scenarios, applied controls, compliance audits and frameworks, threats,
+    vulnerabilities, incidents, assets and evidence — with their treatment, mitigation
+    and attestation relationships, federated into the agent-utilities knowledge-graph
+    hub. Reuses the shared :Document / :Blob / :MediaAsset / :Person classes.""" ;
+    owl:imports <http://knuckles.team/kg/enterprise> .

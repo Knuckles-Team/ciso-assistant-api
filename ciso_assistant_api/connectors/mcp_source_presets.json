@@ -1,0 +1,33 @@
+{
+  "_comment": "Tier-1 mcp_tool source presets for ciso-assistant-api (AU-KG.ingest.mcp-tool-connector). Sync CISO Assistant GRC records into the KG as documents via the ciso-assistant-api MCP server's condensed domain tools. For typed :RiskScenario/:Control/:Audit nodes + evidence blobs, prefer the native ciso_ingest tool. Contributed presets win over the central MCP_TOOL_PRESETS.",
+  "ciso-risk-scenarios": {
+    "server": "ciso-assistant-api",
+    "tool": "ciso_assistant_risk_management",
+    "action": "api_risk_scenarios_list",
+    "records_path": "data",
+    "id_field": "id",
+    "title_field": "name",
+    "text_field": "description",
+    "updated_field": "updated_at",
+    "pagination": "page",
+    "page_kind": "page",
+    "page_param": "page",
+    "page_size_param": "limit",
+    "doc_type": "risk_scenario"
+  },
+  "ciso-compliance-assessments": {
+    "server": "ciso-assistant-api",
+    "tool": "ciso_assistant_compliance",
+    "action": "api_compliance_assessments_list",
+    "records_path": "data",
+    "id_field": "id",
+    "title_field": "name",
+    "text_field": "description",
+    "updated_field": "updated_at",
+    "pagination": "page",
+    "page_kind": "page",
+    "page_param": "page",
+    "page_size_param": "limit",
+    "doc_type": "compliance_assessment"
+  }
+}

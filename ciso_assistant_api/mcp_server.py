@@ -54,6 +54,12 @@ def get_mcp_instance() -> tuple[Any, Any, Any, Any]:
         manifest=OPERATIONS,
     )
 
+    # Native KG ingestion (Wire-First): default-on typed-node + blob push into the
+    # epistemic-graph via the ciso_ingest tool. CONCEPT:AU-KG.ingest.enterprise-source-extractor.
+    from ciso_assistant_api.mcp.mcp_kg_ingest import register_kg_ingest_tools
+
+    register_kg_ingest_tools(mcp)
+
     register_prompts(mcp)
 
     for mw in middlewares:
