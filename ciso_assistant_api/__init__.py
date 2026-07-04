@@ -59,5 +59,5 @@ ciso-assistant-api
 
 Python CISO Assistant API client + MCP server + A2A agent with 100% API coverage
 
-CONCEPT:CISO-001 — CISO Assistant GRC connector (api-client + MCP + A2A).
+CONCEPT:AU-ECO.connector.ciso-assistant — CISO Assistant GRC connector (api-client + MCP + A2A).
 """
