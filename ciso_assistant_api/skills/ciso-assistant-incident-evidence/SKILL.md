@@ -1,5 +1,6 @@
 ---
 name: ciso-assistant-incident-evidence
+skill_type: skill
 description: >-
   Incident response and evidence handling on the CISO Assistant platform via the
   ciso-assistant-api MCP server — list and read security incidents (severity,

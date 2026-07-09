@@ -1,5 +1,6 @@
 ---
 name: ciso-assistant-compliance-audit
+skill_type: skill
 description: >-
   Compliance audits on the CISO Assistant platform via the ciso-assistant-api MCP
   server — list and read compliance assessments (audits), their frameworks,

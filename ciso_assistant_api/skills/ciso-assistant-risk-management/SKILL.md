@@ -1,5 +1,6 @@
 ---
 name: ciso-assistant-risk-management
+skill_type: skill
 description: >-
   Risk management on the CISO Assistant platform via the ciso-assistant-api MCP
   server — list and read risk assessments, risk scenarios, applied controls,
