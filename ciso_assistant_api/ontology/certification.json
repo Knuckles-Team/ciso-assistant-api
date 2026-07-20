@@ -1,0 +1,37 @@
+{
+  "api_version": "graphos.io/v1",
+  "artifacts": {
+    "a2a.json": "f8015d2613c1b3ac30b35e07e06beb9f98565612502f6049eadd179b2c3b34e6",
+    "ciso_assistant_api/connectors/mcp_source_presets.json": "6cdb433b242406de3c113e1ec5cfc9ee6e699083d92fbcb83dc3f97870df8aba",
+    "ciso_assistant_api/connectors/tool_schema_fingerprints.json": "03f960cc7eeaf933001793acc64868bbee9e7ebc32db8e779442bc89e4cae131",
+    "ciso_assistant_api/ontology/ciso.ttl": "86950476d3601e78a68ff36fa7cc5f6c87f8a35f1f18b43af4ec3a6a9113245d",
+    "ciso_assistant_api/ontology/fixtures/records.json": "1a0ec217364be9ee03e042a6f91e0b8b746872fe49dc5a6529f1d96739981a95",
+    "ciso_assistant_api/ontology/mappings/source.yaml": "1401774408b430cf345aaf43cd3b72380a5c352086aa032a597928613c42fbbd",
+    "ciso_assistant_api/ontology/migrations/manifest.json": "c5d5d30b62a340e13e4b165154988f3f316224c1eb8676351cbc3c9f13498787",
+    "ciso_assistant_api/ontology/shapes/connector.shacl.ttl": "1939cad7bbc7148ffe0bf2fbec519e7e12a297f4a2a36e06339be711881afb7b",
+    "connector_manifest.yml": "67136e0ee3318922df5d3c350bc5280bbe6ade926444c9a3147fad6daf43ec70"
+  },
+  "checks": {
+    "declared_tool_schema": "passed",
+    "manifest_integrity": "passed",
+    "privacy_contract": "passed",
+    "shacl_parse": "passed",
+    "synthetic_fixture_contract": "passed"
+  },
+  "compatibility": {
+    "agent_utilities": ">=1.27.1,<2",
+    "bundle_schema": "2",
+    "epistemic_graph": ">=2.23.1,<3"
+  },
+  "connector": "ciso-assistant-api",
+  "kind": "ConnectorSourceAttestation",
+  "live_certified": false,
+  "mode": "offline-source",
+  "schema_version": "2",
+  "signature": "SWtS8inq6AZA1gQbGXNRC5PJQD5w2hyu-RhDDrYWt6ejhnRv2WgGYB2ul_b8vwK8tZQi4nfUdDbg84fKe3n7CA",
+  "signature_algorithm": "ed25519",
+  "signer": "ontology-manifest-generator",
+  "signing_public_key": "q0Cp7bmQMqJhbofGKKw8xXC6KbFzukBDDke0UYVi8y4",
+  "status": "source-validated",
+  "validated_at": "2026-07-18T14:21:05Z"
+}

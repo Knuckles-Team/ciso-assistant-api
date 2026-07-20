@@ -1,10 +1,6 @@
-version: '3.8'
-
 services:
   ciso-assistant-api-mcp:
-    image: knucklessg1/ciso-assistant-api:mcp
-    container_name: ciso-assistant-api-mcp
-    hostname: ciso-assistant-api-mcp
+    image: ${CISO_ASSISTANT_MCP_IMAGE:?set-CISO_ASSISTANT_MCP_IMAGE-to-image@sha256-digest}
     restart: always
     env_file:
       - ../.env
@@ -14,7 +10,7 @@ services:
       - PORT=8000
       - TRANSPORT=streamable-http
     ports:
-      - "8000:8000"
+      - "${CISO_ASSISTANT_BIND_ADDRESS:-127.0.0.1}:8000:8000"
     healthcheck:
       test: ["CMD", "python3", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
       interval: 30s

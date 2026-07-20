@@ -1,0 +1,31 @@
+schema_version: '1'
+connector: ciso-assistant-api
+ontology_source: ciso
+sync:
+- preset: ciso-compliance-assessments
+  server: ciso-assistant-api
+  tool: ciso_assistant_compliance
+  action: api_compliance_assessments_list
+  records_path: data
+  id_field: id
+  title_field: name
+  text_field: description
+  updated_field: updated_at
+  doc_type: compliance_assessment
+  tool_schema_sha256: d01dcd132f1277a672d99153e1216b4423d57824e386f5da3673cb3742f7ed03
+- preset: ciso-risk-scenarios
+  server: ciso-assistant-api
+  tool: ciso_assistant_risk_management
+  action: api_risk_scenarios_list
+  records_path: data
+  id_field: id
+  title_field: name
+  text_field: description
+  updated_field: updated_at
+  doc_type: risk_scenario
+  tool_schema_sha256: 0ad2ad7f208632c1f5ddfe5bbc3fb57f47acd13f3f39381e69a60afbe9dd7319
+governance:
+  default_acl: quarantine
+  identity: opaque-reference
+  tenant: required-at-materialization
+  provenance: required-at-materialization

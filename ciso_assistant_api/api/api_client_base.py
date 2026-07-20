@@ -3,14 +3,11 @@
 
 Handles the cross-cutting concerns shared by every generated domain client:
 
-* **Authentication** — CISO Assistant (intuitem) uses Django-REST-Knox **token**
-  auth. Provide a pre-minted token (``CISO_ASSISTANT_TOKEN``) or a
-  username/password pair (``CISO_ASSISTANT_USERNAME`` / ``CISO_ASSISTANT_PASSWORD``)
-  which is exchanged for a token at ``POST /api/iam/login/``. The token is sent as
-  ``Authorization: Token <token>`` on every request.
-* **Single host** — all operations target one backend host (``CISO_ASSISTANT_URL``,
-  e.g. ``https://ciso.arpa``). The generated methods carry the relative path
-  (``/api/...``); this base prefixes the configured host.
+* **Authentication** — CISO Assistant uses Django-REST-Knox token auth. Provide
+  a runtime token or username/password pair, which is exchanged for a token at
+  ``POST /api/iam/login/``.
+* **Single host** — all operations target the configured backend origin. Absolute
+  pagination links are accepted only when they retain that origin.
 * **Pagination** — DRF list endpoints (``page`` / ``limit`` + ``offset``) return
   ``{"count", "next", "previous", "results"}``; this base transparently follows the
   ``next`` links and concatenates ``results``.
@@ -18,20 +15,24 @@ Handles the cross-cutting concerns shared by every generated domain client:
   ``429``/``502``/``503``/``504`` with bounded exponential backoff.
 """
 
+import ipaddress
 import logging
 import threading
 import time
 from typing import Any, TypeVar
-from urllib.parse import quote
+from urllib.parse import quote, urlparse
 
 import requests
-import urllib3
 from agent_utilities.base_utilities import get_logger
 from agent_utilities.core.exceptions import (
     AuthError,
     MissingParameterError,
     ParameterError,
     UnauthorizedError,
+)
+from agent_utilities.core.transport_security import (
+    ResolvedTLSProfile,
+    resolve_configured_tls_profile,
 )
 from pydantic import ValidationError
 
@@ -49,39 +50,72 @@ class CisoAssistantApiBase:
         token: str | None = None,
         username: str | None = None,
         password: str | None = None,
-        proxies: dict | None = None,
-        verify: bool = True,
+        tls_profile: ResolvedTLSProfile | None = None,
         max_retries: int = 3,
         max_pages: int = 50,
         debug: bool = False,
     ):
         logger.setLevel(logging.DEBUG if debug else logging.ERROR)
 
-        self.verify = verify
-        self.proxies = proxies
         self.debug = debug
         self.max_retries = max_retries
         self.max_pages = max_pages
-        self._session = requests.Session()
         self._token_lock = threading.Lock()
         self._token = token
         self._username = username
         self._password = password
 
-        host = (url or "http://localhost:8000").strip().rstrip("/")
-        if not host.startswith(("http://", "https://")):
-            host = f"https://{host}"
-        self.url = host
-        self.hostname = host.split("://", 1)[-1]
-
-        if self.verify is False:
-            urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
-
         if not self._token and not (self._username and self._password):
             raise MissingParameterError(
-                "Provide CISO_ASSISTANT_TOKEN, or CISO_ASSISTANT_USERNAME and "
-                "CISO_ASSISTANT_PASSWORD for the Knox login flow."
+                "Provide a runtime token or username/password pair for the Knox "
+                "login flow."
             )
+
+        self.url = self._normalize_base_url(url)
+        parsed = urlparse(self.url)
+        self.hostname = parsed.hostname or ""
+        self._origin = (parsed.scheme.casefold(), parsed.netloc.casefold())
+        self.tls_profile = tls_profile or resolve_configured_tls_profile(
+            "CISO_ASSISTANT"
+        )
+        self._session = self.tls_profile.configure_requests_session(requests.Session())
+
+    @staticmethod
+    def _normalize_base_url(url: str | None) -> str:
+        value = str(url or "").strip().rstrip("/")
+        if not value:
+            raise MissingParameterError("CISO Assistant URL is required")
+        if "://" not in value:
+            value = f"https://{value}"
+        parsed = urlparse(value)
+        if parsed.scheme.casefold() not in {"http", "https"} or not parsed.hostname:
+            raise ParameterError("CISO Assistant URL is invalid")
+        if parsed.username is not None or parsed.password is not None:
+            raise ParameterError("CISO Assistant URL must not contain credentials")
+        if parsed.query or parsed.fragment:
+            raise ParameterError(
+                "CISO Assistant URL must not contain query or fragment"
+            )
+        try:
+            _ = parsed.port
+        except ValueError:
+            raise ParameterError(
+                "CISO Assistant URL contains an invalid port"
+            ) from None
+        host = parsed.hostname.casefold().rstrip(".")
+        is_loopback = host == "localhost"
+        try:
+            is_loopback = is_loopback or ipaddress.ip_address(host).is_loopback
+        except ValueError:
+            pass
+        if parsed.scheme.casefold() != "https" and not is_loopback:
+            raise ParameterError("Remote CISO Assistant URLs must use HTTPS")
+        return value
+
+    def close(self) -> None:
+        """Release transport resources and runtime-only TLS material."""
+        self._session.close()
+        self.tls_profile.cleanup()
 
     # ------------------------------------------------------------------ auth
     def _ensure_token(self) -> str:
@@ -97,21 +131,20 @@ class CisoAssistantApiBase:
                     url=login_url,
                     json={"username": self._username, "password": self._password},
                     headers={"Accept": "application/json"},
-                    verify=self.verify,
-                    proxies=self.proxies,
                     timeout=30,
                 )
-            except requests.RequestException as e:
-                raise AuthError(f"CISO Assistant login request failed: {e}") from e
+            except requests.RequestException:
+                raise AuthError("CISO Assistant login request failed") from None
             if resp.status_code in (401, 403):
                 raise UnauthorizedError(
                     f"CISO Assistant credentials rejected ({resp.status_code})."
                 )
             if not resp.ok:
-                raise AuthError(
-                    f"CISO Assistant login returned {resp.status_code}: {resp.text}"
-                )
-            payload = resp.json()
+                raise AuthError(f"CISO Assistant login failed ({resp.status_code})")
+            try:
+                payload = resp.json()
+            except ValueError:
+                raise AuthError("CISO Assistant login response was invalid") from None
             self._token = payload.get("token") or payload.get("key")
             if not self._token:
                 raise AuthError("CISO Assistant login response contained no token.")
@@ -133,16 +166,24 @@ class CisoAssistantApiBase:
         Interpolates ``{param}`` path parameters by name, then prefixes the
         configured backend host.
         """
+        if not isinstance(url_template, str) or not url_template:
+            raise ParameterError("CISO Assistant endpoint is invalid")
         path = url_template
         for key, value in (path_kwargs or {}).items():
-            path = path.replace("{" + key + "}", quote(str(value)))
+            path = path.replace("{" + key + "}", quote(str(value), safe=""))
         if "{" in path:
             missing = (
                 path[path.index("{") + 1 : path.index("}")] if "}" in path else "?"
             )
             raise MissingParameterError(f"Missing required path parameter: {missing}")
         if path.startswith(("http://", "https://")):
+            parsed = urlparse(path)
+            origin = (parsed.scheme.casefold(), parsed.netloc.casefold())
+            if origin != self._origin or parsed.username is not None or parsed.fragment:
+                raise ParameterError("CISO Assistant URL escaped the configured origin")
             return path
+        if path.startswith("//") or "#" in path:
+            raise ParameterError("CISO Assistant endpoint is invalid")
         return f"{self.url}/{path.lstrip('/')}"
 
     # ----------------------------------------------------------------- request
@@ -159,17 +200,22 @@ class CisoAssistantApiBase:
         request_headers = headers or self._auth_headers()
         attempt = 0
         while True:
-            response = self._session.request(
-                method=method.upper(),
-                url=url,
-                params=params or None,
-                json=json,
-                data=data,
-                headers=request_headers,
-                verify=self.verify,
-                proxies=self.proxies,
-                timeout=60,
-            )
+            try:
+                response = self._session.request(
+                    method=method.upper(),
+                    url=url,
+                    params=params or None,
+                    json=json,
+                    data=data,
+                    headers=request_headers,
+                    timeout=60,
+                )
+            except requests.RequestException as exc:
+                logger.error(
+                    "CISO Assistant request failed (exception_type=%s)",
+                    type(exc).__name__,
+                )
+                raise RuntimeError("CISO Assistant request failed") from None
             if response.status_code == 429 and attempt < self.max_retries:
                 delay = self._retry_delay(response, attempt)
                 logger.debug("Rate limited (429); sleeping %.1fs", delay)
@@ -182,7 +228,7 @@ class CisoAssistantApiBase:
                 continue
             if response.status_code in (401, 403):
                 raise (AuthError if response.status_code == 401 else UnauthorizedError)(
-                    f"CISO Assistant request to {url} failed ({response.status_code})."
+                    f"CISO Assistant request was rejected ({response.status_code})"
                 )
             return response
 
@@ -222,7 +268,7 @@ class CisoAssistantApiBase:
         fetched = 1
         while next_url and fetched < cap:
             # ``next`` is an absolute URL already carrying the page cursor.
-            resp = self._request(method, next_url)
+            resp = self._request(method, self._resolve_url(next_url, {}))
             body = self._decode(resp)
             all_data.extend(self._extract_items(body))
             next_url = body.get("next") if isinstance(body, dict) else None
@@ -277,9 +323,11 @@ class CisoAssistantApiBase:
             raise
         except ValidationError as e:
             raise ParameterError(f"Invalid parameters: {e.errors()}") from e
-        except requests.RequestException as e:
-            logger.error("CISO Assistant request error: %s", e)
-            raise
+        except requests.RequestException as exc:
+            logger.error(
+                "CISO Assistant request failed (exception_type=%s)", type(exc).__name__
+            )
+            raise RuntimeError("CISO Assistant request failed") from None
 
     # --------------------------------------------------------------- escape hatch
     def api_request(
@@ -297,6 +345,6 @@ class CisoAssistantApiBase:
         """
         if method.upper() not in ("GET", "POST", "PUT", "DELETE", "PATCH"):
             raise ValueError(f"Unsupported HTTP method: {method.upper()}")
-        url = f"{self.url}/{endpoint.lstrip('/')}"
+        url = self._resolve_url(endpoint, {})
         response = self._request(method, url, params=params, json=json, data=data)
         return Response(response=response, data=self._decode(response))

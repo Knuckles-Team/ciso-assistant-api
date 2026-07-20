@@ -1,0 +1,4 @@
+interface:
+  display_name: "CISO Assistant Operations"
+  short_description: "Governed GRC, incident, and evidence workflows"
+  default_prompt: "Use $ciso-assistant-operations to inspect CISO Assistant posture and return a privacy-safe, evidence-based summary."

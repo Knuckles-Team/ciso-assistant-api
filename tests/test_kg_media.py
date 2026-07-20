@@ -36,8 +36,9 @@ def test_ingest_evidence_attachment_stores_blob():
         name="pentest.pdf",
         mime_type="application/pdf",
         ref_id="EV.1",
-        link="https://ciso.arpa/e/1",
+        link="https://service.example.invalid/e/1",
         media_store=store,
+        content_policy_approved=True,
     )
     assert res == {"asset_id": "asset-1", "digest": "deadbeef", "size_bytes": 21}
     call = store.calls[0]
@@ -46,7 +47,7 @@ def test_ingest_evidence_attachment_stores_blob():
     assert call["name"] == "pentest.pdf"
     assert call["extra"]["evidence_id"] == "e-1"
     assert call["extra"]["ref_id"] == "EV.1"
-    assert call["extra"]["source_url"] == "https://ciso.arpa/e/1"
+    assert "source_url" not in call["extra"]
 
 
 def test_image_mime_maps_to_image():
@@ -56,6 +57,7 @@ def test_image_mime_maps_to_image():
         evidence_id="e-2",
         mime_type="image/png",
         media_store=store,
+        content_policy_approved=True,
     )
     assert store.calls[0]["media_type"] == "image"
     assert store.calls[0]["name"] == "evidence-e-2"
@@ -70,3 +72,12 @@ def test_no_bytes_is_noop():
 def test_no_store_is_noop():
     # No injected store + no reachable engine -> clean no-op.
     assert ingest_evidence_attachment(b"data", evidence_id="e-4") is None
+
+
+def test_content_policy_defaults_to_deny():
+    store = _FakeStore()
+    assert (
+        ingest_evidence_attachment(b"data", evidence_id="e-5", media_store=store)
+        is None
+    )
+    assert store.calls == []

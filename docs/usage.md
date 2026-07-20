@@ -1,55 +1,81 @@
 # Usage
 
+Configure the endpoint, credential references, and TLS policy before invoking a
+client or server. See [Configuration](configuration.md).
+
 ## Python client
 
 ```python
 from ciso_assistant_api.auth import get_client
 
-client = get_client()  # reads CISO_ASSISTANT_* environment variables
-
-# Every OpenAPI operation is a method on the composite Api client.
-incident = client.create_incident_using_post(body={"name": "Data breach"})
-print(incident.status_code, incident.data)
-
-# List endpoints paginate automatically (offset or cursor):
-records = client.get_data_subjects_v4(page=0, size=200)
+client = get_client()
+try:
+    response = client.api_incidents_list(status="open", limit=25)
+    records = response.data
+finally:
+    client.close()
 ```
 
-Every call returns a `Response` wrapper exposing `.data` (decoded JSON) plus
-`.status_code` and `.headers`.
+Every generated method returns a `Response` wrapper with decoded `.data`, the
+underlying HTTP response, status, and headers. List operations follow bounded
+DRF pagination automatically.
+
+Library callers may pass a token directly to `get_client` as an in-memory value.
+Durable deployments must use secret-reference settings instead.
 
 ## MCP server
 
-Each domain is a single action-routed tool. Pass an `action` and a `params_json`
-payload (path, query, and body fields all go in `params_json`):
+Run the condensed surface locally:
 
-```jsonc
-// tool: ciso_assistant_incidents
+```bash
+ciso-assistant-mcp --transport stdio
+```
+
+Each domain router accepts an `action` and a JSON-encoded `params_json` string.
+For example, invoke `ciso_assistant_incidents` with:
+
+```json
 {
-  "action": "create_incident_using_post",
-  "params_json": "{\"body\": {\"name\": \"Data breach\"}}"
+  "action": "api_incidents_list",
+  "params_json": "{\"status\":\"open\",\"limit\":25}"
 }
 ```
 
-```jsonc
-// tool: ciso_assistant_dsar
-{ "action": "get_request_queues", "params_json": "{\"page\": 0, \"size\": 50}" }
+Retrieve exact source objects before correlating them:
+
+```json
+{
+  "action": "api_risk_scenarios_retrieve",
+  "params_json": "{\"id\":\"<source_uuid>\"}"
+}
 ```
 
-The `custom_api` tool (`ciso_assistant_api_request`) issues arbitrary requests for any
-endpoint not yet wrapped:
+The generated operation inventory in the README is authoritative for available
+actions. Keep `MCP_TOOL_MODE=condensed` for delegated agents; enable verbose
+per-operation tools only for an approved diagnostic need.
 
-```jsonc
-{ "method": "GET", "endpoint": "/api/incident/v1/incidents",
-  "params_json": "{\"params\": {\"page\": 0}}" }
+## Knowledge-graph ingestion
+
+`ciso_ingest` materializes supported source records with provenance. Start with a
+bounded sample and state the target graph before invoking it:
+
+```json
+{
+  "kind": "risk_scenarios",
+  "params_json": "{\"limit\":100}"
+}
 ```
+
+Supported kinds include risk scenarios, risk assessments, applied controls,
+vulnerabilities, compliance assessments, incidents, and evidence metadata. The
+MCP ingestion boundary never persists raw evidence attachment bytes.
 
 ## A2A agent
 
 ```bash
-ciso-assistant-agent --provider openai --model-id gpt-4o --api-key sk-...
+ciso-assistant-agent --provider <configured-provider> --model-id <configured-model>
 ```
 
-The agent auto-discovers the MCP tools from `mcp_config.json`; with this many
-domains the agent-utilities graph router engages automatically to keep the active
-tool set focused per turn.
+The agent discovers the local MCP entrypoint from the packaged MCP config.
+Configure model credentials through AgentConfig secret references, not command
+arguments.

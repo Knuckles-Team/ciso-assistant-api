@@ -18,6 +18,8 @@ from __future__ import annotations
 import logging
 from typing import Any
 
+from agent_utilities.security.persistence_privacy import sanitize_for_persistence
+
 from ciso_assistant_api.kg_ingest import media_store as _default_media_store
 
 logger = logging.getLogger("ciso_assistant_api.kg_media")
@@ -34,14 +36,17 @@ def ingest_evidence_attachment(
     ref_id: str | None = None,
     link: str | None = None,
     media_store: Any | None = None,
+    content_policy_approved: bool = False,
 ) -> dict[str, Any] | None:
     """Store an evidence attachment's bytes as a blob + ``:MediaAsset`` in the KG.
 
     Returns the ``store_media`` result (e.g. ``{asset_id, digest, size_bytes, ...}``) on
-    success, or ``None`` when there is no engine, no bytes, or the store failed (never
-    raises). ``media_store`` may be injected (tests); otherwise one is built on demand.
+    success, or ``None`` when content-policy approval is absent, there is no engine,
+    there are no bytes, or the store failed. ``media_store`` may be injected for a
+    policy-controlled caller; the public MCP ingestion workflow does not authorize
+    this content-bearing persistence path.
     """
-    if not data:
+    if not data or not content_policy_approved:
         return None
     store = media_store if media_store is not None else _default_media_store()
     if store is None:
@@ -57,9 +62,10 @@ def ingest_evidence_attachment(
     extra = {"evidence_id": str(evidence_id)}
     if ref_id:
         extra["ref_id"] = ref_id
-    if link:
-        extra["source_url"] = link
-    display_name = name or f"evidence-{evidence_id}"
+    # ``link`` is accepted as transient source context only.  A deployment URL can
+    # reveal environment topology, so it never crosses the durable media boundary.
+    safe_extra, _ = sanitize_for_persistence(extra)
+    display_name, _ = sanitize_for_persistence(name or f"evidence-{evidence_id}")
 
     try:
         stored = store.store_media(
@@ -68,15 +74,13 @@ def ingest_evidence_attachment(
             mime_type=mime_type,
             source=_SOURCE,
             name=display_name,
-            extra=extra,
+            extra=safe_extra,
         )
-    except Exception as e:  # noqa: BLE001 — engine/store failure is non-fatal
-        logger.warning("KG media ingest: store_media failed: %s", e)
+    except Exception as exc:  # noqa: BLE001 — engine/store failure is non-fatal
+        logger.warning("KG media ingest failed (exception_type=%s)", type(exc).__name__)
         return None
     if stored is None:
         return None
 
-    logger.info(
-        "KG media ingest: stored evidence %s attachment %s", evidence_id, display_name
-    )
+    logger.info("KG media ingest stored one policy-approved attachment")
     return stored

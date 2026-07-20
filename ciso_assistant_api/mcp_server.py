@@ -4,11 +4,9 @@ import logging
 import sys
 from typing import Any
 
-from agent_utilities.mcp_utilities import (
-    create_mcp_server,
-    load_config,
-    register_tool_surface,
-)
+from agent_utilities.core.config import load_config, setting
+from agent_utilities.mcp.server_factory import create_mcp_server
+from agent_utilities.mcp.verbose_tools import register_tool_surface
 from fastmcp import FastMCP
 from fastmcp.utilities.logging import get_logger
 
@@ -54,11 +52,15 @@ def get_mcp_instance() -> tuple[Any, Any, Any, Any]:
         manifest=OPERATIONS,
     )
 
-    # Native KG ingestion (Wire-First): default-on typed-node + blob push into the
-    # epistemic-graph via the ciso_ingest tool. CONCEPT:AU-KG.ingest.enterprise-source-extractor.
+    # Native KG ingestion: privacy-sanitized typed-node persistence. Raw evidence
+    # attachments fail closed at the policy-controlled persistence boundary.
     from ciso_assistant_api.mcp.mcp_kg_ingest import register_kg_ingest_tools
 
-    register_kg_ingest_tools(mcp)
+    if setting("KG_INGESTTOOL", True):
+        register_kg_ingest_tools(mcp)
+        toggles = dict(getattr(mcp, "_condensed_tool_toggles", {}) or {})
+        toggles["ciso_ingest"] = "KG_INGESTTOOL"
+        mcp._condensed_tool_toggles = toggles
 
     register_prompts(mcp)
 

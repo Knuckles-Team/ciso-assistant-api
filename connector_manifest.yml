@@ -219,6 +219,7 @@ sync:
   updated_field: updated_at
   pagination: page
   doc_type: compliance_assessment
+  tool_schema_sha256: d01dcd132f1277a672d99153e1216b4423d57824e386f5da3673cb3742f7ed03
   raw:
     server: ciso-assistant-api
     tool: ciso_assistant_compliance
@@ -244,6 +245,7 @@ sync:
   updated_field: updated_at
   pagination: page
   doc_type: risk_scenario
+  tool_schema_sha256: 0ad2ad7f208632c1f5ddfe5bbc3fb57f47acd13f3f39381e69a60afbe9dd7319
   raw:
     server: ciso-assistant-api
     tool: ciso_assistant_risk_management
@@ -260,17 +262,20 @@ sync:
     doc_type: risk_scenario
 provenance:
   generated_by: scripts/generate_connector_manifests.py
-  generated_at: '2026-07-09T00:00:00Z'
+  generated_at: '2026-07-18T14:21:05Z'
   source_artifacts:
   - a2a.json
   - ciso_assistant_api/connectors/mcp_source_presets.json
+  - ciso_assistant_api/connectors/tool_schema_fingerprints.json
   - ciso_assistant_api/ontology/ciso.ttl
   integrity:
     algorithm: urdna2015-sha256
     hash: 633538d55a5f8dadbcd49173465b5996e4bf0691d5bd2e83fa979e1d708c319b
     triple_count: 80
   signer: ontology-manifest-generator
-  signature: 8d160238a1040d2ff10b4ea4233457c9daef6c3e1bc20373c2af6b673b602cca
+  signature_algorithm: ed25519
+  signing_public_key: q0Cp7bmQMqJhbofGKKw8xXC6KbFzukBDDke0UYVi8y4
+  signature: XLHAudvslqe0N9bfDLBPGnyJIyByjkLa0gha8qp8oG5veufaH2I90ACFkF1pYaFqXmK85iXzg6MIxsgKF26wBA
 policy:
   pii_fields: {}
   tenant_boundary: null

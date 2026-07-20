@@ -22,11 +22,22 @@ import logging
 import time
 from typing import Any
 
+from agent_utilities.security.persistence_privacy import sanitize_for_persistence
+
 logger = logging.getLogger("ciso_assistant_api.kg")
 
 _SOURCE = "ciso-assistant-api"
 _DOMAIN = "ciso"
 _DEFAULT_GRAPH = "__commons__"
+
+
+def _privacy_safe(value: Any) -> Any:
+    """Sanitize one value before it crosses the durable graph boundary."""
+    clean, report = sanitize_for_persistence(value)
+    if isinstance(clean, dict) and report.changed:
+        clean["privacy_redactions"] = report.redactions
+    return clean
+
 
 # Prefer the shared fleet primitive; fall back to the self-contained txn path below.
 try:  # pragma: no cover - exercised only where the primitive is installed
@@ -55,8 +66,8 @@ def _client() -> tuple[Any | None, str]:
         from agent_utilities.knowledge_graph.core.graph_compute import (
             GraphComputeEngine,
         )
-    except Exception as e:  # noqa: BLE001 — KG stack absent
-        logger.debug("KG ingest unavailable (import): %s", e)
+    except Exception as exc:  # noqa: BLE001 — KG stack absent
+        logger.debug("KG ingest unavailable (exception_type=%s)", type(exc).__name__)
         return None, ""
     try:
         engine = GraphComputeEngine()
@@ -65,8 +76,10 @@ def _client() -> tuple[Any | None, str]:
             return None, ""
         graph = getattr(engine, "graph_name", None) or _DEFAULT_GRAPH
         return client, graph
-    except Exception as e:  # noqa: BLE001 — engine unreachable
-        logger.debug("KG ingest: engine unreachable: %s", e)
+    except Exception as exc:  # noqa: BLE001 — engine unreachable
+        logger.debug(
+            "KG ingest engine unavailable (exception_type=%s)", type(exc).__name__
+        )
         return None, ""
 
 
@@ -83,13 +96,16 @@ def _write_nodes(
     try:
         txn = client.txn.begin(graph=graph)
         for node in nodes:
+            # Public ingestion entry points already sanitize each node exactly once.
+            # Re-sanitizing here can both distort redaction telemetry and repeatedly
+            # redact location-shaped fields that have already been made non-sensitive.
             props = {k: v for k, v in node.items() if k != "id" and v is not None}
             props.setdefault("source", _SOURCE)
             props.setdefault("domain", _DOMAIN)
             client.txn.add_node(txn, node["id"], props)
         committed = client.txn.commit(txn)
-    except Exception as e:  # noqa: BLE001 — engine/txn failure is non-fatal
-        logger.warning("KG ingest: txn failed: %s", e)
+    except Exception as exc:  # noqa: BLE001 — engine/txn failure is non-fatal
+        logger.warning("KG ingest failed (exception_type=%s)", type(exc).__name__)
         return None
     if not committed:
         logger.warning("KG ingest: txn not committed (conflict)")
@@ -102,8 +118,10 @@ def _write_nodes(
                 rel["source"], rel["target"], {"type": rel.get("type", "RELATED")}
             )
             edges += 1
-        except Exception as e:  # noqa: BLE001 — pure edge link, best-effort
-            logger.debug("KG ingest: edge skipped: %s", e)
+        except Exception as exc:  # noqa: BLE001 — pure edge link, best-effort
+            logger.debug(
+                "KG ingest edge skipped (exception_type=%s)", type(exc).__name__
+            )
 
     logger.info("KG ingest[ciso]: wrote %d nodes, %d edges", len(nodes), edges)
     return {"nodes": len(nodes), "edges": edges}
@@ -126,7 +144,19 @@ def ingest_entities(
     Returns ``{"nodes":n, "edges":m}`` or ``None`` (no engine / failure; never raises).
     ``client``/``graph`` may be injected (tests); otherwise resolved on demand.
     """
-    entities = [e for e in (entities or []) if e.get("id")]
+    entities = [
+        safe
+        for entity in entities or []
+        if entity.get("id")
+        for safe in [_privacy_safe(entity)]
+        if isinstance(safe, dict) and safe.get("id")
+    ]
+    relationships = [
+        safe
+        for relationship in relationships or []
+        for safe in [_privacy_safe(relationship)]
+        if isinstance(safe, dict)
+    ]
     if not entities:
         return None
     # Injected client (tests) always uses the self-contained path.
@@ -154,11 +184,17 @@ def ingest_documents(
     Each doc: ``{"id":..., "text":..., "title"?:..., "source_uri"?:..., ...props}``.
     Returns ``{"nodes":n, "edges":0}`` or ``None``.
     """
+    documents = [
+        safe
+        for document in documents or []
+        for safe in [_privacy_safe(document)]
+        if isinstance(safe, dict)
+    ]
     if client is None and _HAS_SHARED and _shared_ingest_documents is not None:
         return _shared_ingest_documents(documents, source=source, domain=domain)
     now = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
     nodes: list[dict[str, Any]] = []
-    for doc in documents or []:
+    for doc in documents:
         did = doc.get("id")
         text = doc.get("text") or doc.get("content")
         if not did or not text:
@@ -194,8 +230,10 @@ def media_store() -> Any | None:
         from agent_utilities.knowledge_graph.memory.media_store import MediaStore
 
         return MediaStore(GraphComputeEngine())
-    except Exception as e:  # noqa: BLE001
-        logger.debug("KG ingest: media_store unavailable: %s", e)
+    except Exception as exc:  # noqa: BLE001
+        logger.debug(
+            "KG media store unavailable (exception_type=%s)", type(exc).__name__
+        )
         return None
 
 

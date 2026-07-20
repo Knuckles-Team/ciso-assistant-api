@@ -10,7 +10,8 @@ reason = "Unit tests using mocks"
 @pytest.fixture(autouse=True)
 def mock_env(monkeypatch):
     monkeypatch.setenv("CISO_ASSISTANT_URL", "https://test.my.ciso_assistant.com")
-    monkeypatch.setenv("CISO_ASSISTANT_TOKEN", "mock_token")
+    monkeypatch.setenv("CISO_ASSISTANT_TOKEN_REF", "env://TEST_CISO_TOKEN")
+    monkeypatch.setenv("TEST_CISO_TOKEN", "mock_token")
     monkeypatch.delenv("ENABLE_DELEGATION", raising=False)
 
 

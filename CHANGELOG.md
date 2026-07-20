@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Consolidated the three overlapping provider skills into the canonical
+  `ciso-assistant-operations` skill.
+- Replaced durable credential values and boolean TLS verification with runtime
+  secret references and mandatory AgentConfig TLS profiles.
+- Added same-origin URL enforcement, privacy-sanitized KG persistence, and a
+  fail-closed content-policy gate for attachment storage. Raw attachments are no
+  longer ingested through the MCP tool.
+- Added the configuration, TLS, privacy, provider, and readiness documentation
+  required by the repository contract.
+- Raised the Agent Utilities floor to the current TLS/privacy contract and
+  enabled the Langfuse-capable observability extra for the full agent runtime.
+
 ## [0.1.0] - 2026-06-15
 
 ### Added

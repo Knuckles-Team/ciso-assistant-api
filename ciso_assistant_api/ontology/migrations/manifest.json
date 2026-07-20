@@ -1,0 +1,6 @@
+{
+  "connector": "ciso-assistant-api",
+  "current_ontology_source": "ciso",
+  "migrations": [],
+  "schema_version": "1"
+}

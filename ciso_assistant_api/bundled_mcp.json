@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "ciso-assistant-api": {
+      "command": "ciso-assistant-mcp",
+      "args": [],
+      "env": {
+        "MCP_TOOL_MODE": "intent",
+        "CUSTOM_APITOOL": "False",
+        "KG_INGESTTOOL": "True"
+      }
+    }
+  }
+}

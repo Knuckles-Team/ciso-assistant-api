@@ -1,46 +1,53 @@
 # Overview
 
-`ciso-assistant-api` wraps the entire CISO Assistant public API surface and exposes it three
-ways: a typed Python client, an MCP server, and an A2A agent.
+`ciso-assistant-api` exposes the CISO Assistant public REST API as a composite
+Python client, an action-routed MCP server, and an optional A2A agent.
 
-## 100% coverage, generated from the specs
+## Generated API and MCP surface
 
-CISO Assistant publishes 35 machine-readable OpenAPI 3.x specifications. This package
-**vendors** all of them under `ciso_assistant_api/specs/*.json` and runs
-`scripts/generate_from_openapi.py` to emit, from that single source of truth:
+The vendored OpenAPI document is the source for approximately 1,565 operations
+across 19 domains. `scripts/generate_from_openapi.py` emits:
 
-- `ciso_assistant_api/api/api_client_<domain>.py` — one method per operation, composed
-  into the single `Api` class via multiple inheritance.
-- `ciso_assistant_api/api/_operation_manifest.py` — the `operationId → method → action`
-  map that drives coverage verification.
-- `ciso_assistant_api/mcp/mcp_<domain>.py` — one consolidated, action-routed MCP tool
-  per domain.
+- one generated client mixin per domain;
+- the operation manifest used for coverage checks;
+- one condensed action router per domain and an optional verbose tool per
+  operation;
+- the README tool inventory.
 
-`tests/test_ciso_assistant_coverage.py` then asserts the three sets — spec operations,
-client methods, and MCP actions — are mutually consistent. If CISO Assistant revises a
-spec, re-running the generator and the test guarantees nothing silently drops.
+Generated clients, operation manifests, and MCP modules must be regenerated
+together. The hand-authored base client owns authentication, mandatory TLS,
+same-origin URL enforcement, pagination, retries, and response decoding.
 
 ## Product areas
 
-| Area | Example domains (MCP tags) |
+| Area | MCP domains |
 | --- | --- |
-| AI Governance | `ai_governance` |
-| Consent & Preference Management | `cmp`, `consent_receipts`, `cookie_consent`, `universal_consent`, `privacy_notices`, `mobile_app_consent`, `cross_device_consent` |
-| Data Use Governance | `data_catalog`, `data_discovery`, `data_discovery_worker` |
-| Privacy Automation | `dsar`, `assessments`, `data_mapping`, `incidents` |
-| Tech Risk & Compliance | `audit_management`, `compliance_automation`, `policy_management`, `issues_management`, `it_risk_management`, `training` |
-| Third-Party Management | `tprm` |
-| ESG | `esg` |
-| Platform | `access_management`, `bulk_export`, `documents`, `integrations`, `inventory`, `object_manager`, `task_management`, `user_provisioning` |
+| Governance and compliance | `governance`, `compliance`, `frameworks_libraries` |
+| Risk and resilience | `risk_management`, `ebios_rm`, `crq`, `resilience` |
+| Incidents and evidence | `incidents`, `evidence`, `security_findings` |
+| Assets and third parties | `assets`, `third_party` |
+| Privacy | `privacy` |
+| Platform operations | `auth_users`, `analytics_metrology`, `chat`, `integrations`, `settings`, `tasks_timeline` |
 
-## Architecture
+`MCP_TOOL_MODE=condensed` is the intended delegated surface. Operator policy can
+disable individual domains and should expose the arbitrary-request tool only
+when its expanded access is explicitly required.
+
+## Provider contributions
+
+The package publishes discovery entry points for its canonical operations skill,
+ontology source, prompt assets, and connector source presets. These are inputs to
+the wider Agent OS ecosystem; signed schema-v2 capability evidence is generated
+and validated centrally rather than hand-authored here.
 
 ```mermaid
 graph TD
-    User([User / A2A]) --> Agent[Pydantic-AI Agent]
-    Agent --> MCP[FastMCP Server]
-    MCP --> Tools[36 action-routed domain tools]
-    Tools --> Api[Composite Api client]
-    Api --> Base[CISO AssistantApiBase: auth / pagination / retry]
-    Base --> CISO Assistant([CISO Assistant REST API])
+    Caller[Agent or MCP client] --> Router[Condensed domain router]
+    Router --> Client[Composite generated client]
+    Client --> Boundary[Auth, TLS, origin, retry, pagination]
+    Boundary --> Service[CISO Assistant REST API]
+    Router --> Ingest[Governed KG ingestion]
+    Ingest --> Graph[Epistemic graph]
 ```
+
+See [Configuration](configuration.md) for the runtime trust and privacy contract.

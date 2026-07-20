@@ -200,6 +200,25 @@ def test_ingest_documents_requires_text():
     assert ingest_documents([{"id": "d-1"}], client=c) is None
 
 
+def test_ingest_redacts_personal_data_and_locations():
+    c = _FakeClient()
+    result = ingest_documents(
+        [
+            {
+                "id": "d-2",
+                "text": "Contact person@example.invalid for details",
+                "source_uri": "https://private.example.invalid/record/2",
+            }
+        ],
+        client=c,
+    )
+    assert result == {"nodes": 1, "edges": 0}
+    node = c.txn.nodes["d-2"]
+    assert "[REDACTED_EMAIL]" in node["text"]
+    assert node["source_uri"] == "[REDACTED_LOCATION]"
+    assert node["privacy_redactions"] == 2
+
+
 def test_ingest_noops_without_engine():
     assert ingest_entities([{"id": "a", "type": "Control"}]) is None
 

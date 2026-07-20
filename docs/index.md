@@ -9,9 +9,11 @@ vendored spec and verified by a coverage test.
 
 - **[Overview](overview.md)** — what the package covers and how it is built.
 - **[Installation](installation.md)** — install and configure credentials.
+- **[Configuration](configuration.md)** — AgentConfig, secret references, TLS,
+  privacy, and readiness gates.
 - **[Usage](usage.md)** — Python client, MCP server, and A2A agent.
 - **[Deployment](deployment.md)** — Docker and container deployment.
 
 ```bash
-pip install ciso-assistant-api[all]
+pip install "ciso-assistant-api[all]"
 ```
