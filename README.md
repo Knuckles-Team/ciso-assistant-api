@@ -21,7 +21,7 @@
 ![PyPI - Wheel](https://img.shields.io/pypi/wheel/ciso-assistant-api)
 ![PyPI - Implementation](https://img.shields.io/pypi/implementation/ciso-assistant-api)
 
-*Version: 1.0.1*
+*Version: 2.0.0*
 
 ## Overview
 

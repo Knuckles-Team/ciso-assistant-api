@@ -1,7 +1,7 @@
 {
   "name": "ciso-assistant-api-agent",
   "type": "agent",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Agent package for ciso-assistant-api",
   "url": "https://github.com/Knuckles-Team/ciso-assistant-api/tree/main",
   "license": "MIT",
