@@ -3,7 +3,7 @@ connector: ciso-assistant-api
 ontology_source: ciso
 sync:
 - preset: ciso-compliance-assessments
-  server: ciso-assistant-api
+  server: ciso-assistant-mcp
   tool: ciso_assistant_compliance
   action: api_compliance_assessments_list
   records_path: data
@@ -14,7 +14,7 @@ sync:
   doc_type: compliance_assessment
   tool_schema_sha256: d01dcd132f1277a672d99153e1216b4423d57824e386f5da3673cb3742f7ed03
 - preset: ciso-risk-scenarios
-  server: ciso-assistant-api
+  server: ciso-assistant-mcp
   tool: ciso_assistant_risk_management
   action: api_risk_scenarios_list
   records_path: data
