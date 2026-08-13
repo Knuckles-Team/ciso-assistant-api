@@ -39,6 +39,9 @@ ciso-assistant-api = "ciso_assistant_api.connectors"
 [project.entry-points."agent_utilities.prompt_providers"]
 ciso-assistant-api = "ciso_assistant_api.prompts"
 
+[tool.uv.workspace]
+members = ["."]
+
 [tool.setuptools]
 include-package-data = true
 
