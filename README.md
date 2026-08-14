@@ -21,7 +21,7 @@
 ![PyPI - Wheel](https://img.shields.io/pypi/wheel/ciso-assistant-api)
 ![PyPI - Implementation](https://img.shields.io/pypi/implementation/ciso-assistant-api)
 
-*Version: 2.0.0*
+*Version: 2.1.0*
 
 ## Overview
 
@@ -83,11 +83,11 @@ so you can scope the surface (e.g. set `CHATTOOL=False` to drop the chat domain)
 
 | Variable | Example | Description |
 |----------|---------|-------------|
-| `CISO_ASSISTANT_URL` | `https://service.example.invalid` | Remote deployments must use HTTPS. Loopback HTTP is accepted for local testing. |
-| `CISO_ASSISTANT_TOKEN_REF` | `secret://connectors/ciso-assistant/token` | Use a Knox token reference OR both username/password references. |
+| `CISO_ASSISTANT_URL` | `https://service.example.invalid` | ─── CISO Assistant connection ─────────────────────────────────────────────── Remote deployments must use HTTPS. Loopback HTTP is accepted for local testing. |
+| `CISO_ASSISTANT_TOKEN_REF` | `secret://connectors/ciso-assistant/token` | ─── Authentication references (never store secret values here) ───── Use a Knox token reference OR both username/password references. |
 | `CISO_ASSISTANT_USERNAME_REF` | `secret://connectors/ciso-assistant/username` |  |
 | `CISO_ASSISTANT_PASSWORD_REF` | `secret://connectors/ciso-assistant/password` |  |
-| `CISO_ASSISTANT_TLS_PROFILE` | `enterprise-ca` | Select a profile from AgentConfig, or reference one JSON TLS profile. |
+| `CISO_ASSISTANT_TLS_PROFILE` | `enterprise-ca` | ─── TLS profile selectors ──────────────────────────────────────── Select a profile from AgentConfig, or reference one JSON TLS profile. |
 | `CISO_ASSISTANT_TLS_PROFILE_REF` | `secret://connectors/ciso-assistant/tls-profile` |  |
 | `FASTMCP_LOG_LEVEL` | `INFO` | ─── MCP transport / auth (agent-utilities) ──────────────────────────── |
 | `TRANSPORT` | `stdio` |  |

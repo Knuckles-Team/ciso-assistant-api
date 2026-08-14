@@ -14,7 +14,7 @@ from ciso_assistant_api.api._operation_manifest import OPERATIONS
 from ciso_assistant_api.api_client import Api
 from ciso_assistant_api.auth import get_client
 
-__version__ = "2.0.0"
+__version__ = "2.1.0"
 
 # Redirect logging to stderr to prevent MCP stdout corruption
 logger = get_logger(name="ciso_assistant_mcp")

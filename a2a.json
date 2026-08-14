@@ -1,7 +1,7 @@
 {
   "name": "ciso-assistant-api-agent",
   "type": "agent",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "CISO Assistant API + MCP Server + A2A Agent \u2014 100% API coverage",
   "url": "https://github.com/Knuckles-Team/ciso-assistant-api/tree/main",
   "license": "MIT",
