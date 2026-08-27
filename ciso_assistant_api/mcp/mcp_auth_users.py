@@ -8,6 +8,156 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_auth_users_1(action, kwargs, client):
+    # api_accounts_saml_download_cert_retrieve .. api_iam_login_create (9 actions)
+    if action == "api_accounts_saml_download_cert_retrieve":
+        return client.api_accounts_saml_download_cert_retrieve(**kwargs)
+    elif action == "api_accounts_saml_generate_keys_create":
+        return client.api_accounts_saml_generate_keys_create(**kwargs)
+    elif action == "api_csrf_retrieve":
+        return client.api_csrf_retrieve(**kwargs)
+    elif action == "api_iam_auth_tokens_retrieve":
+        return client.api_iam_auth_tokens_retrieve(**kwargs)
+    elif action == "api_iam_auth_tokens_create":
+        return client.api_iam_auth_tokens_create(**kwargs)
+    elif action == "api_iam_auth_tokens_destroy":
+        return client.api_iam_auth_tokens_destroy(**kwargs)
+    elif action == "api_iam_change_password_create":
+        return client.api_iam_change_password_create(**kwargs)
+    elif action == "api_iam_current_user_retrieve":
+        return client.api_iam_current_user_retrieve(**kwargs)
+    elif action == "api_iam_login_create":
+        return client.api_iam_login_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_auth_users_2(action, kwargs, client):
+    # api_iam_logout_create .. api_role_assignments_create (9 actions)
+    if action == "api_iam_logout_create":
+        return client.api_iam_logout_create(**kwargs)
+    elif action == "api_iam_logoutall_create":
+        return client.api_iam_logoutall_create(**kwargs)
+    elif action == "api_iam_password_reset_create":
+        return client.api_iam_password_reset_create(**kwargs)
+    elif action == "api_iam_password_reset_confirm_create":
+        return client.api_iam_password_reset_confirm_create(**kwargs)
+    elif action == "api_iam_revoke_sessions_create":
+        return client.api_iam_revoke_sessions_create(**kwargs)
+    elif action == "api_iam_session_token_create":
+        return client.api_iam_session_token_create(**kwargs)
+    elif action == "api_iam_set_password_create":
+        return client.api_iam_set_password_create(**kwargs)
+    elif action == "api_role_assignments_list":
+        return client.api_role_assignments_list(**kwargs)
+    elif action == "api_role_assignments_create":
+        return client.api_role_assignments_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_auth_users_3(action, kwargs, client):
+    # api_role_assignments_retrieve .. api_teams_create (9 actions)
+    if action == "api_role_assignments_retrieve":
+        return client.api_role_assignments_retrieve(**kwargs)
+    elif action == "api_role_assignments_update":
+        return client.api_role_assignments_update(**kwargs)
+    elif action == "api_role_assignments_partial_update":
+        return client.api_role_assignments_partial_update(**kwargs)
+    elif action == "api_role_assignments_destroy":
+        return client.api_role_assignments_destroy(**kwargs)
+    elif action == "api_role_assignments_cascade_info_retrieve":
+        return client.api_role_assignments_cascade_info_retrieve(**kwargs)
+    elif action == "api_role_assignments_object_retrieve":
+        return client.api_role_assignments_object_retrieve(**kwargs)
+    elif action == "api_role_assignments_batch_action_create":
+        return client.api_role_assignments_batch_action_create(**kwargs)
+    elif action == "api_teams_list":
+        return client.api_teams_list(**kwargs)
+    elif action == "api_teams_create":
+        return client.api_teams_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_auth_users_4(action, kwargs, client):
+    # api_teams_retrieve .. api_user_groups_create (9 actions)
+    if action == "api_teams_retrieve":
+        return client.api_teams_retrieve(**kwargs)
+    elif action == "api_teams_update":
+        return client.api_teams_update(**kwargs)
+    elif action == "api_teams_partial_update":
+        return client.api_teams_partial_update(**kwargs)
+    elif action == "api_teams_destroy":
+        return client.api_teams_destroy(**kwargs)
+    elif action == "api_teams_cascade_info_retrieve":
+        return client.api_teams_cascade_info_retrieve(**kwargs)
+    elif action == "api_teams_object_retrieve":
+        return client.api_teams_object_retrieve(**kwargs)
+    elif action == "api_teams_batch_action_create":
+        return client.api_teams_batch_action_create(**kwargs)
+    elif action == "api_user_groups_list":
+        return client.api_user_groups_list(**kwargs)
+    elif action == "api_user_groups_create":
+        return client.api_user_groups_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_auth_users_5(action, kwargs, client):
+    # api_user_groups_retrieve .. api_user_preferences_partial_update (9 actions)
+    if action == "api_user_groups_retrieve":
+        return client.api_user_groups_retrieve(**kwargs)
+    elif action == "api_user_groups_update":
+        return client.api_user_groups_update(**kwargs)
+    elif action == "api_user_groups_partial_update":
+        return client.api_user_groups_partial_update(**kwargs)
+    elif action == "api_user_groups_destroy":
+        return client.api_user_groups_destroy(**kwargs)
+    elif action == "api_user_groups_cascade_info_retrieve":
+        return client.api_user_groups_cascade_info_retrieve(**kwargs)
+    elif action == "api_user_groups_object_retrieve":
+        return client.api_user_groups_object_retrieve(**kwargs)
+    elif action == "api_user_groups_batch_action_create":
+        return client.api_user_groups_batch_action_create(**kwargs)
+    elif action == "api_user_preferences_retrieve":
+        return client.api_user_preferences_retrieve(**kwargs)
+    elif action == "api_user_preferences_partial_update":
+        return client.api_user_preferences_partial_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_auth_users_6(action, kwargs, client):
+    # api_users_list .. api_users_batch_action_create (9 actions)
+    if action == "api_users_list":
+        return client.api_users_list(**kwargs)
+    elif action == "api_users_create":
+        return client.api_users_create(**kwargs)
+    elif action == "api_users_retrieve":
+        return client.api_users_retrieve(**kwargs)
+    elif action == "api_users_update":
+        return client.api_users_update(**kwargs)
+    elif action == "api_users_partial_update":
+        return client.api_users_partial_update(**kwargs)
+    elif action == "api_users_destroy":
+        return client.api_users_destroy(**kwargs)
+    elif action == "api_users_cascade_info_retrieve":
+        return client.api_users_cascade_info_retrieve(**kwargs)
+    elif action == "api_users_object_retrieve":
+        return client.api_users_object_retrieve(**kwargs)
+    elif action == "api_users_batch_action_create":
+        return client.api_users_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+_AUTH_USERS_DISPATCHERS = (
+    _dispatch_auth_users_1,
+    _dispatch_auth_users_2,
+    _dispatch_auth_users_3,
+    _dispatch_auth_users_4,
+    _dispatch_auth_users_5,
+    _dispatch_auth_users_6,
+)
+
 
 def register_auth_users_tools(mcp: FastMCP):
     @mcp.tool(tags={"auth-users"})
@@ -37,112 +187,8 @@ def register_auth_users_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_accounts_saml_download_cert_retrieve":
-            return client.api_accounts_saml_download_cert_retrieve(**kwargs)
-        elif action == "api_accounts_saml_generate_keys_create":
-            return client.api_accounts_saml_generate_keys_create(**kwargs)
-        elif action == "api_csrf_retrieve":
-            return client.api_csrf_retrieve(**kwargs)
-        elif action == "api_iam_auth_tokens_retrieve":
-            return client.api_iam_auth_tokens_retrieve(**kwargs)
-        elif action == "api_iam_auth_tokens_create":
-            return client.api_iam_auth_tokens_create(**kwargs)
-        elif action == "api_iam_auth_tokens_destroy":
-            return client.api_iam_auth_tokens_destroy(**kwargs)
-        elif action == "api_iam_change_password_create":
-            return client.api_iam_change_password_create(**kwargs)
-        elif action == "api_iam_current_user_retrieve":
-            return client.api_iam_current_user_retrieve(**kwargs)
-        elif action == "api_iam_login_create":
-            return client.api_iam_login_create(**kwargs)
-        elif action == "api_iam_logout_create":
-            return client.api_iam_logout_create(**kwargs)
-        elif action == "api_iam_logoutall_create":
-            return client.api_iam_logoutall_create(**kwargs)
-        elif action == "api_iam_password_reset_create":
-            return client.api_iam_password_reset_create(**kwargs)
-        elif action == "api_iam_password_reset_confirm_create":
-            return client.api_iam_password_reset_confirm_create(**kwargs)
-        elif action == "api_iam_revoke_sessions_create":
-            return client.api_iam_revoke_sessions_create(**kwargs)
-        elif action == "api_iam_session_token_create":
-            return client.api_iam_session_token_create(**kwargs)
-        elif action == "api_iam_set_password_create":
-            return client.api_iam_set_password_create(**kwargs)
-        elif action == "api_role_assignments_list":
-            return client.api_role_assignments_list(**kwargs)
-        elif action == "api_role_assignments_create":
-            return client.api_role_assignments_create(**kwargs)
-        elif action == "api_role_assignments_retrieve":
-            return client.api_role_assignments_retrieve(**kwargs)
-        elif action == "api_role_assignments_update":
-            return client.api_role_assignments_update(**kwargs)
-        elif action == "api_role_assignments_partial_update":
-            return client.api_role_assignments_partial_update(**kwargs)
-        elif action == "api_role_assignments_destroy":
-            return client.api_role_assignments_destroy(**kwargs)
-        elif action == "api_role_assignments_cascade_info_retrieve":
-            return client.api_role_assignments_cascade_info_retrieve(**kwargs)
-        elif action == "api_role_assignments_object_retrieve":
-            return client.api_role_assignments_object_retrieve(**kwargs)
-        elif action == "api_role_assignments_batch_action_create":
-            return client.api_role_assignments_batch_action_create(**kwargs)
-        elif action == "api_teams_list":
-            return client.api_teams_list(**kwargs)
-        elif action == "api_teams_create":
-            return client.api_teams_create(**kwargs)
-        elif action == "api_teams_retrieve":
-            return client.api_teams_retrieve(**kwargs)
-        elif action == "api_teams_update":
-            return client.api_teams_update(**kwargs)
-        elif action == "api_teams_partial_update":
-            return client.api_teams_partial_update(**kwargs)
-        elif action == "api_teams_destroy":
-            return client.api_teams_destroy(**kwargs)
-        elif action == "api_teams_cascade_info_retrieve":
-            return client.api_teams_cascade_info_retrieve(**kwargs)
-        elif action == "api_teams_object_retrieve":
-            return client.api_teams_object_retrieve(**kwargs)
-        elif action == "api_teams_batch_action_create":
-            return client.api_teams_batch_action_create(**kwargs)
-        elif action == "api_user_groups_list":
-            return client.api_user_groups_list(**kwargs)
-        elif action == "api_user_groups_create":
-            return client.api_user_groups_create(**kwargs)
-        elif action == "api_user_groups_retrieve":
-            return client.api_user_groups_retrieve(**kwargs)
-        elif action == "api_user_groups_update":
-            return client.api_user_groups_update(**kwargs)
-        elif action == "api_user_groups_partial_update":
-            return client.api_user_groups_partial_update(**kwargs)
-        elif action == "api_user_groups_destroy":
-            return client.api_user_groups_destroy(**kwargs)
-        elif action == "api_user_groups_cascade_info_retrieve":
-            return client.api_user_groups_cascade_info_retrieve(**kwargs)
-        elif action == "api_user_groups_object_retrieve":
-            return client.api_user_groups_object_retrieve(**kwargs)
-        elif action == "api_user_groups_batch_action_create":
-            return client.api_user_groups_batch_action_create(**kwargs)
-        elif action == "api_user_preferences_retrieve":
-            return client.api_user_preferences_retrieve(**kwargs)
-        elif action == "api_user_preferences_partial_update":
-            return client.api_user_preferences_partial_update(**kwargs)
-        elif action == "api_users_list":
-            return client.api_users_list(**kwargs)
-        elif action == "api_users_create":
-            return client.api_users_create(**kwargs)
-        elif action == "api_users_retrieve":
-            return client.api_users_retrieve(**kwargs)
-        elif action == "api_users_update":
-            return client.api_users_update(**kwargs)
-        elif action == "api_users_partial_update":
-            return client.api_users_partial_update(**kwargs)
-        elif action == "api_users_destroy":
-            return client.api_users_destroy(**kwargs)
-        elif action == "api_users_cascade_info_retrieve":
-            return client.api_users_cascade_info_retrieve(**kwargs)
-        elif action == "api_users_object_retrieve":
-            return client.api_users_object_retrieve(**kwargs)
-        elif action == "api_users_batch_action_create":
-            return client.api_users_batch_action_create(**kwargs)
+        for _dispatch in _AUTH_USERS_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
