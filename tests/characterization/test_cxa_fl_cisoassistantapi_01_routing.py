@@ -182,3 +182,39 @@ def test_ebios_rm_actions_route_to_same_named_client_method():
             m for m in mock_client.method_calls if m[0] != action
         ]
         assert other_calls == [], f"{action} also touched {other_calls}"
+
+
+from ciso_assistant_api.mcp.mcp_privacy import register_privacy_tools
+
+
+def test_privacy_actions_route_to_same_named_client_method():
+    """Characterizes ciso_assistant_privacy's dispatch: existing test_every_mcp_action_routes
+    (test_ciso_assistant_brute_force_coverage.py) already proves every action
+    is reachable without raising, but its client is `MagicMock(spec=Api)`, which
+    accepts a call to ANY valid Api method name -- so it cannot catch an action
+    silently wired to the WRONG (but still valid) client method. This closes
+    that gap for ciso_assistant_privacy: for every action in this domain, assert it invokes the
+    SAME-NAMED client method, exactly once, with the null-filtered kwargs.
+    """
+    mock_client = MagicMock(spec=Api)
+    cap = _CaptureMCP()
+    register_privacy_tools(cap)
+    assert len(cap.fns) == 1
+    fn = cap.fns[0]
+    for action in ACTIONS_BY_DOMAIN["privacy"]:
+        mock_client.reset_mock()
+        asyncio.run(
+            fn(
+                action=action,
+                params_json='{"probe": "v", "dropped": null}',
+                client=mock_client,
+                ctx=None,
+            )
+        )
+        target = getattr(mock_client, action)
+        target.assert_called_once_with(probe="v")
+        # every OTHER method on the mock must be untouched by this action
+        other_calls = [
+            m for m in mock_client.method_calls if m[0] != action
+        ]
+        assert other_calls == [], f"{action} also touched {other_calls}"
