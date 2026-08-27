@@ -40,7 +40,9 @@ class _CaptureMCP:
         return decorator
 
 
-from ciso_assistant_api.mcp.mcp_frameworks_libraries import register_frameworks_libraries_tools
+from ciso_assistant_api.mcp.mcp_frameworks_libraries import (
+    register_frameworks_libraries_tools,
+)
 
 
 def test_frameworks_libraries_actions_route_to_same_named_client_method():
@@ -70,9 +72,7 @@ def test_frameworks_libraries_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
@@ -106,13 +106,13 @@ def test_third_party_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
-from ciso_assistant_api.mcp.mcp_analytics_metrology import register_analytics_metrology_tools
+from ciso_assistant_api.mcp.mcp_analytics_metrology import (
+    register_analytics_metrology_tools,
+)
 
 
 def test_analytics_metrology_actions_route_to_same_named_client_method():
@@ -142,9 +142,7 @@ def test_analytics_metrology_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
@@ -178,9 +176,7 @@ def test_evidence_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
@@ -214,9 +210,7 @@ def test_tasks_timeline_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
@@ -250,7 +244,5 @@ def test_chat_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"

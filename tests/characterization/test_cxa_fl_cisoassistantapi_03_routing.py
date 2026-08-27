@@ -40,7 +40,9 @@ class _CaptureMCP:
         return decorator
 
 
-from ciso_assistant_api.mcp.mcp_security_findings import register_security_findings_tools
+from ciso_assistant_api.mcp.mcp_security_findings import (
+    register_security_findings_tools,
+)
 
 
 def test_security_findings_actions_route_to_same_named_client_method():
@@ -70,9 +72,7 @@ def test_security_findings_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
@@ -106,9 +106,7 @@ def test_auth_users_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
@@ -142,9 +140,7 @@ def test_integrations_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
@@ -178,7 +174,5 @@ def test_crq_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"

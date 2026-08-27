@@ -70,9 +70,7 @@ def test_compliance_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
@@ -106,9 +104,7 @@ def test_resilience_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
@@ -142,9 +138,7 @@ def test_risk_management_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
@@ -178,9 +172,7 @@ def test_ebios_rm_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
@@ -214,9 +206,7 @@ def test_privacy_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
 
 
@@ -250,7 +240,5 @@ def test_governance_actions_route_to_same_named_client_method():
         target = getattr(mock_client, action)
         target.assert_called_once_with(probe="v")
         # every OTHER method on the mock must be untouched by this action
-        other_calls = [
-            m for m in mock_client.method_calls if m[0] != action
-        ]
+        other_calls = [m for m in mock_client.method_calls if m[0] != action]
         assert other_calls == [], f"{action} also touched {other_calls}"
