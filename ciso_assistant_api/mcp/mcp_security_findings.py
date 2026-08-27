@@ -8,6 +8,170 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_security_findings_1(action, kwargs, client):
+    # api_findings_list .. api_findings_assessments_cascade_info_retrieve (9 actions)
+    if action == "api_findings_list":
+        return client.api_findings_list(**kwargs)
+    elif action == "api_findings_create":
+        return client.api_findings_create(**kwargs)
+    elif action == "api_findings_assessments_list":
+        return client.api_findings_assessments_list(**kwargs)
+    elif action == "api_findings_assessments_create":
+        return client.api_findings_assessments_create(**kwargs)
+    elif action == "api_findings_assessments_retrieve":
+        return client.api_findings_assessments_retrieve(**kwargs)
+    elif action == "api_findings_assessments_update":
+        return client.api_findings_assessments_update(**kwargs)
+    elif action == "api_findings_assessments_partial_update":
+        return client.api_findings_assessments_partial_update(**kwargs)
+    elif action == "api_findings_assessments_destroy":
+        return client.api_findings_assessments_destroy(**kwargs)
+    elif action == "api_findings_assessments_cascade_info_retrieve":
+        return client.api_findings_assessments_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_security_findings_2(action, kwargs, client):
+    # api_findings_assessments_md_retrieve .. api_findings_assessments_sunburst_data_retrieve (9 actions)
+    if action == "api_findings_assessments_md_retrieve":
+        return client.api_findings_assessments_md_retrieve(**kwargs)
+    elif action == "api_findings_assessments_metrics_retrieve":
+        return client.api_findings_assessments_metrics_retrieve(**kwargs)
+    elif action == "api_findings_assessments_object_retrieve":
+        return client.api_findings_assessments_object_retrieve(**kwargs)
+    elif action == "api_findings_assessments_pdf_retrieve":
+        return client.api_findings_assessments_pdf_retrieve(**kwargs)
+    elif action == "api_findings_assessments_xlsx_retrieve":
+        return client.api_findings_assessments_xlsx_retrieve(**kwargs)
+    elif action == "api_findings_assessments_batch_action_create":
+        return client.api_findings_assessments_batch_action_create(**kwargs)
+    elif action == "api_findings_assessments_category_retrieve":
+        return client.api_findings_assessments_category_retrieve(**kwargs)
+    elif action == "api_findings_assessments_status_retrieve":
+        return client.api_findings_assessments_status_retrieve(**kwargs)
+    elif action == "api_findings_assessments_sunburst_data_retrieve":
+        return client.api_findings_assessments_sunburst_data_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_security_findings_3(action, kwargs, client):
+    # api_findings_retrieve .. api_findings_priority_retrieve (9 actions)
+    if action == "api_findings_retrieve":
+        return client.api_findings_retrieve(**kwargs)
+    elif action == "api_findings_update":
+        return client.api_findings_update(**kwargs)
+    elif action == "api_findings_partial_update":
+        return client.api_findings_partial_update(**kwargs)
+    elif action == "api_findings_destroy":
+        return client.api_findings_destroy(**kwargs)
+    elif action == "api_findings_cascade_info_retrieve":
+        return client.api_findings_cascade_info_retrieve(**kwargs)
+    elif action == "api_findings_object_retrieve":
+        return client.api_findings_object_retrieve(**kwargs)
+    elif action == "api_findings_batch_action_create":
+        return client.api_findings_batch_action_create(**kwargs)
+    elif action == "api_findings_owner_retrieve":
+        return client.api_findings_owner_retrieve(**kwargs)
+    elif action == "api_findings_priority_retrieve":
+        return client.api_findings_priority_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_security_findings_4(action, kwargs, client):
+    # api_findings_sankey_data_retrieve .. api_security_advisories_destroy (9 actions)
+    if action == "api_findings_sankey_data_retrieve":
+        return client.api_findings_sankey_data_retrieve(**kwargs)
+    elif action == "api_findings_severity_retrieve":
+        return client.api_findings_severity_retrieve(**kwargs)
+    elif action == "api_findings_status_retrieve":
+        return client.api_findings_status_retrieve(**kwargs)
+    elif action == "api_security_advisories_list":
+        return client.api_security_advisories_list(**kwargs)
+    elif action == "api_security_advisories_create":
+        return client.api_security_advisories_create(**kwargs)
+    elif action == "api_security_advisories_retrieve":
+        return client.api_security_advisories_retrieve(**kwargs)
+    elif action == "api_security_advisories_update":
+        return client.api_security_advisories_update(**kwargs)
+    elif action == "api_security_advisories_partial_update":
+        return client.api_security_advisories_partial_update(**kwargs)
+    elif action == "api_security_advisories_destroy":
+        return client.api_security_advisories_destroy(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_security_findings_5(action, kwargs, client):
+    # api_security_advisories_cascade_info_retrieve .. api_security_exceptions_list (9 actions)
+    if action == "api_security_advisories_cascade_info_retrieve":
+        return client.api_security_advisories_cascade_info_retrieve(**kwargs)
+    elif action == "api_security_advisories_enrich_create":
+        return client.api_security_advisories_enrich_create(**kwargs)
+    elif action == "api_security_advisories_object_retrieve":
+        return client.api_security_advisories_object_retrieve(**kwargs)
+    elif action == "api_security_advisories_autocomplete_retrieve":
+        return client.api_security_advisories_autocomplete_retrieve(**kwargs)
+    elif action == "api_security_advisories_batch_action_create":
+        return client.api_security_advisories_batch_action_create(**kwargs)
+    elif action == "api_security_advisories_source_retrieve":
+        return client.api_security_advisories_source_retrieve(**kwargs)
+    elif action == "api_security_advisories_sync_euvd_create":
+        return client.api_security_advisories_sync_euvd_create(**kwargs)
+    elif action == "api_security_advisories_sync_kev_create":
+        return client.api_security_advisories_sync_kev_create(**kwargs)
+    elif action == "api_security_exceptions_list":
+        return client.api_security_exceptions_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_security_findings_6(action, kwargs, client):
+    # api_security_exceptions_create .. api_security_exceptions_export_csv_retrieve (9 actions)
+    if action == "api_security_exceptions_create":
+        return client.api_security_exceptions_create(**kwargs)
+    elif action == "api_security_exceptions_retrieve":
+        return client.api_security_exceptions_retrieve(**kwargs)
+    elif action == "api_security_exceptions_update":
+        return client.api_security_exceptions_update(**kwargs)
+    elif action == "api_security_exceptions_partial_update":
+        return client.api_security_exceptions_partial_update(**kwargs)
+    elif action == "api_security_exceptions_destroy":
+        return client.api_security_exceptions_destroy(**kwargs)
+    elif action == "api_security_exceptions_cascade_info_retrieve":
+        return client.api_security_exceptions_cascade_info_retrieve(**kwargs)
+    elif action == "api_security_exceptions_object_retrieve":
+        return client.api_security_exceptions_object_retrieve(**kwargs)
+    elif action == "api_security_exceptions_batch_action_create":
+        return client.api_security_exceptions_batch_action_create(**kwargs)
+    elif action == "api_security_exceptions_export_csv_retrieve":
+        return client.api_security_exceptions_export_csv_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_security_findings_7(action, kwargs, client):
+    # api_security_exceptions_export_xlsx_retrieve .. api_security_exceptions_status_retrieve (4 actions)
+    if action == "api_security_exceptions_export_xlsx_retrieve":
+        return client.api_security_exceptions_export_xlsx_retrieve(**kwargs)
+    elif action == "api_security_exceptions_sankey_data_retrieve":
+        return client.api_security_exceptions_sankey_data_retrieve(**kwargs)
+    elif action == "api_security_exceptions_severity_retrieve":
+        return client.api_security_exceptions_severity_retrieve(**kwargs)
+    elif action == "api_security_exceptions_status_retrieve":
+        return client.api_security_exceptions_status_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_SECURITY_FINDINGS_DISPATCHERS = (
+    _dispatch_security_findings_1,
+    _dispatch_security_findings_2,
+    _dispatch_security_findings_3,
+    _dispatch_security_findings_4,
+    _dispatch_security_findings_5,
+    _dispatch_security_findings_6,
+    _dispatch_security_findings_7,
+)
+
 
 def register_security_findings_tools(mcp: FastMCP):
     @mcp.tool(tags={"security-findings"})
@@ -39,120 +203,8 @@ def register_security_findings_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_findings_list":
-            return client.api_findings_list(**kwargs)
-        elif action == "api_findings_create":
-            return client.api_findings_create(**kwargs)
-        elif action == "api_findings_assessments_list":
-            return client.api_findings_assessments_list(**kwargs)
-        elif action == "api_findings_assessments_create":
-            return client.api_findings_assessments_create(**kwargs)
-        elif action == "api_findings_assessments_retrieve":
-            return client.api_findings_assessments_retrieve(**kwargs)
-        elif action == "api_findings_assessments_update":
-            return client.api_findings_assessments_update(**kwargs)
-        elif action == "api_findings_assessments_partial_update":
-            return client.api_findings_assessments_partial_update(**kwargs)
-        elif action == "api_findings_assessments_destroy":
-            return client.api_findings_assessments_destroy(**kwargs)
-        elif action == "api_findings_assessments_cascade_info_retrieve":
-            return client.api_findings_assessments_cascade_info_retrieve(**kwargs)
-        elif action == "api_findings_assessments_md_retrieve":
-            return client.api_findings_assessments_md_retrieve(**kwargs)
-        elif action == "api_findings_assessments_metrics_retrieve":
-            return client.api_findings_assessments_metrics_retrieve(**kwargs)
-        elif action == "api_findings_assessments_object_retrieve":
-            return client.api_findings_assessments_object_retrieve(**kwargs)
-        elif action == "api_findings_assessments_pdf_retrieve":
-            return client.api_findings_assessments_pdf_retrieve(**kwargs)
-        elif action == "api_findings_assessments_xlsx_retrieve":
-            return client.api_findings_assessments_xlsx_retrieve(**kwargs)
-        elif action == "api_findings_assessments_batch_action_create":
-            return client.api_findings_assessments_batch_action_create(**kwargs)
-        elif action == "api_findings_assessments_category_retrieve":
-            return client.api_findings_assessments_category_retrieve(**kwargs)
-        elif action == "api_findings_assessments_status_retrieve":
-            return client.api_findings_assessments_status_retrieve(**kwargs)
-        elif action == "api_findings_assessments_sunburst_data_retrieve":
-            return client.api_findings_assessments_sunburst_data_retrieve(**kwargs)
-        elif action == "api_findings_retrieve":
-            return client.api_findings_retrieve(**kwargs)
-        elif action == "api_findings_update":
-            return client.api_findings_update(**kwargs)
-        elif action == "api_findings_partial_update":
-            return client.api_findings_partial_update(**kwargs)
-        elif action == "api_findings_destroy":
-            return client.api_findings_destroy(**kwargs)
-        elif action == "api_findings_cascade_info_retrieve":
-            return client.api_findings_cascade_info_retrieve(**kwargs)
-        elif action == "api_findings_object_retrieve":
-            return client.api_findings_object_retrieve(**kwargs)
-        elif action == "api_findings_batch_action_create":
-            return client.api_findings_batch_action_create(**kwargs)
-        elif action == "api_findings_owner_retrieve":
-            return client.api_findings_owner_retrieve(**kwargs)
-        elif action == "api_findings_priority_retrieve":
-            return client.api_findings_priority_retrieve(**kwargs)
-        elif action == "api_findings_sankey_data_retrieve":
-            return client.api_findings_sankey_data_retrieve(**kwargs)
-        elif action == "api_findings_severity_retrieve":
-            return client.api_findings_severity_retrieve(**kwargs)
-        elif action == "api_findings_status_retrieve":
-            return client.api_findings_status_retrieve(**kwargs)
-        elif action == "api_security_advisories_list":
-            return client.api_security_advisories_list(**kwargs)
-        elif action == "api_security_advisories_create":
-            return client.api_security_advisories_create(**kwargs)
-        elif action == "api_security_advisories_retrieve":
-            return client.api_security_advisories_retrieve(**kwargs)
-        elif action == "api_security_advisories_update":
-            return client.api_security_advisories_update(**kwargs)
-        elif action == "api_security_advisories_partial_update":
-            return client.api_security_advisories_partial_update(**kwargs)
-        elif action == "api_security_advisories_destroy":
-            return client.api_security_advisories_destroy(**kwargs)
-        elif action == "api_security_advisories_cascade_info_retrieve":
-            return client.api_security_advisories_cascade_info_retrieve(**kwargs)
-        elif action == "api_security_advisories_enrich_create":
-            return client.api_security_advisories_enrich_create(**kwargs)
-        elif action == "api_security_advisories_object_retrieve":
-            return client.api_security_advisories_object_retrieve(**kwargs)
-        elif action == "api_security_advisories_autocomplete_retrieve":
-            return client.api_security_advisories_autocomplete_retrieve(**kwargs)
-        elif action == "api_security_advisories_batch_action_create":
-            return client.api_security_advisories_batch_action_create(**kwargs)
-        elif action == "api_security_advisories_source_retrieve":
-            return client.api_security_advisories_source_retrieve(**kwargs)
-        elif action == "api_security_advisories_sync_euvd_create":
-            return client.api_security_advisories_sync_euvd_create(**kwargs)
-        elif action == "api_security_advisories_sync_kev_create":
-            return client.api_security_advisories_sync_kev_create(**kwargs)
-        elif action == "api_security_exceptions_list":
-            return client.api_security_exceptions_list(**kwargs)
-        elif action == "api_security_exceptions_create":
-            return client.api_security_exceptions_create(**kwargs)
-        elif action == "api_security_exceptions_retrieve":
-            return client.api_security_exceptions_retrieve(**kwargs)
-        elif action == "api_security_exceptions_update":
-            return client.api_security_exceptions_update(**kwargs)
-        elif action == "api_security_exceptions_partial_update":
-            return client.api_security_exceptions_partial_update(**kwargs)
-        elif action == "api_security_exceptions_destroy":
-            return client.api_security_exceptions_destroy(**kwargs)
-        elif action == "api_security_exceptions_cascade_info_retrieve":
-            return client.api_security_exceptions_cascade_info_retrieve(**kwargs)
-        elif action == "api_security_exceptions_object_retrieve":
-            return client.api_security_exceptions_object_retrieve(**kwargs)
-        elif action == "api_security_exceptions_batch_action_create":
-            return client.api_security_exceptions_batch_action_create(**kwargs)
-        elif action == "api_security_exceptions_export_csv_retrieve":
-            return client.api_security_exceptions_export_csv_retrieve(**kwargs)
-        elif action == "api_security_exceptions_export_xlsx_retrieve":
-            return client.api_security_exceptions_export_xlsx_retrieve(**kwargs)
-        elif action == "api_security_exceptions_sankey_data_retrieve":
-            return client.api_security_exceptions_sankey_data_retrieve(**kwargs)
-        elif action == "api_security_exceptions_severity_retrieve":
-            return client.api_security_exceptions_severity_retrieve(**kwargs)
-        elif action == "api_security_exceptions_status_retrieve":
-            return client.api_security_exceptions_status_retrieve(**kwargs)
+        for _dispatch in _SECURITY_FINDINGS_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
