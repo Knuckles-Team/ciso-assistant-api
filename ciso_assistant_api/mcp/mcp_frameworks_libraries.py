@@ -8,6 +8,286 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_frameworks_libraries_1(action, kwargs, client):
+    # api_filtering_labels_list .. api_filtering_labels_batch_action_create (9 actions)
+    if action == "api_filtering_labels_list":
+        return client.api_filtering_labels_list(**kwargs)
+    elif action == "api_filtering_labels_create":
+        return client.api_filtering_labels_create(**kwargs)
+    elif action == "api_filtering_labels_retrieve":
+        return client.api_filtering_labels_retrieve(**kwargs)
+    elif action == "api_filtering_labels_update":
+        return client.api_filtering_labels_update(**kwargs)
+    elif action == "api_filtering_labels_partial_update":
+        return client.api_filtering_labels_partial_update(**kwargs)
+    elif action == "api_filtering_labels_destroy":
+        return client.api_filtering_labels_destroy(**kwargs)
+    elif action == "api_filtering_labels_cascade_info_retrieve":
+        return client.api_filtering_labels_cascade_info_retrieve(**kwargs)
+    elif action == "api_filtering_labels_object_retrieve":
+        return client.api_filtering_labels_object_retrieve(**kwargs)
+    elif action == "api_filtering_labels_batch_action_create":
+        return client.api_filtering_labels_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_frameworks_libraries_2(action, kwargs, client):
+    # api_frameworks_list .. api_frameworks_duplicate_create (9 actions)
+    if action == "api_frameworks_list":
+        return client.api_frameworks_list(**kwargs)
+    elif action == "api_frameworks_create":
+        return client.api_frameworks_create(**kwargs)
+    elif action == "api_frameworks_retrieve":
+        return client.api_frameworks_retrieve(**kwargs)
+    elif action == "api_frameworks_update":
+        return client.api_frameworks_update(**kwargs)
+    elif action == "api_frameworks_partial_update":
+        return client.api_frameworks_partial_update(**kwargs)
+    elif action == "api_frameworks_destroy":
+        return client.api_frameworks_destroy(**kwargs)
+    elif action == "api_frameworks_cascade_info_retrieve":
+        return client.api_frameworks_cascade_info_retrieve(**kwargs)
+    elif action == "api_frameworks_discard_draft_create":
+        return client.api_frameworks_discard_draft_create(**kwargs)
+    elif action == "api_frameworks_duplicate_create":
+        return client.api_frameworks_duplicate_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_frameworks_libraries_3(action, kwargs, client):
+    # api_frameworks_excel_template_retrieve .. api_frameworks_save_draft_partial_update (9 actions)
+    if action == "api_frameworks_excel_template_retrieve":
+        return client.api_frameworks_excel_template_retrieve(**kwargs)
+    elif action == "api_frameworks_export_yaml_retrieve":
+        return client.api_frameworks_export_yaml_retrieve(**kwargs)
+    elif action == "api_frameworks_mapping_stats_retrieve":
+        return client.api_frameworks_mapping_stats_retrieve(**kwargs)
+    elif action == "api_frameworks_mappings_retrieve":
+        return client.api_frameworks_mappings_retrieve(**kwargs)
+    elif action == "api_frameworks_object_retrieve":
+        return client.api_frameworks_object_retrieve(**kwargs)
+    elif action == "api_frameworks_publish_draft_create":
+        return client.api_frameworks_publish_draft_create(**kwargs)
+    elif action == "api_frameworks_publish_draft_preview_create":
+        return client.api_frameworks_publish_draft_preview_create(**kwargs)
+    elif action == "api_frameworks_report_retrieve":
+        return client.api_frameworks_report_retrieve(**kwargs)
+    elif action == "api_frameworks_save_draft_partial_update":
+        return client.api_frameworks_save_draft_partial_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_frameworks_libraries_4(action, kwargs, client):
+    # api_frameworks_serve_image_retrieve .. api_library_filtering_labels_list (9 actions)
+    if action == "api_frameworks_serve_image_retrieve":
+        return client.api_frameworks_serve_image_retrieve(**kwargs)
+    elif action == "api_frameworks_start_editing_create":
+        return client.api_frameworks_start_editing_create(**kwargs)
+    elif action == "api_frameworks_tree_retrieve":
+        return client.api_frameworks_tree_retrieve(**kwargs)
+    elif action == "api_frameworks_upload_image_create":
+        return client.api_frameworks_upload_image_create(**kwargs)
+    elif action == "api_frameworks_batch_action_create":
+        return client.api_frameworks_batch_action_create(**kwargs)
+    elif action == "api_frameworks_names_retrieve":
+        return client.api_frameworks_names_retrieve(**kwargs)
+    elif action == "api_frameworks_provider_retrieve":
+        return client.api_frameworks_provider_retrieve(**kwargs)
+    elif action == "api_frameworks_used_retrieve":
+        return client.api_frameworks_used_retrieve(**kwargs)
+    elif action == "api_library_filtering_labels_list":
+        return client.api_library_filtering_labels_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_frameworks_libraries_5(action, kwargs, client):
+    # api_library_filtering_labels_create .. api_loaded_libraries_list (9 actions)
+    if action == "api_library_filtering_labels_create":
+        return client.api_library_filtering_labels_create(**kwargs)
+    elif action == "api_library_filtering_labels_retrieve":
+        return client.api_library_filtering_labels_retrieve(**kwargs)
+    elif action == "api_library_filtering_labels_update":
+        return client.api_library_filtering_labels_update(**kwargs)
+    elif action == "api_library_filtering_labels_partial_update":
+        return client.api_library_filtering_labels_partial_update(**kwargs)
+    elif action == "api_library_filtering_labels_destroy":
+        return client.api_library_filtering_labels_destroy(**kwargs)
+    elif action == "api_library_filtering_labels_cascade_info_retrieve":
+        return client.api_library_filtering_labels_cascade_info_retrieve(**kwargs)
+    elif action == "api_library_filtering_labels_object_retrieve":
+        return client.api_library_filtering_labels_object_retrieve(**kwargs)
+    elif action == "api_library_filtering_labels_batch_action_create":
+        return client.api_library_filtering_labels_batch_action_create(**kwargs)
+    elif action == "api_loaded_libraries_list":
+        return client.api_loaded_libraries_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_frameworks_libraries_6(action, kwargs, client):
+    # api_loaded_libraries_create .. api_loaded_libraries_tree_retrieve (9 actions)
+    if action == "api_loaded_libraries_create":
+        return client.api_loaded_libraries_create(**kwargs)
+    elif action == "api_loaded_libraries_retrieve":
+        return client.api_loaded_libraries_retrieve(**kwargs)
+    elif action == "api_loaded_libraries_update":
+        return client.api_loaded_libraries_update(**kwargs)
+    elif action == "api_loaded_libraries_partial_update":
+        return client.api_loaded_libraries_partial_update(**kwargs)
+    elif action == "api_loaded_libraries_destroy":
+        return client.api_loaded_libraries_destroy(**kwargs)
+    elif action == "api_loaded_libraries_cascade_info_retrieve":
+        return client.api_loaded_libraries_cascade_info_retrieve(**kwargs)
+    elif action == "api_loaded_libraries_content_retrieve":
+        return client.api_loaded_libraries_content_retrieve(**kwargs)
+    elif action == "api_loaded_libraries_object_retrieve":
+        return client.api_loaded_libraries_object_retrieve(**kwargs)
+    elif action == "api_loaded_libraries_tree_retrieve":
+        return client.api_loaded_libraries_tree_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_frameworks_libraries_7(action, kwargs, client):
+    # api_loaded_libraries_update_retrieve .. api_presets_destroy (9 actions)
+    if action == "api_loaded_libraries_update_retrieve":
+        return client.api_loaded_libraries_update_retrieve(**kwargs)
+    elif action == "api_loaded_libraries_available_updates_retrieve":
+        return client.api_loaded_libraries_available_updates_retrieve(**kwargs)
+    elif action == "api_loaded_libraries_batch_action_create":
+        return client.api_loaded_libraries_batch_action_create(**kwargs)
+    elif action == "api_presets_list":
+        return client.api_presets_list(**kwargs)
+    elif action == "api_presets_create":
+        return client.api_presets_create(**kwargs)
+    elif action == "api_presets_retrieve":
+        return client.api_presets_retrieve(**kwargs)
+    elif action == "api_presets_update":
+        return client.api_presets_update(**kwargs)
+    elif action == "api_presets_partial_update":
+        return client.api_presets_partial_update(**kwargs)
+    elif action == "api_presets_destroy":
+        return client.api_presets_destroy(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_frameworks_libraries_8(action, kwargs, client):
+    # api_presets_apply_create .. api_presets_start_editing_create (9 actions)
+    if action == "api_presets_apply_create":
+        return client.api_presets_apply_create(**kwargs)
+    elif action == "api_presets_cascade_info_retrieve":
+        return client.api_presets_cascade_info_retrieve(**kwargs)
+    elif action == "api_presets_discard_draft_create":
+        return client.api_presets_discard_draft_create(**kwargs)
+    elif action == "api_presets_duplicate_create":
+        return client.api_presets_duplicate_create(**kwargs)
+    elif action == "api_presets_object_retrieve":
+        return client.api_presets_object_retrieve(**kwargs)
+    elif action == "api_presets_publish_draft_create":
+        return client.api_presets_publish_draft_create(**kwargs)
+    elif action == "api_presets_publish_draft_preview_create":
+        return client.api_presets_publish_draft_preview_create(**kwargs)
+    elif action == "api_presets_save_draft_partial_update":
+        return client.api_presets_save_draft_partial_update(**kwargs)
+    elif action == "api_presets_start_editing_create":
+        return client.api_presets_start_editing_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_frameworks_libraries_9(action, kwargs, client):
+    # api_presets_batch_action_create .. api_stored_libraries_cascade_info_retrieve (9 actions)
+    if action == "api_presets_batch_action_create":
+        return client.api_presets_batch_action_create(**kwargs)
+    elif action == "api_presets_create_blank_create":
+        return client.api_presets_create_blank_create(**kwargs)
+    elif action == "api_stored_libraries_list":
+        return client.api_stored_libraries_list(**kwargs)
+    elif action == "api_stored_libraries_create":
+        return client.api_stored_libraries_create(**kwargs)
+    elif action == "api_stored_libraries_retrieve":
+        return client.api_stored_libraries_retrieve(**kwargs)
+    elif action == "api_stored_libraries_update":
+        return client.api_stored_libraries_update(**kwargs)
+    elif action == "api_stored_libraries_partial_update":
+        return client.api_stored_libraries_partial_update(**kwargs)
+    elif action == "api_stored_libraries_destroy":
+        return client.api_stored_libraries_destroy(**kwargs)
+    elif action == "api_stored_libraries_cascade_info_retrieve":
+        return client.api_stored_libraries_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_frameworks_libraries_10(action, kwargs, client):
+    # api_stored_libraries_content_retrieve .. api_stored_libraries_provider_retrieve (9 actions)
+    if action == "api_stored_libraries_content_retrieve":
+        return client.api_stored_libraries_content_retrieve(**kwargs)
+    elif action == "api_stored_libraries_import_create":
+        return client.api_stored_libraries_import_create(**kwargs)
+    elif action == "api_stored_libraries_object_retrieve":
+        return client.api_stored_libraries_object_retrieve(**kwargs)
+    elif action == "api_stored_libraries_tree_retrieve":
+        return client.api_stored_libraries_tree_retrieve(**kwargs)
+    elif action == "api_stored_libraries_unload_create":
+        return client.api_stored_libraries_unload_create(**kwargs)
+    elif action == "api_stored_libraries_batch_action_create":
+        return client.api_stored_libraries_batch_action_create(**kwargs)
+    elif action == "api_stored_libraries_locale_retrieve":
+        return client.api_stored_libraries_locale_retrieve(**kwargs)
+    elif action == "api_stored_libraries_object_type_retrieve":
+        return client.api_stored_libraries_object_type_retrieve(**kwargs)
+    elif action == "api_stored_libraries_provider_retrieve":
+        return client.api_stored_libraries_provider_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_frameworks_libraries_11(action, kwargs, client):
+    # api_stored_libraries_upload_create .. api_terminologies_object_retrieve (9 actions)
+    if action == "api_stored_libraries_upload_create":
+        return client.api_stored_libraries_upload_create(**kwargs)
+    elif action == "api_terminologies_list":
+        return client.api_terminologies_list(**kwargs)
+    elif action == "api_terminologies_create":
+        return client.api_terminologies_create(**kwargs)
+    elif action == "api_terminologies_retrieve":
+        return client.api_terminologies_retrieve(**kwargs)
+    elif action == "api_terminologies_update":
+        return client.api_terminologies_update(**kwargs)
+    elif action == "api_terminologies_partial_update":
+        return client.api_terminologies_partial_update(**kwargs)
+    elif action == "api_terminologies_destroy":
+        return client.api_terminologies_destroy(**kwargs)
+    elif action == "api_terminologies_cascade_info_retrieve":
+        return client.api_terminologies_cascade_info_retrieve(**kwargs)
+    elif action == "api_terminologies_object_retrieve":
+        return client.api_terminologies_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_frameworks_libraries_12(action, kwargs, client):
+    # api_terminologies_batch_action_create .. api_terminologies_field_path_retrieve (2 actions)
+    if action == "api_terminologies_batch_action_create":
+        return client.api_terminologies_batch_action_create(**kwargs)
+    elif action == "api_terminologies_field_path_retrieve":
+        return client.api_terminologies_field_path_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_FRAMEWORKS_LIBRARIES_DISPATCHERS = (
+    _dispatch_frameworks_libraries_1,
+    _dispatch_frameworks_libraries_2,
+    _dispatch_frameworks_libraries_3,
+    _dispatch_frameworks_libraries_4,
+    _dispatch_frameworks_libraries_5,
+    _dispatch_frameworks_libraries_6,
+    _dispatch_frameworks_libraries_7,
+    _dispatch_frameworks_libraries_8,
+    _dispatch_frameworks_libraries_9,
+    _dispatch_frameworks_libraries_10,
+    _dispatch_frameworks_libraries_11,
+    _dispatch_frameworks_libraries_12,
+)
+
 
 def register_frameworks_libraries_tools(mcp: FastMCP):
     @mcp.tool(tags={"frameworks-libraries"})
@@ -39,206 +319,8 @@ def register_frameworks_libraries_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_filtering_labels_list":
-            return client.api_filtering_labels_list(**kwargs)
-        elif action == "api_filtering_labels_create":
-            return client.api_filtering_labels_create(**kwargs)
-        elif action == "api_filtering_labels_retrieve":
-            return client.api_filtering_labels_retrieve(**kwargs)
-        elif action == "api_filtering_labels_update":
-            return client.api_filtering_labels_update(**kwargs)
-        elif action == "api_filtering_labels_partial_update":
-            return client.api_filtering_labels_partial_update(**kwargs)
-        elif action == "api_filtering_labels_destroy":
-            return client.api_filtering_labels_destroy(**kwargs)
-        elif action == "api_filtering_labels_cascade_info_retrieve":
-            return client.api_filtering_labels_cascade_info_retrieve(**kwargs)
-        elif action == "api_filtering_labels_object_retrieve":
-            return client.api_filtering_labels_object_retrieve(**kwargs)
-        elif action == "api_filtering_labels_batch_action_create":
-            return client.api_filtering_labels_batch_action_create(**kwargs)
-        elif action == "api_frameworks_list":
-            return client.api_frameworks_list(**kwargs)
-        elif action == "api_frameworks_create":
-            return client.api_frameworks_create(**kwargs)
-        elif action == "api_frameworks_retrieve":
-            return client.api_frameworks_retrieve(**kwargs)
-        elif action == "api_frameworks_update":
-            return client.api_frameworks_update(**kwargs)
-        elif action == "api_frameworks_partial_update":
-            return client.api_frameworks_partial_update(**kwargs)
-        elif action == "api_frameworks_destroy":
-            return client.api_frameworks_destroy(**kwargs)
-        elif action == "api_frameworks_cascade_info_retrieve":
-            return client.api_frameworks_cascade_info_retrieve(**kwargs)
-        elif action == "api_frameworks_discard_draft_create":
-            return client.api_frameworks_discard_draft_create(**kwargs)
-        elif action == "api_frameworks_duplicate_create":
-            return client.api_frameworks_duplicate_create(**kwargs)
-        elif action == "api_frameworks_excel_template_retrieve":
-            return client.api_frameworks_excel_template_retrieve(**kwargs)
-        elif action == "api_frameworks_export_yaml_retrieve":
-            return client.api_frameworks_export_yaml_retrieve(**kwargs)
-        elif action == "api_frameworks_mapping_stats_retrieve":
-            return client.api_frameworks_mapping_stats_retrieve(**kwargs)
-        elif action == "api_frameworks_mappings_retrieve":
-            return client.api_frameworks_mappings_retrieve(**kwargs)
-        elif action == "api_frameworks_object_retrieve":
-            return client.api_frameworks_object_retrieve(**kwargs)
-        elif action == "api_frameworks_publish_draft_create":
-            return client.api_frameworks_publish_draft_create(**kwargs)
-        elif action == "api_frameworks_publish_draft_preview_create":
-            return client.api_frameworks_publish_draft_preview_create(**kwargs)
-        elif action == "api_frameworks_report_retrieve":
-            return client.api_frameworks_report_retrieve(**kwargs)
-        elif action == "api_frameworks_save_draft_partial_update":
-            return client.api_frameworks_save_draft_partial_update(**kwargs)
-        elif action == "api_frameworks_serve_image_retrieve":
-            return client.api_frameworks_serve_image_retrieve(**kwargs)
-        elif action == "api_frameworks_start_editing_create":
-            return client.api_frameworks_start_editing_create(**kwargs)
-        elif action == "api_frameworks_tree_retrieve":
-            return client.api_frameworks_tree_retrieve(**kwargs)
-        elif action == "api_frameworks_upload_image_create":
-            return client.api_frameworks_upload_image_create(**kwargs)
-        elif action == "api_frameworks_batch_action_create":
-            return client.api_frameworks_batch_action_create(**kwargs)
-        elif action == "api_frameworks_names_retrieve":
-            return client.api_frameworks_names_retrieve(**kwargs)
-        elif action == "api_frameworks_provider_retrieve":
-            return client.api_frameworks_provider_retrieve(**kwargs)
-        elif action == "api_frameworks_used_retrieve":
-            return client.api_frameworks_used_retrieve(**kwargs)
-        elif action == "api_library_filtering_labels_list":
-            return client.api_library_filtering_labels_list(**kwargs)
-        elif action == "api_library_filtering_labels_create":
-            return client.api_library_filtering_labels_create(**kwargs)
-        elif action == "api_library_filtering_labels_retrieve":
-            return client.api_library_filtering_labels_retrieve(**kwargs)
-        elif action == "api_library_filtering_labels_update":
-            return client.api_library_filtering_labels_update(**kwargs)
-        elif action == "api_library_filtering_labels_partial_update":
-            return client.api_library_filtering_labels_partial_update(**kwargs)
-        elif action == "api_library_filtering_labels_destroy":
-            return client.api_library_filtering_labels_destroy(**kwargs)
-        elif action == "api_library_filtering_labels_cascade_info_retrieve":
-            return client.api_library_filtering_labels_cascade_info_retrieve(**kwargs)
-        elif action == "api_library_filtering_labels_object_retrieve":
-            return client.api_library_filtering_labels_object_retrieve(**kwargs)
-        elif action == "api_library_filtering_labels_batch_action_create":
-            return client.api_library_filtering_labels_batch_action_create(**kwargs)
-        elif action == "api_loaded_libraries_list":
-            return client.api_loaded_libraries_list(**kwargs)
-        elif action == "api_loaded_libraries_create":
-            return client.api_loaded_libraries_create(**kwargs)
-        elif action == "api_loaded_libraries_retrieve":
-            return client.api_loaded_libraries_retrieve(**kwargs)
-        elif action == "api_loaded_libraries_update":
-            return client.api_loaded_libraries_update(**kwargs)
-        elif action == "api_loaded_libraries_partial_update":
-            return client.api_loaded_libraries_partial_update(**kwargs)
-        elif action == "api_loaded_libraries_destroy":
-            return client.api_loaded_libraries_destroy(**kwargs)
-        elif action == "api_loaded_libraries_cascade_info_retrieve":
-            return client.api_loaded_libraries_cascade_info_retrieve(**kwargs)
-        elif action == "api_loaded_libraries_content_retrieve":
-            return client.api_loaded_libraries_content_retrieve(**kwargs)
-        elif action == "api_loaded_libraries_object_retrieve":
-            return client.api_loaded_libraries_object_retrieve(**kwargs)
-        elif action == "api_loaded_libraries_tree_retrieve":
-            return client.api_loaded_libraries_tree_retrieve(**kwargs)
-        elif action == "api_loaded_libraries_update_retrieve":
-            return client.api_loaded_libraries_update_retrieve(**kwargs)
-        elif action == "api_loaded_libraries_available_updates_retrieve":
-            return client.api_loaded_libraries_available_updates_retrieve(**kwargs)
-        elif action == "api_loaded_libraries_batch_action_create":
-            return client.api_loaded_libraries_batch_action_create(**kwargs)
-        elif action == "api_presets_list":
-            return client.api_presets_list(**kwargs)
-        elif action == "api_presets_create":
-            return client.api_presets_create(**kwargs)
-        elif action == "api_presets_retrieve":
-            return client.api_presets_retrieve(**kwargs)
-        elif action == "api_presets_update":
-            return client.api_presets_update(**kwargs)
-        elif action == "api_presets_partial_update":
-            return client.api_presets_partial_update(**kwargs)
-        elif action == "api_presets_destroy":
-            return client.api_presets_destroy(**kwargs)
-        elif action == "api_presets_apply_create":
-            return client.api_presets_apply_create(**kwargs)
-        elif action == "api_presets_cascade_info_retrieve":
-            return client.api_presets_cascade_info_retrieve(**kwargs)
-        elif action == "api_presets_discard_draft_create":
-            return client.api_presets_discard_draft_create(**kwargs)
-        elif action == "api_presets_duplicate_create":
-            return client.api_presets_duplicate_create(**kwargs)
-        elif action == "api_presets_object_retrieve":
-            return client.api_presets_object_retrieve(**kwargs)
-        elif action == "api_presets_publish_draft_create":
-            return client.api_presets_publish_draft_create(**kwargs)
-        elif action == "api_presets_publish_draft_preview_create":
-            return client.api_presets_publish_draft_preview_create(**kwargs)
-        elif action == "api_presets_save_draft_partial_update":
-            return client.api_presets_save_draft_partial_update(**kwargs)
-        elif action == "api_presets_start_editing_create":
-            return client.api_presets_start_editing_create(**kwargs)
-        elif action == "api_presets_batch_action_create":
-            return client.api_presets_batch_action_create(**kwargs)
-        elif action == "api_presets_create_blank_create":
-            return client.api_presets_create_blank_create(**kwargs)
-        elif action == "api_stored_libraries_list":
-            return client.api_stored_libraries_list(**kwargs)
-        elif action == "api_stored_libraries_create":
-            return client.api_stored_libraries_create(**kwargs)
-        elif action == "api_stored_libraries_retrieve":
-            return client.api_stored_libraries_retrieve(**kwargs)
-        elif action == "api_stored_libraries_update":
-            return client.api_stored_libraries_update(**kwargs)
-        elif action == "api_stored_libraries_partial_update":
-            return client.api_stored_libraries_partial_update(**kwargs)
-        elif action == "api_stored_libraries_destroy":
-            return client.api_stored_libraries_destroy(**kwargs)
-        elif action == "api_stored_libraries_cascade_info_retrieve":
-            return client.api_stored_libraries_cascade_info_retrieve(**kwargs)
-        elif action == "api_stored_libraries_content_retrieve":
-            return client.api_stored_libraries_content_retrieve(**kwargs)
-        elif action == "api_stored_libraries_import_create":
-            return client.api_stored_libraries_import_create(**kwargs)
-        elif action == "api_stored_libraries_object_retrieve":
-            return client.api_stored_libraries_object_retrieve(**kwargs)
-        elif action == "api_stored_libraries_tree_retrieve":
-            return client.api_stored_libraries_tree_retrieve(**kwargs)
-        elif action == "api_stored_libraries_unload_create":
-            return client.api_stored_libraries_unload_create(**kwargs)
-        elif action == "api_stored_libraries_batch_action_create":
-            return client.api_stored_libraries_batch_action_create(**kwargs)
-        elif action == "api_stored_libraries_locale_retrieve":
-            return client.api_stored_libraries_locale_retrieve(**kwargs)
-        elif action == "api_stored_libraries_object_type_retrieve":
-            return client.api_stored_libraries_object_type_retrieve(**kwargs)
-        elif action == "api_stored_libraries_provider_retrieve":
-            return client.api_stored_libraries_provider_retrieve(**kwargs)
-        elif action == "api_stored_libraries_upload_create":
-            return client.api_stored_libraries_upload_create(**kwargs)
-        elif action == "api_terminologies_list":
-            return client.api_terminologies_list(**kwargs)
-        elif action == "api_terminologies_create":
-            return client.api_terminologies_create(**kwargs)
-        elif action == "api_terminologies_retrieve":
-            return client.api_terminologies_retrieve(**kwargs)
-        elif action == "api_terminologies_update":
-            return client.api_terminologies_update(**kwargs)
-        elif action == "api_terminologies_partial_update":
-            return client.api_terminologies_partial_update(**kwargs)
-        elif action == "api_terminologies_destroy":
-            return client.api_terminologies_destroy(**kwargs)
-        elif action == "api_terminologies_cascade_info_retrieve":
-            return client.api_terminologies_cascade_info_retrieve(**kwargs)
-        elif action == "api_terminologies_object_retrieve":
-            return client.api_terminologies_object_retrieve(**kwargs)
-        elif action == "api_terminologies_batch_action_create":
-            return client.api_terminologies_batch_action_create(**kwargs)
-        elif action == "api_terminologies_field_path_retrieve":
-            return client.api_terminologies_field_path_retrieve(**kwargs)
+        for _dispatch in _FRAMEWORKS_LIBRARIES_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
