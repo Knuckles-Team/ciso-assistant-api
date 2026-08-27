@@ -8,6 +8,192 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_tasks_timeline_1(action, kwargs, client):
+    # api_answers_list .. api_answers_batch_action_create (9 actions)
+    if action == "api_answers_list":
+        return client.api_answers_list(**kwargs)
+    elif action == "api_answers_create":
+        return client.api_answers_create(**kwargs)
+    elif action == "api_answers_retrieve":
+        return client.api_answers_retrieve(**kwargs)
+    elif action == "api_answers_update":
+        return client.api_answers_update(**kwargs)
+    elif action == "api_answers_partial_update":
+        return client.api_answers_partial_update(**kwargs)
+    elif action == "api_answers_destroy":
+        return client.api_answers_destroy(**kwargs)
+    elif action == "api_answers_cascade_info_retrieve":
+        return client.api_answers_cascade_info_retrieve(**kwargs)
+    elif action == "api_answers_object_retrieve":
+        return client.api_answers_object_retrieve(**kwargs)
+    elif action == "api_answers_batch_action_create":
+        return client.api_answers_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_tasks_timeline_2(action, kwargs, client):
+    # api_campaigns_list .. api_campaigns_object_retrieve (9 actions)
+    if action == "api_campaigns_list":
+        return client.api_campaigns_list(**kwargs)
+    elif action == "api_campaigns_create":
+        return client.api_campaigns_create(**kwargs)
+    elif action == "api_campaigns_retrieve":
+        return client.api_campaigns_retrieve(**kwargs)
+    elif action == "api_campaigns_update":
+        return client.api_campaigns_update(**kwargs)
+    elif action == "api_campaigns_partial_update":
+        return client.api_campaigns_partial_update(**kwargs)
+    elif action == "api_campaigns_destroy":
+        return client.api_campaigns_destroy(**kwargs)
+    elif action == "api_campaigns_cascade_info_retrieve":
+        return client.api_campaigns_cascade_info_retrieve(**kwargs)
+    elif action == "api_campaigns_metrics_retrieve":
+        return client.api_campaigns_metrics_retrieve(**kwargs)
+    elif action == "api_campaigns_object_retrieve":
+        return client.api_campaigns_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_tasks_timeline_3(action, kwargs, client):
+    # api_campaigns_batch_action_create .. api_question_choices_cascade_info_retrieve (9 actions)
+    if action == "api_campaigns_batch_action_create":
+        return client.api_campaigns_batch_action_create(**kwargs)
+    elif action == "api_campaigns_status_retrieve":
+        return client.api_campaigns_status_retrieve(**kwargs)
+    elif action == "api_question_choices_list":
+        return client.api_question_choices_list(**kwargs)
+    elif action == "api_question_choices_create":
+        return client.api_question_choices_create(**kwargs)
+    elif action == "api_question_choices_retrieve":
+        return client.api_question_choices_retrieve(**kwargs)
+    elif action == "api_question_choices_update":
+        return client.api_question_choices_update(**kwargs)
+    elif action == "api_question_choices_partial_update":
+        return client.api_question_choices_partial_update(**kwargs)
+    elif action == "api_question_choices_destroy":
+        return client.api_question_choices_destroy(**kwargs)
+    elif action == "api_question_choices_cascade_info_retrieve":
+        return client.api_question_choices_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_tasks_timeline_4(action, kwargs, client):
+    # api_question_choices_object_retrieve .. api_questions_cascade_info_retrieve (9 actions)
+    if action == "api_question_choices_object_retrieve":
+        return client.api_question_choices_object_retrieve(**kwargs)
+    elif action == "api_question_choices_batch_action_create":
+        return client.api_question_choices_batch_action_create(**kwargs)
+    elif action == "api_questions_list":
+        return client.api_questions_list(**kwargs)
+    elif action == "api_questions_create":
+        return client.api_questions_create(**kwargs)
+    elif action == "api_questions_retrieve":
+        return client.api_questions_retrieve(**kwargs)
+    elif action == "api_questions_update":
+        return client.api_questions_update(**kwargs)
+    elif action == "api_questions_partial_update":
+        return client.api_questions_partial_update(**kwargs)
+    elif action == "api_questions_destroy":
+        return client.api_questions_destroy(**kwargs)
+    elif action == "api_questions_cascade_info_retrieve":
+        return client.api_questions_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_tasks_timeline_5(action, kwargs, client):
+    # api_questions_object_retrieve .. api_task_nodes_cascade_info_retrieve (9 actions)
+    if action == "api_questions_object_retrieve":
+        return client.api_questions_object_retrieve(**kwargs)
+    elif action == "api_questions_batch_action_create":
+        return client.api_questions_batch_action_create(**kwargs)
+    elif action == "api_task_nodes_list":
+        return client.api_task_nodes_list(**kwargs)
+    elif action == "api_task_nodes_create":
+        return client.api_task_nodes_create(**kwargs)
+    elif action == "api_task_nodes_retrieve":
+        return client.api_task_nodes_retrieve(**kwargs)
+    elif action == "api_task_nodes_update":
+        return client.api_task_nodes_update(**kwargs)
+    elif action == "api_task_nodes_partial_update":
+        return client.api_task_nodes_partial_update(**kwargs)
+    elif action == "api_task_nodes_destroy":
+        return client.api_task_nodes_destroy(**kwargs)
+    elif action == "api_task_nodes_cascade_info_retrieve":
+        return client.api_task_nodes_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_tasks_timeline_6(action, kwargs, client):
+    # api_task_nodes_evidences_list .. api_task_templates_update (9 actions)
+    if action == "api_task_nodes_evidences_list":
+        return client.api_task_nodes_evidences_list(**kwargs)
+    elif action == "api_task_nodes_object_retrieve":
+        return client.api_task_nodes_object_retrieve(**kwargs)
+    elif action == "api_task_nodes_remove_evidence_create":
+        return client.api_task_nodes_remove_evidence_create(**kwargs)
+    elif action == "api_task_nodes_batch_action_create":
+        return client.api_task_nodes_batch_action_create(**kwargs)
+    elif action == "api_task_nodes_status_retrieve":
+        return client.api_task_nodes_status_retrieve(**kwargs)
+    elif action == "api_task_templates_list":
+        return client.api_task_templates_list(**kwargs)
+    elif action == "api_task_templates_create":
+        return client.api_task_templates_create(**kwargs)
+    elif action == "api_task_templates_retrieve":
+        return client.api_task_templates_retrieve(**kwargs)
+    elif action == "api_task_templates_update":
+        return client.api_task_templates_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_tasks_timeline_7(action, kwargs, client):
+    # api_task_templates_partial_update .. api_task_templates_export_xlsx_retrieve (9 actions)
+    if action == "api_task_templates_partial_update":
+        return client.api_task_templates_partial_update(**kwargs)
+    elif action == "api_task_templates_destroy":
+        return client.api_task_templates_destroy(**kwargs)
+    elif action == "api_task_templates_cascade_info_retrieve":
+        return client.api_task_templates_cascade_info_retrieve(**kwargs)
+    elif action == "api_task_templates_object_retrieve":
+        return client.api_task_templates_object_retrieve(**kwargs)
+    elif action == "api_task_templates_assigned_to_retrieve":
+        return client.api_task_templates_assigned_to_retrieve(**kwargs)
+    elif action == "api_task_templates_batch_action_create":
+        return client.api_task_templates_batch_action_create(**kwargs)
+    elif action == "api_task_templates_calendar_retrieve":
+        return client.api_task_templates_calendar_retrieve(**kwargs)
+    elif action == "api_task_templates_export_csv_retrieve":
+        return client.api_task_templates_export_csv_retrieve(**kwargs)
+    elif action == "api_task_templates_export_xlsx_retrieve":
+        return client.api_task_templates_export_xlsx_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_tasks_timeline_8(action, kwargs, client):
+    # api_task_templates_per_status_retrieve .. api_task_templates_yearly_review_retrieve (3 actions)
+    if action == "api_task_templates_per_status_retrieve":
+        return client.api_task_templates_per_status_retrieve(**kwargs)
+    elif action == "api_task_templates_status_retrieve":
+        return client.api_task_templates_status_retrieve(**kwargs)
+    elif action == "api_task_templates_yearly_review_retrieve":
+        return client.api_task_templates_yearly_review_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_TASKS_TIMELINE_DISPATCHERS = (
+    _dispatch_tasks_timeline_1,
+    _dispatch_tasks_timeline_2,
+    _dispatch_tasks_timeline_3,
+    _dispatch_tasks_timeline_4,
+    _dispatch_tasks_timeline_5,
+    _dispatch_tasks_timeline_6,
+    _dispatch_tasks_timeline_7,
+    _dispatch_tasks_timeline_8,
+)
+
 
 def register_tasks_timeline_tools(mcp: FastMCP):
     @mcp.tool(tags={"tasks-timeline"})
@@ -37,136 +223,8 @@ def register_tasks_timeline_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_answers_list":
-            return client.api_answers_list(**kwargs)
-        elif action == "api_answers_create":
-            return client.api_answers_create(**kwargs)
-        elif action == "api_answers_retrieve":
-            return client.api_answers_retrieve(**kwargs)
-        elif action == "api_answers_update":
-            return client.api_answers_update(**kwargs)
-        elif action == "api_answers_partial_update":
-            return client.api_answers_partial_update(**kwargs)
-        elif action == "api_answers_destroy":
-            return client.api_answers_destroy(**kwargs)
-        elif action == "api_answers_cascade_info_retrieve":
-            return client.api_answers_cascade_info_retrieve(**kwargs)
-        elif action == "api_answers_object_retrieve":
-            return client.api_answers_object_retrieve(**kwargs)
-        elif action == "api_answers_batch_action_create":
-            return client.api_answers_batch_action_create(**kwargs)
-        elif action == "api_campaigns_list":
-            return client.api_campaigns_list(**kwargs)
-        elif action == "api_campaigns_create":
-            return client.api_campaigns_create(**kwargs)
-        elif action == "api_campaigns_retrieve":
-            return client.api_campaigns_retrieve(**kwargs)
-        elif action == "api_campaigns_update":
-            return client.api_campaigns_update(**kwargs)
-        elif action == "api_campaigns_partial_update":
-            return client.api_campaigns_partial_update(**kwargs)
-        elif action == "api_campaigns_destroy":
-            return client.api_campaigns_destroy(**kwargs)
-        elif action == "api_campaigns_cascade_info_retrieve":
-            return client.api_campaigns_cascade_info_retrieve(**kwargs)
-        elif action == "api_campaigns_metrics_retrieve":
-            return client.api_campaigns_metrics_retrieve(**kwargs)
-        elif action == "api_campaigns_object_retrieve":
-            return client.api_campaigns_object_retrieve(**kwargs)
-        elif action == "api_campaigns_batch_action_create":
-            return client.api_campaigns_batch_action_create(**kwargs)
-        elif action == "api_campaigns_status_retrieve":
-            return client.api_campaigns_status_retrieve(**kwargs)
-        elif action == "api_question_choices_list":
-            return client.api_question_choices_list(**kwargs)
-        elif action == "api_question_choices_create":
-            return client.api_question_choices_create(**kwargs)
-        elif action == "api_question_choices_retrieve":
-            return client.api_question_choices_retrieve(**kwargs)
-        elif action == "api_question_choices_update":
-            return client.api_question_choices_update(**kwargs)
-        elif action == "api_question_choices_partial_update":
-            return client.api_question_choices_partial_update(**kwargs)
-        elif action == "api_question_choices_destroy":
-            return client.api_question_choices_destroy(**kwargs)
-        elif action == "api_question_choices_cascade_info_retrieve":
-            return client.api_question_choices_cascade_info_retrieve(**kwargs)
-        elif action == "api_question_choices_object_retrieve":
-            return client.api_question_choices_object_retrieve(**kwargs)
-        elif action == "api_question_choices_batch_action_create":
-            return client.api_question_choices_batch_action_create(**kwargs)
-        elif action == "api_questions_list":
-            return client.api_questions_list(**kwargs)
-        elif action == "api_questions_create":
-            return client.api_questions_create(**kwargs)
-        elif action == "api_questions_retrieve":
-            return client.api_questions_retrieve(**kwargs)
-        elif action == "api_questions_update":
-            return client.api_questions_update(**kwargs)
-        elif action == "api_questions_partial_update":
-            return client.api_questions_partial_update(**kwargs)
-        elif action == "api_questions_destroy":
-            return client.api_questions_destroy(**kwargs)
-        elif action == "api_questions_cascade_info_retrieve":
-            return client.api_questions_cascade_info_retrieve(**kwargs)
-        elif action == "api_questions_object_retrieve":
-            return client.api_questions_object_retrieve(**kwargs)
-        elif action == "api_questions_batch_action_create":
-            return client.api_questions_batch_action_create(**kwargs)
-        elif action == "api_task_nodes_list":
-            return client.api_task_nodes_list(**kwargs)
-        elif action == "api_task_nodes_create":
-            return client.api_task_nodes_create(**kwargs)
-        elif action == "api_task_nodes_retrieve":
-            return client.api_task_nodes_retrieve(**kwargs)
-        elif action == "api_task_nodes_update":
-            return client.api_task_nodes_update(**kwargs)
-        elif action == "api_task_nodes_partial_update":
-            return client.api_task_nodes_partial_update(**kwargs)
-        elif action == "api_task_nodes_destroy":
-            return client.api_task_nodes_destroy(**kwargs)
-        elif action == "api_task_nodes_cascade_info_retrieve":
-            return client.api_task_nodes_cascade_info_retrieve(**kwargs)
-        elif action == "api_task_nodes_evidences_list":
-            return client.api_task_nodes_evidences_list(**kwargs)
-        elif action == "api_task_nodes_object_retrieve":
-            return client.api_task_nodes_object_retrieve(**kwargs)
-        elif action == "api_task_nodes_remove_evidence_create":
-            return client.api_task_nodes_remove_evidence_create(**kwargs)
-        elif action == "api_task_nodes_batch_action_create":
-            return client.api_task_nodes_batch_action_create(**kwargs)
-        elif action == "api_task_nodes_status_retrieve":
-            return client.api_task_nodes_status_retrieve(**kwargs)
-        elif action == "api_task_templates_list":
-            return client.api_task_templates_list(**kwargs)
-        elif action == "api_task_templates_create":
-            return client.api_task_templates_create(**kwargs)
-        elif action == "api_task_templates_retrieve":
-            return client.api_task_templates_retrieve(**kwargs)
-        elif action == "api_task_templates_update":
-            return client.api_task_templates_update(**kwargs)
-        elif action == "api_task_templates_partial_update":
-            return client.api_task_templates_partial_update(**kwargs)
-        elif action == "api_task_templates_destroy":
-            return client.api_task_templates_destroy(**kwargs)
-        elif action == "api_task_templates_cascade_info_retrieve":
-            return client.api_task_templates_cascade_info_retrieve(**kwargs)
-        elif action == "api_task_templates_object_retrieve":
-            return client.api_task_templates_object_retrieve(**kwargs)
-        elif action == "api_task_templates_assigned_to_retrieve":
-            return client.api_task_templates_assigned_to_retrieve(**kwargs)
-        elif action == "api_task_templates_batch_action_create":
-            return client.api_task_templates_batch_action_create(**kwargs)
-        elif action == "api_task_templates_calendar_retrieve":
-            return client.api_task_templates_calendar_retrieve(**kwargs)
-        elif action == "api_task_templates_export_csv_retrieve":
-            return client.api_task_templates_export_csv_retrieve(**kwargs)
-        elif action == "api_task_templates_export_xlsx_retrieve":
-            return client.api_task_templates_export_xlsx_retrieve(**kwargs)
-        elif action == "api_task_templates_per_status_retrieve":
-            return client.api_task_templates_per_status_retrieve(**kwargs)
-        elif action == "api_task_templates_status_retrieve":
-            return client.api_task_templates_status_retrieve(**kwargs)
-        elif action == "api_task_templates_yearly_review_retrieve":
-            return client.api_task_templates_yearly_review_retrieve(**kwargs)
+        for _dispatch in _TASKS_TIMELINE_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
