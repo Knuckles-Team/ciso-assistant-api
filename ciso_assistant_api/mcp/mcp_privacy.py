@@ -8,6 +8,318 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_privacy_1(action, kwargs, client):
+    # api_privacy_data_breaches_list .. api_privacy_data_breaches_batch_action_create (9 actions)
+    if action == "api_privacy_data_breaches_list":
+        return client.api_privacy_data_breaches_list(**kwargs)
+    elif action == "api_privacy_data_breaches_create":
+        return client.api_privacy_data_breaches_create(**kwargs)
+    elif action == "api_privacy_data_breaches_retrieve":
+        return client.api_privacy_data_breaches_retrieve(**kwargs)
+    elif action == "api_privacy_data_breaches_update":
+        return client.api_privacy_data_breaches_update(**kwargs)
+    elif action == "api_privacy_data_breaches_partial_update":
+        return client.api_privacy_data_breaches_partial_update(**kwargs)
+    elif action == "api_privacy_data_breaches_destroy":
+        return client.api_privacy_data_breaches_destroy(**kwargs)
+    elif action == "api_privacy_data_breaches_cascade_info_retrieve":
+        return client.api_privacy_data_breaches_cascade_info_retrieve(**kwargs)
+    elif action == "api_privacy_data_breaches_object_retrieve":
+        return client.api_privacy_data_breaches_object_retrieve(**kwargs)
+    elif action == "api_privacy_data_breaches_batch_action_create":
+        return client.api_privacy_data_breaches_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_privacy_2(action, kwargs, client):
+    # api_privacy_data_breaches_breach_type_retrieve .. api_privacy_data_contractors_destroy (9 actions)
+    if action == "api_privacy_data_breaches_breach_type_retrieve":
+        return client.api_privacy_data_breaches_breach_type_retrieve(**kwargs)
+    elif action == "api_privacy_data_breaches_risk_level_retrieve":
+        return client.api_privacy_data_breaches_risk_level_retrieve(**kwargs)
+    elif action == "api_privacy_data_breaches_status_retrieve":
+        return client.api_privacy_data_breaches_status_retrieve(**kwargs)
+    elif action == "api_privacy_data_contractors_list":
+        return client.api_privacy_data_contractors_list(**kwargs)
+    elif action == "api_privacy_data_contractors_create":
+        return client.api_privacy_data_contractors_create(**kwargs)
+    elif action == "api_privacy_data_contractors_retrieve":
+        return client.api_privacy_data_contractors_retrieve(**kwargs)
+    elif action == "api_privacy_data_contractors_update":
+        return client.api_privacy_data_contractors_update(**kwargs)
+    elif action == "api_privacy_data_contractors_partial_update":
+        return client.api_privacy_data_contractors_partial_update(**kwargs)
+    elif action == "api_privacy_data_contractors_destroy":
+        return client.api_privacy_data_contractors_destroy(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_privacy_3(action, kwargs, client):
+    # api_privacy_data_contractors_cascade_info_retrieve .. api_privacy_data_recipients_update (9 actions)
+    if action == "api_privacy_data_contractors_cascade_info_retrieve":
+        return client.api_privacy_data_contractors_cascade_info_retrieve(**kwargs)
+    elif action == "api_privacy_data_contractors_object_retrieve":
+        return client.api_privacy_data_contractors_object_retrieve(**kwargs)
+    elif action == "api_privacy_data_contractors_batch_action_create":
+        return client.api_privacy_data_contractors_batch_action_create(**kwargs)
+    elif action == "api_privacy_data_contractors_country_retrieve":
+        return client.api_privacy_data_contractors_country_retrieve(**kwargs)
+    elif action == "api_privacy_data_contractors_relationship_type_retrieve":
+        return client.api_privacy_data_contractors_relationship_type_retrieve(**kwargs)
+    elif action == "api_privacy_data_recipients_list":
+        return client.api_privacy_data_recipients_list(**kwargs)
+    elif action == "api_privacy_data_recipients_create":
+        return client.api_privacy_data_recipients_create(**kwargs)
+    elif action == "api_privacy_data_recipients_retrieve":
+        return client.api_privacy_data_recipients_retrieve(**kwargs)
+    elif action == "api_privacy_data_recipients_update":
+        return client.api_privacy_data_recipients_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_privacy_4(action, kwargs, client):
+    # api_privacy_data_recipients_partial_update .. api_privacy_data_subjects_retrieve (9 actions)
+    if action == "api_privacy_data_recipients_partial_update":
+        return client.api_privacy_data_recipients_partial_update(**kwargs)
+    elif action == "api_privacy_data_recipients_destroy":
+        return client.api_privacy_data_recipients_destroy(**kwargs)
+    elif action == "api_privacy_data_recipients_cascade_info_retrieve":
+        return client.api_privacy_data_recipients_cascade_info_retrieve(**kwargs)
+    elif action == "api_privacy_data_recipients_object_retrieve":
+        return client.api_privacy_data_recipients_object_retrieve(**kwargs)
+    elif action == "api_privacy_data_recipients_batch_action_create":
+        return client.api_privacy_data_recipients_batch_action_create(**kwargs)
+    elif action == "api_privacy_data_recipients_category_retrieve":
+        return client.api_privacy_data_recipients_category_retrieve(**kwargs)
+    elif action == "api_privacy_data_subjects_list":
+        return client.api_privacy_data_subjects_list(**kwargs)
+    elif action == "api_privacy_data_subjects_create":
+        return client.api_privacy_data_subjects_create(**kwargs)
+    elif action == "api_privacy_data_subjects_retrieve":
+        return client.api_privacy_data_subjects_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_privacy_5(action, kwargs, client):
+    # api_privacy_data_subjects_update .. api_privacy_data_transfers_create (9 actions)
+    if action == "api_privacy_data_subjects_update":
+        return client.api_privacy_data_subjects_update(**kwargs)
+    elif action == "api_privacy_data_subjects_partial_update":
+        return client.api_privacy_data_subjects_partial_update(**kwargs)
+    elif action == "api_privacy_data_subjects_destroy":
+        return client.api_privacy_data_subjects_destroy(**kwargs)
+    elif action == "api_privacy_data_subjects_cascade_info_retrieve":
+        return client.api_privacy_data_subjects_cascade_info_retrieve(**kwargs)
+    elif action == "api_privacy_data_subjects_object_retrieve":
+        return client.api_privacy_data_subjects_object_retrieve(**kwargs)
+    elif action == "api_privacy_data_subjects_batch_action_create":
+        return client.api_privacy_data_subjects_batch_action_create(**kwargs)
+    elif action == "api_privacy_data_subjects_category_retrieve":
+        return client.api_privacy_data_subjects_category_retrieve(**kwargs)
+    elif action == "api_privacy_data_transfers_list":
+        return client.api_privacy_data_transfers_list(**kwargs)
+    elif action == "api_privacy_data_transfers_create":
+        return client.api_privacy_data_transfers_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_privacy_6(action, kwargs, client):
+    # api_privacy_data_transfers_retrieve .. api_privacy_data_transfers_transfer_mechanism_retrieve (9 actions)
+    if action == "api_privacy_data_transfers_retrieve":
+        return client.api_privacy_data_transfers_retrieve(**kwargs)
+    elif action == "api_privacy_data_transfers_update":
+        return client.api_privacy_data_transfers_update(**kwargs)
+    elif action == "api_privacy_data_transfers_partial_update":
+        return client.api_privacy_data_transfers_partial_update(**kwargs)
+    elif action == "api_privacy_data_transfers_destroy":
+        return client.api_privacy_data_transfers_destroy(**kwargs)
+    elif action == "api_privacy_data_transfers_cascade_info_retrieve":
+        return client.api_privacy_data_transfers_cascade_info_retrieve(**kwargs)
+    elif action == "api_privacy_data_transfers_object_retrieve":
+        return client.api_privacy_data_transfers_object_retrieve(**kwargs)
+    elif action == "api_privacy_data_transfers_batch_action_create":
+        return client.api_privacy_data_transfers_batch_action_create(**kwargs)
+    elif action == "api_privacy_data_transfers_country_retrieve":
+        return client.api_privacy_data_transfers_country_retrieve(**kwargs)
+    elif action == "api_privacy_data_transfers_transfer_mechanism_retrieve":
+        return client.api_privacy_data_transfers_transfer_mechanism_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_privacy_7(action, kwargs, client):
+    # api_privacy_personal_data_list .. api_privacy_personal_data_batch_action_create (9 actions)
+    if action == "api_privacy_personal_data_list":
+        return client.api_privacy_personal_data_list(**kwargs)
+    elif action == "api_privacy_personal_data_create":
+        return client.api_privacy_personal_data_create(**kwargs)
+    elif action == "api_privacy_personal_data_retrieve":
+        return client.api_privacy_personal_data_retrieve(**kwargs)
+    elif action == "api_privacy_personal_data_update":
+        return client.api_privacy_personal_data_update(**kwargs)
+    elif action == "api_privacy_personal_data_partial_update":
+        return client.api_privacy_personal_data_partial_update(**kwargs)
+    elif action == "api_privacy_personal_data_destroy":
+        return client.api_privacy_personal_data_destroy(**kwargs)
+    elif action == "api_privacy_personal_data_cascade_info_retrieve":
+        return client.api_privacy_personal_data_cascade_info_retrieve(**kwargs)
+    elif action == "api_privacy_personal_data_object_retrieve":
+        return client.api_privacy_personal_data_object_retrieve(**kwargs)
+    elif action == "api_privacy_personal_data_batch_action_create":
+        return client.api_privacy_personal_data_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_privacy_8(action, kwargs, client):
+    # api_privacy_personal_data_batch_create_create .. api_privacy_processing_natures_partial_update (9 actions)
+    if action == "api_privacy_personal_data_batch_create_create":
+        return client.api_privacy_personal_data_batch_create_create(**kwargs)
+    elif action == "api_privacy_personal_data_category_retrieve":
+        return client.api_privacy_personal_data_category_retrieve(**kwargs)
+    elif action == "api_privacy_personal_data_deletion_policy_retrieve":
+        return client.api_privacy_personal_data_deletion_policy_retrieve(**kwargs)
+    elif action == "api_privacy_personal_data_is_sensitive_retrieve":
+        return client.api_privacy_personal_data_is_sensitive_retrieve(**kwargs)
+    elif action == "api_privacy_processing_natures_list":
+        return client.api_privacy_processing_natures_list(**kwargs)
+    elif action == "api_privacy_processing_natures_create":
+        return client.api_privacy_processing_natures_create(**kwargs)
+    elif action == "api_privacy_processing_natures_retrieve":
+        return client.api_privacy_processing_natures_retrieve(**kwargs)
+    elif action == "api_privacy_processing_natures_update":
+        return client.api_privacy_processing_natures_update(**kwargs)
+    elif action == "api_privacy_processing_natures_partial_update":
+        return client.api_privacy_processing_natures_partial_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_privacy_9(action, kwargs, client):
+    # api_privacy_processing_natures_destroy .. api_privacy_processings_partial_update (9 actions)
+    if action == "api_privacy_processing_natures_destroy":
+        return client.api_privacy_processing_natures_destroy(**kwargs)
+    elif action == "api_privacy_processing_natures_cascade_info_retrieve":
+        return client.api_privacy_processing_natures_cascade_info_retrieve(**kwargs)
+    elif action == "api_privacy_processing_natures_object_retrieve":
+        return client.api_privacy_processing_natures_object_retrieve(**kwargs)
+    elif action == "api_privacy_processing_natures_batch_action_create":
+        return client.api_privacy_processing_natures_batch_action_create(**kwargs)
+    elif action == "api_privacy_processings_list":
+        return client.api_privacy_processings_list(**kwargs)
+    elif action == "api_privacy_processings_create":
+        return client.api_privacy_processings_create(**kwargs)
+    elif action == "api_privacy_processings_retrieve":
+        return client.api_privacy_processings_retrieve(**kwargs)
+    elif action == "api_privacy_processings_update":
+        return client.api_privacy_processings_update(**kwargs)
+    elif action == "api_privacy_processings_partial_update":
+        return client.api_privacy_processings_partial_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_privacy_10(action, kwargs, client):
+    # api_privacy_processings_destroy .. api_privacy_processings_metrics_retrieve (9 actions)
+    if action == "api_privacy_processings_destroy":
+        return client.api_privacy_processings_destroy(**kwargs)
+    elif action == "api_privacy_processings_cascade_info_retrieve":
+        return client.api_privacy_processings_cascade_info_retrieve(**kwargs)
+    elif action == "api_privacy_processings_object_retrieve":
+        return client.api_privacy_processings_object_retrieve(**kwargs)
+    elif action == "api_privacy_processings_agg_metrics_retrieve":
+        return client.api_privacy_processings_agg_metrics_retrieve(**kwargs)
+    elif action == "api_privacy_processings_assigned_to_retrieve":
+        return client.api_privacy_processings_assigned_to_retrieve(**kwargs)
+    elif action == "api_privacy_processings_batch_action_create":
+        return client.api_privacy_processings_batch_action_create(**kwargs)
+    elif action == "api_privacy_processings_export_csv_retrieve":
+        return client.api_privacy_processings_export_csv_retrieve(**kwargs)
+    elif action == "api_privacy_processings_export_xlsx_retrieve":
+        return client.api_privacy_processings_export_xlsx_retrieve(**kwargs)
+    elif action == "api_privacy_processings_metrics_retrieve":
+        return client.api_privacy_processings_metrics_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_privacy_11(action, kwargs, client):
+    # api_privacy_processings_status_retrieve .. api_privacy_purposes_object_retrieve (9 actions)
+    if action == "api_privacy_processings_status_retrieve":
+        return client.api_privacy_processings_status_retrieve(**kwargs)
+    elif action == "api_privacy_purposes_list":
+        return client.api_privacy_purposes_list(**kwargs)
+    elif action == "api_privacy_purposes_create":
+        return client.api_privacy_purposes_create(**kwargs)
+    elif action == "api_privacy_purposes_retrieve":
+        return client.api_privacy_purposes_retrieve(**kwargs)
+    elif action == "api_privacy_purposes_update":
+        return client.api_privacy_purposes_update(**kwargs)
+    elif action == "api_privacy_purposes_partial_update":
+        return client.api_privacy_purposes_partial_update(**kwargs)
+    elif action == "api_privacy_purposes_destroy":
+        return client.api_privacy_purposes_destroy(**kwargs)
+    elif action == "api_privacy_purposes_cascade_info_retrieve":
+        return client.api_privacy_purposes_cascade_info_retrieve(**kwargs)
+    elif action == "api_privacy_purposes_object_retrieve":
+        return client.api_privacy_purposes_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_privacy_12(action, kwargs, client):
+    # api_privacy_purposes_article_9_condition_retrieve .. api_privacy_right_requests_destroy (9 actions)
+    if action == "api_privacy_purposes_article_9_condition_retrieve":
+        return client.api_privacy_purposes_article_9_condition_retrieve(**kwargs)
+    elif action == "api_privacy_purposes_batch_action_create":
+        return client.api_privacy_purposes_batch_action_create(**kwargs)
+    elif action == "api_privacy_purposes_legal_basis_retrieve":
+        return client.api_privacy_purposes_legal_basis_retrieve(**kwargs)
+    elif action == "api_privacy_right_requests_list":
+        return client.api_privacy_right_requests_list(**kwargs)
+    elif action == "api_privacy_right_requests_create":
+        return client.api_privacy_right_requests_create(**kwargs)
+    elif action == "api_privacy_right_requests_retrieve":
+        return client.api_privacy_right_requests_retrieve(**kwargs)
+    elif action == "api_privacy_right_requests_update":
+        return client.api_privacy_right_requests_update(**kwargs)
+    elif action == "api_privacy_right_requests_partial_update":
+        return client.api_privacy_right_requests_partial_update(**kwargs)
+    elif action == "api_privacy_right_requests_destroy":
+        return client.api_privacy_right_requests_destroy(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_privacy_13(action, kwargs, client):
+    # api_privacy_right_requests_cascade_info_retrieve .. api_privacy_right_requests_status_retrieve (6 actions)
+    if action == "api_privacy_right_requests_cascade_info_retrieve":
+        return client.api_privacy_right_requests_cascade_info_retrieve(**kwargs)
+    elif action == "api_privacy_right_requests_object_retrieve":
+        return client.api_privacy_right_requests_object_retrieve(**kwargs)
+    elif action == "api_privacy_right_requests_batch_action_create":
+        return client.api_privacy_right_requests_batch_action_create(**kwargs)
+    elif action == "api_privacy_right_requests_owner_retrieve":
+        return client.api_privacy_right_requests_owner_retrieve(**kwargs)
+    elif action == "api_privacy_right_requests_request_type_retrieve":
+        return client.api_privacy_right_requests_request_type_retrieve(**kwargs)
+    elif action == "api_privacy_right_requests_status_retrieve":
+        return client.api_privacy_right_requests_status_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_PRIVACY_DISPATCHERS = (
+    _dispatch_privacy_1,
+    _dispatch_privacy_2,
+    _dispatch_privacy_3,
+    _dispatch_privacy_4,
+    _dispatch_privacy_5,
+    _dispatch_privacy_6,
+    _dispatch_privacy_7,
+    _dispatch_privacy_8,
+    _dispatch_privacy_9,
+    _dispatch_privacy_10,
+    _dispatch_privacy_11,
+    _dispatch_privacy_12,
+    _dispatch_privacy_13,
+)
+
 
 def register_privacy_tools(mcp: FastMCP):
     @mcp.tool(tags={"privacy"})
@@ -37,236 +349,8 @@ def register_privacy_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_privacy_data_breaches_list":
-            return client.api_privacy_data_breaches_list(**kwargs)
-        elif action == "api_privacy_data_breaches_create":
-            return client.api_privacy_data_breaches_create(**kwargs)
-        elif action == "api_privacy_data_breaches_retrieve":
-            return client.api_privacy_data_breaches_retrieve(**kwargs)
-        elif action == "api_privacy_data_breaches_update":
-            return client.api_privacy_data_breaches_update(**kwargs)
-        elif action == "api_privacy_data_breaches_partial_update":
-            return client.api_privacy_data_breaches_partial_update(**kwargs)
-        elif action == "api_privacy_data_breaches_destroy":
-            return client.api_privacy_data_breaches_destroy(**kwargs)
-        elif action == "api_privacy_data_breaches_cascade_info_retrieve":
-            return client.api_privacy_data_breaches_cascade_info_retrieve(**kwargs)
-        elif action == "api_privacy_data_breaches_object_retrieve":
-            return client.api_privacy_data_breaches_object_retrieve(**kwargs)
-        elif action == "api_privacy_data_breaches_batch_action_create":
-            return client.api_privacy_data_breaches_batch_action_create(**kwargs)
-        elif action == "api_privacy_data_breaches_breach_type_retrieve":
-            return client.api_privacy_data_breaches_breach_type_retrieve(**kwargs)
-        elif action == "api_privacy_data_breaches_risk_level_retrieve":
-            return client.api_privacy_data_breaches_risk_level_retrieve(**kwargs)
-        elif action == "api_privacy_data_breaches_status_retrieve":
-            return client.api_privacy_data_breaches_status_retrieve(**kwargs)
-        elif action == "api_privacy_data_contractors_list":
-            return client.api_privacy_data_contractors_list(**kwargs)
-        elif action == "api_privacy_data_contractors_create":
-            return client.api_privacy_data_contractors_create(**kwargs)
-        elif action == "api_privacy_data_contractors_retrieve":
-            return client.api_privacy_data_contractors_retrieve(**kwargs)
-        elif action == "api_privacy_data_contractors_update":
-            return client.api_privacy_data_contractors_update(**kwargs)
-        elif action == "api_privacy_data_contractors_partial_update":
-            return client.api_privacy_data_contractors_partial_update(**kwargs)
-        elif action == "api_privacy_data_contractors_destroy":
-            return client.api_privacy_data_contractors_destroy(**kwargs)
-        elif action == "api_privacy_data_contractors_cascade_info_retrieve":
-            return client.api_privacy_data_contractors_cascade_info_retrieve(**kwargs)
-        elif action == "api_privacy_data_contractors_object_retrieve":
-            return client.api_privacy_data_contractors_object_retrieve(**kwargs)
-        elif action == "api_privacy_data_contractors_batch_action_create":
-            return client.api_privacy_data_contractors_batch_action_create(**kwargs)
-        elif action == "api_privacy_data_contractors_country_retrieve":
-            return client.api_privacy_data_contractors_country_retrieve(**kwargs)
-        elif action == "api_privacy_data_contractors_relationship_type_retrieve":
-            return client.api_privacy_data_contractors_relationship_type_retrieve(
-                **kwargs
-            )
-        elif action == "api_privacy_data_recipients_list":
-            return client.api_privacy_data_recipients_list(**kwargs)
-        elif action == "api_privacy_data_recipients_create":
-            return client.api_privacy_data_recipients_create(**kwargs)
-        elif action == "api_privacy_data_recipients_retrieve":
-            return client.api_privacy_data_recipients_retrieve(**kwargs)
-        elif action == "api_privacy_data_recipients_update":
-            return client.api_privacy_data_recipients_update(**kwargs)
-        elif action == "api_privacy_data_recipients_partial_update":
-            return client.api_privacy_data_recipients_partial_update(**kwargs)
-        elif action == "api_privacy_data_recipients_destroy":
-            return client.api_privacy_data_recipients_destroy(**kwargs)
-        elif action == "api_privacy_data_recipients_cascade_info_retrieve":
-            return client.api_privacy_data_recipients_cascade_info_retrieve(**kwargs)
-        elif action == "api_privacy_data_recipients_object_retrieve":
-            return client.api_privacy_data_recipients_object_retrieve(**kwargs)
-        elif action == "api_privacy_data_recipients_batch_action_create":
-            return client.api_privacy_data_recipients_batch_action_create(**kwargs)
-        elif action == "api_privacy_data_recipients_category_retrieve":
-            return client.api_privacy_data_recipients_category_retrieve(**kwargs)
-        elif action == "api_privacy_data_subjects_list":
-            return client.api_privacy_data_subjects_list(**kwargs)
-        elif action == "api_privacy_data_subjects_create":
-            return client.api_privacy_data_subjects_create(**kwargs)
-        elif action == "api_privacy_data_subjects_retrieve":
-            return client.api_privacy_data_subjects_retrieve(**kwargs)
-        elif action == "api_privacy_data_subjects_update":
-            return client.api_privacy_data_subjects_update(**kwargs)
-        elif action == "api_privacy_data_subjects_partial_update":
-            return client.api_privacy_data_subjects_partial_update(**kwargs)
-        elif action == "api_privacy_data_subjects_destroy":
-            return client.api_privacy_data_subjects_destroy(**kwargs)
-        elif action == "api_privacy_data_subjects_cascade_info_retrieve":
-            return client.api_privacy_data_subjects_cascade_info_retrieve(**kwargs)
-        elif action == "api_privacy_data_subjects_object_retrieve":
-            return client.api_privacy_data_subjects_object_retrieve(**kwargs)
-        elif action == "api_privacy_data_subjects_batch_action_create":
-            return client.api_privacy_data_subjects_batch_action_create(**kwargs)
-        elif action == "api_privacy_data_subjects_category_retrieve":
-            return client.api_privacy_data_subjects_category_retrieve(**kwargs)
-        elif action == "api_privacy_data_transfers_list":
-            return client.api_privacy_data_transfers_list(**kwargs)
-        elif action == "api_privacy_data_transfers_create":
-            return client.api_privacy_data_transfers_create(**kwargs)
-        elif action == "api_privacy_data_transfers_retrieve":
-            return client.api_privacy_data_transfers_retrieve(**kwargs)
-        elif action == "api_privacy_data_transfers_update":
-            return client.api_privacy_data_transfers_update(**kwargs)
-        elif action == "api_privacy_data_transfers_partial_update":
-            return client.api_privacy_data_transfers_partial_update(**kwargs)
-        elif action == "api_privacy_data_transfers_destroy":
-            return client.api_privacy_data_transfers_destroy(**kwargs)
-        elif action == "api_privacy_data_transfers_cascade_info_retrieve":
-            return client.api_privacy_data_transfers_cascade_info_retrieve(**kwargs)
-        elif action == "api_privacy_data_transfers_object_retrieve":
-            return client.api_privacy_data_transfers_object_retrieve(**kwargs)
-        elif action == "api_privacy_data_transfers_batch_action_create":
-            return client.api_privacy_data_transfers_batch_action_create(**kwargs)
-        elif action == "api_privacy_data_transfers_country_retrieve":
-            return client.api_privacy_data_transfers_country_retrieve(**kwargs)
-        elif action == "api_privacy_data_transfers_transfer_mechanism_retrieve":
-            return client.api_privacy_data_transfers_transfer_mechanism_retrieve(
-                **kwargs
-            )
-        elif action == "api_privacy_personal_data_list":
-            return client.api_privacy_personal_data_list(**kwargs)
-        elif action == "api_privacy_personal_data_create":
-            return client.api_privacy_personal_data_create(**kwargs)
-        elif action == "api_privacy_personal_data_retrieve":
-            return client.api_privacy_personal_data_retrieve(**kwargs)
-        elif action == "api_privacy_personal_data_update":
-            return client.api_privacy_personal_data_update(**kwargs)
-        elif action == "api_privacy_personal_data_partial_update":
-            return client.api_privacy_personal_data_partial_update(**kwargs)
-        elif action == "api_privacy_personal_data_destroy":
-            return client.api_privacy_personal_data_destroy(**kwargs)
-        elif action == "api_privacy_personal_data_cascade_info_retrieve":
-            return client.api_privacy_personal_data_cascade_info_retrieve(**kwargs)
-        elif action == "api_privacy_personal_data_object_retrieve":
-            return client.api_privacy_personal_data_object_retrieve(**kwargs)
-        elif action == "api_privacy_personal_data_batch_action_create":
-            return client.api_privacy_personal_data_batch_action_create(**kwargs)
-        elif action == "api_privacy_personal_data_batch_create_create":
-            return client.api_privacy_personal_data_batch_create_create(**kwargs)
-        elif action == "api_privacy_personal_data_category_retrieve":
-            return client.api_privacy_personal_data_category_retrieve(**kwargs)
-        elif action == "api_privacy_personal_data_deletion_policy_retrieve":
-            return client.api_privacy_personal_data_deletion_policy_retrieve(**kwargs)
-        elif action == "api_privacy_personal_data_is_sensitive_retrieve":
-            return client.api_privacy_personal_data_is_sensitive_retrieve(**kwargs)
-        elif action == "api_privacy_processing_natures_list":
-            return client.api_privacy_processing_natures_list(**kwargs)
-        elif action == "api_privacy_processing_natures_create":
-            return client.api_privacy_processing_natures_create(**kwargs)
-        elif action == "api_privacy_processing_natures_retrieve":
-            return client.api_privacy_processing_natures_retrieve(**kwargs)
-        elif action == "api_privacy_processing_natures_update":
-            return client.api_privacy_processing_natures_update(**kwargs)
-        elif action == "api_privacy_processing_natures_partial_update":
-            return client.api_privacy_processing_natures_partial_update(**kwargs)
-        elif action == "api_privacy_processing_natures_destroy":
-            return client.api_privacy_processing_natures_destroy(**kwargs)
-        elif action == "api_privacy_processing_natures_cascade_info_retrieve":
-            return client.api_privacy_processing_natures_cascade_info_retrieve(**kwargs)
-        elif action == "api_privacy_processing_natures_object_retrieve":
-            return client.api_privacy_processing_natures_object_retrieve(**kwargs)
-        elif action == "api_privacy_processing_natures_batch_action_create":
-            return client.api_privacy_processing_natures_batch_action_create(**kwargs)
-        elif action == "api_privacy_processings_list":
-            return client.api_privacy_processings_list(**kwargs)
-        elif action == "api_privacy_processings_create":
-            return client.api_privacy_processings_create(**kwargs)
-        elif action == "api_privacy_processings_retrieve":
-            return client.api_privacy_processings_retrieve(**kwargs)
-        elif action == "api_privacy_processings_update":
-            return client.api_privacy_processings_update(**kwargs)
-        elif action == "api_privacy_processings_partial_update":
-            return client.api_privacy_processings_partial_update(**kwargs)
-        elif action == "api_privacy_processings_destroy":
-            return client.api_privacy_processings_destroy(**kwargs)
-        elif action == "api_privacy_processings_cascade_info_retrieve":
-            return client.api_privacy_processings_cascade_info_retrieve(**kwargs)
-        elif action == "api_privacy_processings_object_retrieve":
-            return client.api_privacy_processings_object_retrieve(**kwargs)
-        elif action == "api_privacy_processings_agg_metrics_retrieve":
-            return client.api_privacy_processings_agg_metrics_retrieve(**kwargs)
-        elif action == "api_privacy_processings_assigned_to_retrieve":
-            return client.api_privacy_processings_assigned_to_retrieve(**kwargs)
-        elif action == "api_privacy_processings_batch_action_create":
-            return client.api_privacy_processings_batch_action_create(**kwargs)
-        elif action == "api_privacy_processings_export_csv_retrieve":
-            return client.api_privacy_processings_export_csv_retrieve(**kwargs)
-        elif action == "api_privacy_processings_export_xlsx_retrieve":
-            return client.api_privacy_processings_export_xlsx_retrieve(**kwargs)
-        elif action == "api_privacy_processings_metrics_retrieve":
-            return client.api_privacy_processings_metrics_retrieve(**kwargs)
-        elif action == "api_privacy_processings_status_retrieve":
-            return client.api_privacy_processings_status_retrieve(**kwargs)
-        elif action == "api_privacy_purposes_list":
-            return client.api_privacy_purposes_list(**kwargs)
-        elif action == "api_privacy_purposes_create":
-            return client.api_privacy_purposes_create(**kwargs)
-        elif action == "api_privacy_purposes_retrieve":
-            return client.api_privacy_purposes_retrieve(**kwargs)
-        elif action == "api_privacy_purposes_update":
-            return client.api_privacy_purposes_update(**kwargs)
-        elif action == "api_privacy_purposes_partial_update":
-            return client.api_privacy_purposes_partial_update(**kwargs)
-        elif action == "api_privacy_purposes_destroy":
-            return client.api_privacy_purposes_destroy(**kwargs)
-        elif action == "api_privacy_purposes_cascade_info_retrieve":
-            return client.api_privacy_purposes_cascade_info_retrieve(**kwargs)
-        elif action == "api_privacy_purposes_object_retrieve":
-            return client.api_privacy_purposes_object_retrieve(**kwargs)
-        elif action == "api_privacy_purposes_article_9_condition_retrieve":
-            return client.api_privacy_purposes_article_9_condition_retrieve(**kwargs)
-        elif action == "api_privacy_purposes_batch_action_create":
-            return client.api_privacy_purposes_batch_action_create(**kwargs)
-        elif action == "api_privacy_purposes_legal_basis_retrieve":
-            return client.api_privacy_purposes_legal_basis_retrieve(**kwargs)
-        elif action == "api_privacy_right_requests_list":
-            return client.api_privacy_right_requests_list(**kwargs)
-        elif action == "api_privacy_right_requests_create":
-            return client.api_privacy_right_requests_create(**kwargs)
-        elif action == "api_privacy_right_requests_retrieve":
-            return client.api_privacy_right_requests_retrieve(**kwargs)
-        elif action == "api_privacy_right_requests_update":
-            return client.api_privacy_right_requests_update(**kwargs)
-        elif action == "api_privacy_right_requests_partial_update":
-            return client.api_privacy_right_requests_partial_update(**kwargs)
-        elif action == "api_privacy_right_requests_destroy":
-            return client.api_privacy_right_requests_destroy(**kwargs)
-        elif action == "api_privacy_right_requests_cascade_info_retrieve":
-            return client.api_privacy_right_requests_cascade_info_retrieve(**kwargs)
-        elif action == "api_privacy_right_requests_object_retrieve":
-            return client.api_privacy_right_requests_object_retrieve(**kwargs)
-        elif action == "api_privacy_right_requests_batch_action_create":
-            return client.api_privacy_right_requests_batch_action_create(**kwargs)
-        elif action == "api_privacy_right_requests_owner_retrieve":
-            return client.api_privacy_right_requests_owner_retrieve(**kwargs)
-        elif action == "api_privacy_right_requests_request_type_retrieve":
-            return client.api_privacy_right_requests_request_type_retrieve(**kwargs)
-        elif action == "api_privacy_right_requests_status_retrieve":
-            return client.api_privacy_right_requests_status_retrieve(**kwargs)
+        for _dispatch in _PRIVACY_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
