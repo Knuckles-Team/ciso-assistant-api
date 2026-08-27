@@ -8,6 +8,286 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_governance_1(action, kwargs, client):
+    # api_comments_list .. api_comments_batch_action_create (9 actions)
+    if action == "api_comments_list":
+        return client.api_comments_list(**kwargs)
+    elif action == "api_comments_create":
+        return client.api_comments_create(**kwargs)
+    elif action == "api_comments_retrieve":
+        return client.api_comments_retrieve(**kwargs)
+    elif action == "api_comments_update":
+        return client.api_comments_update(**kwargs)
+    elif action == "api_comments_partial_update":
+        return client.api_comments_partial_update(**kwargs)
+    elif action == "api_comments_destroy":
+        return client.api_comments_destroy(**kwargs)
+    elif action == "api_comments_cascade_info_retrieve":
+        return client.api_comments_cascade_info_retrieve(**kwargs)
+    elif action == "api_comments_object_retrieve":
+        return client.api_comments_object_retrieve(**kwargs)
+    elif action == "api_comments_batch_action_create":
+        return client.api_comments_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_governance_2(action, kwargs, client):
+    # api_folders_list .. api_folders_object_retrieve (9 actions)
+    if action == "api_folders_list":
+        return client.api_folders_list(**kwargs)
+    elif action == "api_folders_create":
+        return client.api_folders_create(**kwargs)
+    elif action == "api_folders_retrieve":
+        return client.api_folders_retrieve(**kwargs)
+    elif action == "api_folders_update":
+        return client.api_folders_update(**kwargs)
+    elif action == "api_folders_partial_update":
+        return client.api_folders_partial_update(**kwargs)
+    elif action == "api_folders_destroy":
+        return client.api_folders_destroy(**kwargs)
+    elif action == "api_folders_cascade_info_retrieve":
+        return client.api_folders_cascade_info_retrieve(**kwargs)
+    elif action == "api_folders_export_retrieve":
+        return client.api_folders_export_retrieve(**kwargs)
+    elif action == "api_folders_object_retrieve":
+        return client.api_folders_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_governance_3(action, kwargs, client):
+    # api_folders_quality_check_retrieve_2 .. api_folders_org_tree_retrieve (9 actions)
+    if action == "api_folders_quality_check_retrieve_2":
+        return client.api_folders_quality_check_retrieve_2(**kwargs)
+    elif action == "api_folders_users_list":
+        return client.api_folders_users_list(**kwargs)
+    elif action == "api_folders_batch_action_create":
+        return client.api_folders_batch_action_create(**kwargs)
+    elif action == "api_folders_get_accessible_objects_retrieve":
+        return client.api_folders_get_accessible_objects_retrieve(**kwargs)
+    elif action == "api_folders_ids_retrieve":
+        return client.api_folders_ids_retrieve(**kwargs)
+    elif action == "api_folders_import_create":
+        return client.api_folders_import_create(**kwargs)
+    elif action == "api_folders_import_dummy_create":
+        return client.api_folders_import_dummy_create(**kwargs)
+    elif action == "api_folders_my_assignments_retrieve":
+        return client.api_folders_my_assignments_retrieve(**kwargs)
+    elif action == "api_folders_org_tree_retrieve":
+        return client.api_folders_org_tree_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_governance_4(action, kwargs, client):
+    # api_folders_quality_check_retrieve .. api_journey_steps_object_retrieve (9 actions)
+    if action == "api_folders_quality_check_retrieve":
+        return client.api_folders_quality_check_retrieve(**kwargs)
+    elif action == "api_journey_steps_list":
+        return client.api_journey_steps_list(**kwargs)
+    elif action == "api_journey_steps_create":
+        return client.api_journey_steps_create(**kwargs)
+    elif action == "api_journey_steps_retrieve":
+        return client.api_journey_steps_retrieve(**kwargs)
+    elif action == "api_journey_steps_update":
+        return client.api_journey_steps_update(**kwargs)
+    elif action == "api_journey_steps_partial_update":
+        return client.api_journey_steps_partial_update(**kwargs)
+    elif action == "api_journey_steps_destroy":
+        return client.api_journey_steps_destroy(**kwargs)
+    elif action == "api_journey_steps_cascade_info_retrieve":
+        return client.api_journey_steps_cascade_info_retrieve(**kwargs)
+    elif action == "api_journey_steps_object_retrieve":
+        return client.api_journey_steps_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_governance_5(action, kwargs, client):
+    # api_journey_steps_batch_action_create .. api_journeys_dashboard_retrieve (9 actions)
+    if action == "api_journey_steps_batch_action_create":
+        return client.api_journey_steps_batch_action_create(**kwargs)
+    elif action == "api_journeys_list":
+        return client.api_journeys_list(**kwargs)
+    elif action == "api_journeys_create":
+        return client.api_journeys_create(**kwargs)
+    elif action == "api_journeys_retrieve":
+        return client.api_journeys_retrieve(**kwargs)
+    elif action == "api_journeys_update":
+        return client.api_journeys_update(**kwargs)
+    elif action == "api_journeys_partial_update":
+        return client.api_journeys_partial_update(**kwargs)
+    elif action == "api_journeys_destroy":
+        return client.api_journeys_destroy(**kwargs)
+    elif action == "api_journeys_cascade_info_retrieve":
+        return client.api_journeys_cascade_info_retrieve(**kwargs)
+    elif action == "api_journeys_dashboard_retrieve":
+        return client.api_journeys_dashboard_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_governance_6(action, kwargs, client):
+    # api_journeys_object_retrieve .. api_organisation_issues_partial_update (9 actions)
+    if action == "api_journeys_object_retrieve":
+        return client.api_journeys_object_retrieve(**kwargs)
+    elif action == "api_journeys_rename_create":
+        return client.api_journeys_rename_create(**kwargs)
+    elif action == "api_journeys_upgrade_create":
+        return client.api_journeys_upgrade_create(**kwargs)
+    elif action == "api_journeys_batch_action_create":
+        return client.api_journeys_batch_action_create(**kwargs)
+    elif action == "api_organisation_issues_list":
+        return client.api_organisation_issues_list(**kwargs)
+    elif action == "api_organisation_issues_create":
+        return client.api_organisation_issues_create(**kwargs)
+    elif action == "api_organisation_issues_retrieve":
+        return client.api_organisation_issues_retrieve(**kwargs)
+    elif action == "api_organisation_issues_update":
+        return client.api_organisation_issues_update(**kwargs)
+    elif action == "api_organisation_issues_partial_update":
+        return client.api_organisation_issues_partial_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_governance_7(action, kwargs, client):
+    # api_organisation_issues_destroy .. api_organisation_objectives_create (9 actions)
+    if action == "api_organisation_issues_destroy":
+        return client.api_organisation_issues_destroy(**kwargs)
+    elif action == "api_organisation_issues_cascade_info_retrieve":
+        return client.api_organisation_issues_cascade_info_retrieve(**kwargs)
+    elif action == "api_organisation_issues_object_retrieve":
+        return client.api_organisation_issues_object_retrieve(**kwargs)
+    elif action == "api_organisation_issues_batch_action_create":
+        return client.api_organisation_issues_batch_action_create(**kwargs)
+    elif action == "api_organisation_issues_category_retrieve":
+        return client.api_organisation_issues_category_retrieve(**kwargs)
+    elif action == "api_organisation_issues_origin_retrieve":
+        return client.api_organisation_issues_origin_retrieve(**kwargs)
+    elif action == "api_organisation_issues_status_retrieve":
+        return client.api_organisation_issues_status_retrieve(**kwargs)
+    elif action == "api_organisation_objectives_list":
+        return client.api_organisation_objectives_list(**kwargs)
+    elif action == "api_organisation_objectives_create":
+        return client.api_organisation_objectives_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_governance_8(action, kwargs, client):
+    # api_organisation_objectives_retrieve .. api_organisation_objectives_health_retrieve (9 actions)
+    if action == "api_organisation_objectives_retrieve":
+        return client.api_organisation_objectives_retrieve(**kwargs)
+    elif action == "api_organisation_objectives_update":
+        return client.api_organisation_objectives_update(**kwargs)
+    elif action == "api_organisation_objectives_partial_update":
+        return client.api_organisation_objectives_partial_update(**kwargs)
+    elif action == "api_organisation_objectives_destroy":
+        return client.api_organisation_objectives_destroy(**kwargs)
+    elif action == "api_organisation_objectives_cascade_info_retrieve":
+        return client.api_organisation_objectives_cascade_info_retrieve(**kwargs)
+    elif action == "api_organisation_objectives_duplicate_create":
+        return client.api_organisation_objectives_duplicate_create(**kwargs)
+    elif action == "api_organisation_objectives_object_retrieve":
+        return client.api_organisation_objectives_object_retrieve(**kwargs)
+    elif action == "api_organisation_objectives_batch_action_create":
+        return client.api_organisation_objectives_batch_action_create(**kwargs)
+    elif action == "api_organisation_objectives_health_retrieve":
+        return client.api_organisation_objectives_health_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_governance_9(action, kwargs, client):
+    # api_organisation_objectives_is_active_retrieve .. api_perimeters_cascade_info_retrieve (9 actions)
+    if action == "api_organisation_objectives_is_active_retrieve":
+        return client.api_organisation_objectives_is_active_retrieve(**kwargs)
+    elif action == "api_organisation_objectives_status_retrieve":
+        return client.api_organisation_objectives_status_retrieve(**kwargs)
+    elif action == "api_perimeters_list":
+        return client.api_perimeters_list(**kwargs)
+    elif action == "api_perimeters_create":
+        return client.api_perimeters_create(**kwargs)
+    elif action == "api_perimeters_retrieve":
+        return client.api_perimeters_retrieve(**kwargs)
+    elif action == "api_perimeters_update":
+        return client.api_perimeters_update(**kwargs)
+    elif action == "api_perimeters_partial_update":
+        return client.api_perimeters_partial_update(**kwargs)
+    elif action == "api_perimeters_destroy":
+        return client.api_perimeters_destroy(**kwargs)
+    elif action == "api_perimeters_cascade_info_retrieve":
+        return client.api_perimeters_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_governance_10(action, kwargs, client):
+    # api_perimeters_object_retrieve .. api_validation_flows_list (9 actions)
+    if action == "api_perimeters_object_retrieve":
+        return client.api_perimeters_object_retrieve(**kwargs)
+    elif action == "api_perimeters_quality_check_retrieve_2":
+        return client.api_perimeters_quality_check_retrieve_2(**kwargs)
+    elif action == "api_perimeters_batch_action_create":
+        return client.api_perimeters_batch_action_create(**kwargs)
+    elif action == "api_perimeters_ids_retrieve":
+        return client.api_perimeters_ids_retrieve(**kwargs)
+    elif action == "api_perimeters_lc_status_retrieve":
+        return client.api_perimeters_lc_status_retrieve(**kwargs)
+    elif action == "api_perimeters_names_retrieve":
+        return client.api_perimeters_names_retrieve(**kwargs)
+    elif action == "api_perimeters_quality_check_retrieve":
+        return client.api_perimeters_quality_check_retrieve(**kwargs)
+    elif action == "api_quick_start_create":
+        return client.api_quick_start_create(**kwargs)
+    elif action == "api_validation_flows_list":
+        return client.api_validation_flows_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_governance_11(action, kwargs, client):
+    # api_validation_flows_create .. api_validation_flows_default_ref_id_retrieve (9 actions)
+    if action == "api_validation_flows_create":
+        return client.api_validation_flows_create(**kwargs)
+    elif action == "api_validation_flows_retrieve":
+        return client.api_validation_flows_retrieve(**kwargs)
+    elif action == "api_validation_flows_update":
+        return client.api_validation_flows_update(**kwargs)
+    elif action == "api_validation_flows_partial_update":
+        return client.api_validation_flows_partial_update(**kwargs)
+    elif action == "api_validation_flows_destroy":
+        return client.api_validation_flows_destroy(**kwargs)
+    elif action == "api_validation_flows_cascade_info_retrieve":
+        return client.api_validation_flows_cascade_info_retrieve(**kwargs)
+    elif action == "api_validation_flows_object_retrieve":
+        return client.api_validation_flows_object_retrieve(**kwargs)
+    elif action == "api_validation_flows_batch_action_create":
+        return client.api_validation_flows_batch_action_create(**kwargs)
+    elif action == "api_validation_flows_default_ref_id_retrieve":
+        return client.api_validation_flows_default_ref_id_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_governance_12(action, kwargs, client):
+    # api_validation_flows_linked_models_retrieve .. api_validation_flows_status_retrieve (2 actions)
+    if action == "api_validation_flows_linked_models_retrieve":
+        return client.api_validation_flows_linked_models_retrieve(**kwargs)
+    elif action == "api_validation_flows_status_retrieve":
+        return client.api_validation_flows_status_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_GOVERNANCE_DISPATCHERS = (
+    _dispatch_governance_1,
+    _dispatch_governance_2,
+    _dispatch_governance_3,
+    _dispatch_governance_4,
+    _dispatch_governance_5,
+    _dispatch_governance_6,
+    _dispatch_governance_7,
+    _dispatch_governance_8,
+    _dispatch_governance_9,
+    _dispatch_governance_10,
+    _dispatch_governance_11,
+    _dispatch_governance_12,
+)
+
 
 def register_governance_tools(mcp: FastMCP):
     @mcp.tool(tags={"governance"})
@@ -37,206 +317,8 @@ def register_governance_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_comments_list":
-            return client.api_comments_list(**kwargs)
-        elif action == "api_comments_create":
-            return client.api_comments_create(**kwargs)
-        elif action == "api_comments_retrieve":
-            return client.api_comments_retrieve(**kwargs)
-        elif action == "api_comments_update":
-            return client.api_comments_update(**kwargs)
-        elif action == "api_comments_partial_update":
-            return client.api_comments_partial_update(**kwargs)
-        elif action == "api_comments_destroy":
-            return client.api_comments_destroy(**kwargs)
-        elif action == "api_comments_cascade_info_retrieve":
-            return client.api_comments_cascade_info_retrieve(**kwargs)
-        elif action == "api_comments_object_retrieve":
-            return client.api_comments_object_retrieve(**kwargs)
-        elif action == "api_comments_batch_action_create":
-            return client.api_comments_batch_action_create(**kwargs)
-        elif action == "api_folders_list":
-            return client.api_folders_list(**kwargs)
-        elif action == "api_folders_create":
-            return client.api_folders_create(**kwargs)
-        elif action == "api_folders_retrieve":
-            return client.api_folders_retrieve(**kwargs)
-        elif action == "api_folders_update":
-            return client.api_folders_update(**kwargs)
-        elif action == "api_folders_partial_update":
-            return client.api_folders_partial_update(**kwargs)
-        elif action == "api_folders_destroy":
-            return client.api_folders_destroy(**kwargs)
-        elif action == "api_folders_cascade_info_retrieve":
-            return client.api_folders_cascade_info_retrieve(**kwargs)
-        elif action == "api_folders_export_retrieve":
-            return client.api_folders_export_retrieve(**kwargs)
-        elif action == "api_folders_object_retrieve":
-            return client.api_folders_object_retrieve(**kwargs)
-        elif action == "api_folders_quality_check_retrieve_2":
-            return client.api_folders_quality_check_retrieve_2(**kwargs)
-        elif action == "api_folders_users_list":
-            return client.api_folders_users_list(**kwargs)
-        elif action == "api_folders_batch_action_create":
-            return client.api_folders_batch_action_create(**kwargs)
-        elif action == "api_folders_get_accessible_objects_retrieve":
-            return client.api_folders_get_accessible_objects_retrieve(**kwargs)
-        elif action == "api_folders_ids_retrieve":
-            return client.api_folders_ids_retrieve(**kwargs)
-        elif action == "api_folders_import_create":
-            return client.api_folders_import_create(**kwargs)
-        elif action == "api_folders_import_dummy_create":
-            return client.api_folders_import_dummy_create(**kwargs)
-        elif action == "api_folders_my_assignments_retrieve":
-            return client.api_folders_my_assignments_retrieve(**kwargs)
-        elif action == "api_folders_org_tree_retrieve":
-            return client.api_folders_org_tree_retrieve(**kwargs)
-        elif action == "api_folders_quality_check_retrieve":
-            return client.api_folders_quality_check_retrieve(**kwargs)
-        elif action == "api_journey_steps_list":
-            return client.api_journey_steps_list(**kwargs)
-        elif action == "api_journey_steps_create":
-            return client.api_journey_steps_create(**kwargs)
-        elif action == "api_journey_steps_retrieve":
-            return client.api_journey_steps_retrieve(**kwargs)
-        elif action == "api_journey_steps_update":
-            return client.api_journey_steps_update(**kwargs)
-        elif action == "api_journey_steps_partial_update":
-            return client.api_journey_steps_partial_update(**kwargs)
-        elif action == "api_journey_steps_destroy":
-            return client.api_journey_steps_destroy(**kwargs)
-        elif action == "api_journey_steps_cascade_info_retrieve":
-            return client.api_journey_steps_cascade_info_retrieve(**kwargs)
-        elif action == "api_journey_steps_object_retrieve":
-            return client.api_journey_steps_object_retrieve(**kwargs)
-        elif action == "api_journey_steps_batch_action_create":
-            return client.api_journey_steps_batch_action_create(**kwargs)
-        elif action == "api_journeys_list":
-            return client.api_journeys_list(**kwargs)
-        elif action == "api_journeys_create":
-            return client.api_journeys_create(**kwargs)
-        elif action == "api_journeys_retrieve":
-            return client.api_journeys_retrieve(**kwargs)
-        elif action == "api_journeys_update":
-            return client.api_journeys_update(**kwargs)
-        elif action == "api_journeys_partial_update":
-            return client.api_journeys_partial_update(**kwargs)
-        elif action == "api_journeys_destroy":
-            return client.api_journeys_destroy(**kwargs)
-        elif action == "api_journeys_cascade_info_retrieve":
-            return client.api_journeys_cascade_info_retrieve(**kwargs)
-        elif action == "api_journeys_dashboard_retrieve":
-            return client.api_journeys_dashboard_retrieve(**kwargs)
-        elif action == "api_journeys_object_retrieve":
-            return client.api_journeys_object_retrieve(**kwargs)
-        elif action == "api_journeys_rename_create":
-            return client.api_journeys_rename_create(**kwargs)
-        elif action == "api_journeys_upgrade_create":
-            return client.api_journeys_upgrade_create(**kwargs)
-        elif action == "api_journeys_batch_action_create":
-            return client.api_journeys_batch_action_create(**kwargs)
-        elif action == "api_organisation_issues_list":
-            return client.api_organisation_issues_list(**kwargs)
-        elif action == "api_organisation_issues_create":
-            return client.api_organisation_issues_create(**kwargs)
-        elif action == "api_organisation_issues_retrieve":
-            return client.api_organisation_issues_retrieve(**kwargs)
-        elif action == "api_organisation_issues_update":
-            return client.api_organisation_issues_update(**kwargs)
-        elif action == "api_organisation_issues_partial_update":
-            return client.api_organisation_issues_partial_update(**kwargs)
-        elif action == "api_organisation_issues_destroy":
-            return client.api_organisation_issues_destroy(**kwargs)
-        elif action == "api_organisation_issues_cascade_info_retrieve":
-            return client.api_organisation_issues_cascade_info_retrieve(**kwargs)
-        elif action == "api_organisation_issues_object_retrieve":
-            return client.api_organisation_issues_object_retrieve(**kwargs)
-        elif action == "api_organisation_issues_batch_action_create":
-            return client.api_organisation_issues_batch_action_create(**kwargs)
-        elif action == "api_organisation_issues_category_retrieve":
-            return client.api_organisation_issues_category_retrieve(**kwargs)
-        elif action == "api_organisation_issues_origin_retrieve":
-            return client.api_organisation_issues_origin_retrieve(**kwargs)
-        elif action == "api_organisation_issues_status_retrieve":
-            return client.api_organisation_issues_status_retrieve(**kwargs)
-        elif action == "api_organisation_objectives_list":
-            return client.api_organisation_objectives_list(**kwargs)
-        elif action == "api_organisation_objectives_create":
-            return client.api_organisation_objectives_create(**kwargs)
-        elif action == "api_organisation_objectives_retrieve":
-            return client.api_organisation_objectives_retrieve(**kwargs)
-        elif action == "api_organisation_objectives_update":
-            return client.api_organisation_objectives_update(**kwargs)
-        elif action == "api_organisation_objectives_partial_update":
-            return client.api_organisation_objectives_partial_update(**kwargs)
-        elif action == "api_organisation_objectives_destroy":
-            return client.api_organisation_objectives_destroy(**kwargs)
-        elif action == "api_organisation_objectives_cascade_info_retrieve":
-            return client.api_organisation_objectives_cascade_info_retrieve(**kwargs)
-        elif action == "api_organisation_objectives_duplicate_create":
-            return client.api_organisation_objectives_duplicate_create(**kwargs)
-        elif action == "api_organisation_objectives_object_retrieve":
-            return client.api_organisation_objectives_object_retrieve(**kwargs)
-        elif action == "api_organisation_objectives_batch_action_create":
-            return client.api_organisation_objectives_batch_action_create(**kwargs)
-        elif action == "api_organisation_objectives_health_retrieve":
-            return client.api_organisation_objectives_health_retrieve(**kwargs)
-        elif action == "api_organisation_objectives_is_active_retrieve":
-            return client.api_organisation_objectives_is_active_retrieve(**kwargs)
-        elif action == "api_organisation_objectives_status_retrieve":
-            return client.api_organisation_objectives_status_retrieve(**kwargs)
-        elif action == "api_perimeters_list":
-            return client.api_perimeters_list(**kwargs)
-        elif action == "api_perimeters_create":
-            return client.api_perimeters_create(**kwargs)
-        elif action == "api_perimeters_retrieve":
-            return client.api_perimeters_retrieve(**kwargs)
-        elif action == "api_perimeters_update":
-            return client.api_perimeters_update(**kwargs)
-        elif action == "api_perimeters_partial_update":
-            return client.api_perimeters_partial_update(**kwargs)
-        elif action == "api_perimeters_destroy":
-            return client.api_perimeters_destroy(**kwargs)
-        elif action == "api_perimeters_cascade_info_retrieve":
-            return client.api_perimeters_cascade_info_retrieve(**kwargs)
-        elif action == "api_perimeters_object_retrieve":
-            return client.api_perimeters_object_retrieve(**kwargs)
-        elif action == "api_perimeters_quality_check_retrieve_2":
-            return client.api_perimeters_quality_check_retrieve_2(**kwargs)
-        elif action == "api_perimeters_batch_action_create":
-            return client.api_perimeters_batch_action_create(**kwargs)
-        elif action == "api_perimeters_ids_retrieve":
-            return client.api_perimeters_ids_retrieve(**kwargs)
-        elif action == "api_perimeters_lc_status_retrieve":
-            return client.api_perimeters_lc_status_retrieve(**kwargs)
-        elif action == "api_perimeters_names_retrieve":
-            return client.api_perimeters_names_retrieve(**kwargs)
-        elif action == "api_perimeters_quality_check_retrieve":
-            return client.api_perimeters_quality_check_retrieve(**kwargs)
-        elif action == "api_quick_start_create":
-            return client.api_quick_start_create(**kwargs)
-        elif action == "api_validation_flows_list":
-            return client.api_validation_flows_list(**kwargs)
-        elif action == "api_validation_flows_create":
-            return client.api_validation_flows_create(**kwargs)
-        elif action == "api_validation_flows_retrieve":
-            return client.api_validation_flows_retrieve(**kwargs)
-        elif action == "api_validation_flows_update":
-            return client.api_validation_flows_update(**kwargs)
-        elif action == "api_validation_flows_partial_update":
-            return client.api_validation_flows_partial_update(**kwargs)
-        elif action == "api_validation_flows_destroy":
-            return client.api_validation_flows_destroy(**kwargs)
-        elif action == "api_validation_flows_cascade_info_retrieve":
-            return client.api_validation_flows_cascade_info_retrieve(**kwargs)
-        elif action == "api_validation_flows_object_retrieve":
-            return client.api_validation_flows_object_retrieve(**kwargs)
-        elif action == "api_validation_flows_batch_action_create":
-            return client.api_validation_flows_batch_action_create(**kwargs)
-        elif action == "api_validation_flows_default_ref_id_retrieve":
-            return client.api_validation_flows_default_ref_id_retrieve(**kwargs)
-        elif action == "api_validation_flows_linked_models_retrieve":
-            return client.api_validation_flows_linked_models_retrieve(**kwargs)
-        elif action == "api_validation_flows_status_retrieve":
-            return client.api_validation_flows_status_retrieve(**kwargs)
+        for _dispatch in _GOVERNANCE_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
