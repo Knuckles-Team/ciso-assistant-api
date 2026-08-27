@@ -8,6 +8,152 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_integrations_1(action, kwargs, client):
+    # api_build_retrieve .. api_integrations_configs_partial_update (9 actions)
+    if action == "api_build_retrieve":
+        return client.api_build_retrieve(**kwargs)
+    elif action == "api_content_types_retrieve":
+        return client.api_content_types_retrieve(**kwargs)
+    elif action == "api_data_wizard_load_file_create":
+        return client.api_data_wizard_load_file_create(**kwargs)
+    elif action == "api_health_retrieve":
+        return client.api_health_retrieve(**kwargs)
+    elif action == "api_integrations_configs_list":
+        return client.api_integrations_configs_list(**kwargs)
+    elif action == "api_integrations_configs_create":
+        return client.api_integrations_configs_create(**kwargs)
+    elif action == "api_integrations_configs_retrieve":
+        return client.api_integrations_configs_retrieve(**kwargs)
+    elif action == "api_integrations_configs_update":
+        return client.api_integrations_configs_update(**kwargs)
+    elif action == "api_integrations_configs_partial_update":
+        return client.api_integrations_configs_partial_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_integrations_2(action, kwargs, client):
+    # api_integrations_configs_destroy .. api_integrations_sync_mappings_destroy (9 actions)
+    if action == "api_integrations_configs_destroy":
+        return client.api_integrations_configs_destroy(**kwargs)
+    elif action == "api_integrations_configs_cascade_info_retrieve":
+        return client.api_integrations_configs_cascade_info_retrieve(**kwargs)
+    elif action == "api_integrations_configs_object_retrieve":
+        return client.api_integrations_configs_object_retrieve(**kwargs)
+    elif action == "api_integrations_configs_remote_objects_retrieve":
+        return client.api_integrations_configs_remote_objects_retrieve(**kwargs)
+    elif action == "api_integrations_configs_rpc_create":
+        return client.api_integrations_configs_rpc_create(**kwargs)
+    elif action == "api_integrations_configs_test_connection_create":
+        return client.api_integrations_configs_test_connection_create(**kwargs)
+    elif action == "api_integrations_configs_batch_action_create":
+        return client.api_integrations_configs_batch_action_create(**kwargs)
+    elif action == "api_integrations_providers_list":
+        return client.api_integrations_providers_list(**kwargs)
+    elif action == "api_integrations_sync_mappings_destroy":
+        return client.api_integrations_sync_mappings_destroy(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_integrations_3(action, kwargs, client):
+    # api_integrations_test_connection_create .. api_webhooks_audit_sinks_list (9 actions)
+    if action == "api_integrations_test_connection_create":
+        return client.api_integrations_test_connection_create(**kwargs)
+    elif action == "api_search_retrieve":
+        return client.api_search_retrieve(**kwargs)
+    elif action == "api_serdes_attachment_metadata_retrieve":
+        return client.api_serdes_attachment_metadata_retrieve(**kwargs)
+    elif action == "api_serdes_batch_download_attachments_create":
+        return client.api_serdes_batch_download_attachments_create(**kwargs)
+    elif action == "api_serdes_batch_upload_attachments_create":
+        return client.api_serdes_batch_upload_attachments_create(**kwargs)
+    elif action == "api_serdes_dump_db_retrieve":
+        return client.api_serdes_dump_db_retrieve(**kwargs)
+    elif action == "api_serdes_full_restore_create":
+        return client.api_serdes_full_restore_create(**kwargs)
+    elif action == "api_serdes_load_backup_create":
+        return client.api_serdes_load_backup_create(**kwargs)
+    elif action == "api_webhooks_audit_sinks_list":
+        return client.api_webhooks_audit_sinks_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_integrations_4(action, kwargs, client):
+    # api_webhooks_audit_sinks_create .. api_webhooks_audit_sinks_batch_action_create (9 actions)
+    if action == "api_webhooks_audit_sinks_create":
+        return client.api_webhooks_audit_sinks_create(**kwargs)
+    elif action == "api_webhooks_audit_sinks_retrieve":
+        return client.api_webhooks_audit_sinks_retrieve(**kwargs)
+    elif action == "api_webhooks_audit_sinks_update":
+        return client.api_webhooks_audit_sinks_update(**kwargs)
+    elif action == "api_webhooks_audit_sinks_partial_update":
+        return client.api_webhooks_audit_sinks_partial_update(**kwargs)
+    elif action == "api_webhooks_audit_sinks_destroy":
+        return client.api_webhooks_audit_sinks_destroy(**kwargs)
+    elif action == "api_webhooks_audit_sinks_cascade_info_retrieve":
+        return client.api_webhooks_audit_sinks_cascade_info_retrieve(**kwargs)
+    elif action == "api_webhooks_audit_sinks_object_retrieve":
+        return client.api_webhooks_audit_sinks_object_retrieve(**kwargs)
+    elif action == "api_webhooks_audit_sinks_replay_create":
+        return client.api_webhooks_audit_sinks_replay_create(**kwargs)
+    elif action == "api_webhooks_audit_sinks_batch_action_create":
+        return client.api_webhooks_audit_sinks_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_integrations_5(action, kwargs, client):
+    # api_webhooks_endpoints_list .. api_webhooks_endpoints_batch_action_create (9 actions)
+    if action == "api_webhooks_endpoints_list":
+        return client.api_webhooks_endpoints_list(**kwargs)
+    elif action == "api_webhooks_endpoints_create":
+        return client.api_webhooks_endpoints_create(**kwargs)
+    elif action == "api_webhooks_endpoints_retrieve":
+        return client.api_webhooks_endpoints_retrieve(**kwargs)
+    elif action == "api_webhooks_endpoints_update":
+        return client.api_webhooks_endpoints_update(**kwargs)
+    elif action == "api_webhooks_endpoints_partial_update":
+        return client.api_webhooks_endpoints_partial_update(**kwargs)
+    elif action == "api_webhooks_endpoints_destroy":
+        return client.api_webhooks_endpoints_destroy(**kwargs)
+    elif action == "api_webhooks_endpoints_cascade_info_retrieve":
+        return client.api_webhooks_endpoints_cascade_info_retrieve(**kwargs)
+    elif action == "api_webhooks_endpoints_object_retrieve":
+        return client.api_webhooks_endpoints_object_retrieve(**kwargs)
+    elif action == "api_webhooks_endpoints_batch_action_create":
+        return client.api_webhooks_endpoints_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_integrations_6(action, kwargs, client):
+    # api_webhooks_event_types_retrieve .. serdes_load_backup_create (7 actions)
+    if action == "api_webhooks_event_types_retrieve":
+        return client.api_webhooks_event_types_retrieve(**kwargs)
+    elif action == "serdes_attachment_metadata_retrieve":
+        return client.serdes_attachment_metadata_retrieve(**kwargs)
+    elif action == "serdes_batch_download_attachments_create":
+        return client.serdes_batch_download_attachments_create(**kwargs)
+    elif action == "serdes_batch_upload_attachments_create":
+        return client.serdes_batch_upload_attachments_create(**kwargs)
+    elif action == "serdes_dump_db_retrieve":
+        return client.serdes_dump_db_retrieve(**kwargs)
+    elif action == "serdes_full_restore_create":
+        return client.serdes_full_restore_create(**kwargs)
+    elif action == "serdes_load_backup_create":
+        return client.serdes_load_backup_create(**kwargs)
+    return _UNHANDLED
+
+
+_INTEGRATIONS_DISPATCHERS = (
+    _dispatch_integrations_1,
+    _dispatch_integrations_2,
+    _dispatch_integrations_3,
+    _dispatch_integrations_4,
+    _dispatch_integrations_5,
+    _dispatch_integrations_6,
+)
+
 
 def register_integrations_tools(mcp: FastMCP):
     @mcp.tool(tags={"integrations"})
@@ -37,108 +183,8 @@ def register_integrations_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_build_retrieve":
-            return client.api_build_retrieve(**kwargs)
-        elif action == "api_content_types_retrieve":
-            return client.api_content_types_retrieve(**kwargs)
-        elif action == "api_data_wizard_load_file_create":
-            return client.api_data_wizard_load_file_create(**kwargs)
-        elif action == "api_health_retrieve":
-            return client.api_health_retrieve(**kwargs)
-        elif action == "api_integrations_configs_list":
-            return client.api_integrations_configs_list(**kwargs)
-        elif action == "api_integrations_configs_create":
-            return client.api_integrations_configs_create(**kwargs)
-        elif action == "api_integrations_configs_retrieve":
-            return client.api_integrations_configs_retrieve(**kwargs)
-        elif action == "api_integrations_configs_update":
-            return client.api_integrations_configs_update(**kwargs)
-        elif action == "api_integrations_configs_partial_update":
-            return client.api_integrations_configs_partial_update(**kwargs)
-        elif action == "api_integrations_configs_destroy":
-            return client.api_integrations_configs_destroy(**kwargs)
-        elif action == "api_integrations_configs_cascade_info_retrieve":
-            return client.api_integrations_configs_cascade_info_retrieve(**kwargs)
-        elif action == "api_integrations_configs_object_retrieve":
-            return client.api_integrations_configs_object_retrieve(**kwargs)
-        elif action == "api_integrations_configs_remote_objects_retrieve":
-            return client.api_integrations_configs_remote_objects_retrieve(**kwargs)
-        elif action == "api_integrations_configs_rpc_create":
-            return client.api_integrations_configs_rpc_create(**kwargs)
-        elif action == "api_integrations_configs_test_connection_create":
-            return client.api_integrations_configs_test_connection_create(**kwargs)
-        elif action == "api_integrations_configs_batch_action_create":
-            return client.api_integrations_configs_batch_action_create(**kwargs)
-        elif action == "api_integrations_providers_list":
-            return client.api_integrations_providers_list(**kwargs)
-        elif action == "api_integrations_sync_mappings_destroy":
-            return client.api_integrations_sync_mappings_destroy(**kwargs)
-        elif action == "api_integrations_test_connection_create":
-            return client.api_integrations_test_connection_create(**kwargs)
-        elif action == "api_search_retrieve":
-            return client.api_search_retrieve(**kwargs)
-        elif action == "api_serdes_attachment_metadata_retrieve":
-            return client.api_serdes_attachment_metadata_retrieve(**kwargs)
-        elif action == "api_serdes_batch_download_attachments_create":
-            return client.api_serdes_batch_download_attachments_create(**kwargs)
-        elif action == "api_serdes_batch_upload_attachments_create":
-            return client.api_serdes_batch_upload_attachments_create(**kwargs)
-        elif action == "api_serdes_dump_db_retrieve":
-            return client.api_serdes_dump_db_retrieve(**kwargs)
-        elif action == "api_serdes_full_restore_create":
-            return client.api_serdes_full_restore_create(**kwargs)
-        elif action == "api_serdes_load_backup_create":
-            return client.api_serdes_load_backup_create(**kwargs)
-        elif action == "api_webhooks_audit_sinks_list":
-            return client.api_webhooks_audit_sinks_list(**kwargs)
-        elif action == "api_webhooks_audit_sinks_create":
-            return client.api_webhooks_audit_sinks_create(**kwargs)
-        elif action == "api_webhooks_audit_sinks_retrieve":
-            return client.api_webhooks_audit_sinks_retrieve(**kwargs)
-        elif action == "api_webhooks_audit_sinks_update":
-            return client.api_webhooks_audit_sinks_update(**kwargs)
-        elif action == "api_webhooks_audit_sinks_partial_update":
-            return client.api_webhooks_audit_sinks_partial_update(**kwargs)
-        elif action == "api_webhooks_audit_sinks_destroy":
-            return client.api_webhooks_audit_sinks_destroy(**kwargs)
-        elif action == "api_webhooks_audit_sinks_cascade_info_retrieve":
-            return client.api_webhooks_audit_sinks_cascade_info_retrieve(**kwargs)
-        elif action == "api_webhooks_audit_sinks_object_retrieve":
-            return client.api_webhooks_audit_sinks_object_retrieve(**kwargs)
-        elif action == "api_webhooks_audit_sinks_replay_create":
-            return client.api_webhooks_audit_sinks_replay_create(**kwargs)
-        elif action == "api_webhooks_audit_sinks_batch_action_create":
-            return client.api_webhooks_audit_sinks_batch_action_create(**kwargs)
-        elif action == "api_webhooks_endpoints_list":
-            return client.api_webhooks_endpoints_list(**kwargs)
-        elif action == "api_webhooks_endpoints_create":
-            return client.api_webhooks_endpoints_create(**kwargs)
-        elif action == "api_webhooks_endpoints_retrieve":
-            return client.api_webhooks_endpoints_retrieve(**kwargs)
-        elif action == "api_webhooks_endpoints_update":
-            return client.api_webhooks_endpoints_update(**kwargs)
-        elif action == "api_webhooks_endpoints_partial_update":
-            return client.api_webhooks_endpoints_partial_update(**kwargs)
-        elif action == "api_webhooks_endpoints_destroy":
-            return client.api_webhooks_endpoints_destroy(**kwargs)
-        elif action == "api_webhooks_endpoints_cascade_info_retrieve":
-            return client.api_webhooks_endpoints_cascade_info_retrieve(**kwargs)
-        elif action == "api_webhooks_endpoints_object_retrieve":
-            return client.api_webhooks_endpoints_object_retrieve(**kwargs)
-        elif action == "api_webhooks_endpoints_batch_action_create":
-            return client.api_webhooks_endpoints_batch_action_create(**kwargs)
-        elif action == "api_webhooks_event_types_retrieve":
-            return client.api_webhooks_event_types_retrieve(**kwargs)
-        elif action == "serdes_attachment_metadata_retrieve":
-            return client.serdes_attachment_metadata_retrieve(**kwargs)
-        elif action == "serdes_batch_download_attachments_create":
-            return client.serdes_batch_download_attachments_create(**kwargs)
-        elif action == "serdes_batch_upload_attachments_create":
-            return client.serdes_batch_upload_attachments_create(**kwargs)
-        elif action == "serdes_dump_db_retrieve":
-            return client.serdes_dump_db_retrieve(**kwargs)
-        elif action == "serdes_full_restore_create":
-            return client.serdes_full_restore_create(**kwargs)
-        elif action == "serdes_load_backup_create":
-            return client.serdes_load_backup_create(**kwargs)
+        for _dispatch in _INTEGRATIONS_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
