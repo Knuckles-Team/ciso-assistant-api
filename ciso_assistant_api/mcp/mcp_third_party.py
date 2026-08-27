@@ -8,6 +8,242 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_third_party_1(action, kwargs, client):
+    # api_actors_list .. api_contracts_partial_update (9 actions)
+    if action == "api_actors_list":
+        return client.api_actors_list(**kwargs)
+    elif action == "api_actors_retrieve":
+        return client.api_actors_retrieve(**kwargs)
+    elif action == "api_actors_cascade_info_retrieve":
+        return client.api_actors_cascade_info_retrieve(**kwargs)
+    elif action == "api_actors_object_retrieve":
+        return client.api_actors_object_retrieve(**kwargs)
+    elif action == "api_contracts_list":
+        return client.api_contracts_list(**kwargs)
+    elif action == "api_contracts_create":
+        return client.api_contracts_create(**kwargs)
+    elif action == "api_contracts_retrieve":
+        return client.api_contracts_retrieve(**kwargs)
+    elif action == "api_contracts_update":
+        return client.api_contracts_update(**kwargs)
+    elif action == "api_contracts_partial_update":
+        return client.api_contracts_partial_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_third_party_2(action, kwargs, client):
+    # api_contracts_destroy .. api_contracts_governing_law_country_retrieve (9 actions)
+    if action == "api_contracts_destroy":
+        return client.api_contracts_destroy(**kwargs)
+    elif action == "api_contracts_cascade_info_retrieve":
+        return client.api_contracts_cascade_info_retrieve(**kwargs)
+    elif action == "api_contracts_object_retrieve":
+        return client.api_contracts_object_retrieve(**kwargs)
+    elif action == "api_contracts_batch_action_create":
+        return client.api_contracts_batch_action_create(**kwargs)
+    elif action == "api_contracts_currency_retrieve":
+        return client.api_contracts_currency_retrieve(**kwargs)
+    elif action == "api_contracts_dora_contractual_arrangement_retrieve":
+        return client.api_contracts_dora_contractual_arrangement_retrieve(**kwargs)
+    elif action == "api_contracts_export_csv_retrieve":
+        return client.api_contracts_export_csv_retrieve(**kwargs)
+    elif action == "api_contracts_export_xlsx_retrieve":
+        return client.api_contracts_export_xlsx_retrieve(**kwargs)
+    elif action == "api_contracts_governing_law_country_retrieve":
+        return client.api_contracts_governing_law_country_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_third_party_3(action, kwargs, client):
+    # api_contracts_status_retrieve .. api_entities_cascade_info_retrieve (9 actions)
+    if action == "api_contracts_status_retrieve":
+        return client.api_contracts_status_retrieve(**kwargs)
+    elif action == "api_contracts_termination_reason_retrieve":
+        return client.api_contracts_termination_reason_retrieve(**kwargs)
+    elif action == "api_entities_list":
+        return client.api_entities_list(**kwargs)
+    elif action == "api_entities_create":
+        return client.api_entities_create(**kwargs)
+    elif action == "api_entities_retrieve":
+        return client.api_entities_retrieve(**kwargs)
+    elif action == "api_entities_update":
+        return client.api_entities_update(**kwargs)
+    elif action == "api_entities_partial_update":
+        return client.api_entities_partial_update(**kwargs)
+    elif action == "api_entities_destroy":
+        return client.api_entities_destroy(**kwargs)
+    elif action == "api_entities_cascade_info_retrieve":
+        return client.api_entities_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_third_party_4(action, kwargs, client):
+    # api_entities_object_retrieve .. api_entities_dora_roi_lint_retrieve (9 actions)
+    if action == "api_entities_object_retrieve":
+        return client.api_entities_object_retrieve(**kwargs)
+    elif action == "api_entities_batch_action_create":
+        return client.api_entities_batch_action_create(**kwargs)
+    elif action == "api_entities_batch_create_create":
+        return client.api_entities_batch_create_create(**kwargs)
+    elif action == "api_entities_country_retrieve":
+        return client.api_entities_country_retrieve(**kwargs)
+    elif action == "api_entities_currency_retrieve":
+        return client.api_entities_currency_retrieve(**kwargs)
+    elif action == "api_entities_dora_entity_hierarchy_retrieve":
+        return client.api_entities_dora_entity_hierarchy_retrieve(**kwargs)
+    elif action == "api_entities_dora_entity_type_retrieve":
+        return client.api_entities_dora_entity_type_retrieve(**kwargs)
+    elif action == "api_entities_dora_provider_person_type_retrieve":
+        return client.api_entities_dora_provider_person_type_retrieve(**kwargs)
+    elif action == "api_entities_dora_roi_lint_retrieve":
+        return client.api_entities_dora_roi_lint_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_third_party_5(action, kwargs, client):
+    # api_entities_export_csv_retrieve .. api_entity_assessments_update (9 actions)
+    if action == "api_entities_export_csv_retrieve":
+        return client.api_entities_export_csv_retrieve(**kwargs)
+    elif action == "api_entities_export_ecosystem_retrieve":
+        return client.api_entities_export_ecosystem_retrieve(**kwargs)
+    elif action == "api_entities_export_xlsx_retrieve":
+        return client.api_entities_export_xlsx_retrieve(**kwargs)
+    elif action == "api_entities_generate_dora_roi_retrieve":
+        return client.api_entities_generate_dora_roi_retrieve(**kwargs)
+    elif action == "api_entities_graph_retrieve":
+        return client.api_entities_graph_retrieve(**kwargs)
+    elif action == "api_entity_assessments_list":
+        return client.api_entity_assessments_list(**kwargs)
+    elif action == "api_entity_assessments_create":
+        return client.api_entity_assessments_create(**kwargs)
+    elif action == "api_entity_assessments_retrieve":
+        return client.api_entity_assessments_retrieve(**kwargs)
+    elif action == "api_entity_assessments_update":
+        return client.api_entity_assessments_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_third_party_6(action, kwargs, client):
+    # api_entity_assessments_partial_update .. api_representatives_list (9 actions)
+    if action == "api_entity_assessments_partial_update":
+        return client.api_entity_assessments_partial_update(**kwargs)
+    elif action == "api_entity_assessments_destroy":
+        return client.api_entity_assessments_destroy(**kwargs)
+    elif action == "api_entity_assessments_cascade_info_retrieve":
+        return client.api_entity_assessments_cascade_info_retrieve(**kwargs)
+    elif action == "api_entity_assessments_object_retrieve":
+        return client.api_entity_assessments_object_retrieve(**kwargs)
+    elif action == "api_entity_assessments_batch_action_create":
+        return client.api_entity_assessments_batch_action_create(**kwargs)
+    elif action == "api_entity_assessments_conclusion_retrieve":
+        return client.api_entity_assessments_conclusion_retrieve(**kwargs)
+    elif action == "api_entity_assessments_metrics_retrieve":
+        return client.api_entity_assessments_metrics_retrieve(**kwargs)
+    elif action == "api_entity_assessments_status_retrieve":
+        return client.api_entity_assessments_status_retrieve(**kwargs)
+    elif action == "api_representatives_list":
+        return client.api_representatives_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_third_party_7(action, kwargs, client):
+    # api_representatives_create .. api_solutions_list (9 actions)
+    if action == "api_representatives_create":
+        return client.api_representatives_create(**kwargs)
+    elif action == "api_representatives_retrieve":
+        return client.api_representatives_retrieve(**kwargs)
+    elif action == "api_representatives_update":
+        return client.api_representatives_update(**kwargs)
+    elif action == "api_representatives_partial_update":
+        return client.api_representatives_partial_update(**kwargs)
+    elif action == "api_representatives_destroy":
+        return client.api_representatives_destroy(**kwargs)
+    elif action == "api_representatives_cascade_info_retrieve":
+        return client.api_representatives_cascade_info_retrieve(**kwargs)
+    elif action == "api_representatives_object_retrieve":
+        return client.api_representatives_object_retrieve(**kwargs)
+    elif action == "api_representatives_batch_action_create":
+        return client.api_representatives_batch_action_create(**kwargs)
+    elif action == "api_solutions_list":
+        return client.api_solutions_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_third_party_8(action, kwargs, client):
+    # api_solutions_create .. api_solutions_data_location_processing_retrieve (9 actions)
+    if action == "api_solutions_create":
+        return client.api_solutions_create(**kwargs)
+    elif action == "api_solutions_retrieve":
+        return client.api_solutions_retrieve(**kwargs)
+    elif action == "api_solutions_update":
+        return client.api_solutions_update(**kwargs)
+    elif action == "api_solutions_partial_update":
+        return client.api_solutions_partial_update(**kwargs)
+    elif action == "api_solutions_destroy":
+        return client.api_solutions_destroy(**kwargs)
+    elif action == "api_solutions_cascade_info_retrieve":
+        return client.api_solutions_cascade_info_retrieve(**kwargs)
+    elif action == "api_solutions_object_retrieve":
+        return client.api_solutions_object_retrieve(**kwargs)
+    elif action == "api_solutions_batch_action_create":
+        return client.api_solutions_batch_action_create(**kwargs)
+    elif action == "api_solutions_data_location_processing_retrieve":
+        return client.api_solutions_data_location_processing_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_third_party_9(action, kwargs, client):
+    # api_solutions_data_location_storage_retrieve .. api_solutions_dora_reliance_level_retrieve (9 actions)
+    if action == "api_solutions_data_location_storage_retrieve":
+        return client.api_solutions_data_location_storage_retrieve(**kwargs)
+    elif action == "api_solutions_dora_alternative_providers_identified_retrieve":
+        return client.api_solutions_dora_alternative_providers_identified_retrieve(
+            **kwargs
+        )
+    elif action == "api_solutions_dora_data_sensitiveness_retrieve":
+        return client.api_solutions_dora_data_sensitiveness_retrieve(**kwargs)
+    elif action == "api_solutions_dora_discontinuing_impact_retrieve":
+        return client.api_solutions_dora_discontinuing_impact_retrieve(**kwargs)
+    elif action == "api_solutions_dora_has_exit_plan_retrieve":
+        return client.api_solutions_dora_has_exit_plan_retrieve(**kwargs)
+    elif action == "api_solutions_dora_ict_service_type_retrieve":
+        return client.api_solutions_dora_ict_service_type_retrieve(**kwargs)
+    elif action == "api_solutions_dora_non_substitutability_reason_retrieve":
+        return client.api_solutions_dora_non_substitutability_reason_retrieve(**kwargs)
+    elif action == "api_solutions_dora_reintegration_possibility_retrieve":
+        return client.api_solutions_dora_reintegration_possibility_retrieve(**kwargs)
+    elif action == "api_solutions_dora_reliance_level_retrieve":
+        return client.api_solutions_dora_reliance_level_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_third_party_10(action, kwargs, client):
+    # api_solutions_dora_substitutability_retrieve .. api_solutions_export_xlsx_retrieve (3 actions)
+    if action == "api_solutions_dora_substitutability_retrieve":
+        return client.api_solutions_dora_substitutability_retrieve(**kwargs)
+    elif action == "api_solutions_export_csv_retrieve":
+        return client.api_solutions_export_csv_retrieve(**kwargs)
+    elif action == "api_solutions_export_xlsx_retrieve":
+        return client.api_solutions_export_xlsx_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_THIRD_PARTY_DISPATCHERS = (
+    _dispatch_third_party_1,
+    _dispatch_third_party_2,
+    _dispatch_third_party_3,
+    _dispatch_third_party_4,
+    _dispatch_third_party_5,
+    _dispatch_third_party_6,
+    _dispatch_third_party_7,
+    _dispatch_third_party_8,
+    _dispatch_third_party_9,
+    _dispatch_third_party_10,
+)
+
 
 def register_third_party_tools(mcp: FastMCP):
     @mcp.tool(tags={"third-party"})
@@ -37,178 +273,8 @@ def register_third_party_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_actors_list":
-            return client.api_actors_list(**kwargs)
-        elif action == "api_actors_retrieve":
-            return client.api_actors_retrieve(**kwargs)
-        elif action == "api_actors_cascade_info_retrieve":
-            return client.api_actors_cascade_info_retrieve(**kwargs)
-        elif action == "api_actors_object_retrieve":
-            return client.api_actors_object_retrieve(**kwargs)
-        elif action == "api_contracts_list":
-            return client.api_contracts_list(**kwargs)
-        elif action == "api_contracts_create":
-            return client.api_contracts_create(**kwargs)
-        elif action == "api_contracts_retrieve":
-            return client.api_contracts_retrieve(**kwargs)
-        elif action == "api_contracts_update":
-            return client.api_contracts_update(**kwargs)
-        elif action == "api_contracts_partial_update":
-            return client.api_contracts_partial_update(**kwargs)
-        elif action == "api_contracts_destroy":
-            return client.api_contracts_destroy(**kwargs)
-        elif action == "api_contracts_cascade_info_retrieve":
-            return client.api_contracts_cascade_info_retrieve(**kwargs)
-        elif action == "api_contracts_object_retrieve":
-            return client.api_contracts_object_retrieve(**kwargs)
-        elif action == "api_contracts_batch_action_create":
-            return client.api_contracts_batch_action_create(**kwargs)
-        elif action == "api_contracts_currency_retrieve":
-            return client.api_contracts_currency_retrieve(**kwargs)
-        elif action == "api_contracts_dora_contractual_arrangement_retrieve":
-            return client.api_contracts_dora_contractual_arrangement_retrieve(**kwargs)
-        elif action == "api_contracts_export_csv_retrieve":
-            return client.api_contracts_export_csv_retrieve(**kwargs)
-        elif action == "api_contracts_export_xlsx_retrieve":
-            return client.api_contracts_export_xlsx_retrieve(**kwargs)
-        elif action == "api_contracts_governing_law_country_retrieve":
-            return client.api_contracts_governing_law_country_retrieve(**kwargs)
-        elif action == "api_contracts_status_retrieve":
-            return client.api_contracts_status_retrieve(**kwargs)
-        elif action == "api_contracts_termination_reason_retrieve":
-            return client.api_contracts_termination_reason_retrieve(**kwargs)
-        elif action == "api_entities_list":
-            return client.api_entities_list(**kwargs)
-        elif action == "api_entities_create":
-            return client.api_entities_create(**kwargs)
-        elif action == "api_entities_retrieve":
-            return client.api_entities_retrieve(**kwargs)
-        elif action == "api_entities_update":
-            return client.api_entities_update(**kwargs)
-        elif action == "api_entities_partial_update":
-            return client.api_entities_partial_update(**kwargs)
-        elif action == "api_entities_destroy":
-            return client.api_entities_destroy(**kwargs)
-        elif action == "api_entities_cascade_info_retrieve":
-            return client.api_entities_cascade_info_retrieve(**kwargs)
-        elif action == "api_entities_object_retrieve":
-            return client.api_entities_object_retrieve(**kwargs)
-        elif action == "api_entities_batch_action_create":
-            return client.api_entities_batch_action_create(**kwargs)
-        elif action == "api_entities_batch_create_create":
-            return client.api_entities_batch_create_create(**kwargs)
-        elif action == "api_entities_country_retrieve":
-            return client.api_entities_country_retrieve(**kwargs)
-        elif action == "api_entities_currency_retrieve":
-            return client.api_entities_currency_retrieve(**kwargs)
-        elif action == "api_entities_dora_entity_hierarchy_retrieve":
-            return client.api_entities_dora_entity_hierarchy_retrieve(**kwargs)
-        elif action == "api_entities_dora_entity_type_retrieve":
-            return client.api_entities_dora_entity_type_retrieve(**kwargs)
-        elif action == "api_entities_dora_provider_person_type_retrieve":
-            return client.api_entities_dora_provider_person_type_retrieve(**kwargs)
-        elif action == "api_entities_dora_roi_lint_retrieve":
-            return client.api_entities_dora_roi_lint_retrieve(**kwargs)
-        elif action == "api_entities_export_csv_retrieve":
-            return client.api_entities_export_csv_retrieve(**kwargs)
-        elif action == "api_entities_export_ecosystem_retrieve":
-            return client.api_entities_export_ecosystem_retrieve(**kwargs)
-        elif action == "api_entities_export_xlsx_retrieve":
-            return client.api_entities_export_xlsx_retrieve(**kwargs)
-        elif action == "api_entities_generate_dora_roi_retrieve":
-            return client.api_entities_generate_dora_roi_retrieve(**kwargs)
-        elif action == "api_entities_graph_retrieve":
-            return client.api_entities_graph_retrieve(**kwargs)
-        elif action == "api_entity_assessments_list":
-            return client.api_entity_assessments_list(**kwargs)
-        elif action == "api_entity_assessments_create":
-            return client.api_entity_assessments_create(**kwargs)
-        elif action == "api_entity_assessments_retrieve":
-            return client.api_entity_assessments_retrieve(**kwargs)
-        elif action == "api_entity_assessments_update":
-            return client.api_entity_assessments_update(**kwargs)
-        elif action == "api_entity_assessments_partial_update":
-            return client.api_entity_assessments_partial_update(**kwargs)
-        elif action == "api_entity_assessments_destroy":
-            return client.api_entity_assessments_destroy(**kwargs)
-        elif action == "api_entity_assessments_cascade_info_retrieve":
-            return client.api_entity_assessments_cascade_info_retrieve(**kwargs)
-        elif action == "api_entity_assessments_object_retrieve":
-            return client.api_entity_assessments_object_retrieve(**kwargs)
-        elif action == "api_entity_assessments_batch_action_create":
-            return client.api_entity_assessments_batch_action_create(**kwargs)
-        elif action == "api_entity_assessments_conclusion_retrieve":
-            return client.api_entity_assessments_conclusion_retrieve(**kwargs)
-        elif action == "api_entity_assessments_metrics_retrieve":
-            return client.api_entity_assessments_metrics_retrieve(**kwargs)
-        elif action == "api_entity_assessments_status_retrieve":
-            return client.api_entity_assessments_status_retrieve(**kwargs)
-        elif action == "api_representatives_list":
-            return client.api_representatives_list(**kwargs)
-        elif action == "api_representatives_create":
-            return client.api_representatives_create(**kwargs)
-        elif action == "api_representatives_retrieve":
-            return client.api_representatives_retrieve(**kwargs)
-        elif action == "api_representatives_update":
-            return client.api_representatives_update(**kwargs)
-        elif action == "api_representatives_partial_update":
-            return client.api_representatives_partial_update(**kwargs)
-        elif action == "api_representatives_destroy":
-            return client.api_representatives_destroy(**kwargs)
-        elif action == "api_representatives_cascade_info_retrieve":
-            return client.api_representatives_cascade_info_retrieve(**kwargs)
-        elif action == "api_representatives_object_retrieve":
-            return client.api_representatives_object_retrieve(**kwargs)
-        elif action == "api_representatives_batch_action_create":
-            return client.api_representatives_batch_action_create(**kwargs)
-        elif action == "api_solutions_list":
-            return client.api_solutions_list(**kwargs)
-        elif action == "api_solutions_create":
-            return client.api_solutions_create(**kwargs)
-        elif action == "api_solutions_retrieve":
-            return client.api_solutions_retrieve(**kwargs)
-        elif action == "api_solutions_update":
-            return client.api_solutions_update(**kwargs)
-        elif action == "api_solutions_partial_update":
-            return client.api_solutions_partial_update(**kwargs)
-        elif action == "api_solutions_destroy":
-            return client.api_solutions_destroy(**kwargs)
-        elif action == "api_solutions_cascade_info_retrieve":
-            return client.api_solutions_cascade_info_retrieve(**kwargs)
-        elif action == "api_solutions_object_retrieve":
-            return client.api_solutions_object_retrieve(**kwargs)
-        elif action == "api_solutions_batch_action_create":
-            return client.api_solutions_batch_action_create(**kwargs)
-        elif action == "api_solutions_data_location_processing_retrieve":
-            return client.api_solutions_data_location_processing_retrieve(**kwargs)
-        elif action == "api_solutions_data_location_storage_retrieve":
-            return client.api_solutions_data_location_storage_retrieve(**kwargs)
-        elif action == "api_solutions_dora_alternative_providers_identified_retrieve":
-            return client.api_solutions_dora_alternative_providers_identified_retrieve(
-                **kwargs
-            )
-        elif action == "api_solutions_dora_data_sensitiveness_retrieve":
-            return client.api_solutions_dora_data_sensitiveness_retrieve(**kwargs)
-        elif action == "api_solutions_dora_discontinuing_impact_retrieve":
-            return client.api_solutions_dora_discontinuing_impact_retrieve(**kwargs)
-        elif action == "api_solutions_dora_has_exit_plan_retrieve":
-            return client.api_solutions_dora_has_exit_plan_retrieve(**kwargs)
-        elif action == "api_solutions_dora_ict_service_type_retrieve":
-            return client.api_solutions_dora_ict_service_type_retrieve(**kwargs)
-        elif action == "api_solutions_dora_non_substitutability_reason_retrieve":
-            return client.api_solutions_dora_non_substitutability_reason_retrieve(
-                **kwargs
-            )
-        elif action == "api_solutions_dora_reintegration_possibility_retrieve":
-            return client.api_solutions_dora_reintegration_possibility_retrieve(
-                **kwargs
-            )
-        elif action == "api_solutions_dora_reliance_level_retrieve":
-            return client.api_solutions_dora_reliance_level_retrieve(**kwargs)
-        elif action == "api_solutions_dora_substitutability_retrieve":
-            return client.api_solutions_dora_substitutability_retrieve(**kwargs)
-        elif action == "api_solutions_export_csv_retrieve":
-            return client.api_solutions_export_csv_retrieve(**kwargs)
-        elif action == "api_solutions_export_xlsx_retrieve":
-            return client.api_solutions_export_xlsx_retrieve(**kwargs)
+        for _dispatch in _THIRD_PARTY_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
