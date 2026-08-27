@@ -8,6 +8,212 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_analytics_metrology_1(action, kwargs, client):
+    # api_agg_data_retrieve .. api_metrology_builtin_metric_samples_list (9 actions)
+    if action == "api_agg_data_retrieve":
+        return client.api_agg_data_retrieve(**kwargs)
+    elif action == "api_analytics_export_xlsx_retrieve":
+        return client.api_analytics_export_xlsx_retrieve(**kwargs)
+    elif action == "api_composer_data_retrieve":
+        return client.api_composer_data_retrieve(**kwargs)
+    elif action == "api_get_audits_metrics_retrieve":
+        return client.api_get_audits_metrics_retrieve(**kwargs)
+    elif action == "api_get_combined_assessments_status_retrieve":
+        return client.api_get_combined_assessments_status_retrieve(**kwargs)
+    elif action == "api_get_counters_retrieve":
+        return client.api_get_counters_retrieve(**kwargs)
+    elif action == "api_get_governance_calendar_data_retrieve":
+        return client.api_get_governance_calendar_data_retrieve(**kwargs)
+    elif action == "api_get_metrics_retrieve":
+        return client.api_get_metrics_retrieve(**kwargs)
+    elif action == "api_metrology_builtin_metric_samples_list":
+        return client.api_metrology_builtin_metric_samples_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_analytics_metrology_2(action, kwargs, client):
+    # api_metrology_builtin_metric_samples_create .. api_metrology_builtin_metric_samples_for_object_retrieve (9 actions)
+    if action == "api_metrology_builtin_metric_samples_create":
+        return client.api_metrology_builtin_metric_samples_create(**kwargs)
+    elif action == "api_metrology_builtin_metric_samples_retrieve":
+        return client.api_metrology_builtin_metric_samples_retrieve(**kwargs)
+    elif action == "api_metrology_builtin_metric_samples_update":
+        return client.api_metrology_builtin_metric_samples_update(**kwargs)
+    elif action == "api_metrology_builtin_metric_samples_partial_update":
+        return client.api_metrology_builtin_metric_samples_partial_update(**kwargs)
+    elif action == "api_metrology_builtin_metric_samples_destroy":
+        return client.api_metrology_builtin_metric_samples_destroy(**kwargs)
+    elif action == "api_metrology_builtin_metric_samples_cascade_info_retrieve":
+        return client.api_metrology_builtin_metric_samples_cascade_info_retrieve(
+            **kwargs
+        )
+    elif action == "api_metrology_builtin_metric_samples_object_retrieve":
+        return client.api_metrology_builtin_metric_samples_object_retrieve(**kwargs)
+    elif action == "api_metrology_builtin_metric_samples_batch_action_create":
+        return client.api_metrology_builtin_metric_samples_batch_action_create(**kwargs)
+    elif action == "api_metrology_builtin_metric_samples_for_object_retrieve":
+        return client.api_metrology_builtin_metric_samples_for_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_analytics_metrology_3(action, kwargs, client):
+    # api_metrology_builtin_metric_samples_refresh_create .. api_metrology_custom_metric_samples_cascade_info_retrieve (9 actions)
+    if action == "api_metrology_builtin_metric_samples_refresh_create":
+        return client.api_metrology_builtin_metric_samples_refresh_create(**kwargs)
+    elif action == "api_metrology_builtin_metric_samples_supported_models_retrieve":
+        return client.api_metrology_builtin_metric_samples_supported_models_retrieve(
+            **kwargs
+        )
+    elif action == "api_metrology_custom_metric_samples_list":
+        return client.api_metrology_custom_metric_samples_list(**kwargs)
+    elif action == "api_metrology_custom_metric_samples_create":
+        return client.api_metrology_custom_metric_samples_create(**kwargs)
+    elif action == "api_metrology_custom_metric_samples_retrieve":
+        return client.api_metrology_custom_metric_samples_retrieve(**kwargs)
+    elif action == "api_metrology_custom_metric_samples_update":
+        return client.api_metrology_custom_metric_samples_update(**kwargs)
+    elif action == "api_metrology_custom_metric_samples_partial_update":
+        return client.api_metrology_custom_metric_samples_partial_update(**kwargs)
+    elif action == "api_metrology_custom_metric_samples_destroy":
+        return client.api_metrology_custom_metric_samples_destroy(**kwargs)
+    elif action == "api_metrology_custom_metric_samples_cascade_info_retrieve":
+        return client.api_metrology_custom_metric_samples_cascade_info_retrieve(
+            **kwargs
+        )
+    return _UNHANDLED
+
+
+def _dispatch_analytics_metrology_4(action, kwargs, client):
+    # api_metrology_custom_metric_samples_object_retrieve .. api_metrology_dashboard_widgets_cascade_info_retrieve (9 actions)
+    if action == "api_metrology_custom_metric_samples_object_retrieve":
+        return client.api_metrology_custom_metric_samples_object_retrieve(**kwargs)
+    elif action == "api_metrology_custom_metric_samples_batch_action_create":
+        return client.api_metrology_custom_metric_samples_batch_action_create(**kwargs)
+    elif action == "api_metrology_dashboard_widgets_list":
+        return client.api_metrology_dashboard_widgets_list(**kwargs)
+    elif action == "api_metrology_dashboard_widgets_create":
+        return client.api_metrology_dashboard_widgets_create(**kwargs)
+    elif action == "api_metrology_dashboard_widgets_retrieve":
+        return client.api_metrology_dashboard_widgets_retrieve(**kwargs)
+    elif action == "api_metrology_dashboard_widgets_update":
+        return client.api_metrology_dashboard_widgets_update(**kwargs)
+    elif action == "api_metrology_dashboard_widgets_partial_update":
+        return client.api_metrology_dashboard_widgets_partial_update(**kwargs)
+    elif action == "api_metrology_dashboard_widgets_destroy":
+        return client.api_metrology_dashboard_widgets_destroy(**kwargs)
+    elif action == "api_metrology_dashboard_widgets_cascade_info_retrieve":
+        return client.api_metrology_dashboard_widgets_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_analytics_metrology_5(action, kwargs, client):
+    # api_metrology_dashboard_widgets_object_retrieve .. api_metrology_dashboards_update (9 actions)
+    if action == "api_metrology_dashboard_widgets_object_retrieve":
+        return client.api_metrology_dashboard_widgets_object_retrieve(**kwargs)
+    elif action == "api_metrology_dashboard_widgets_aggregation_retrieve":
+        return client.api_metrology_dashboard_widgets_aggregation_retrieve(**kwargs)
+    elif action == "api_metrology_dashboard_widgets_batch_action_create":
+        return client.api_metrology_dashboard_widgets_batch_action_create(**kwargs)
+    elif action == "api_metrology_dashboard_widgets_chart_type_retrieve":
+        return client.api_metrology_dashboard_widgets_chart_type_retrieve(**kwargs)
+    elif action == "api_metrology_dashboard_widgets_time_range_retrieve":
+        return client.api_metrology_dashboard_widgets_time_range_retrieve(**kwargs)
+    elif action == "api_metrology_dashboards_list":
+        return client.api_metrology_dashboards_list(**kwargs)
+    elif action == "api_metrology_dashboards_create":
+        return client.api_metrology_dashboards_create(**kwargs)
+    elif action == "api_metrology_dashboards_retrieve":
+        return client.api_metrology_dashboards_retrieve(**kwargs)
+    elif action == "api_metrology_dashboards_update":
+        return client.api_metrology_dashboards_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_analytics_metrology_6(action, kwargs, client):
+    # api_metrology_dashboards_partial_update .. api_metrology_metric_definitions_update (9 actions)
+    if action == "api_metrology_dashboards_partial_update":
+        return client.api_metrology_dashboards_partial_update(**kwargs)
+    elif action == "api_metrology_dashboards_destroy":
+        return client.api_metrology_dashboards_destroy(**kwargs)
+    elif action == "api_metrology_dashboards_cascade_info_retrieve":
+        return client.api_metrology_dashboards_cascade_info_retrieve(**kwargs)
+    elif action == "api_metrology_dashboards_object_retrieve":
+        return client.api_metrology_dashboards_object_retrieve(**kwargs)
+    elif action == "api_metrology_dashboards_batch_action_create":
+        return client.api_metrology_dashboards_batch_action_create(**kwargs)
+    elif action == "api_metrology_metric_definitions_list":
+        return client.api_metrology_metric_definitions_list(**kwargs)
+    elif action == "api_metrology_metric_definitions_create":
+        return client.api_metrology_metric_definitions_create(**kwargs)
+    elif action == "api_metrology_metric_definitions_retrieve":
+        return client.api_metrology_metric_definitions_retrieve(**kwargs)
+    elif action == "api_metrology_metric_definitions_update":
+        return client.api_metrology_metric_definitions_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_analytics_metrology_7(action, kwargs, client):
+    # api_metrology_metric_definitions_partial_update .. api_metrology_metric_instances_create (9 actions)
+    if action == "api_metrology_metric_definitions_partial_update":
+        return client.api_metrology_metric_definitions_partial_update(**kwargs)
+    elif action == "api_metrology_metric_definitions_destroy":
+        return client.api_metrology_metric_definitions_destroy(**kwargs)
+    elif action == "api_metrology_metric_definitions_cascade_info_retrieve":
+        return client.api_metrology_metric_definitions_cascade_info_retrieve(**kwargs)
+    elif action == "api_metrology_metric_definitions_object_retrieve":
+        return client.api_metrology_metric_definitions_object_retrieve(**kwargs)
+    elif action == "api_metrology_metric_definitions_batch_action_create":
+        return client.api_metrology_metric_definitions_batch_action_create(**kwargs)
+    elif action == "api_metrology_metric_definitions_category_retrieve":
+        return client.api_metrology_metric_definitions_category_retrieve(**kwargs)
+    elif action == "api_metrology_metric_definitions_provider_retrieve":
+        return client.api_metrology_metric_definitions_provider_retrieve(**kwargs)
+    elif action == "api_metrology_metric_instances_list":
+        return client.api_metrology_metric_instances_list(**kwargs)
+    elif action == "api_metrology_metric_instances_create":
+        return client.api_metrology_metric_instances_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_analytics_metrology_8(action, kwargs, client):
+    # api_metrology_metric_instances_retrieve .. api_metrology_metric_instances_status_retrieve (9 actions)
+    if action == "api_metrology_metric_instances_retrieve":
+        return client.api_metrology_metric_instances_retrieve(**kwargs)
+    elif action == "api_metrology_metric_instances_update":
+        return client.api_metrology_metric_instances_update(**kwargs)
+    elif action == "api_metrology_metric_instances_partial_update":
+        return client.api_metrology_metric_instances_partial_update(**kwargs)
+    elif action == "api_metrology_metric_instances_destroy":
+        return client.api_metrology_metric_instances_destroy(**kwargs)
+    elif action == "api_metrology_metric_instances_cascade_info_retrieve":
+        return client.api_metrology_metric_instances_cascade_info_retrieve(**kwargs)
+    elif action == "api_metrology_metric_instances_object_retrieve":
+        return client.api_metrology_metric_instances_object_retrieve(**kwargs)
+    elif action == "api_metrology_metric_instances_batch_action_create":
+        return client.api_metrology_metric_instances_batch_action_create(**kwargs)
+    elif action == "api_metrology_metric_instances_collection_frequency_retrieve":
+        return client.api_metrology_metric_instances_collection_frequency_retrieve(
+            **kwargs
+        )
+    elif action == "api_metrology_metric_instances_status_retrieve":
+        return client.api_metrology_metric_instances_status_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_ANALYTICS_METROLOGY_DISPATCHERS = (
+    _dispatch_analytics_metrology_1,
+    _dispatch_analytics_metrology_2,
+    _dispatch_analytics_metrology_3,
+    _dispatch_analytics_metrology_4,
+    _dispatch_analytics_metrology_5,
+    _dispatch_analytics_metrology_6,
+    _dispatch_analytics_metrology_7,
+    _dispatch_analytics_metrology_8,
+)
+
 
 def register_analytics_metrology_tools(mcp: FastMCP):
     @mcp.tool(tags={"analytics-metrology"})
@@ -39,168 +245,8 @@ def register_analytics_metrology_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_agg_data_retrieve":
-            return client.api_agg_data_retrieve(**kwargs)
-        elif action == "api_analytics_export_xlsx_retrieve":
-            return client.api_analytics_export_xlsx_retrieve(**kwargs)
-        elif action == "api_composer_data_retrieve":
-            return client.api_composer_data_retrieve(**kwargs)
-        elif action == "api_get_audits_metrics_retrieve":
-            return client.api_get_audits_metrics_retrieve(**kwargs)
-        elif action == "api_get_combined_assessments_status_retrieve":
-            return client.api_get_combined_assessments_status_retrieve(**kwargs)
-        elif action == "api_get_counters_retrieve":
-            return client.api_get_counters_retrieve(**kwargs)
-        elif action == "api_get_governance_calendar_data_retrieve":
-            return client.api_get_governance_calendar_data_retrieve(**kwargs)
-        elif action == "api_get_metrics_retrieve":
-            return client.api_get_metrics_retrieve(**kwargs)
-        elif action == "api_metrology_builtin_metric_samples_list":
-            return client.api_metrology_builtin_metric_samples_list(**kwargs)
-        elif action == "api_metrology_builtin_metric_samples_create":
-            return client.api_metrology_builtin_metric_samples_create(**kwargs)
-        elif action == "api_metrology_builtin_metric_samples_retrieve":
-            return client.api_metrology_builtin_metric_samples_retrieve(**kwargs)
-        elif action == "api_metrology_builtin_metric_samples_update":
-            return client.api_metrology_builtin_metric_samples_update(**kwargs)
-        elif action == "api_metrology_builtin_metric_samples_partial_update":
-            return client.api_metrology_builtin_metric_samples_partial_update(**kwargs)
-        elif action == "api_metrology_builtin_metric_samples_destroy":
-            return client.api_metrology_builtin_metric_samples_destroy(**kwargs)
-        elif action == "api_metrology_builtin_metric_samples_cascade_info_retrieve":
-            return client.api_metrology_builtin_metric_samples_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_metrology_builtin_metric_samples_object_retrieve":
-            return client.api_metrology_builtin_metric_samples_object_retrieve(**kwargs)
-        elif action == "api_metrology_builtin_metric_samples_batch_action_create":
-            return client.api_metrology_builtin_metric_samples_batch_action_create(
-                **kwargs
-            )
-        elif action == "api_metrology_builtin_metric_samples_for_object_retrieve":
-            return client.api_metrology_builtin_metric_samples_for_object_retrieve(
-                **kwargs
-            )
-        elif action == "api_metrology_builtin_metric_samples_refresh_create":
-            return client.api_metrology_builtin_metric_samples_refresh_create(**kwargs)
-        elif action == "api_metrology_builtin_metric_samples_supported_models_retrieve":
-            return (
-                client.api_metrology_builtin_metric_samples_supported_models_retrieve(
-                    **kwargs
-                )
-            )
-        elif action == "api_metrology_custom_metric_samples_list":
-            return client.api_metrology_custom_metric_samples_list(**kwargs)
-        elif action == "api_metrology_custom_metric_samples_create":
-            return client.api_metrology_custom_metric_samples_create(**kwargs)
-        elif action == "api_metrology_custom_metric_samples_retrieve":
-            return client.api_metrology_custom_metric_samples_retrieve(**kwargs)
-        elif action == "api_metrology_custom_metric_samples_update":
-            return client.api_metrology_custom_metric_samples_update(**kwargs)
-        elif action == "api_metrology_custom_metric_samples_partial_update":
-            return client.api_metrology_custom_metric_samples_partial_update(**kwargs)
-        elif action == "api_metrology_custom_metric_samples_destroy":
-            return client.api_metrology_custom_metric_samples_destroy(**kwargs)
-        elif action == "api_metrology_custom_metric_samples_cascade_info_retrieve":
-            return client.api_metrology_custom_metric_samples_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_metrology_custom_metric_samples_object_retrieve":
-            return client.api_metrology_custom_metric_samples_object_retrieve(**kwargs)
-        elif action == "api_metrology_custom_metric_samples_batch_action_create":
-            return client.api_metrology_custom_metric_samples_batch_action_create(
-                **kwargs
-            )
-        elif action == "api_metrology_dashboard_widgets_list":
-            return client.api_metrology_dashboard_widgets_list(**kwargs)
-        elif action == "api_metrology_dashboard_widgets_create":
-            return client.api_metrology_dashboard_widgets_create(**kwargs)
-        elif action == "api_metrology_dashboard_widgets_retrieve":
-            return client.api_metrology_dashboard_widgets_retrieve(**kwargs)
-        elif action == "api_metrology_dashboard_widgets_update":
-            return client.api_metrology_dashboard_widgets_update(**kwargs)
-        elif action == "api_metrology_dashboard_widgets_partial_update":
-            return client.api_metrology_dashboard_widgets_partial_update(**kwargs)
-        elif action == "api_metrology_dashboard_widgets_destroy":
-            return client.api_metrology_dashboard_widgets_destroy(**kwargs)
-        elif action == "api_metrology_dashboard_widgets_cascade_info_retrieve":
-            return client.api_metrology_dashboard_widgets_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_metrology_dashboard_widgets_object_retrieve":
-            return client.api_metrology_dashboard_widgets_object_retrieve(**kwargs)
-        elif action == "api_metrology_dashboard_widgets_aggregation_retrieve":
-            return client.api_metrology_dashboard_widgets_aggregation_retrieve(**kwargs)
-        elif action == "api_metrology_dashboard_widgets_batch_action_create":
-            return client.api_metrology_dashboard_widgets_batch_action_create(**kwargs)
-        elif action == "api_metrology_dashboard_widgets_chart_type_retrieve":
-            return client.api_metrology_dashboard_widgets_chart_type_retrieve(**kwargs)
-        elif action == "api_metrology_dashboard_widgets_time_range_retrieve":
-            return client.api_metrology_dashboard_widgets_time_range_retrieve(**kwargs)
-        elif action == "api_metrology_dashboards_list":
-            return client.api_metrology_dashboards_list(**kwargs)
-        elif action == "api_metrology_dashboards_create":
-            return client.api_metrology_dashboards_create(**kwargs)
-        elif action == "api_metrology_dashboards_retrieve":
-            return client.api_metrology_dashboards_retrieve(**kwargs)
-        elif action == "api_metrology_dashboards_update":
-            return client.api_metrology_dashboards_update(**kwargs)
-        elif action == "api_metrology_dashboards_partial_update":
-            return client.api_metrology_dashboards_partial_update(**kwargs)
-        elif action == "api_metrology_dashboards_destroy":
-            return client.api_metrology_dashboards_destroy(**kwargs)
-        elif action == "api_metrology_dashboards_cascade_info_retrieve":
-            return client.api_metrology_dashboards_cascade_info_retrieve(**kwargs)
-        elif action == "api_metrology_dashboards_object_retrieve":
-            return client.api_metrology_dashboards_object_retrieve(**kwargs)
-        elif action == "api_metrology_dashboards_batch_action_create":
-            return client.api_metrology_dashboards_batch_action_create(**kwargs)
-        elif action == "api_metrology_metric_definitions_list":
-            return client.api_metrology_metric_definitions_list(**kwargs)
-        elif action == "api_metrology_metric_definitions_create":
-            return client.api_metrology_metric_definitions_create(**kwargs)
-        elif action == "api_metrology_metric_definitions_retrieve":
-            return client.api_metrology_metric_definitions_retrieve(**kwargs)
-        elif action == "api_metrology_metric_definitions_update":
-            return client.api_metrology_metric_definitions_update(**kwargs)
-        elif action == "api_metrology_metric_definitions_partial_update":
-            return client.api_metrology_metric_definitions_partial_update(**kwargs)
-        elif action == "api_metrology_metric_definitions_destroy":
-            return client.api_metrology_metric_definitions_destroy(**kwargs)
-        elif action == "api_metrology_metric_definitions_cascade_info_retrieve":
-            return client.api_metrology_metric_definitions_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_metrology_metric_definitions_object_retrieve":
-            return client.api_metrology_metric_definitions_object_retrieve(**kwargs)
-        elif action == "api_metrology_metric_definitions_batch_action_create":
-            return client.api_metrology_metric_definitions_batch_action_create(**kwargs)
-        elif action == "api_metrology_metric_definitions_category_retrieve":
-            return client.api_metrology_metric_definitions_category_retrieve(**kwargs)
-        elif action == "api_metrology_metric_definitions_provider_retrieve":
-            return client.api_metrology_metric_definitions_provider_retrieve(**kwargs)
-        elif action == "api_metrology_metric_instances_list":
-            return client.api_metrology_metric_instances_list(**kwargs)
-        elif action == "api_metrology_metric_instances_create":
-            return client.api_metrology_metric_instances_create(**kwargs)
-        elif action == "api_metrology_metric_instances_retrieve":
-            return client.api_metrology_metric_instances_retrieve(**kwargs)
-        elif action == "api_metrology_metric_instances_update":
-            return client.api_metrology_metric_instances_update(**kwargs)
-        elif action == "api_metrology_metric_instances_partial_update":
-            return client.api_metrology_metric_instances_partial_update(**kwargs)
-        elif action == "api_metrology_metric_instances_destroy":
-            return client.api_metrology_metric_instances_destroy(**kwargs)
-        elif action == "api_metrology_metric_instances_cascade_info_retrieve":
-            return client.api_metrology_metric_instances_cascade_info_retrieve(**kwargs)
-        elif action == "api_metrology_metric_instances_object_retrieve":
-            return client.api_metrology_metric_instances_object_retrieve(**kwargs)
-        elif action == "api_metrology_metric_instances_batch_action_create":
-            return client.api_metrology_metric_instances_batch_action_create(**kwargs)
-        elif action == "api_metrology_metric_instances_collection_frequency_retrieve":
-            return client.api_metrology_metric_instances_collection_frequency_retrieve(
-                **kwargs
-            )
-        elif action == "api_metrology_metric_instances_status_retrieve":
-            return client.api_metrology_metric_instances_status_retrieve(**kwargs)
+        for _dispatch in _ANALYTICS_METROLOGY_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
