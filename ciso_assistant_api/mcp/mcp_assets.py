@@ -8,6 +8,124 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_assets_1(action, kwargs, client):
+    # api_asset_capabilities_list .. api_asset_capabilities_batch_action_create (9 actions)
+    if action == "api_asset_capabilities_list":
+        return client.api_asset_capabilities_list(**kwargs)
+    elif action == "api_asset_capabilities_create":
+        return client.api_asset_capabilities_create(**kwargs)
+    elif action == "api_asset_capabilities_retrieve":
+        return client.api_asset_capabilities_retrieve(**kwargs)
+    elif action == "api_asset_capabilities_update":
+        return client.api_asset_capabilities_update(**kwargs)
+    elif action == "api_asset_capabilities_partial_update":
+        return client.api_asset_capabilities_partial_update(**kwargs)
+    elif action == "api_asset_capabilities_destroy":
+        return client.api_asset_capabilities_destroy(**kwargs)
+    elif action == "api_asset_capabilities_cascade_info_retrieve":
+        return client.api_asset_capabilities_cascade_info_retrieve(**kwargs)
+    elif action == "api_asset_capabilities_object_retrieve":
+        return client.api_asset_capabilities_object_retrieve(**kwargs)
+    elif action == "api_asset_capabilities_batch_action_create":
+        return client.api_asset_capabilities_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_assets_2(action, kwargs, client):
+    # api_asset_class_list .. api_asset_class_batch_action_create (9 actions)
+    if action == "api_asset_class_list":
+        return client.api_asset_class_list(**kwargs)
+    elif action == "api_asset_class_create":
+        return client.api_asset_class_create(**kwargs)
+    elif action == "api_asset_class_retrieve":
+        return client.api_asset_class_retrieve(**kwargs)
+    elif action == "api_asset_class_update":
+        return client.api_asset_class_update(**kwargs)
+    elif action == "api_asset_class_partial_update":
+        return client.api_asset_class_partial_update(**kwargs)
+    elif action == "api_asset_class_destroy":
+        return client.api_asset_class_destroy(**kwargs)
+    elif action == "api_asset_class_cascade_info_retrieve":
+        return client.api_asset_class_cascade_info_retrieve(**kwargs)
+    elif action == "api_asset_class_object_retrieve":
+        return client.api_asset_class_object_retrieve(**kwargs)
+    elif action == "api_asset_class_batch_action_create":
+        return client.api_asset_class_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_assets_3(action, kwargs, client):
+    # api_asset_class_tree_retrieve .. api_assets_object_retrieve (9 actions)
+    if action == "api_asset_class_tree_retrieve":
+        return client.api_asset_class_tree_retrieve(**kwargs)
+    elif action == "api_assets_list":
+        return client.api_assets_list(**kwargs)
+    elif action == "api_assets_create":
+        return client.api_assets_create(**kwargs)
+    elif action == "api_assets_retrieve":
+        return client.api_assets_retrieve(**kwargs)
+    elif action == "api_assets_update":
+        return client.api_assets_update(**kwargs)
+    elif action == "api_assets_partial_update":
+        return client.api_assets_partial_update(**kwargs)
+    elif action == "api_assets_destroy":
+        return client.api_assets_destroy(**kwargs)
+    elif action == "api_assets_cascade_info_retrieve":
+        return client.api_assets_cascade_info_retrieve(**kwargs)
+    elif action == "api_assets_object_retrieve":
+        return client.api_assets_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_assets_4(action, kwargs, client):
+    # api_assets_asset_class_retrieve .. api_assets_export_csv_retrieve (9 actions)
+    if action == "api_assets_asset_class_retrieve":
+        return client.api_assets_asset_class_retrieve(**kwargs)
+    elif action == "api_assets_autocomplete_retrieve":
+        return client.api_assets_autocomplete_retrieve(**kwargs)
+    elif action == "api_assets_batch_action_create":
+        return client.api_assets_batch_action_create(**kwargs)
+    elif action == "api_assets_batch_create_create":
+        return client.api_assets_batch_create_create(**kwargs)
+    elif action == "api_assets_disaster_recovery_objectives_retrieve":
+        return client.api_assets_disaster_recovery_objectives_retrieve(**kwargs)
+    elif action == "api_assets_dora_criticality_assessment_retrieve":
+        return client.api_assets_dora_criticality_assessment_retrieve(**kwargs)
+    elif action == "api_assets_dora_discontinuing_impact_retrieve":
+        return client.api_assets_dora_discontinuing_impact_retrieve(**kwargs)
+    elif action == "api_assets_dora_licenced_activity_retrieve":
+        return client.api_assets_dora_licenced_activity_retrieve(**kwargs)
+    elif action == "api_assets_export_csv_retrieve":
+        return client.api_assets_export_csv_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_assets_5(action, kwargs, client):
+    # api_assets_export_xlsx_retrieve .. api_assets_type_retrieve (5 actions)
+    if action == "api_assets_export_xlsx_retrieve":
+        return client.api_assets_export_xlsx_retrieve(**kwargs)
+    elif action == "api_assets_graph_retrieve":
+        return client.api_assets_graph_retrieve(**kwargs)
+    elif action == "api_assets_ids_retrieve":
+        return client.api_assets_ids_retrieve(**kwargs)
+    elif action == "api_assets_security_objectives_retrieve":
+        return client.api_assets_security_objectives_retrieve(**kwargs)
+    elif action == "api_assets_type_retrieve":
+        return client.api_assets_type_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_ASSETS_DISPATCHERS = (
+    _dispatch_assets_1,
+    _dispatch_assets_2,
+    _dispatch_assets_3,
+    _dispatch_assets_4,
+    _dispatch_assets_5,
+)
+
 
 def register_assets_tools(mcp: FastMCP):
     @mcp.tool(tags={"assets"})
@@ -37,86 +155,8 @@ def register_assets_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_asset_capabilities_list":
-            return client.api_asset_capabilities_list(**kwargs)
-        elif action == "api_asset_capabilities_create":
-            return client.api_asset_capabilities_create(**kwargs)
-        elif action == "api_asset_capabilities_retrieve":
-            return client.api_asset_capabilities_retrieve(**kwargs)
-        elif action == "api_asset_capabilities_update":
-            return client.api_asset_capabilities_update(**kwargs)
-        elif action == "api_asset_capabilities_partial_update":
-            return client.api_asset_capabilities_partial_update(**kwargs)
-        elif action == "api_asset_capabilities_destroy":
-            return client.api_asset_capabilities_destroy(**kwargs)
-        elif action == "api_asset_capabilities_cascade_info_retrieve":
-            return client.api_asset_capabilities_cascade_info_retrieve(**kwargs)
-        elif action == "api_asset_capabilities_object_retrieve":
-            return client.api_asset_capabilities_object_retrieve(**kwargs)
-        elif action == "api_asset_capabilities_batch_action_create":
-            return client.api_asset_capabilities_batch_action_create(**kwargs)
-        elif action == "api_asset_class_list":
-            return client.api_asset_class_list(**kwargs)
-        elif action == "api_asset_class_create":
-            return client.api_asset_class_create(**kwargs)
-        elif action == "api_asset_class_retrieve":
-            return client.api_asset_class_retrieve(**kwargs)
-        elif action == "api_asset_class_update":
-            return client.api_asset_class_update(**kwargs)
-        elif action == "api_asset_class_partial_update":
-            return client.api_asset_class_partial_update(**kwargs)
-        elif action == "api_asset_class_destroy":
-            return client.api_asset_class_destroy(**kwargs)
-        elif action == "api_asset_class_cascade_info_retrieve":
-            return client.api_asset_class_cascade_info_retrieve(**kwargs)
-        elif action == "api_asset_class_object_retrieve":
-            return client.api_asset_class_object_retrieve(**kwargs)
-        elif action == "api_asset_class_batch_action_create":
-            return client.api_asset_class_batch_action_create(**kwargs)
-        elif action == "api_asset_class_tree_retrieve":
-            return client.api_asset_class_tree_retrieve(**kwargs)
-        elif action == "api_assets_list":
-            return client.api_assets_list(**kwargs)
-        elif action == "api_assets_create":
-            return client.api_assets_create(**kwargs)
-        elif action == "api_assets_retrieve":
-            return client.api_assets_retrieve(**kwargs)
-        elif action == "api_assets_update":
-            return client.api_assets_update(**kwargs)
-        elif action == "api_assets_partial_update":
-            return client.api_assets_partial_update(**kwargs)
-        elif action == "api_assets_destroy":
-            return client.api_assets_destroy(**kwargs)
-        elif action == "api_assets_cascade_info_retrieve":
-            return client.api_assets_cascade_info_retrieve(**kwargs)
-        elif action == "api_assets_object_retrieve":
-            return client.api_assets_object_retrieve(**kwargs)
-        elif action == "api_assets_asset_class_retrieve":
-            return client.api_assets_asset_class_retrieve(**kwargs)
-        elif action == "api_assets_autocomplete_retrieve":
-            return client.api_assets_autocomplete_retrieve(**kwargs)
-        elif action == "api_assets_batch_action_create":
-            return client.api_assets_batch_action_create(**kwargs)
-        elif action == "api_assets_batch_create_create":
-            return client.api_assets_batch_create_create(**kwargs)
-        elif action == "api_assets_disaster_recovery_objectives_retrieve":
-            return client.api_assets_disaster_recovery_objectives_retrieve(**kwargs)
-        elif action == "api_assets_dora_criticality_assessment_retrieve":
-            return client.api_assets_dora_criticality_assessment_retrieve(**kwargs)
-        elif action == "api_assets_dora_discontinuing_impact_retrieve":
-            return client.api_assets_dora_discontinuing_impact_retrieve(**kwargs)
-        elif action == "api_assets_dora_licenced_activity_retrieve":
-            return client.api_assets_dora_licenced_activity_retrieve(**kwargs)
-        elif action == "api_assets_export_csv_retrieve":
-            return client.api_assets_export_csv_retrieve(**kwargs)
-        elif action == "api_assets_export_xlsx_retrieve":
-            return client.api_assets_export_xlsx_retrieve(**kwargs)
-        elif action == "api_assets_graph_retrieve":
-            return client.api_assets_graph_retrieve(**kwargs)
-        elif action == "api_assets_ids_retrieve":
-            return client.api_assets_ids_retrieve(**kwargs)
-        elif action == "api_assets_security_objectives_retrieve":
-            return client.api_assets_security_objectives_retrieve(**kwargs)
-        elif action == "api_assets_type_retrieve":
-            return client.api_assets_type_retrieve(**kwargs)
+        for _dispatch in _ASSETS_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")

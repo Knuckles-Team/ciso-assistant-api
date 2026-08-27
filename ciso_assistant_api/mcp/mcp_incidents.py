@@ -8,6 +8,98 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_incidents_1(action, kwargs, client):
+    # api_incidents_list .. api_incidents_object_retrieve (9 actions)
+    if action == "api_incidents_list":
+        return client.api_incidents_list(**kwargs)
+    elif action == "api_incidents_create":
+        return client.api_incidents_create(**kwargs)
+    elif action == "api_incidents_retrieve":
+        return client.api_incidents_retrieve(**kwargs)
+    elif action == "api_incidents_update":
+        return client.api_incidents_update(**kwargs)
+    elif action == "api_incidents_partial_update":
+        return client.api_incidents_partial_update(**kwargs)
+    elif action == "api_incidents_destroy":
+        return client.api_incidents_destroy(**kwargs)
+    elif action == "api_incidents_cascade_info_retrieve":
+        return client.api_incidents_cascade_info_retrieve(**kwargs)
+    elif action == "api_incidents_md_retrieve":
+        return client.api_incidents_md_retrieve(**kwargs)
+    elif action == "api_incidents_object_retrieve":
+        return client.api_incidents_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_incidents_2(action, kwargs, client):
+    # api_incidents_pdf_retrieve .. api_incidents_severity_retrieve (9 actions)
+    if action == "api_incidents_pdf_retrieve":
+        return client.api_incidents_pdf_retrieve(**kwargs)
+    elif action == "api_incidents_batch_action_create":
+        return client.api_incidents_batch_action_create(**kwargs)
+    elif action == "api_incidents_detection_retrieve":
+        return client.api_incidents_detection_retrieve(**kwargs)
+    elif action == "api_incidents_detection_breakdown_retrieve":
+        return client.api_incidents_detection_breakdown_retrieve(**kwargs)
+    elif action == "api_incidents_export_csv_retrieve":
+        return client.api_incidents_export_csv_retrieve(**kwargs)
+    elif action == "api_incidents_export_xlsx_retrieve":
+        return client.api_incidents_export_xlsx_retrieve(**kwargs)
+    elif action == "api_incidents_monthly_metrics_retrieve":
+        return client.api_incidents_monthly_metrics_retrieve(**kwargs)
+    elif action == "api_incidents_qualifications_breakdown_retrieve":
+        return client.api_incidents_qualifications_breakdown_retrieve(**kwargs)
+    elif action == "api_incidents_severity_retrieve":
+        return client.api_incidents_severity_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_incidents_3(action, kwargs, client):
+    # api_incidents_severity_breakdown_retrieve .. api_timeline_entries_destroy (9 actions)
+    if action == "api_incidents_severity_breakdown_retrieve":
+        return client.api_incidents_severity_breakdown_retrieve(**kwargs)
+    elif action == "api_incidents_status_retrieve":
+        return client.api_incidents_status_retrieve(**kwargs)
+    elif action == "api_incidents_summary_stats_retrieve":
+        return client.api_incidents_summary_stats_retrieve(**kwargs)
+    elif action == "api_timeline_entries_list":
+        return client.api_timeline_entries_list(**kwargs)
+    elif action == "api_timeline_entries_create":
+        return client.api_timeline_entries_create(**kwargs)
+    elif action == "api_timeline_entries_retrieve":
+        return client.api_timeline_entries_retrieve(**kwargs)
+    elif action == "api_timeline_entries_update":
+        return client.api_timeline_entries_update(**kwargs)
+    elif action == "api_timeline_entries_partial_update":
+        return client.api_timeline_entries_partial_update(**kwargs)
+    elif action == "api_timeline_entries_destroy":
+        return client.api_timeline_entries_destroy(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_incidents_4(action, kwargs, client):
+    # api_timeline_entries_cascade_info_retrieve .. api_timeline_entries_entry_type_retrieve (4 actions)
+    if action == "api_timeline_entries_cascade_info_retrieve":
+        return client.api_timeline_entries_cascade_info_retrieve(**kwargs)
+    elif action == "api_timeline_entries_object_retrieve":
+        return client.api_timeline_entries_object_retrieve(**kwargs)
+    elif action == "api_timeline_entries_batch_action_create":
+        return client.api_timeline_entries_batch_action_create(**kwargs)
+    elif action == "api_timeline_entries_entry_type_retrieve":
+        return client.api_timeline_entries_entry_type_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_INCIDENTS_DISPATCHERS = (
+    _dispatch_incidents_1,
+    _dispatch_incidents_2,
+    _dispatch_incidents_3,
+    _dispatch_incidents_4,
+)
+
 
 def register_incidents_tools(mcp: FastMCP):
     @mcp.tool(tags={"incidents"})
@@ -37,66 +129,8 @@ def register_incidents_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_incidents_list":
-            return client.api_incidents_list(**kwargs)
-        elif action == "api_incidents_create":
-            return client.api_incidents_create(**kwargs)
-        elif action == "api_incidents_retrieve":
-            return client.api_incidents_retrieve(**kwargs)
-        elif action == "api_incidents_update":
-            return client.api_incidents_update(**kwargs)
-        elif action == "api_incidents_partial_update":
-            return client.api_incidents_partial_update(**kwargs)
-        elif action == "api_incidents_destroy":
-            return client.api_incidents_destroy(**kwargs)
-        elif action == "api_incidents_cascade_info_retrieve":
-            return client.api_incidents_cascade_info_retrieve(**kwargs)
-        elif action == "api_incidents_md_retrieve":
-            return client.api_incidents_md_retrieve(**kwargs)
-        elif action == "api_incidents_object_retrieve":
-            return client.api_incidents_object_retrieve(**kwargs)
-        elif action == "api_incidents_pdf_retrieve":
-            return client.api_incidents_pdf_retrieve(**kwargs)
-        elif action == "api_incidents_batch_action_create":
-            return client.api_incidents_batch_action_create(**kwargs)
-        elif action == "api_incidents_detection_retrieve":
-            return client.api_incidents_detection_retrieve(**kwargs)
-        elif action == "api_incidents_detection_breakdown_retrieve":
-            return client.api_incidents_detection_breakdown_retrieve(**kwargs)
-        elif action == "api_incidents_export_csv_retrieve":
-            return client.api_incidents_export_csv_retrieve(**kwargs)
-        elif action == "api_incidents_export_xlsx_retrieve":
-            return client.api_incidents_export_xlsx_retrieve(**kwargs)
-        elif action == "api_incidents_monthly_metrics_retrieve":
-            return client.api_incidents_monthly_metrics_retrieve(**kwargs)
-        elif action == "api_incidents_qualifications_breakdown_retrieve":
-            return client.api_incidents_qualifications_breakdown_retrieve(**kwargs)
-        elif action == "api_incidents_severity_retrieve":
-            return client.api_incidents_severity_retrieve(**kwargs)
-        elif action == "api_incidents_severity_breakdown_retrieve":
-            return client.api_incidents_severity_breakdown_retrieve(**kwargs)
-        elif action == "api_incidents_status_retrieve":
-            return client.api_incidents_status_retrieve(**kwargs)
-        elif action == "api_incidents_summary_stats_retrieve":
-            return client.api_incidents_summary_stats_retrieve(**kwargs)
-        elif action == "api_timeline_entries_list":
-            return client.api_timeline_entries_list(**kwargs)
-        elif action == "api_timeline_entries_create":
-            return client.api_timeline_entries_create(**kwargs)
-        elif action == "api_timeline_entries_retrieve":
-            return client.api_timeline_entries_retrieve(**kwargs)
-        elif action == "api_timeline_entries_update":
-            return client.api_timeline_entries_update(**kwargs)
-        elif action == "api_timeline_entries_partial_update":
-            return client.api_timeline_entries_partial_update(**kwargs)
-        elif action == "api_timeline_entries_destroy":
-            return client.api_timeline_entries_destroy(**kwargs)
-        elif action == "api_timeline_entries_cascade_info_retrieve":
-            return client.api_timeline_entries_cascade_info_retrieve(**kwargs)
-        elif action == "api_timeline_entries_object_retrieve":
-            return client.api_timeline_entries_object_retrieve(**kwargs)
-        elif action == "api_timeline_entries_batch_action_create":
-            return client.api_timeline_entries_batch_action_create(**kwargs)
-        elif action == "api_timeline_entries_entry_type_retrieve":
-            return client.api_timeline_entries_entry_type_retrieve(**kwargs)
+        for _dispatch in _INCIDENTS_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")

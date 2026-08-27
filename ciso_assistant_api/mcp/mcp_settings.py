@@ -8,6 +8,108 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_settings_1(action, kwargs, client):
+    # api_settings_feature_flags_retrieve .. api_settings_general_default_language_retrieve_2 (9 actions)
+    if action == "api_settings_feature_flags_retrieve":
+        return client.api_settings_feature_flags_retrieve(**kwargs)
+    elif action == "api_settings_feature_flags_update":
+        return client.api_settings_feature_flags_update(**kwargs)
+    elif action == "api_settings_feature_flags_partial_update":
+        return client.api_settings_feature_flags_partial_update(**kwargs)
+    elif action == "api_settings_general_retrieve":
+        return client.api_settings_general_retrieve(**kwargs)
+    elif action == "api_settings_general_update":
+        return client.api_settings_general_update(**kwargs)
+    elif action == "api_settings_general_partial_update":
+        return client.api_settings_general_partial_update(**kwargs)
+    elif action == "api_settings_general_default_language_retrieve":
+        return client.api_settings_general_default_language_retrieve(**kwargs)
+    elif action == "api_settings_general_default_custom_analytics_dashboard_retrieve":
+        return client.api_settings_general_default_custom_analytics_dashboard_retrieve(
+            **kwargs
+        )
+    elif action == "api_settings_general_default_language_retrieve_2":
+        return client.api_settings_general_default_language_retrieve_2(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_settings_2(action, kwargs, client):
+    # api_settings_general_ebios_radar_parameters_retrieve .. api_settings_global_create (9 actions)
+    if action == "api_settings_general_ebios_radar_parameters_retrieve":
+        return client.api_settings_general_ebios_radar_parameters_retrieve(**kwargs)
+    elif action == "api_settings_general_force_language_create":
+        return client.api_settings_general_force_language_create(**kwargs)
+    elif action == "api_settings_general_interface_settings_retrieve":
+        return client.api_settings_general_interface_settings_retrieve(**kwargs)
+    elif action == "api_settings_general_notifications_settings_retrieve":
+        return client.api_settings_general_notifications_settings_retrieve(**kwargs)
+    elif action == "api_settings_general_object_retrieve":
+        return client.api_settings_general_object_retrieve(**kwargs)
+    elif action == "api_settings_general_security_objective_scale_retrieve":
+        return client.api_settings_general_security_objective_scale_retrieve(**kwargs)
+    elif action == "api_settings_general_set_default_dashboard_create":
+        return client.api_settings_general_set_default_dashboard_create(**kwargs)
+    elif action == "api_settings_global_list":
+        return client.api_settings_global_list(**kwargs)
+    elif action == "api_settings_global_create":
+        return client.api_settings_global_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_settings_3(action, kwargs, client):
+    # api_settings_global_retrieve .. api_settings_sso_update (9 actions)
+    if action == "api_settings_global_retrieve":
+        return client.api_settings_global_retrieve(**kwargs)
+    elif action == "api_settings_global_update":
+        return client.api_settings_global_update(**kwargs)
+    elif action == "api_settings_global_partial_update":
+        return client.api_settings_global_partial_update(**kwargs)
+    elif action == "api_settings_global_destroy":
+        return client.api_settings_global_destroy(**kwargs)
+    elif action == "api_settings_sec_intel_feeds_retrieve":
+        return client.api_settings_sec_intel_feeds_retrieve(**kwargs)
+    elif action == "api_settings_sec_intel_feeds_update":
+        return client.api_settings_sec_intel_feeds_update(**kwargs)
+    elif action == "api_settings_sec_intel_feeds_partial_update":
+        return client.api_settings_sec_intel_feeds_partial_update(**kwargs)
+    elif action == "api_settings_sso_retrieve":
+        return client.api_settings_sso_retrieve(**kwargs)
+    elif action == "api_settings_sso_update":
+        return client.api_settings_sso_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_settings_4(action, kwargs, client):
+    # api_settings_sso_partial_update .. api_settings_vulnerability_sla_partial_update (8 actions)
+    if action == "api_settings_sso_partial_update":
+        return client.api_settings_sso_partial_update(**kwargs)
+    elif action == "api_settings_sso_cascade_info_retrieve":
+        return client.api_settings_sso_cascade_info_retrieve(**kwargs)
+    elif action == "api_settings_sso_info_retrieve":
+        return client.api_settings_sso_info_retrieve(**kwargs)
+    elif action == "api_settings_sso_object_retrieve":
+        return client.api_settings_sso_object_retrieve(**kwargs)
+    elif action == "api_settings_sso_provider_retrieve":
+        return client.api_settings_sso_provider_retrieve(**kwargs)
+    elif action == "api_settings_vulnerability_sla_retrieve":
+        return client.api_settings_vulnerability_sla_retrieve(**kwargs)
+    elif action == "api_settings_vulnerability_sla_update":
+        return client.api_settings_vulnerability_sla_update(**kwargs)
+    elif action == "api_settings_vulnerability_sla_partial_update":
+        return client.api_settings_vulnerability_sla_partial_update(**kwargs)
+    return _UNHANDLED
+
+
+_SETTINGS_DISPATCHERS = (
+    _dispatch_settings_1,
+    _dispatch_settings_2,
+    _dispatch_settings_3,
+    _dispatch_settings_4,
+)
+
 
 def register_settings_tools(mcp: FastMCP):
     @mcp.tool(tags={"settings"})
@@ -37,82 +139,8 @@ def register_settings_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_settings_feature_flags_retrieve":
-            return client.api_settings_feature_flags_retrieve(**kwargs)
-        elif action == "api_settings_feature_flags_update":
-            return client.api_settings_feature_flags_update(**kwargs)
-        elif action == "api_settings_feature_flags_partial_update":
-            return client.api_settings_feature_flags_partial_update(**kwargs)
-        elif action == "api_settings_general_retrieve":
-            return client.api_settings_general_retrieve(**kwargs)
-        elif action == "api_settings_general_update":
-            return client.api_settings_general_update(**kwargs)
-        elif action == "api_settings_general_partial_update":
-            return client.api_settings_general_partial_update(**kwargs)
-        elif action == "api_settings_general_default_language_retrieve":
-            return client.api_settings_general_default_language_retrieve(**kwargs)
-        elif (
-            action == "api_settings_general_default_custom_analytics_dashboard_retrieve"
-        ):
-            return (
-                client.api_settings_general_default_custom_analytics_dashboard_retrieve(
-                    **kwargs
-                )
-            )
-        elif action == "api_settings_general_default_language_retrieve_2":
-            return client.api_settings_general_default_language_retrieve_2(**kwargs)
-        elif action == "api_settings_general_ebios_radar_parameters_retrieve":
-            return client.api_settings_general_ebios_radar_parameters_retrieve(**kwargs)
-        elif action == "api_settings_general_force_language_create":
-            return client.api_settings_general_force_language_create(**kwargs)
-        elif action == "api_settings_general_interface_settings_retrieve":
-            return client.api_settings_general_interface_settings_retrieve(**kwargs)
-        elif action == "api_settings_general_notifications_settings_retrieve":
-            return client.api_settings_general_notifications_settings_retrieve(**kwargs)
-        elif action == "api_settings_general_object_retrieve":
-            return client.api_settings_general_object_retrieve(**kwargs)
-        elif action == "api_settings_general_security_objective_scale_retrieve":
-            return client.api_settings_general_security_objective_scale_retrieve(
-                **kwargs
-            )
-        elif action == "api_settings_general_set_default_dashboard_create":
-            return client.api_settings_general_set_default_dashboard_create(**kwargs)
-        elif action == "api_settings_global_list":
-            return client.api_settings_global_list(**kwargs)
-        elif action == "api_settings_global_create":
-            return client.api_settings_global_create(**kwargs)
-        elif action == "api_settings_global_retrieve":
-            return client.api_settings_global_retrieve(**kwargs)
-        elif action == "api_settings_global_update":
-            return client.api_settings_global_update(**kwargs)
-        elif action == "api_settings_global_partial_update":
-            return client.api_settings_global_partial_update(**kwargs)
-        elif action == "api_settings_global_destroy":
-            return client.api_settings_global_destroy(**kwargs)
-        elif action == "api_settings_sec_intel_feeds_retrieve":
-            return client.api_settings_sec_intel_feeds_retrieve(**kwargs)
-        elif action == "api_settings_sec_intel_feeds_update":
-            return client.api_settings_sec_intel_feeds_update(**kwargs)
-        elif action == "api_settings_sec_intel_feeds_partial_update":
-            return client.api_settings_sec_intel_feeds_partial_update(**kwargs)
-        elif action == "api_settings_sso_retrieve":
-            return client.api_settings_sso_retrieve(**kwargs)
-        elif action == "api_settings_sso_update":
-            return client.api_settings_sso_update(**kwargs)
-        elif action == "api_settings_sso_partial_update":
-            return client.api_settings_sso_partial_update(**kwargs)
-        elif action == "api_settings_sso_cascade_info_retrieve":
-            return client.api_settings_sso_cascade_info_retrieve(**kwargs)
-        elif action == "api_settings_sso_info_retrieve":
-            return client.api_settings_sso_info_retrieve(**kwargs)
-        elif action == "api_settings_sso_object_retrieve":
-            return client.api_settings_sso_object_retrieve(**kwargs)
-        elif action == "api_settings_sso_provider_retrieve":
-            return client.api_settings_sso_provider_retrieve(**kwargs)
-        elif action == "api_settings_vulnerability_sla_retrieve":
-            return client.api_settings_vulnerability_sla_retrieve(**kwargs)
-        elif action == "api_settings_vulnerability_sla_update":
-            return client.api_settings_vulnerability_sla_update(**kwargs)
-        elif action == "api_settings_vulnerability_sla_partial_update":
-            return client.api_settings_vulnerability_sla_partial_update(**kwargs)
+        for _dispatch in _SETTINGS_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
