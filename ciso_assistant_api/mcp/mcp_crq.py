@@ -8,6 +8,156 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_crq_1(action, kwargs, client):
+    # api_crq_quantitative_risk_hypotheses_list .. api_crq_quantitative_risk_hypotheses_object_retrieve (9 actions)
+    if action == "api_crq_quantitative_risk_hypotheses_list":
+        return client.api_crq_quantitative_risk_hypotheses_list(**kwargs)
+    elif action == "api_crq_quantitative_risk_hypotheses_create":
+        return client.api_crq_quantitative_risk_hypotheses_create(**kwargs)
+    elif action == "api_crq_quantitative_risk_hypotheses_retrieve":
+        return client.api_crq_quantitative_risk_hypotheses_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_hypotheses_update":
+        return client.api_crq_quantitative_risk_hypotheses_update(**kwargs)
+    elif action == "api_crq_quantitative_risk_hypotheses_partial_update":
+        return client.api_crq_quantitative_risk_hypotheses_partial_update(**kwargs)
+    elif action == "api_crq_quantitative_risk_hypotheses_destroy":
+        return client.api_crq_quantitative_risk_hypotheses_destroy(**kwargs)
+    elif action == "api_crq_quantitative_risk_hypotheses_cascade_info_retrieve":
+        return client.api_crq_quantitative_risk_hypotheses_cascade_info_retrieve(
+            **kwargs
+        )
+    elif action == "api_crq_quantitative_risk_hypotheses_lec_retrieve":
+        return client.api_crq_quantitative_risk_hypotheses_lec_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_hypotheses_object_retrieve":
+        return client.api_crq_quantitative_risk_hypotheses_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_crq_2(action, kwargs, client):
+    # api_crq_quantitative_risk_hypotheses_run_simulation_retrieve .. api_crq_quantitative_risk_scenarios_partial_update (9 actions)
+    if action == "api_crq_quantitative_risk_hypotheses_run_simulation_retrieve":
+        return client.api_crq_quantitative_risk_hypotheses_run_simulation_retrieve(
+            **kwargs
+        )
+    elif action == "api_crq_quantitative_risk_hypotheses_batch_action_create":
+        return client.api_crq_quantitative_risk_hypotheses_batch_action_create(**kwargs)
+    elif action == "api_crq_quantitative_risk_hypotheses_default_ref_id_retrieve":
+        return client.api_crq_quantitative_risk_hypotheses_default_ref_id_retrieve(
+            **kwargs
+        )
+    elif action == "api_crq_quantitative_risk_hypotheses_risk_stage_retrieve":
+        return client.api_crq_quantitative_risk_hypotheses_risk_stage_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_scenarios_list":
+        return client.api_crq_quantitative_risk_scenarios_list(**kwargs)
+    elif action == "api_crq_quantitative_risk_scenarios_create":
+        return client.api_crq_quantitative_risk_scenarios_create(**kwargs)
+    elif action == "api_crq_quantitative_risk_scenarios_retrieve":
+        return client.api_crq_quantitative_risk_scenarios_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_scenarios_update":
+        return client.api_crq_quantitative_risk_scenarios_update(**kwargs)
+    elif action == "api_crq_quantitative_risk_scenarios_partial_update":
+        return client.api_crq_quantitative_risk_scenarios_partial_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_crq_3(action, kwargs, client):
+    # api_crq_quantitative_risk_scenarios_destroy .. api_crq_quantitative_risk_studies_list (9 actions)
+    if action == "api_crq_quantitative_risk_scenarios_destroy":
+        return client.api_crq_quantitative_risk_scenarios_destroy(**kwargs)
+    elif action == "api_crq_quantitative_risk_scenarios_cascade_info_retrieve":
+        return client.api_crq_quantitative_risk_scenarios_cascade_info_retrieve(
+            **kwargs
+        )
+    elif action == "api_crq_quantitative_risk_scenarios_lec_retrieve":
+        return client.api_crq_quantitative_risk_scenarios_lec_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_scenarios_object_retrieve":
+        return client.api_crq_quantitative_risk_scenarios_object_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_scenarios_batch_action_create":
+        return client.api_crq_quantitative_risk_scenarios_batch_action_create(**kwargs)
+    elif action == "api_crq_quantitative_risk_scenarios_default_ref_id_retrieve":
+        return client.api_crq_quantitative_risk_scenarios_default_ref_id_retrieve(
+            **kwargs
+        )
+    elif action == "api_crq_quantitative_risk_scenarios_priority_retrieve":
+        return client.api_crq_quantitative_risk_scenarios_priority_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_scenarios_status_retrieve":
+        return client.api_crq_quantitative_risk_scenarios_status_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_studies_list":
+        return client.api_crq_quantitative_risk_studies_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_crq_4(action, kwargs, client):
+    # api_crq_quantitative_risk_studies_create .. api_crq_quantitative_risk_studies_cascade_info_retrieve (9 actions)
+    if action == "api_crq_quantitative_risk_studies_create":
+        return client.api_crq_quantitative_risk_studies_create(**kwargs)
+    elif action == "api_crq_quantitative_risk_studies_retrieve":
+        return client.api_crq_quantitative_risk_studies_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_studies_update":
+        return client.api_crq_quantitative_risk_studies_update(**kwargs)
+    elif action == "api_crq_quantitative_risk_studies_partial_update":
+        return client.api_crq_quantitative_risk_studies_partial_update(**kwargs)
+    elif action == "api_crq_quantitative_risk_studies_destroy":
+        return client.api_crq_quantitative_risk_studies_destroy(**kwargs)
+    elif action == "api_crq_quantitative_risk_studies_action_plan_list":
+        return client.api_crq_quantitative_risk_studies_action_plan_list(**kwargs)
+    elif action == "api_crq_quantitative_risk_studies_action_plan_budget_overview_list":
+        return (
+            client.api_crq_quantitative_risk_studies_action_plan_budget_overview_list(
+                **kwargs
+            )
+        )
+    elif action == "api_crq_quantitative_risk_studies_ale_comparison_retrieve":
+        return client.api_crq_quantitative_risk_studies_ale_comparison_retrieve(
+            **kwargs
+        )
+    elif action == "api_crq_quantitative_risk_studies_cascade_info_retrieve":
+        return client.api_crq_quantitative_risk_studies_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_crq_5(action, kwargs, client):
+    # api_crq_quantitative_risk_studies_combined_ale_retrieve .. api_crq_quantitative_risk_studies_status_retrieve (9 actions)
+    if action == "api_crq_quantitative_risk_studies_combined_ale_retrieve":
+        return client.api_crq_quantitative_risk_studies_combined_ale_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_studies_combined_lec_retrieve":
+        return client.api_crq_quantitative_risk_studies_combined_lec_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_studies_executive_summary_retrieve":
+        return client.api_crq_quantitative_risk_studies_executive_summary_retrieve(
+            **kwargs
+        )
+    elif action == "api_crq_quantitative_risk_studies_key_metrics_retrieve":
+        return client.api_crq_quantitative_risk_studies_key_metrics_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_studies_object_retrieve":
+        return client.api_crq_quantitative_risk_studies_object_retrieve(**kwargs)
+    elif action == "api_crq_quantitative_risk_studies_retrigger_all_simulations_create":
+        return (
+            client.api_crq_quantitative_risk_studies_retrigger_all_simulations_create(
+                **kwargs
+            )
+        )
+    elif action == "api_crq_quantitative_risk_studies_batch_action_create":
+        return client.api_crq_quantitative_risk_studies_batch_action_create(**kwargs)
+    elif action == "api_crq_quantitative_risk_studies_distribution_model_retrieve":
+        return client.api_crq_quantitative_risk_studies_distribution_model_retrieve(
+            **kwargs
+        )
+    elif action == "api_crq_quantitative_risk_studies_status_retrieve":
+        return client.api_crq_quantitative_risk_studies_status_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_CRQ_DISPATCHERS = (
+    _dispatch_crq_1,
+    _dispatch_crq_2,
+    _dispatch_crq_3,
+    _dispatch_crq_4,
+    _dispatch_crq_5,
+)
+
 
 def register_crq_tools(mcp: FastMCP):
     @mcp.tool(tags={"crq"})
@@ -37,138 +187,8 @@ def register_crq_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_crq_quantitative_risk_hypotheses_list":
-            return client.api_crq_quantitative_risk_hypotheses_list(**kwargs)
-        elif action == "api_crq_quantitative_risk_hypotheses_create":
-            return client.api_crq_quantitative_risk_hypotheses_create(**kwargs)
-        elif action == "api_crq_quantitative_risk_hypotheses_retrieve":
-            return client.api_crq_quantitative_risk_hypotheses_retrieve(**kwargs)
-        elif action == "api_crq_quantitative_risk_hypotheses_update":
-            return client.api_crq_quantitative_risk_hypotheses_update(**kwargs)
-        elif action == "api_crq_quantitative_risk_hypotheses_partial_update":
-            return client.api_crq_quantitative_risk_hypotheses_partial_update(**kwargs)
-        elif action == "api_crq_quantitative_risk_hypotheses_destroy":
-            return client.api_crq_quantitative_risk_hypotheses_destroy(**kwargs)
-        elif action == "api_crq_quantitative_risk_hypotheses_cascade_info_retrieve":
-            return client.api_crq_quantitative_risk_hypotheses_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_hypotheses_lec_retrieve":
-            return client.api_crq_quantitative_risk_hypotheses_lec_retrieve(**kwargs)
-        elif action == "api_crq_quantitative_risk_hypotheses_object_retrieve":
-            return client.api_crq_quantitative_risk_hypotheses_object_retrieve(**kwargs)
-        elif action == "api_crq_quantitative_risk_hypotheses_run_simulation_retrieve":
-            return client.api_crq_quantitative_risk_hypotheses_run_simulation_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_hypotheses_batch_action_create":
-            return client.api_crq_quantitative_risk_hypotheses_batch_action_create(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_hypotheses_default_ref_id_retrieve":
-            return client.api_crq_quantitative_risk_hypotheses_default_ref_id_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_hypotheses_risk_stage_retrieve":
-            return client.api_crq_quantitative_risk_hypotheses_risk_stage_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_scenarios_list":
-            return client.api_crq_quantitative_risk_scenarios_list(**kwargs)
-        elif action == "api_crq_quantitative_risk_scenarios_create":
-            return client.api_crq_quantitative_risk_scenarios_create(**kwargs)
-        elif action == "api_crq_quantitative_risk_scenarios_retrieve":
-            return client.api_crq_quantitative_risk_scenarios_retrieve(**kwargs)
-        elif action == "api_crq_quantitative_risk_scenarios_update":
-            return client.api_crq_quantitative_risk_scenarios_update(**kwargs)
-        elif action == "api_crq_quantitative_risk_scenarios_partial_update":
-            return client.api_crq_quantitative_risk_scenarios_partial_update(**kwargs)
-        elif action == "api_crq_quantitative_risk_scenarios_destroy":
-            return client.api_crq_quantitative_risk_scenarios_destroy(**kwargs)
-        elif action == "api_crq_quantitative_risk_scenarios_cascade_info_retrieve":
-            return client.api_crq_quantitative_risk_scenarios_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_scenarios_lec_retrieve":
-            return client.api_crq_quantitative_risk_scenarios_lec_retrieve(**kwargs)
-        elif action == "api_crq_quantitative_risk_scenarios_object_retrieve":
-            return client.api_crq_quantitative_risk_scenarios_object_retrieve(**kwargs)
-        elif action == "api_crq_quantitative_risk_scenarios_batch_action_create":
-            return client.api_crq_quantitative_risk_scenarios_batch_action_create(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_scenarios_default_ref_id_retrieve":
-            return client.api_crq_quantitative_risk_scenarios_default_ref_id_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_scenarios_priority_retrieve":
-            return client.api_crq_quantitative_risk_scenarios_priority_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_scenarios_status_retrieve":
-            return client.api_crq_quantitative_risk_scenarios_status_retrieve(**kwargs)
-        elif action == "api_crq_quantitative_risk_studies_list":
-            return client.api_crq_quantitative_risk_studies_list(**kwargs)
-        elif action == "api_crq_quantitative_risk_studies_create":
-            return client.api_crq_quantitative_risk_studies_create(**kwargs)
-        elif action == "api_crq_quantitative_risk_studies_retrieve":
-            return client.api_crq_quantitative_risk_studies_retrieve(**kwargs)
-        elif action == "api_crq_quantitative_risk_studies_update":
-            return client.api_crq_quantitative_risk_studies_update(**kwargs)
-        elif action == "api_crq_quantitative_risk_studies_partial_update":
-            return client.api_crq_quantitative_risk_studies_partial_update(**kwargs)
-        elif action == "api_crq_quantitative_risk_studies_destroy":
-            return client.api_crq_quantitative_risk_studies_destroy(**kwargs)
-        elif action == "api_crq_quantitative_risk_studies_action_plan_list":
-            return client.api_crq_quantitative_risk_studies_action_plan_list(**kwargs)
-        elif (
-            action
-            == "api_crq_quantitative_risk_studies_action_plan_budget_overview_list"
-        ):
-            return client.api_crq_quantitative_risk_studies_action_plan_budget_overview_list(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_studies_ale_comparison_retrieve":
-            return client.api_crq_quantitative_risk_studies_ale_comparison_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_studies_cascade_info_retrieve":
-            return client.api_crq_quantitative_risk_studies_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_studies_combined_ale_retrieve":
-            return client.api_crq_quantitative_risk_studies_combined_ale_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_studies_combined_lec_retrieve":
-            return client.api_crq_quantitative_risk_studies_combined_lec_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_studies_executive_summary_retrieve":
-            return client.api_crq_quantitative_risk_studies_executive_summary_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_studies_key_metrics_retrieve":
-            return client.api_crq_quantitative_risk_studies_key_metrics_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_studies_object_retrieve":
-            return client.api_crq_quantitative_risk_studies_object_retrieve(**kwargs)
-        elif (
-            action
-            == "api_crq_quantitative_risk_studies_retrigger_all_simulations_create"
-        ):
-            return client.api_crq_quantitative_risk_studies_retrigger_all_simulations_create(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_studies_batch_action_create":
-            return client.api_crq_quantitative_risk_studies_batch_action_create(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_studies_distribution_model_retrieve":
-            return client.api_crq_quantitative_risk_studies_distribution_model_retrieve(
-                **kwargs
-            )
-        elif action == "api_crq_quantitative_risk_studies_status_retrieve":
-            return client.api_crq_quantitative_risk_studies_status_retrieve(**kwargs)
+        for _dispatch in _CRQ_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
