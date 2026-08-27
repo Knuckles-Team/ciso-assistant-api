@@ -8,6 +8,556 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_compliance_1(action, kwargs, client):
+    # api_applied_controls_list .. api_applied_controls_object_retrieve (9 actions)
+    if action == "api_applied_controls_list":
+        return client.api_applied_controls_list(**kwargs)
+    elif action == "api_applied_controls_create":
+        return client.api_applied_controls_create(**kwargs)
+    elif action == "api_applied_controls_retrieve":
+        return client.api_applied_controls_retrieve(**kwargs)
+    elif action == "api_applied_controls_update":
+        return client.api_applied_controls_update(**kwargs)
+    elif action == "api_applied_controls_partial_update":
+        return client.api_applied_controls_partial_update(**kwargs)
+    elif action == "api_applied_controls_destroy":
+        return client.api_applied_controls_destroy(**kwargs)
+    elif action == "api_applied_controls_cascade_info_retrieve":
+        return client.api_applied_controls_cascade_info_retrieve(**kwargs)
+    elif action == "api_applied_controls_duplicate_create":
+        return client.api_applied_controls_duplicate_create(**kwargs)
+    elif action == "api_applied_controls_object_retrieve":
+        return client.api_applied_controls_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_2(action, kwargs, client):
+    # api_applied_controls_sync_to_reference_control_create .. api_applied_controls_export_csv_retrieve (9 actions)
+    if action == "api_applied_controls_sync_to_reference_control_create":
+        return client.api_applied_controls_sync_to_reference_control_create(**kwargs)
+    elif action == "api_applied_controls_analytics_retrieve":
+        return client.api_applied_controls_analytics_retrieve(**kwargs)
+    elif action == "api_applied_controls_autocomplete_retrieve":
+        return client.api_applied_controls_autocomplete_retrieve(**kwargs)
+    elif action == "api_applied_controls_batch_action_create":
+        return client.api_applied_controls_batch_action_create(**kwargs)
+    elif action == "api_applied_controls_category_retrieve":
+        return client.api_applied_controls_category_retrieve(**kwargs)
+    elif action == "api_applied_controls_control_impact_retrieve":
+        return client.api_applied_controls_control_impact_retrieve(**kwargs)
+    elif action == "api_applied_controls_csf_function_retrieve":
+        return client.api_applied_controls_csf_function_retrieve(**kwargs)
+    elif action == "api_applied_controls_effort_retrieve":
+        return client.api_applied_controls_effort_retrieve(**kwargs)
+    elif action == "api_applied_controls_export_csv_retrieve":
+        return client.api_applied_controls_export_csv_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_3(action, kwargs, client):
+    # api_applied_controls_export_xlsx_retrieve .. api_applied_controls_merge_create (9 actions)
+    if action == "api_applied_controls_export_xlsx_retrieve":
+        return client.api_applied_controls_export_xlsx_retrieve(**kwargs)
+    elif action == "api_applied_controls_get_controls_info_retrieve":
+        return client.api_applied_controls_get_controls_info_retrieve(**kwargs)
+    elif action == "api_applied_controls_get_gantt_data_retrieve":
+        return client.api_applied_controls_get_gantt_data_retrieve(**kwargs)
+    elif action == "api_applied_controls_get_timeline_info_retrieve":
+        return client.api_applied_controls_get_timeline_info_retrieve(**kwargs)
+    elif action == "api_applied_controls_ids_retrieve":
+        return client.api_applied_controls_ids_retrieve(**kwargs)
+    elif action == "api_applied_controls_impact_effort_retrieve":
+        return client.api_applied_controls_impact_effort_retrieve(**kwargs)
+    elif action == "api_applied_controls_impact_graph_retrieve":
+        return client.api_applied_controls_impact_graph_retrieve(**kwargs)
+    elif action == "api_applied_controls_linked_models_retrieve":
+        return client.api_applied_controls_linked_models_retrieve(**kwargs)
+    elif action == "api_applied_controls_merge_create":
+        return client.api_applied_controls_merge_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_4(action, kwargs, client):
+    # api_applied_controls_mss_xlsx_retrieve .. api_applied_controls_todo_retrieve (9 actions)
+    if action == "api_applied_controls_mss_xlsx_retrieve":
+        return client.api_applied_controls_mss_xlsx_retrieve(**kwargs)
+    elif action == "api_applied_controls_owner_retrieve":
+        return client.api_applied_controls_owner_retrieve(**kwargs)
+    elif action == "api_applied_controls_per_status_retrieve":
+        return client.api_applied_controls_per_status_retrieve(**kwargs)
+    elif action == "api_applied_controls_priority_retrieve":
+        return client.api_applied_controls_priority_retrieve(**kwargs)
+    elif action == "api_applied_controls_priority_chart_data_retrieve":
+        return client.api_applied_controls_priority_chart_data_retrieve(**kwargs)
+    elif action == "api_applied_controls_status_retrieve":
+        return client.api_applied_controls_status_retrieve(**kwargs)
+    elif action == "api_applied_controls_sunburst_data_retrieve":
+        return client.api_applied_controls_sunburst_data_retrieve(**kwargs)
+    elif action == "api_applied_controls_to_review_retrieve":
+        return client.api_applied_controls_to_review_retrieve(**kwargs)
+    elif action == "api_applied_controls_todo_retrieve":
+        return client.api_applied_controls_todo_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_5(action, kwargs, client):
+    # api_applied_controls_updatables_retrieve .. api_compliance_assessments_action_plan_budget_overview_list (9 actions)
+    if action == "api_applied_controls_updatables_retrieve":
+        return client.api_applied_controls_updatables_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_list":
+        return client.api_compliance_assessments_list(**kwargs)
+    elif action == "api_compliance_assessments_create":
+        return client.api_compliance_assessments_create(**kwargs)
+    elif action == "api_compliance_assessments_retrieve":
+        return client.api_compliance_assessments_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_update":
+        return client.api_compliance_assessments_update(**kwargs)
+    elif action == "api_compliance_assessments_partial_update":
+        return client.api_compliance_assessments_partial_update(**kwargs)
+    elif action == "api_compliance_assessments_destroy":
+        return client.api_compliance_assessments_destroy(**kwargs)
+    elif action == "api_compliance_assessments_action_plan_list":
+        return client.api_compliance_assessments_action_plan_list(**kwargs)
+    elif action == "api_compliance_assessments_action_plan_budget_overview_list":
+        return client.api_compliance_assessments_action_plan_budget_overview_list(
+            **kwargs
+        )
+    return _UNHANDLED
+
+
+def _dispatch_compliance_6(action, kwargs, client):
+    # api_compliance_assessments_action_plan_csv_retrieve .. api_compliance_assessments_compliance_timeline_retrieve (9 actions)
+    if action == "api_compliance_assessments_action_plan_csv_retrieve":
+        return client.api_compliance_assessments_action_plan_csv_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_action_plan_pdf_retrieve":
+        return client.api_compliance_assessments_action_plan_pdf_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_action_plan_xlsx_retrieve":
+        return client.api_compliance_assessments_action_plan_xlsx_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_cascade_info_retrieve":
+        return client.api_compliance_assessments_cascade_info_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_combined_tree_retrieve":
+        return client.api_compliance_assessments_combined_tree_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_comparable_audits_retrieve":
+        return client.api_compliance_assessments_comparable_audits_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_compare_retrieve":
+        return client.api_compliance_assessments_compare_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_compliance_assessment_csv_retrieve":
+        return client.api_compliance_assessments_compliance_assessment_csv_retrieve(
+            **kwargs
+        )
+    elif action == "api_compliance_assessments_compliance_timeline_retrieve":
+        return client.api_compliance_assessments_compliance_timeline_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_7(action, kwargs, client):
+    # api_compliance_assessments_controls_coverage_retrieve .. api_compliance_assessments_global_score_retrieve (9 actions)
+    if action == "api_compliance_assessments_controls_coverage_retrieve":
+        return client.api_compliance_assessments_controls_coverage_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_cyfun_xlsx_retrieve":
+        return client.api_compliance_assessments_cyfun_xlsx_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_donut_data_retrieve":
+        return client.api_compliance_assessments_donut_data_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_evidence_coverage_retrieve":
+        return client.api_compliance_assessments_evidence_coverage_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_evidences_list_list":
+        return client.api_compliance_assessments_evidences_list_list(**kwargs)
+    elif action == "api_compliance_assessments_exceptions_summary_retrieve":
+        return client.api_compliance_assessments_exceptions_summary_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_export_retrieve":
+        return client.api_compliance_assessments_export_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_frameworks_retrieve":
+        return client.api_compliance_assessments_frameworks_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_global_score_retrieve":
+        return client.api_compliance_assessments_global_score_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_8(action, kwargs, client):
+    # api_compliance_assessments_implementation_groups_breakdown_retrieve .. api_compliance_assessments_requirements_list_retrieve (9 actions)
+    if action == "api_compliance_assessments_implementation_groups_breakdown_retrieve":
+        return (
+            client.api_compliance_assessments_implementation_groups_breakdown_retrieve(
+                **kwargs
+            )
+        )
+    elif action == "api_compliance_assessments_is_auditee_retrieve":
+        return client.api_compliance_assessments_is_auditee_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_mailing_create":
+        return client.api_compliance_assessments_mailing_create(**kwargs)
+    elif action == "api_compliance_assessments_map_from_create":
+        return client.api_compliance_assessments_map_from_create(**kwargs)
+    elif action == "api_compliance_assessments_map_from_preview_retrieve":
+        return client.api_compliance_assessments_map_from_preview_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_object_retrieve":
+        return client.api_compliance_assessments_object_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_progress_ts_retrieve":
+        return client.api_compliance_assessments_progress_ts_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_quality_check_retrieve_2":
+        return client.api_compliance_assessments_quality_check_retrieve_2(**kwargs)
+    elif action == "api_compliance_assessments_requirements_list_retrieve":
+        return client.api_compliance_assessments_requirements_list_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_9(action, kwargs, client):
+    # api_compliance_assessments_section_compliance_retrieve .. api_compliance_assessments_update_requirement_create (9 actions)
+    if action == "api_compliance_assessments_section_compliance_retrieve":
+        return client.api_compliance_assessments_section_compliance_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_soa_retrieve":
+        return client.api_compliance_assessments_soa_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_suggestions_applied_controls_retrieve":
+        return client.api_compliance_assessments_suggestions_applied_controls_retrieve(
+            **kwargs
+        )
+    elif action == "api_compliance_assessments_suggestions_applied_controls_create":
+        return client.api_compliance_assessments_suggestions_applied_controls_create(
+            **kwargs
+        )
+    elif action == "api_compliance_assessments_sync_to_actions_retrieve":
+        return client.api_compliance_assessments_sync_to_actions_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_sync_to_actions_create":
+        return client.api_compliance_assessments_sync_to_actions_create(**kwargs)
+    elif action == "api_compliance_assessments_threats_metrics_retrieve":
+        return client.api_compliance_assessments_threats_metrics_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_tree_retrieve":
+        return client.api_compliance_assessments_tree_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_update_requirement_create":
+        return client.api_compliance_assessments_update_requirement_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_10(action, kwargs, client):
+    # api_compliance_assessments_word_report_retrieve .. api_compliance_assessments_score_calculation_method_retrieve (9 actions)
+    if action == "api_compliance_assessments_word_report_retrieve":
+        return client.api_compliance_assessments_word_report_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_xlsx_retrieve":
+        return client.api_compliance_assessments_xlsx_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_analytics_retrieve":
+        return client.api_compliance_assessments_analytics_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_auditee_dashboard_retrieve":
+        return client.api_compliance_assessments_auditee_dashboard_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_batch_action_create":
+        return client.api_compliance_assessments_batch_action_create(**kwargs)
+    elif action == "api_compliance_assessments_per_status_retrieve":
+        return client.api_compliance_assessments_per_status_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_quality_check_retrieve":
+        return client.api_compliance_assessments_quality_check_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_recap_retrieve":
+        return client.api_compliance_assessments_recap_retrieve(**kwargs)
+    elif action == "api_compliance_assessments_score_calculation_method_retrieve":
+        return client.api_compliance_assessments_score_calculation_method_retrieve(
+            **kwargs
+        )
+    return _UNHANDLED
+
+
+def _dispatch_compliance_11(action, kwargs, client):
+    # api_compliance_assessments_status_retrieve .. api_policies_cascade_info_retrieve (9 actions)
+    if action == "api_compliance_assessments_status_retrieve":
+        return client.api_compliance_assessments_status_retrieve(**kwargs)
+    elif action == "api_mapping_libraries_list":
+        return client.api_mapping_libraries_list(**kwargs)
+    elif action == "api_policies_list":
+        return client.api_policies_list(**kwargs)
+    elif action == "api_policies_create":
+        return client.api_policies_create(**kwargs)
+    elif action == "api_policies_retrieve":
+        return client.api_policies_retrieve(**kwargs)
+    elif action == "api_policies_update":
+        return client.api_policies_update(**kwargs)
+    elif action == "api_policies_partial_update":
+        return client.api_policies_partial_update(**kwargs)
+    elif action == "api_policies_destroy":
+        return client.api_policies_destroy(**kwargs)
+    elif action == "api_policies_cascade_info_retrieve":
+        return client.api_policies_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_12(action, kwargs, client):
+    # api_policies_duplicate_create .. api_policies_csf_function_retrieve (9 actions)
+    if action == "api_policies_duplicate_create":
+        return client.api_policies_duplicate_create(**kwargs)
+    elif action == "api_policies_object_retrieve":
+        return client.api_policies_object_retrieve(**kwargs)
+    elif action == "api_policies_sync_to_reference_control_create":
+        return client.api_policies_sync_to_reference_control_create(**kwargs)
+    elif action == "api_policies_analytics_retrieve":
+        return client.api_policies_analytics_retrieve(**kwargs)
+    elif action == "api_policies_autocomplete_retrieve":
+        return client.api_policies_autocomplete_retrieve(**kwargs)
+    elif action == "api_policies_batch_action_create":
+        return client.api_policies_batch_action_create(**kwargs)
+    elif action == "api_policies_category_retrieve":
+        return client.api_policies_category_retrieve(**kwargs)
+    elif action == "api_policies_control_impact_retrieve":
+        return client.api_policies_control_impact_retrieve(**kwargs)
+    elif action == "api_policies_csf_function_retrieve":
+        return client.api_policies_csf_function_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_13(action, kwargs, client):
+    # api_policies_effort_retrieve .. api_policies_impact_graph_retrieve (9 actions)
+    if action == "api_policies_effort_retrieve":
+        return client.api_policies_effort_retrieve(**kwargs)
+    elif action == "api_policies_export_csv_retrieve":
+        return client.api_policies_export_csv_retrieve(**kwargs)
+    elif action == "api_policies_export_xlsx_retrieve":
+        return client.api_policies_export_xlsx_retrieve(**kwargs)
+    elif action == "api_policies_get_controls_info_retrieve":
+        return client.api_policies_get_controls_info_retrieve(**kwargs)
+    elif action == "api_policies_get_gantt_data_retrieve":
+        return client.api_policies_get_gantt_data_retrieve(**kwargs)
+    elif action == "api_policies_get_timeline_info_retrieve":
+        return client.api_policies_get_timeline_info_retrieve(**kwargs)
+    elif action == "api_policies_ids_retrieve":
+        return client.api_policies_ids_retrieve(**kwargs)
+    elif action == "api_policies_impact_effort_retrieve":
+        return client.api_policies_impact_effort_retrieve(**kwargs)
+    elif action == "api_policies_impact_graph_retrieve":
+        return client.api_policies_impact_graph_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_14(action, kwargs, client):
+    # api_policies_linked_models_retrieve .. api_policies_sunburst_data_retrieve (9 actions)
+    if action == "api_policies_linked_models_retrieve":
+        return client.api_policies_linked_models_retrieve(**kwargs)
+    elif action == "api_policies_merge_create":
+        return client.api_policies_merge_create(**kwargs)
+    elif action == "api_policies_mss_xlsx_retrieve":
+        return client.api_policies_mss_xlsx_retrieve(**kwargs)
+    elif action == "api_policies_owner_retrieve":
+        return client.api_policies_owner_retrieve(**kwargs)
+    elif action == "api_policies_per_status_retrieve":
+        return client.api_policies_per_status_retrieve(**kwargs)
+    elif action == "api_policies_priority_retrieve":
+        return client.api_policies_priority_retrieve(**kwargs)
+    elif action == "api_policies_priority_chart_data_retrieve":
+        return client.api_policies_priority_chart_data_retrieve(**kwargs)
+    elif action == "api_policies_status_retrieve":
+        return client.api_policies_status_retrieve(**kwargs)
+    elif action == "api_policies_sunburst_data_retrieve":
+        return client.api_policies_sunburst_data_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_15(action, kwargs, client):
+    # api_policies_to_review_retrieve .. api_reference_controls_destroy (9 actions)
+    if action == "api_policies_to_review_retrieve":
+        return client.api_policies_to_review_retrieve(**kwargs)
+    elif action == "api_policies_todo_retrieve":
+        return client.api_policies_todo_retrieve(**kwargs)
+    elif action == "api_policies_updatables_retrieve":
+        return client.api_policies_updatables_retrieve(**kwargs)
+    elif action == "api_reference_controls_list":
+        return client.api_reference_controls_list(**kwargs)
+    elif action == "api_reference_controls_create":
+        return client.api_reference_controls_create(**kwargs)
+    elif action == "api_reference_controls_retrieve":
+        return client.api_reference_controls_retrieve(**kwargs)
+    elif action == "api_reference_controls_update":
+        return client.api_reference_controls_update(**kwargs)
+    elif action == "api_reference_controls_partial_update":
+        return client.api_reference_controls_partial_update(**kwargs)
+    elif action == "api_reference_controls_destroy":
+        return client.api_reference_controls_destroy(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_16(action, kwargs, client):
+    # api_reference_controls_cascade_info_retrieve .. api_requirement_assessments_list (9 actions)
+    if action == "api_reference_controls_cascade_info_retrieve":
+        return client.api_reference_controls_cascade_info_retrieve(**kwargs)
+    elif action == "api_reference_controls_object_retrieve":
+        return client.api_reference_controls_object_retrieve(**kwargs)
+    elif action == "api_reference_controls_sync_applied_controls_create":
+        return client.api_reference_controls_sync_applied_controls_create(**kwargs)
+    elif action == "api_reference_controls_syncable_applied_controls_retrieve":
+        return client.api_reference_controls_syncable_applied_controls_retrieve(
+            **kwargs
+        )
+    elif action == "api_reference_controls_batch_action_create":
+        return client.api_reference_controls_batch_action_create(**kwargs)
+    elif action == "api_reference_controls_category_retrieve":
+        return client.api_reference_controls_category_retrieve(**kwargs)
+    elif action == "api_reference_controls_csf_function_retrieve":
+        return client.api_reference_controls_csf_function_retrieve(**kwargs)
+    elif action == "api_reference_controls_provider_retrieve":
+        return client.api_reference_controls_provider_retrieve(**kwargs)
+    elif action == "api_requirement_assessments_list":
+        return client.api_requirement_assessments_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_17(action, kwargs, client):
+    # api_requirement_assessments_create .. api_requirement_assessments_suggestions_applied_controls_create (9 actions)
+    if action == "api_requirement_assessments_create":
+        return client.api_requirement_assessments_create(**kwargs)
+    elif action == "api_requirement_assessments_retrieve":
+        return client.api_requirement_assessments_retrieve(**kwargs)
+    elif action == "api_requirement_assessments_update":
+        return client.api_requirement_assessments_update(**kwargs)
+    elif action == "api_requirement_assessments_partial_update":
+        return client.api_requirement_assessments_partial_update(**kwargs)
+    elif action == "api_requirement_assessments_destroy":
+        return client.api_requirement_assessments_destroy(**kwargs)
+    elif action == "api_requirement_assessments_cascade_info_retrieve":
+        return client.api_requirement_assessments_cascade_info_retrieve(**kwargs)
+    elif action == "api_requirement_assessments_object_retrieve":
+        return client.api_requirement_assessments_object_retrieve(**kwargs)
+    elif action == "api_requirement_assessments_suggestions_applied_controls_retrieve":
+        return client.api_requirement_assessments_suggestions_applied_controls_retrieve(
+            **kwargs
+        )
+    elif action == "api_requirement_assessments_suggestions_applied_controls_create":
+        return client.api_requirement_assessments_suggestions_applied_controls_create(
+            **kwargs
+        )
+    return _UNHANDLED
+
+
+def _dispatch_compliance_18(action, kwargs, client):
+    # api_requirement_assessments_batch_action_create .. api_requirement_assignments_list (9 actions)
+    if action == "api_requirement_assessments_batch_action_create":
+        return client.api_requirement_assessments_batch_action_create(**kwargs)
+    elif action == "api_requirement_assessments_extended_result_retrieve":
+        return client.api_requirement_assessments_extended_result_retrieve(**kwargs)
+    elif action == "api_requirement_assessments_per_status_retrieve":
+        return client.api_requirement_assessments_per_status_retrieve(**kwargs)
+    elif action == "api_requirement_assessments_result_retrieve":
+        return client.api_requirement_assessments_result_retrieve(**kwargs)
+    elif action == "api_requirement_assessments_status_retrieve":
+        return client.api_requirement_assessments_status_retrieve(**kwargs)
+    elif action == "api_requirement_assessments_to_review_retrieve":
+        return client.api_requirement_assessments_to_review_retrieve(**kwargs)
+    elif action == "api_requirement_assessments_todo_retrieve":
+        return client.api_requirement_assessments_todo_retrieve(**kwargs)
+    elif action == "api_requirement_assessments_updatables_retrieve":
+        return client.api_requirement_assessments_updatables_retrieve(**kwargs)
+    elif action == "api_requirement_assignments_list":
+        return client.api_requirement_assignments_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_19(action, kwargs, client):
+    # api_requirement_assignments_create .. api_requirement_assignments_set_status_create (9 actions)
+    if action == "api_requirement_assignments_create":
+        return client.api_requirement_assignments_create(**kwargs)
+    elif action == "api_requirement_assignments_retrieve":
+        return client.api_requirement_assignments_retrieve(**kwargs)
+    elif action == "api_requirement_assignments_update":
+        return client.api_requirement_assignments_update(**kwargs)
+    elif action == "api_requirement_assignments_partial_update":
+        return client.api_requirement_assignments_partial_update(**kwargs)
+    elif action == "api_requirement_assignments_destroy":
+        return client.api_requirement_assignments_destroy(**kwargs)
+    elif action == "api_requirement_assignments_cascade_info_retrieve":
+        return client.api_requirement_assignments_cascade_info_retrieve(**kwargs)
+    elif action == "api_requirement_assignments_object_retrieve":
+        return client.api_requirement_assignments_object_retrieve(**kwargs)
+    elif action == "api_requirement_assignments_requirements_list_retrieve":
+        return client.api_requirement_assignments_requirements_list_retrieve(**kwargs)
+    elif action == "api_requirement_assignments_set_status_create":
+        return client.api_requirement_assignments_set_status_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_20(action, kwargs, client):
+    # api_requirement_assignments_batch_action_create .. api_requirement_mapping_sets_graph_data_retrieve_2 (9 actions)
+    if action == "api_requirement_assignments_batch_action_create":
+        return client.api_requirement_assignments_batch_action_create(**kwargs)
+    elif action == "api_requirement_mapping_sets_list":
+        return client.api_requirement_mapping_sets_list(**kwargs)
+    elif action == "api_requirement_mapping_sets_create":
+        return client.api_requirement_mapping_sets_create(**kwargs)
+    elif action == "api_requirement_mapping_sets_retrieve":
+        return client.api_requirement_mapping_sets_retrieve(**kwargs)
+    elif action == "api_requirement_mapping_sets_update":
+        return client.api_requirement_mapping_sets_update(**kwargs)
+    elif action == "api_requirement_mapping_sets_partial_update":
+        return client.api_requirement_mapping_sets_partial_update(**kwargs)
+    elif action == "api_requirement_mapping_sets_destroy":
+        return client.api_requirement_mapping_sets_destroy(**kwargs)
+    elif action == "api_requirement_mapping_sets_cascade_info_retrieve":
+        return client.api_requirement_mapping_sets_cascade_info_retrieve(**kwargs)
+    elif action == "api_requirement_mapping_sets_graph_data_retrieve_2":
+        return client.api_requirement_mapping_sets_graph_data_retrieve_2(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_21(action, kwargs, client):
+    # api_requirement_mapping_sets_object_retrieve .. api_requirement_nodes_partial_update (9 actions)
+    if action == "api_requirement_mapping_sets_object_retrieve":
+        return client.api_requirement_mapping_sets_object_retrieve(**kwargs)
+    elif action == "api_requirement_mapping_sets_batch_action_create":
+        return client.api_requirement_mapping_sets_batch_action_create(**kwargs)
+    elif action == "api_requirement_mapping_sets_graph_data_retrieve":
+        return client.api_requirement_mapping_sets_graph_data_retrieve(**kwargs)
+    elif action == "api_requirement_mapping_sets_provider_retrieve":
+        return client.api_requirement_mapping_sets_provider_retrieve(**kwargs)
+    elif action == "api_requirement_nodes_list":
+        return client.api_requirement_nodes_list(**kwargs)
+    elif action == "api_requirement_nodes_create":
+        return client.api_requirement_nodes_create(**kwargs)
+    elif action == "api_requirement_nodes_retrieve":
+        return client.api_requirement_nodes_retrieve(**kwargs)
+    elif action == "api_requirement_nodes_update":
+        return client.api_requirement_nodes_update(**kwargs)
+    elif action == "api_requirement_nodes_partial_update":
+        return client.api_requirement_nodes_partial_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_compliance_22(action, kwargs, client):
+    # api_requirement_nodes_destroy .. api_requirement_nodes_batch_action_create (7 actions)
+    if action == "api_requirement_nodes_destroy":
+        return client.api_requirement_nodes_destroy(**kwargs)
+    elif action == "api_requirement_nodes_cascade_info_retrieve":
+        return client.api_requirement_nodes_cascade_info_retrieve(**kwargs)
+    elif action == "api_requirement_nodes_inspect_requirement_retrieve":
+        return client.api_requirement_nodes_inspect_requirement_retrieve(**kwargs)
+    elif action == "api_requirement_nodes_object_retrieve":
+        return client.api_requirement_nodes_object_retrieve(**kwargs)
+    elif action == "api_requirement_nodes_serve_image_retrieve":
+        return client.api_requirement_nodes_serve_image_retrieve(**kwargs)
+    elif action == "api_requirement_nodes_upload_image_create":
+        return client.api_requirement_nodes_upload_image_create(**kwargs)
+    elif action == "api_requirement_nodes_batch_action_create":
+        return client.api_requirement_nodes_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+_COMPLIANCE_DISPATCHERS = (
+    _dispatch_compliance_1,
+    _dispatch_compliance_2,
+    _dispatch_compliance_3,
+    _dispatch_compliance_4,
+    _dispatch_compliance_5,
+    _dispatch_compliance_6,
+    _dispatch_compliance_7,
+    _dispatch_compliance_8,
+    _dispatch_compliance_9,
+    _dispatch_compliance_10,
+    _dispatch_compliance_11,
+    _dispatch_compliance_12,
+    _dispatch_compliance_13,
+    _dispatch_compliance_14,
+    _dispatch_compliance_15,
+    _dispatch_compliance_16,
+    _dispatch_compliance_17,
+    _dispatch_compliance_18,
+    _dispatch_compliance_19,
+    _dispatch_compliance_20,
+    _dispatch_compliance_21,
+    _dispatch_compliance_22,
+)
+
 
 def register_compliance_tools(mcp: FastMCP):
     @mcp.tool(tags={"compliance"})
@@ -37,450 +587,8 @@ def register_compliance_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_applied_controls_list":
-            return client.api_applied_controls_list(**kwargs)
-        elif action == "api_applied_controls_create":
-            return client.api_applied_controls_create(**kwargs)
-        elif action == "api_applied_controls_retrieve":
-            return client.api_applied_controls_retrieve(**kwargs)
-        elif action == "api_applied_controls_update":
-            return client.api_applied_controls_update(**kwargs)
-        elif action == "api_applied_controls_partial_update":
-            return client.api_applied_controls_partial_update(**kwargs)
-        elif action == "api_applied_controls_destroy":
-            return client.api_applied_controls_destroy(**kwargs)
-        elif action == "api_applied_controls_cascade_info_retrieve":
-            return client.api_applied_controls_cascade_info_retrieve(**kwargs)
-        elif action == "api_applied_controls_duplicate_create":
-            return client.api_applied_controls_duplicate_create(**kwargs)
-        elif action == "api_applied_controls_object_retrieve":
-            return client.api_applied_controls_object_retrieve(**kwargs)
-        elif action == "api_applied_controls_sync_to_reference_control_create":
-            return client.api_applied_controls_sync_to_reference_control_create(
-                **kwargs
-            )
-        elif action == "api_applied_controls_analytics_retrieve":
-            return client.api_applied_controls_analytics_retrieve(**kwargs)
-        elif action == "api_applied_controls_autocomplete_retrieve":
-            return client.api_applied_controls_autocomplete_retrieve(**kwargs)
-        elif action == "api_applied_controls_batch_action_create":
-            return client.api_applied_controls_batch_action_create(**kwargs)
-        elif action == "api_applied_controls_category_retrieve":
-            return client.api_applied_controls_category_retrieve(**kwargs)
-        elif action == "api_applied_controls_control_impact_retrieve":
-            return client.api_applied_controls_control_impact_retrieve(**kwargs)
-        elif action == "api_applied_controls_csf_function_retrieve":
-            return client.api_applied_controls_csf_function_retrieve(**kwargs)
-        elif action == "api_applied_controls_effort_retrieve":
-            return client.api_applied_controls_effort_retrieve(**kwargs)
-        elif action == "api_applied_controls_export_csv_retrieve":
-            return client.api_applied_controls_export_csv_retrieve(**kwargs)
-        elif action == "api_applied_controls_export_xlsx_retrieve":
-            return client.api_applied_controls_export_xlsx_retrieve(**kwargs)
-        elif action == "api_applied_controls_get_controls_info_retrieve":
-            return client.api_applied_controls_get_controls_info_retrieve(**kwargs)
-        elif action == "api_applied_controls_get_gantt_data_retrieve":
-            return client.api_applied_controls_get_gantt_data_retrieve(**kwargs)
-        elif action == "api_applied_controls_get_timeline_info_retrieve":
-            return client.api_applied_controls_get_timeline_info_retrieve(**kwargs)
-        elif action == "api_applied_controls_ids_retrieve":
-            return client.api_applied_controls_ids_retrieve(**kwargs)
-        elif action == "api_applied_controls_impact_effort_retrieve":
-            return client.api_applied_controls_impact_effort_retrieve(**kwargs)
-        elif action == "api_applied_controls_impact_graph_retrieve":
-            return client.api_applied_controls_impact_graph_retrieve(**kwargs)
-        elif action == "api_applied_controls_linked_models_retrieve":
-            return client.api_applied_controls_linked_models_retrieve(**kwargs)
-        elif action == "api_applied_controls_merge_create":
-            return client.api_applied_controls_merge_create(**kwargs)
-        elif action == "api_applied_controls_mss_xlsx_retrieve":
-            return client.api_applied_controls_mss_xlsx_retrieve(**kwargs)
-        elif action == "api_applied_controls_owner_retrieve":
-            return client.api_applied_controls_owner_retrieve(**kwargs)
-        elif action == "api_applied_controls_per_status_retrieve":
-            return client.api_applied_controls_per_status_retrieve(**kwargs)
-        elif action == "api_applied_controls_priority_retrieve":
-            return client.api_applied_controls_priority_retrieve(**kwargs)
-        elif action == "api_applied_controls_priority_chart_data_retrieve":
-            return client.api_applied_controls_priority_chart_data_retrieve(**kwargs)
-        elif action == "api_applied_controls_status_retrieve":
-            return client.api_applied_controls_status_retrieve(**kwargs)
-        elif action == "api_applied_controls_sunburst_data_retrieve":
-            return client.api_applied_controls_sunburst_data_retrieve(**kwargs)
-        elif action == "api_applied_controls_to_review_retrieve":
-            return client.api_applied_controls_to_review_retrieve(**kwargs)
-        elif action == "api_applied_controls_todo_retrieve":
-            return client.api_applied_controls_todo_retrieve(**kwargs)
-        elif action == "api_applied_controls_updatables_retrieve":
-            return client.api_applied_controls_updatables_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_list":
-            return client.api_compliance_assessments_list(**kwargs)
-        elif action == "api_compliance_assessments_create":
-            return client.api_compliance_assessments_create(**kwargs)
-        elif action == "api_compliance_assessments_retrieve":
-            return client.api_compliance_assessments_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_update":
-            return client.api_compliance_assessments_update(**kwargs)
-        elif action == "api_compliance_assessments_partial_update":
-            return client.api_compliance_assessments_partial_update(**kwargs)
-        elif action == "api_compliance_assessments_destroy":
-            return client.api_compliance_assessments_destroy(**kwargs)
-        elif action == "api_compliance_assessments_action_plan_list":
-            return client.api_compliance_assessments_action_plan_list(**kwargs)
-        elif action == "api_compliance_assessments_action_plan_budget_overview_list":
-            return client.api_compliance_assessments_action_plan_budget_overview_list(
-                **kwargs
-            )
-        elif action == "api_compliance_assessments_action_plan_csv_retrieve":
-            return client.api_compliance_assessments_action_plan_csv_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_action_plan_pdf_retrieve":
-            return client.api_compliance_assessments_action_plan_pdf_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_action_plan_xlsx_retrieve":
-            return client.api_compliance_assessments_action_plan_xlsx_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_cascade_info_retrieve":
-            return client.api_compliance_assessments_cascade_info_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_combined_tree_retrieve":
-            return client.api_compliance_assessments_combined_tree_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_comparable_audits_retrieve":
-            return client.api_compliance_assessments_comparable_audits_retrieve(
-                **kwargs
-            )
-        elif action == "api_compliance_assessments_compare_retrieve":
-            return client.api_compliance_assessments_compare_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_compliance_assessment_csv_retrieve":
-            return client.api_compliance_assessments_compliance_assessment_csv_retrieve(
-                **kwargs
-            )
-        elif action == "api_compliance_assessments_compliance_timeline_retrieve":
-            return client.api_compliance_assessments_compliance_timeline_retrieve(
-                **kwargs
-            )
-        elif action == "api_compliance_assessments_controls_coverage_retrieve":
-            return client.api_compliance_assessments_controls_coverage_retrieve(
-                **kwargs
-            )
-        elif action == "api_compliance_assessments_cyfun_xlsx_retrieve":
-            return client.api_compliance_assessments_cyfun_xlsx_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_donut_data_retrieve":
-            return client.api_compliance_assessments_donut_data_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_evidence_coverage_retrieve":
-            return client.api_compliance_assessments_evidence_coverage_retrieve(
-                **kwargs
-            )
-        elif action == "api_compliance_assessments_evidences_list_list":
-            return client.api_compliance_assessments_evidences_list_list(**kwargs)
-        elif action == "api_compliance_assessments_exceptions_summary_retrieve":
-            return client.api_compliance_assessments_exceptions_summary_retrieve(
-                **kwargs
-            )
-        elif action == "api_compliance_assessments_export_retrieve":
-            return client.api_compliance_assessments_export_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_frameworks_retrieve":
-            return client.api_compliance_assessments_frameworks_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_global_score_retrieve":
-            return client.api_compliance_assessments_global_score_retrieve(**kwargs)
-        elif (
-            action
-            == "api_compliance_assessments_implementation_groups_breakdown_retrieve"
-        ):
-            return client.api_compliance_assessments_implementation_groups_breakdown_retrieve(
-                **kwargs
-            )
-        elif action == "api_compliance_assessments_is_auditee_retrieve":
-            return client.api_compliance_assessments_is_auditee_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_mailing_create":
-            return client.api_compliance_assessments_mailing_create(**kwargs)
-        elif action == "api_compliance_assessments_map_from_create":
-            return client.api_compliance_assessments_map_from_create(**kwargs)
-        elif action == "api_compliance_assessments_map_from_preview_retrieve":
-            return client.api_compliance_assessments_map_from_preview_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_object_retrieve":
-            return client.api_compliance_assessments_object_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_progress_ts_retrieve":
-            return client.api_compliance_assessments_progress_ts_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_quality_check_retrieve_2":
-            return client.api_compliance_assessments_quality_check_retrieve_2(**kwargs)
-        elif action == "api_compliance_assessments_requirements_list_retrieve":
-            return client.api_compliance_assessments_requirements_list_retrieve(
-                **kwargs
-            )
-        elif action == "api_compliance_assessments_section_compliance_retrieve":
-            return client.api_compliance_assessments_section_compliance_retrieve(
-                **kwargs
-            )
-        elif action == "api_compliance_assessments_soa_retrieve":
-            return client.api_compliance_assessments_soa_retrieve(**kwargs)
-        elif (
-            action == "api_compliance_assessments_suggestions_applied_controls_retrieve"
-        ):
-            return (
-                client.api_compliance_assessments_suggestions_applied_controls_retrieve(
-                    **kwargs
-                )
-            )
-        elif action == "api_compliance_assessments_suggestions_applied_controls_create":
-            return (
-                client.api_compliance_assessments_suggestions_applied_controls_create(
-                    **kwargs
-                )
-            )
-        elif action == "api_compliance_assessments_sync_to_actions_retrieve":
-            return client.api_compliance_assessments_sync_to_actions_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_sync_to_actions_create":
-            return client.api_compliance_assessments_sync_to_actions_create(**kwargs)
-        elif action == "api_compliance_assessments_threats_metrics_retrieve":
-            return client.api_compliance_assessments_threats_metrics_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_tree_retrieve":
-            return client.api_compliance_assessments_tree_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_update_requirement_create":
-            return client.api_compliance_assessments_update_requirement_create(**kwargs)
-        elif action == "api_compliance_assessments_word_report_retrieve":
-            return client.api_compliance_assessments_word_report_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_xlsx_retrieve":
-            return client.api_compliance_assessments_xlsx_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_analytics_retrieve":
-            return client.api_compliance_assessments_analytics_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_auditee_dashboard_retrieve":
-            return client.api_compliance_assessments_auditee_dashboard_retrieve(
-                **kwargs
-            )
-        elif action == "api_compliance_assessments_batch_action_create":
-            return client.api_compliance_assessments_batch_action_create(**kwargs)
-        elif action == "api_compliance_assessments_per_status_retrieve":
-            return client.api_compliance_assessments_per_status_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_quality_check_retrieve":
-            return client.api_compliance_assessments_quality_check_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_recap_retrieve":
-            return client.api_compliance_assessments_recap_retrieve(**kwargs)
-        elif action == "api_compliance_assessments_score_calculation_method_retrieve":
-            return client.api_compliance_assessments_score_calculation_method_retrieve(
-                **kwargs
-            )
-        elif action == "api_compliance_assessments_status_retrieve":
-            return client.api_compliance_assessments_status_retrieve(**kwargs)
-        elif action == "api_mapping_libraries_list":
-            return client.api_mapping_libraries_list(**kwargs)
-        elif action == "api_policies_list":
-            return client.api_policies_list(**kwargs)
-        elif action == "api_policies_create":
-            return client.api_policies_create(**kwargs)
-        elif action == "api_policies_retrieve":
-            return client.api_policies_retrieve(**kwargs)
-        elif action == "api_policies_update":
-            return client.api_policies_update(**kwargs)
-        elif action == "api_policies_partial_update":
-            return client.api_policies_partial_update(**kwargs)
-        elif action == "api_policies_destroy":
-            return client.api_policies_destroy(**kwargs)
-        elif action == "api_policies_cascade_info_retrieve":
-            return client.api_policies_cascade_info_retrieve(**kwargs)
-        elif action == "api_policies_duplicate_create":
-            return client.api_policies_duplicate_create(**kwargs)
-        elif action == "api_policies_object_retrieve":
-            return client.api_policies_object_retrieve(**kwargs)
-        elif action == "api_policies_sync_to_reference_control_create":
-            return client.api_policies_sync_to_reference_control_create(**kwargs)
-        elif action == "api_policies_analytics_retrieve":
-            return client.api_policies_analytics_retrieve(**kwargs)
-        elif action == "api_policies_autocomplete_retrieve":
-            return client.api_policies_autocomplete_retrieve(**kwargs)
-        elif action == "api_policies_batch_action_create":
-            return client.api_policies_batch_action_create(**kwargs)
-        elif action == "api_policies_category_retrieve":
-            return client.api_policies_category_retrieve(**kwargs)
-        elif action == "api_policies_control_impact_retrieve":
-            return client.api_policies_control_impact_retrieve(**kwargs)
-        elif action == "api_policies_csf_function_retrieve":
-            return client.api_policies_csf_function_retrieve(**kwargs)
-        elif action == "api_policies_effort_retrieve":
-            return client.api_policies_effort_retrieve(**kwargs)
-        elif action == "api_policies_export_csv_retrieve":
-            return client.api_policies_export_csv_retrieve(**kwargs)
-        elif action == "api_policies_export_xlsx_retrieve":
-            return client.api_policies_export_xlsx_retrieve(**kwargs)
-        elif action == "api_policies_get_controls_info_retrieve":
-            return client.api_policies_get_controls_info_retrieve(**kwargs)
-        elif action == "api_policies_get_gantt_data_retrieve":
-            return client.api_policies_get_gantt_data_retrieve(**kwargs)
-        elif action == "api_policies_get_timeline_info_retrieve":
-            return client.api_policies_get_timeline_info_retrieve(**kwargs)
-        elif action == "api_policies_ids_retrieve":
-            return client.api_policies_ids_retrieve(**kwargs)
-        elif action == "api_policies_impact_effort_retrieve":
-            return client.api_policies_impact_effort_retrieve(**kwargs)
-        elif action == "api_policies_impact_graph_retrieve":
-            return client.api_policies_impact_graph_retrieve(**kwargs)
-        elif action == "api_policies_linked_models_retrieve":
-            return client.api_policies_linked_models_retrieve(**kwargs)
-        elif action == "api_policies_merge_create":
-            return client.api_policies_merge_create(**kwargs)
-        elif action == "api_policies_mss_xlsx_retrieve":
-            return client.api_policies_mss_xlsx_retrieve(**kwargs)
-        elif action == "api_policies_owner_retrieve":
-            return client.api_policies_owner_retrieve(**kwargs)
-        elif action == "api_policies_per_status_retrieve":
-            return client.api_policies_per_status_retrieve(**kwargs)
-        elif action == "api_policies_priority_retrieve":
-            return client.api_policies_priority_retrieve(**kwargs)
-        elif action == "api_policies_priority_chart_data_retrieve":
-            return client.api_policies_priority_chart_data_retrieve(**kwargs)
-        elif action == "api_policies_status_retrieve":
-            return client.api_policies_status_retrieve(**kwargs)
-        elif action == "api_policies_sunburst_data_retrieve":
-            return client.api_policies_sunburst_data_retrieve(**kwargs)
-        elif action == "api_policies_to_review_retrieve":
-            return client.api_policies_to_review_retrieve(**kwargs)
-        elif action == "api_policies_todo_retrieve":
-            return client.api_policies_todo_retrieve(**kwargs)
-        elif action == "api_policies_updatables_retrieve":
-            return client.api_policies_updatables_retrieve(**kwargs)
-        elif action == "api_reference_controls_list":
-            return client.api_reference_controls_list(**kwargs)
-        elif action == "api_reference_controls_create":
-            return client.api_reference_controls_create(**kwargs)
-        elif action == "api_reference_controls_retrieve":
-            return client.api_reference_controls_retrieve(**kwargs)
-        elif action == "api_reference_controls_update":
-            return client.api_reference_controls_update(**kwargs)
-        elif action == "api_reference_controls_partial_update":
-            return client.api_reference_controls_partial_update(**kwargs)
-        elif action == "api_reference_controls_destroy":
-            return client.api_reference_controls_destroy(**kwargs)
-        elif action == "api_reference_controls_cascade_info_retrieve":
-            return client.api_reference_controls_cascade_info_retrieve(**kwargs)
-        elif action == "api_reference_controls_object_retrieve":
-            return client.api_reference_controls_object_retrieve(**kwargs)
-        elif action == "api_reference_controls_sync_applied_controls_create":
-            return client.api_reference_controls_sync_applied_controls_create(**kwargs)
-        elif action == "api_reference_controls_syncable_applied_controls_retrieve":
-            return client.api_reference_controls_syncable_applied_controls_retrieve(
-                **kwargs
-            )
-        elif action == "api_reference_controls_batch_action_create":
-            return client.api_reference_controls_batch_action_create(**kwargs)
-        elif action == "api_reference_controls_category_retrieve":
-            return client.api_reference_controls_category_retrieve(**kwargs)
-        elif action == "api_reference_controls_csf_function_retrieve":
-            return client.api_reference_controls_csf_function_retrieve(**kwargs)
-        elif action == "api_reference_controls_provider_retrieve":
-            return client.api_reference_controls_provider_retrieve(**kwargs)
-        elif action == "api_requirement_assessments_list":
-            return client.api_requirement_assessments_list(**kwargs)
-        elif action == "api_requirement_assessments_create":
-            return client.api_requirement_assessments_create(**kwargs)
-        elif action == "api_requirement_assessments_retrieve":
-            return client.api_requirement_assessments_retrieve(**kwargs)
-        elif action == "api_requirement_assessments_update":
-            return client.api_requirement_assessments_update(**kwargs)
-        elif action == "api_requirement_assessments_partial_update":
-            return client.api_requirement_assessments_partial_update(**kwargs)
-        elif action == "api_requirement_assessments_destroy":
-            return client.api_requirement_assessments_destroy(**kwargs)
-        elif action == "api_requirement_assessments_cascade_info_retrieve":
-            return client.api_requirement_assessments_cascade_info_retrieve(**kwargs)
-        elif action == "api_requirement_assessments_object_retrieve":
-            return client.api_requirement_assessments_object_retrieve(**kwargs)
-        elif (
-            action
-            == "api_requirement_assessments_suggestions_applied_controls_retrieve"
-        ):
-            return client.api_requirement_assessments_suggestions_applied_controls_retrieve(
-                **kwargs
-            )
-        elif (
-            action == "api_requirement_assessments_suggestions_applied_controls_create"
-        ):
-            return (
-                client.api_requirement_assessments_suggestions_applied_controls_create(
-                    **kwargs
-                )
-            )
-        elif action == "api_requirement_assessments_batch_action_create":
-            return client.api_requirement_assessments_batch_action_create(**kwargs)
-        elif action == "api_requirement_assessments_extended_result_retrieve":
-            return client.api_requirement_assessments_extended_result_retrieve(**kwargs)
-        elif action == "api_requirement_assessments_per_status_retrieve":
-            return client.api_requirement_assessments_per_status_retrieve(**kwargs)
-        elif action == "api_requirement_assessments_result_retrieve":
-            return client.api_requirement_assessments_result_retrieve(**kwargs)
-        elif action == "api_requirement_assessments_status_retrieve":
-            return client.api_requirement_assessments_status_retrieve(**kwargs)
-        elif action == "api_requirement_assessments_to_review_retrieve":
-            return client.api_requirement_assessments_to_review_retrieve(**kwargs)
-        elif action == "api_requirement_assessments_todo_retrieve":
-            return client.api_requirement_assessments_todo_retrieve(**kwargs)
-        elif action == "api_requirement_assessments_updatables_retrieve":
-            return client.api_requirement_assessments_updatables_retrieve(**kwargs)
-        elif action == "api_requirement_assignments_list":
-            return client.api_requirement_assignments_list(**kwargs)
-        elif action == "api_requirement_assignments_create":
-            return client.api_requirement_assignments_create(**kwargs)
-        elif action == "api_requirement_assignments_retrieve":
-            return client.api_requirement_assignments_retrieve(**kwargs)
-        elif action == "api_requirement_assignments_update":
-            return client.api_requirement_assignments_update(**kwargs)
-        elif action == "api_requirement_assignments_partial_update":
-            return client.api_requirement_assignments_partial_update(**kwargs)
-        elif action == "api_requirement_assignments_destroy":
-            return client.api_requirement_assignments_destroy(**kwargs)
-        elif action == "api_requirement_assignments_cascade_info_retrieve":
-            return client.api_requirement_assignments_cascade_info_retrieve(**kwargs)
-        elif action == "api_requirement_assignments_object_retrieve":
-            return client.api_requirement_assignments_object_retrieve(**kwargs)
-        elif action == "api_requirement_assignments_requirements_list_retrieve":
-            return client.api_requirement_assignments_requirements_list_retrieve(
-                **kwargs
-            )
-        elif action == "api_requirement_assignments_set_status_create":
-            return client.api_requirement_assignments_set_status_create(**kwargs)
-        elif action == "api_requirement_assignments_batch_action_create":
-            return client.api_requirement_assignments_batch_action_create(**kwargs)
-        elif action == "api_requirement_mapping_sets_list":
-            return client.api_requirement_mapping_sets_list(**kwargs)
-        elif action == "api_requirement_mapping_sets_create":
-            return client.api_requirement_mapping_sets_create(**kwargs)
-        elif action == "api_requirement_mapping_sets_retrieve":
-            return client.api_requirement_mapping_sets_retrieve(**kwargs)
-        elif action == "api_requirement_mapping_sets_update":
-            return client.api_requirement_mapping_sets_update(**kwargs)
-        elif action == "api_requirement_mapping_sets_partial_update":
-            return client.api_requirement_mapping_sets_partial_update(**kwargs)
-        elif action == "api_requirement_mapping_sets_destroy":
-            return client.api_requirement_mapping_sets_destroy(**kwargs)
-        elif action == "api_requirement_mapping_sets_cascade_info_retrieve":
-            return client.api_requirement_mapping_sets_cascade_info_retrieve(**kwargs)
-        elif action == "api_requirement_mapping_sets_graph_data_retrieve_2":
-            return client.api_requirement_mapping_sets_graph_data_retrieve_2(**kwargs)
-        elif action == "api_requirement_mapping_sets_object_retrieve":
-            return client.api_requirement_mapping_sets_object_retrieve(**kwargs)
-        elif action == "api_requirement_mapping_sets_batch_action_create":
-            return client.api_requirement_mapping_sets_batch_action_create(**kwargs)
-        elif action == "api_requirement_mapping_sets_graph_data_retrieve":
-            return client.api_requirement_mapping_sets_graph_data_retrieve(**kwargs)
-        elif action == "api_requirement_mapping_sets_provider_retrieve":
-            return client.api_requirement_mapping_sets_provider_retrieve(**kwargs)
-        elif action == "api_requirement_nodes_list":
-            return client.api_requirement_nodes_list(**kwargs)
-        elif action == "api_requirement_nodes_create":
-            return client.api_requirement_nodes_create(**kwargs)
-        elif action == "api_requirement_nodes_retrieve":
-            return client.api_requirement_nodes_retrieve(**kwargs)
-        elif action == "api_requirement_nodes_update":
-            return client.api_requirement_nodes_update(**kwargs)
-        elif action == "api_requirement_nodes_partial_update":
-            return client.api_requirement_nodes_partial_update(**kwargs)
-        elif action == "api_requirement_nodes_destroy":
-            return client.api_requirement_nodes_destroy(**kwargs)
-        elif action == "api_requirement_nodes_cascade_info_retrieve":
-            return client.api_requirement_nodes_cascade_info_retrieve(**kwargs)
-        elif action == "api_requirement_nodes_inspect_requirement_retrieve":
-            return client.api_requirement_nodes_inspect_requirement_retrieve(**kwargs)
-        elif action == "api_requirement_nodes_object_retrieve":
-            return client.api_requirement_nodes_object_retrieve(**kwargs)
-        elif action == "api_requirement_nodes_serve_image_retrieve":
-            return client.api_requirement_nodes_serve_image_retrieve(**kwargs)
-        elif action == "api_requirement_nodes_upload_image_create":
-            return client.api_requirement_nodes_upload_image_create(**kwargs)
-        elif action == "api_requirement_nodes_batch_action_create":
-            return client.api_requirement_nodes_batch_action_create(**kwargs)
+        for _dispatch in _COMPLIANCE_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
