@@ -8,6 +8,202 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_evidence_1(action, kwargs, client):
+    # api_document_attachments_retrieve .. api_document_attachments_object_retrieve (9 actions)
+    if action == "api_document_attachments_retrieve":
+        return client.api_document_attachments_retrieve(**kwargs)
+    elif action == "api_document_attachments_create":
+        return client.api_document_attachments_create(**kwargs)
+    elif action == "api_document_attachments_retrieve_2":
+        return client.api_document_attachments_retrieve_2(**kwargs)
+    elif action == "api_document_attachments_update":
+        return client.api_document_attachments_update(**kwargs)
+    elif action == "api_document_attachments_partial_update":
+        return client.api_document_attachments_partial_update(**kwargs)
+    elif action == "api_document_attachments_destroy":
+        return client.api_document_attachments_destroy(**kwargs)
+    elif action == "api_document_attachments_cascade_info_retrieve":
+        return client.api_document_attachments_cascade_info_retrieve(**kwargs)
+    elif action == "api_document_attachments_file_retrieve":
+        return client.api_document_attachments_file_retrieve(**kwargs)
+    elif action == "api_document_attachments_object_retrieve":
+        return client.api_document_attachments_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_evidence_2(action, kwargs, client):
+    # api_document_attachments_batch_action_create .. api_document_revisions_cascade_info_retrieve (9 actions)
+    if action == "api_document_attachments_batch_action_create":
+        return client.api_document_attachments_batch_action_create(**kwargs)
+    elif action == "api_document_revisions_list":
+        return client.api_document_revisions_list(**kwargs)
+    elif action == "api_document_revisions_create":
+        return client.api_document_revisions_create(**kwargs)
+    elif action == "api_document_revisions_retrieve":
+        return client.api_document_revisions_retrieve(**kwargs)
+    elif action == "api_document_revisions_update":
+        return client.api_document_revisions_update(**kwargs)
+    elif action == "api_document_revisions_partial_update":
+        return client.api_document_revisions_partial_update(**kwargs)
+    elif action == "api_document_revisions_destroy":
+        return client.api_document_revisions_destroy(**kwargs)
+    elif action == "api_document_revisions_approve_create":
+        return client.api_document_revisions_approve_create(**kwargs)
+    elif action == "api_document_revisions_cascade_info_retrieve":
+        return client.api_document_revisions_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_evidence_3(action, kwargs, client):
+    # api_document_revisions_diff_retrieve .. api_document_revisions_request_changes_create (9 actions)
+    if action == "api_document_revisions_diff_retrieve":
+        return client.api_document_revisions_diff_retrieve(**kwargs)
+    elif action == "api_document_revisions_edit_diff_retrieve":
+        return client.api_document_revisions_edit_diff_retrieve(**kwargs)
+    elif action == "api_document_revisions_edit_history_retrieve":
+        return client.api_document_revisions_edit_history_retrieve(**kwargs)
+    elif action == "api_document_revisions_edit_snapshot_retrieve":
+        return client.api_document_revisions_edit_snapshot_retrieve(**kwargs)
+    elif action == "api_document_revisions_editing_status_retrieve":
+        return client.api_document_revisions_editing_status_retrieve(**kwargs)
+    elif action == "api_document_revisions_export_pdf_retrieve":
+        return client.api_document_revisions_export_pdf_retrieve(**kwargs)
+    elif action == "api_document_revisions_object_retrieve":
+        return client.api_document_revisions_object_retrieve(**kwargs)
+    elif action == "api_document_revisions_publish_create":
+        return client.api_document_revisions_publish_create(**kwargs)
+    elif action == "api_document_revisions_request_changes_create":
+        return client.api_document_revisions_request_changes_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_evidence_4(action, kwargs, client):
+    # api_document_revisions_start_editing_create .. api_evidence_revisions_retrieve (9 actions)
+    if action == "api_document_revisions_start_editing_create":
+        return client.api_document_revisions_start_editing_create(**kwargs)
+    elif action == "api_document_revisions_stop_editing_create":
+        return client.api_document_revisions_stop_editing_create(**kwargs)
+    elif action == "api_document_revisions_submit_for_review_create":
+        return client.api_document_revisions_submit_for_review_create(**kwargs)
+    elif action == "api_document_revisions_take_over_editing_create":
+        return client.api_document_revisions_take_over_editing_create(**kwargs)
+    elif action == "api_document_revisions_batch_action_create":
+        return client.api_document_revisions_batch_action_create(**kwargs)
+    elif action == "api_document_revisions_status_retrieve":
+        return client.api_document_revisions_status_retrieve(**kwargs)
+    elif action == "api_evidence_revisions_list":
+        return client.api_evidence_revisions_list(**kwargs)
+    elif action == "api_evidence_revisions_create":
+        return client.api_evidence_revisions_create(**kwargs)
+    elif action == "api_evidence_revisions_retrieve":
+        return client.api_evidence_revisions_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_evidence_5(action, kwargs, client):
+    # api_evidence_revisions_update .. api_evidence_revisions_batch_action_create (9 actions)
+    if action == "api_evidence_revisions_update":
+        return client.api_evidence_revisions_update(**kwargs)
+    elif action == "api_evidence_revisions_partial_update":
+        return client.api_evidence_revisions_partial_update(**kwargs)
+    elif action == "api_evidence_revisions_destroy":
+        return client.api_evidence_revisions_destroy(**kwargs)
+    elif action == "api_evidence_revisions_attachment_retrieve":
+        return client.api_evidence_revisions_attachment_retrieve(**kwargs)
+    elif action == "api_evidence_revisions_cascade_info_retrieve":
+        return client.api_evidence_revisions_cascade_info_retrieve(**kwargs)
+    elif action == "api_evidence_revisions_delete_attachment_create":
+        return client.api_evidence_revisions_delete_attachment_create(**kwargs)
+    elif action == "api_evidence_revisions_object_retrieve":
+        return client.api_evidence_revisions_object_retrieve(**kwargs)
+    elif action == "api_evidence_revisions_upload_create":
+        return client.api_evidence_revisions_upload_create(**kwargs)
+    elif action == "api_evidence_revisions_batch_action_create":
+        return client.api_evidence_revisions_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_evidence_6(action, kwargs, client):
+    # api_evidences_list .. api_evidences_object_retrieve (9 actions)
+    if action == "api_evidences_list":
+        return client.api_evidences_list(**kwargs)
+    elif action == "api_evidences_create":
+        return client.api_evidences_create(**kwargs)
+    elif action == "api_evidences_retrieve":
+        return client.api_evidences_retrieve(**kwargs)
+    elif action == "api_evidences_update":
+        return client.api_evidences_update(**kwargs)
+    elif action == "api_evidences_partial_update":
+        return client.api_evidences_partial_update(**kwargs)
+    elif action == "api_evidences_destroy":
+        return client.api_evidences_destroy(**kwargs)
+    elif action == "api_evidences_attachment_retrieve":
+        return client.api_evidences_attachment_retrieve(**kwargs)
+    elif action == "api_evidences_cascade_info_retrieve":
+        return client.api_evidences_cascade_info_retrieve(**kwargs)
+    elif action == "api_evidences_object_retrieve":
+        return client.api_evidences_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_evidence_7(action, kwargs, client):
+    # api_evidences_upload_create .. api_managed_documents_update (9 actions)
+    if action == "api_evidences_upload_create":
+        return client.api_evidences_upload_create(**kwargs)
+    elif action == "api_evidences_batch_action_create":
+        return client.api_evidences_batch_action_create(**kwargs)
+    elif action == "api_evidences_batch_upload_create":
+        return client.api_evidences_batch_upload_create(**kwargs)
+    elif action == "api_evidences_owner_retrieve":
+        return client.api_evidences_owner_retrieve(**kwargs)
+    elif action == "api_evidences_status_retrieve":
+        return client.api_evidences_status_retrieve(**kwargs)
+    elif action == "api_managed_documents_list":
+        return client.api_managed_documents_list(**kwargs)
+    elif action == "api_managed_documents_create":
+        return client.api_managed_documents_create(**kwargs)
+    elif action == "api_managed_documents_retrieve":
+        return client.api_managed_documents_retrieve(**kwargs)
+    elif action == "api_managed_documents_update":
+        return client.api_managed_documents_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_evidence_8(action, kwargs, client):
+    # api_managed_documents_partial_update .. api_managed_documents_templates_retrieve (8 actions)
+    if action == "api_managed_documents_partial_update":
+        return client.api_managed_documents_partial_update(**kwargs)
+    elif action == "api_managed_documents_destroy":
+        return client.api_managed_documents_destroy(**kwargs)
+    elif action == "api_managed_documents_cascade_info_retrieve":
+        return client.api_managed_documents_cascade_info_retrieve(**kwargs)
+    elif action == "api_managed_documents_create_new_draft_create":
+        return client.api_managed_documents_create_new_draft_create(**kwargs)
+    elif action == "api_managed_documents_object_retrieve":
+        return client.api_managed_documents_object_retrieve(**kwargs)
+    elif action == "api_managed_documents_upload_image_create":
+        return client.api_managed_documents_upload_image_create(**kwargs)
+    elif action == "api_managed_documents_batch_action_create":
+        return client.api_managed_documents_batch_action_create(**kwargs)
+    elif action == "api_managed_documents_templates_retrieve":
+        return client.api_managed_documents_templates_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_EVIDENCE_DISPATCHERS = (
+    _dispatch_evidence_1,
+    _dispatch_evidence_2,
+    _dispatch_evidence_3,
+    _dispatch_evidence_4,
+    _dispatch_evidence_5,
+    _dispatch_evidence_6,
+    _dispatch_evidence_7,
+    _dispatch_evidence_8,
+)
+
 
 def register_evidence_tools(mcp: FastMCP):
     @mcp.tool(tags={"evidence"})
@@ -37,146 +233,8 @@ def register_evidence_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_document_attachments_retrieve":
-            return client.api_document_attachments_retrieve(**kwargs)
-        elif action == "api_document_attachments_create":
-            return client.api_document_attachments_create(**kwargs)
-        elif action == "api_document_attachments_retrieve_2":
-            return client.api_document_attachments_retrieve_2(**kwargs)
-        elif action == "api_document_attachments_update":
-            return client.api_document_attachments_update(**kwargs)
-        elif action == "api_document_attachments_partial_update":
-            return client.api_document_attachments_partial_update(**kwargs)
-        elif action == "api_document_attachments_destroy":
-            return client.api_document_attachments_destroy(**kwargs)
-        elif action == "api_document_attachments_cascade_info_retrieve":
-            return client.api_document_attachments_cascade_info_retrieve(**kwargs)
-        elif action == "api_document_attachments_file_retrieve":
-            return client.api_document_attachments_file_retrieve(**kwargs)
-        elif action == "api_document_attachments_object_retrieve":
-            return client.api_document_attachments_object_retrieve(**kwargs)
-        elif action == "api_document_attachments_batch_action_create":
-            return client.api_document_attachments_batch_action_create(**kwargs)
-        elif action == "api_document_revisions_list":
-            return client.api_document_revisions_list(**kwargs)
-        elif action == "api_document_revisions_create":
-            return client.api_document_revisions_create(**kwargs)
-        elif action == "api_document_revisions_retrieve":
-            return client.api_document_revisions_retrieve(**kwargs)
-        elif action == "api_document_revisions_update":
-            return client.api_document_revisions_update(**kwargs)
-        elif action == "api_document_revisions_partial_update":
-            return client.api_document_revisions_partial_update(**kwargs)
-        elif action == "api_document_revisions_destroy":
-            return client.api_document_revisions_destroy(**kwargs)
-        elif action == "api_document_revisions_approve_create":
-            return client.api_document_revisions_approve_create(**kwargs)
-        elif action == "api_document_revisions_cascade_info_retrieve":
-            return client.api_document_revisions_cascade_info_retrieve(**kwargs)
-        elif action == "api_document_revisions_diff_retrieve":
-            return client.api_document_revisions_diff_retrieve(**kwargs)
-        elif action == "api_document_revisions_edit_diff_retrieve":
-            return client.api_document_revisions_edit_diff_retrieve(**kwargs)
-        elif action == "api_document_revisions_edit_history_retrieve":
-            return client.api_document_revisions_edit_history_retrieve(**kwargs)
-        elif action == "api_document_revisions_edit_snapshot_retrieve":
-            return client.api_document_revisions_edit_snapshot_retrieve(**kwargs)
-        elif action == "api_document_revisions_editing_status_retrieve":
-            return client.api_document_revisions_editing_status_retrieve(**kwargs)
-        elif action == "api_document_revisions_export_pdf_retrieve":
-            return client.api_document_revisions_export_pdf_retrieve(**kwargs)
-        elif action == "api_document_revisions_object_retrieve":
-            return client.api_document_revisions_object_retrieve(**kwargs)
-        elif action == "api_document_revisions_publish_create":
-            return client.api_document_revisions_publish_create(**kwargs)
-        elif action == "api_document_revisions_request_changes_create":
-            return client.api_document_revisions_request_changes_create(**kwargs)
-        elif action == "api_document_revisions_start_editing_create":
-            return client.api_document_revisions_start_editing_create(**kwargs)
-        elif action == "api_document_revisions_stop_editing_create":
-            return client.api_document_revisions_stop_editing_create(**kwargs)
-        elif action == "api_document_revisions_submit_for_review_create":
-            return client.api_document_revisions_submit_for_review_create(**kwargs)
-        elif action == "api_document_revisions_take_over_editing_create":
-            return client.api_document_revisions_take_over_editing_create(**kwargs)
-        elif action == "api_document_revisions_batch_action_create":
-            return client.api_document_revisions_batch_action_create(**kwargs)
-        elif action == "api_document_revisions_status_retrieve":
-            return client.api_document_revisions_status_retrieve(**kwargs)
-        elif action == "api_evidence_revisions_list":
-            return client.api_evidence_revisions_list(**kwargs)
-        elif action == "api_evidence_revisions_create":
-            return client.api_evidence_revisions_create(**kwargs)
-        elif action == "api_evidence_revisions_retrieve":
-            return client.api_evidence_revisions_retrieve(**kwargs)
-        elif action == "api_evidence_revisions_update":
-            return client.api_evidence_revisions_update(**kwargs)
-        elif action == "api_evidence_revisions_partial_update":
-            return client.api_evidence_revisions_partial_update(**kwargs)
-        elif action == "api_evidence_revisions_destroy":
-            return client.api_evidence_revisions_destroy(**kwargs)
-        elif action == "api_evidence_revisions_attachment_retrieve":
-            return client.api_evidence_revisions_attachment_retrieve(**kwargs)
-        elif action == "api_evidence_revisions_cascade_info_retrieve":
-            return client.api_evidence_revisions_cascade_info_retrieve(**kwargs)
-        elif action == "api_evidence_revisions_delete_attachment_create":
-            return client.api_evidence_revisions_delete_attachment_create(**kwargs)
-        elif action == "api_evidence_revisions_object_retrieve":
-            return client.api_evidence_revisions_object_retrieve(**kwargs)
-        elif action == "api_evidence_revisions_upload_create":
-            return client.api_evidence_revisions_upload_create(**kwargs)
-        elif action == "api_evidence_revisions_batch_action_create":
-            return client.api_evidence_revisions_batch_action_create(**kwargs)
-        elif action == "api_evidences_list":
-            return client.api_evidences_list(**kwargs)
-        elif action == "api_evidences_create":
-            return client.api_evidences_create(**kwargs)
-        elif action == "api_evidences_retrieve":
-            return client.api_evidences_retrieve(**kwargs)
-        elif action == "api_evidences_update":
-            return client.api_evidences_update(**kwargs)
-        elif action == "api_evidences_partial_update":
-            return client.api_evidences_partial_update(**kwargs)
-        elif action == "api_evidences_destroy":
-            return client.api_evidences_destroy(**kwargs)
-        elif action == "api_evidences_attachment_retrieve":
-            return client.api_evidences_attachment_retrieve(**kwargs)
-        elif action == "api_evidences_cascade_info_retrieve":
-            return client.api_evidences_cascade_info_retrieve(**kwargs)
-        elif action == "api_evidences_object_retrieve":
-            return client.api_evidences_object_retrieve(**kwargs)
-        elif action == "api_evidences_upload_create":
-            return client.api_evidences_upload_create(**kwargs)
-        elif action == "api_evidences_batch_action_create":
-            return client.api_evidences_batch_action_create(**kwargs)
-        elif action == "api_evidences_batch_upload_create":
-            return client.api_evidences_batch_upload_create(**kwargs)
-        elif action == "api_evidences_owner_retrieve":
-            return client.api_evidences_owner_retrieve(**kwargs)
-        elif action == "api_evidences_status_retrieve":
-            return client.api_evidences_status_retrieve(**kwargs)
-        elif action == "api_managed_documents_list":
-            return client.api_managed_documents_list(**kwargs)
-        elif action == "api_managed_documents_create":
-            return client.api_managed_documents_create(**kwargs)
-        elif action == "api_managed_documents_retrieve":
-            return client.api_managed_documents_retrieve(**kwargs)
-        elif action == "api_managed_documents_update":
-            return client.api_managed_documents_update(**kwargs)
-        elif action == "api_managed_documents_partial_update":
-            return client.api_managed_documents_partial_update(**kwargs)
-        elif action == "api_managed_documents_destroy":
-            return client.api_managed_documents_destroy(**kwargs)
-        elif action == "api_managed_documents_cascade_info_retrieve":
-            return client.api_managed_documents_cascade_info_retrieve(**kwargs)
-        elif action == "api_managed_documents_create_new_draft_create":
-            return client.api_managed_documents_create_new_draft_create(**kwargs)
-        elif action == "api_managed_documents_object_retrieve":
-            return client.api_managed_documents_object_retrieve(**kwargs)
-        elif action == "api_managed_documents_upload_image_create":
-            return client.api_managed_documents_upload_image_create(**kwargs)
-        elif action == "api_managed_documents_batch_action_create":
-            return client.api_managed_documents_batch_action_create(**kwargs)
-        elif action == "api_managed_documents_templates_retrieve":
-            return client.api_managed_documents_templates_retrieve(**kwargs)
+        for _dispatch in _EVIDENCE_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
