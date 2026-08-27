@@ -8,6 +8,457 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_resilience_1(action, kwargs, client):
+    # api_pmbok_accreditations_list .. api_pmbok_accreditations_batch_action_create (9 actions)
+    if action == "api_pmbok_accreditations_list":
+        return client.api_pmbok_accreditations_list(**kwargs)
+    elif action == "api_pmbok_accreditations_create":
+        return client.api_pmbok_accreditations_create(**kwargs)
+    elif action == "api_pmbok_accreditations_retrieve":
+        return client.api_pmbok_accreditations_retrieve(**kwargs)
+    elif action == "api_pmbok_accreditations_update":
+        return client.api_pmbok_accreditations_update(**kwargs)
+    elif action == "api_pmbok_accreditations_partial_update":
+        return client.api_pmbok_accreditations_partial_update(**kwargs)
+    elif action == "api_pmbok_accreditations_destroy":
+        return client.api_pmbok_accreditations_destroy(**kwargs)
+    elif action == "api_pmbok_accreditations_cascade_info_retrieve":
+        return client.api_pmbok_accreditations_cascade_info_retrieve(**kwargs)
+    elif action == "api_pmbok_accreditations_object_retrieve":
+        return client.api_pmbok_accreditations_object_retrieve(**kwargs)
+    elif action == "api_pmbok_accreditations_batch_action_create":
+        return client.api_pmbok_accreditations_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_resilience_2(action, kwargs, client):
+    # api_pmbok_accreditations_category_retrieve .. api_pmbok_generic_collections_cascade_info_retrieve (9 actions)
+    if action == "api_pmbok_accreditations_category_retrieve":
+        return client.api_pmbok_accreditations_category_retrieve(**kwargs)
+    elif action == "api_pmbok_accreditations_status_retrieve":
+        return client.api_pmbok_accreditations_status_retrieve(**kwargs)
+    elif action == "api_pmbok_generic_collections_list":
+        return client.api_pmbok_generic_collections_list(**kwargs)
+    elif action == "api_pmbok_generic_collections_create":
+        return client.api_pmbok_generic_collections_create(**kwargs)
+    elif action == "api_pmbok_generic_collections_retrieve":
+        return client.api_pmbok_generic_collections_retrieve(**kwargs)
+    elif action == "api_pmbok_generic_collections_update":
+        return client.api_pmbok_generic_collections_update(**kwargs)
+    elif action == "api_pmbok_generic_collections_partial_update":
+        return client.api_pmbok_generic_collections_partial_update(**kwargs)
+    elif action == "api_pmbok_generic_collections_destroy":
+        return client.api_pmbok_generic_collections_destroy(**kwargs)
+    elif action == "api_pmbok_generic_collections_cascade_info_retrieve":
+        return client.api_pmbok_generic_collections_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_resilience_3(action, kwargs, client):
+    # api_pmbok_generic_collections_object_retrieve .. api_pmbok_projects_destroy (9 actions)
+    if action == "api_pmbok_generic_collections_object_retrieve":
+        return client.api_pmbok_generic_collections_object_retrieve(**kwargs)
+    elif action == "api_pmbok_generic_collections_batch_action_create":
+        return client.api_pmbok_generic_collections_batch_action_create(**kwargs)
+    elif action == "api_pmbok_generic_collections_status_retrieve":
+        return client.api_pmbok_generic_collections_status_retrieve(**kwargs)
+    elif action == "api_pmbok_projects_list":
+        return client.api_pmbok_projects_list(**kwargs)
+    elif action == "api_pmbok_projects_create":
+        return client.api_pmbok_projects_create(**kwargs)
+    elif action == "api_pmbok_projects_retrieve":
+        return client.api_pmbok_projects_retrieve(**kwargs)
+    elif action == "api_pmbok_projects_update":
+        return client.api_pmbok_projects_update(**kwargs)
+    elif action == "api_pmbok_projects_partial_update":
+        return client.api_pmbok_projects_partial_update(**kwargs)
+    elif action == "api_pmbok_projects_destroy":
+        return client.api_pmbok_projects_destroy(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_resilience_4(action, kwargs, client):
+    # api_pmbok_projects_cascade_info_retrieve .. api_pmbok_responsibility_assignments_cascade_info_retrieve (9 actions)
+    if action == "api_pmbok_projects_cascade_info_retrieve":
+        return client.api_pmbok_projects_cascade_info_retrieve(**kwargs)
+    elif action == "api_pmbok_projects_object_retrieve":
+        return client.api_pmbok_projects_object_retrieve(**kwargs)
+    elif action == "api_pmbok_projects_batch_action_create":
+        return client.api_pmbok_projects_batch_action_create(**kwargs)
+    elif action == "api_pmbok_projects_currencies_retrieve":
+        return client.api_pmbok_projects_currencies_retrieve(**kwargs)
+    elif action == "api_pmbok_projects_kind_retrieve":
+        return client.api_pmbok_projects_kind_retrieve(**kwargs)
+    elif action == "api_pmbok_projects_priority_retrieve":
+        return client.api_pmbok_projects_priority_retrieve(**kwargs)
+    elif action == "api_pmbok_responsibility_assignments_list":
+        return client.api_pmbok_responsibility_assignments_list(**kwargs)
+    elif action == "api_pmbok_responsibility_assignments_retrieve":
+        return client.api_pmbok_responsibility_assignments_retrieve(**kwargs)
+    elif action == "api_pmbok_responsibility_assignments_cascade_info_retrieve":
+        return client.api_pmbok_responsibility_assignments_cascade_info_retrieve(
+            **kwargs
+        )
+    return _UNHANDLED
+
+
+def _dispatch_resilience_5(action, kwargs, client):
+    # api_pmbok_responsibility_assignments_object_retrieve .. api_pmbok_responsibility_matrices_cycle_cell_create (9 actions)
+    if action == "api_pmbok_responsibility_assignments_object_retrieve":
+        return client.api_pmbok_responsibility_assignments_object_retrieve(**kwargs)
+    elif action == "api_pmbok_responsibility_matrices_list":
+        return client.api_pmbok_responsibility_matrices_list(**kwargs)
+    elif action == "api_pmbok_responsibility_matrices_create":
+        return client.api_pmbok_responsibility_matrices_create(**kwargs)
+    elif action == "api_pmbok_responsibility_matrices_retrieve":
+        return client.api_pmbok_responsibility_matrices_retrieve(**kwargs)
+    elif action == "api_pmbok_responsibility_matrices_update":
+        return client.api_pmbok_responsibility_matrices_update(**kwargs)
+    elif action == "api_pmbok_responsibility_matrices_partial_update":
+        return client.api_pmbok_responsibility_matrices_partial_update(**kwargs)
+    elif action == "api_pmbok_responsibility_matrices_destroy":
+        return client.api_pmbok_responsibility_matrices_destroy(**kwargs)
+    elif action == "api_pmbok_responsibility_matrices_cascade_info_retrieve":
+        return client.api_pmbok_responsibility_matrices_cascade_info_retrieve(**kwargs)
+    elif action == "api_pmbok_responsibility_matrices_cycle_cell_create":
+        return client.api_pmbok_responsibility_matrices_cycle_cell_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_resilience_6(action, kwargs, client):
+    # api_pmbok_responsibility_matrices_object_retrieve .. api_pmbok_responsibility_matrix_activities_update (9 actions)
+    if action == "api_pmbok_responsibility_matrices_object_retrieve":
+        return client.api_pmbok_responsibility_matrices_object_retrieve(**kwargs)
+    elif action == "api_pmbok_responsibility_matrices_reorder_activities_create":
+        return client.api_pmbok_responsibility_matrices_reorder_activities_create(
+            **kwargs
+        )
+    elif action == "api_pmbok_responsibility_matrices_reorder_actors_create":
+        return client.api_pmbok_responsibility_matrices_reorder_actors_create(**kwargs)
+    elif action == "api_pmbok_responsibility_matrices_batch_action_create":
+        return client.api_pmbok_responsibility_matrices_batch_action_create(**kwargs)
+    elif action == "api_pmbok_responsibility_matrices_preset_retrieve":
+        return client.api_pmbok_responsibility_matrices_preset_retrieve(**kwargs)
+    elif action == "api_pmbok_responsibility_matrix_activities_list":
+        return client.api_pmbok_responsibility_matrix_activities_list(**kwargs)
+    elif action == "api_pmbok_responsibility_matrix_activities_create":
+        return client.api_pmbok_responsibility_matrix_activities_create(**kwargs)
+    elif action == "api_pmbok_responsibility_matrix_activities_retrieve":
+        return client.api_pmbok_responsibility_matrix_activities_retrieve(**kwargs)
+    elif action == "api_pmbok_responsibility_matrix_activities_update":
+        return client.api_pmbok_responsibility_matrix_activities_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_resilience_7(action, kwargs, client):
+    # api_pmbok_responsibility_matrix_activities_partial_update .. api_pmbok_responsibility_matrix_actors_update (9 actions)
+    if action == "api_pmbok_responsibility_matrix_activities_partial_update":
+        return client.api_pmbok_responsibility_matrix_activities_partial_update(
+            **kwargs
+        )
+    elif action == "api_pmbok_responsibility_matrix_activities_destroy":
+        return client.api_pmbok_responsibility_matrix_activities_destroy(**kwargs)
+    elif action == "api_pmbok_responsibility_matrix_activities_cascade_info_retrieve":
+        return client.api_pmbok_responsibility_matrix_activities_cascade_info_retrieve(
+            **kwargs
+        )
+    elif action == "api_pmbok_responsibility_matrix_activities_object_retrieve":
+        return client.api_pmbok_responsibility_matrix_activities_object_retrieve(
+            **kwargs
+        )
+    elif action == "api_pmbok_responsibility_matrix_activities_batch_action_create":
+        return client.api_pmbok_responsibility_matrix_activities_batch_action_create(
+            **kwargs
+        )
+    elif action == "api_pmbok_responsibility_matrix_actors_list":
+        return client.api_pmbok_responsibility_matrix_actors_list(**kwargs)
+    elif action == "api_pmbok_responsibility_matrix_actors_create":
+        return client.api_pmbok_responsibility_matrix_actors_create(**kwargs)
+    elif action == "api_pmbok_responsibility_matrix_actors_retrieve":
+        return client.api_pmbok_responsibility_matrix_actors_retrieve(**kwargs)
+    elif action == "api_pmbok_responsibility_matrix_actors_update":
+        return client.api_pmbok_responsibility_matrix_actors_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_resilience_8(action, kwargs, client):
+    # api_pmbok_responsibility_matrix_actors_partial_update .. api_pmbok_responsibility_roles_object_retrieve (9 actions)
+    if action == "api_pmbok_responsibility_matrix_actors_partial_update":
+        return client.api_pmbok_responsibility_matrix_actors_partial_update(**kwargs)
+    elif action == "api_pmbok_responsibility_matrix_actors_destroy":
+        return client.api_pmbok_responsibility_matrix_actors_destroy(**kwargs)
+    elif action == "api_pmbok_responsibility_matrix_actors_cascade_info_retrieve":
+        return client.api_pmbok_responsibility_matrix_actors_cascade_info_retrieve(
+            **kwargs
+        )
+    elif action == "api_pmbok_responsibility_matrix_actors_object_retrieve":
+        return client.api_pmbok_responsibility_matrix_actors_object_retrieve(**kwargs)
+    elif action == "api_pmbok_responsibility_matrix_actors_batch_action_create":
+        return client.api_pmbok_responsibility_matrix_actors_batch_action_create(
+            **kwargs
+        )
+    elif action == "api_pmbok_responsibility_roles_list":
+        return client.api_pmbok_responsibility_roles_list(**kwargs)
+    elif action == "api_pmbok_responsibility_roles_retrieve":
+        return client.api_pmbok_responsibility_roles_retrieve(**kwargs)
+    elif action == "api_pmbok_responsibility_roles_cascade_info_retrieve":
+        return client.api_pmbok_responsibility_roles_cascade_info_retrieve(**kwargs)
+    elif action == "api_pmbok_responsibility_roles_object_retrieve":
+        return client.api_pmbok_responsibility_roles_object_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_resilience_9(action, kwargs, client):
+    # api_pmbok_responsibility_roles_taxonomy_retrieve .. api_resilience_asset_assessments_dependency_graph_retrieve (9 actions)
+    if action == "api_pmbok_responsibility_roles_taxonomy_retrieve":
+        return client.api_pmbok_responsibility_roles_taxonomy_retrieve(**kwargs)
+    elif action == "api_resilience_asset_assessments_list":
+        return client.api_resilience_asset_assessments_list(**kwargs)
+    elif action == "api_resilience_asset_assessments_create":
+        return client.api_resilience_asset_assessments_create(**kwargs)
+    elif action == "api_resilience_asset_assessments_retrieve":
+        return client.api_resilience_asset_assessments_retrieve(**kwargs)
+    elif action == "api_resilience_asset_assessments_update":
+        return client.api_resilience_asset_assessments_update(**kwargs)
+    elif action == "api_resilience_asset_assessments_partial_update":
+        return client.api_resilience_asset_assessments_partial_update(**kwargs)
+    elif action == "api_resilience_asset_assessments_destroy":
+        return client.api_resilience_asset_assessments_destroy(**kwargs)
+    elif action == "api_resilience_asset_assessments_cascade_info_retrieve":
+        return client.api_resilience_asset_assessments_cascade_info_retrieve(**kwargs)
+    elif action == "api_resilience_asset_assessments_dependency_graph_retrieve":
+        return client.api_resilience_asset_assessments_dependency_graph_retrieve(
+            **kwargs
+        )
+    return _UNHANDLED
+
+
+def _dispatch_resilience_10(action, kwargs, client):
+    # api_resilience_asset_assessments_metrics_retrieve .. api_resilience_business_impact_analysis_update (9 actions)
+    if action == "api_resilience_asset_assessments_metrics_retrieve":
+        return client.api_resilience_asset_assessments_metrics_retrieve(**kwargs)
+    elif action == "api_resilience_asset_assessments_object_retrieve":
+        return client.api_resilience_asset_assessments_object_retrieve(**kwargs)
+    elif action == "api_resilience_asset_assessments_quali_impact_retrieve":
+        return client.api_resilience_asset_assessments_quali_impact_retrieve(**kwargs)
+    elif action == "api_resilience_asset_assessments_risk_matrix_retrieve":
+        return client.api_resilience_asset_assessments_risk_matrix_retrieve(**kwargs)
+    elif action == "api_resilience_asset_assessments_batch_action_create":
+        return client.api_resilience_asset_assessments_batch_action_create(**kwargs)
+    elif action == "api_resilience_business_impact_analysis_list":
+        return client.api_resilience_business_impact_analysis_list(**kwargs)
+    elif action == "api_resilience_business_impact_analysis_create":
+        return client.api_resilience_business_impact_analysis_create(**kwargs)
+    elif action == "api_resilience_business_impact_analysis_retrieve":
+        return client.api_resilience_business_impact_analysis_retrieve(**kwargs)
+    elif action == "api_resilience_business_impact_analysis_update":
+        return client.api_resilience_business_impact_analysis_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_resilience_11(action, kwargs, client):
+    # api_resilience_business_impact_analysis_partial_update .. api_resilience_business_impact_analysis_export_csv_retrieve (9 actions)
+    if action == "api_resilience_business_impact_analysis_partial_update":
+        return client.api_resilience_business_impact_analysis_partial_update(**kwargs)
+    elif action == "api_resilience_business_impact_analysis_destroy":
+        return client.api_resilience_business_impact_analysis_destroy(**kwargs)
+    elif action == "api_resilience_business_impact_analysis_build_table_retrieve":
+        return client.api_resilience_business_impact_analysis_build_table_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_business_impact_analysis_cascade_info_retrieve":
+        return client.api_resilience_business_impact_analysis_cascade_info_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_business_impact_analysis_metrics_retrieve":
+        return client.api_resilience_business_impact_analysis_metrics_retrieve(**kwargs)
+    elif action == "api_resilience_business_impact_analysis_object_retrieve":
+        return client.api_resilience_business_impact_analysis_object_retrieve(**kwargs)
+    elif action == "api_resilience_business_impact_analysis_xlsx_retrieve":
+        return client.api_resilience_business_impact_analysis_xlsx_retrieve(**kwargs)
+    elif action == "api_resilience_business_impact_analysis_batch_action_create":
+        return client.api_resilience_business_impact_analysis_batch_action_create(
+            **kwargs
+        )
+    elif action == "api_resilience_business_impact_analysis_export_csv_retrieve":
+        return client.api_resilience_business_impact_analysis_export_csv_retrieve(
+            **kwargs
+        )
+    return _UNHANDLED
+
+
+def _dispatch_resilience_12(action, kwargs, client):
+    # api_resilience_business_impact_analysis_export_xlsx_retrieve .. api_resilience_dora_incident_reports_cascade_info_retrieve (9 actions)
+    if action == "api_resilience_business_impact_analysis_export_xlsx_retrieve":
+        return client.api_resilience_business_impact_analysis_export_xlsx_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_business_impact_analysis_status_retrieve":
+        return client.api_resilience_business_impact_analysis_status_retrieve(**kwargs)
+    elif action == "api_resilience_dora_incident_reports_list":
+        return client.api_resilience_dora_incident_reports_list(**kwargs)
+    elif action == "api_resilience_dora_incident_reports_create":
+        return client.api_resilience_dora_incident_reports_create(**kwargs)
+    elif action == "api_resilience_dora_incident_reports_retrieve":
+        return client.api_resilience_dora_incident_reports_retrieve(**kwargs)
+    elif action == "api_resilience_dora_incident_reports_update":
+        return client.api_resilience_dora_incident_reports_update(**kwargs)
+    elif action == "api_resilience_dora_incident_reports_partial_update":
+        return client.api_resilience_dora_incident_reports_partial_update(**kwargs)
+    elif action == "api_resilience_dora_incident_reports_destroy":
+        return client.api_resilience_dora_incident_reports_destroy(**kwargs)
+    elif action == "api_resilience_dora_incident_reports_cascade_info_retrieve":
+        return client.api_resilience_dora_incident_reports_cascade_info_retrieve(
+            **kwargs
+        )
+    return _UNHANDLED
+
+
+def _dispatch_resilience_13(action, kwargs, client):
+    # api_resilience_dora_incident_reports_export_json_retrieve .. api_resilience_dora_incident_reports_info_duration_service_downtime_actual_or_estimate_retrieve (9 actions)
+    if action == "api_resilience_dora_incident_reports_export_json_retrieve":
+        return client.api_resilience_dora_incident_reports_export_json_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_dora_incident_reports_object_retrieve":
+        return client.api_resilience_dora_incident_reports_object_retrieve(**kwargs)
+    elif action == "api_resilience_dora_incident_reports_validate_report_retrieve":
+        return client.api_resilience_dora_incident_reports_validate_report_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_dora_incident_reports_batch_action_create":
+        return client.api_resilience_dora_incident_reports_batch_action_create(**kwargs)
+    elif (
+        action
+        == "api_resilience_dora_incident_reports_classification_criterion_retrieve"
+    ):
+        return client.api_resilience_dora_incident_reports_classification_criterion_retrieve(
+            **kwargs
+        )
+    elif (
+        action
+        == "api_resilience_dora_incident_reports_incident_classification_retrieve"
+    ):
+        return client.api_resilience_dora_incident_reports_incident_classification_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_dora_incident_reports_incident_discovery_retrieve":
+        return client.api_resilience_dora_incident_reports_incident_discovery_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_dora_incident_reports_incident_submission_retrieve":
+        return client.api_resilience_dora_incident_reports_incident_submission_retrieve(
+            **kwargs
+        )
+    elif (
+        action
+        == "api_resilience_dora_incident_reports_info_duration_service_downtime_actual_or_estimate_retrieve"
+    ):
+        return client.api_resilience_dora_incident_reports_info_duration_service_downtime_actual_or_estimate_retrieve(
+            **kwargs
+        )
+    return _UNHANDLED
+
+
+def _dispatch_resilience_14(action, kwargs, client):
+    # api_resilience_dora_incident_reports_main_entity_retrieve .. api_resilience_escalation_thresholds_create (9 actions)
+    if action == "api_resilience_dora_incident_reports_main_entity_retrieve":
+        return client.api_resilience_dora_incident_reports_main_entity_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_dora_incident_reports_report_currency_retrieve":
+        return client.api_resilience_dora_incident_reports_report_currency_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_dora_incident_reports_reporting_authority_retrieve":
+        return client.api_resilience_dora_incident_reports_reporting_authority_retrieve(
+            **kwargs
+        )
+    elif (
+        action == "api_resilience_dora_incident_reports_root_cause_additional_retrieve"
+    ):
+        return (
+            client.api_resilience_dora_incident_reports_root_cause_additional_retrieve(
+                **kwargs
+            )
+        )
+    elif action == "api_resilience_dora_incident_reports_root_cause_detailed_retrieve":
+        return client.api_resilience_dora_incident_reports_root_cause_detailed_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_dora_incident_reports_root_cause_hl_retrieve":
+        return client.api_resilience_dora_incident_reports_root_cause_hl_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_dora_incident_reports_threat_techniques_retrieve":
+        return client.api_resilience_dora_incident_reports_threat_techniques_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_escalation_thresholds_list":
+        return client.api_resilience_escalation_thresholds_list(**kwargs)
+    elif action == "api_resilience_escalation_thresholds_create":
+        return client.api_resilience_escalation_thresholds_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_resilience_15(action, kwargs, client):
+    # api_resilience_escalation_thresholds_retrieve .. api_resilience_escalation_thresholds_batch_action_create (9 actions)
+    if action == "api_resilience_escalation_thresholds_retrieve":
+        return client.api_resilience_escalation_thresholds_retrieve(**kwargs)
+    elif action == "api_resilience_escalation_thresholds_update":
+        return client.api_resilience_escalation_thresholds_update(**kwargs)
+    elif action == "api_resilience_escalation_thresholds_partial_update":
+        return client.api_resilience_escalation_thresholds_partial_update(**kwargs)
+    elif action == "api_resilience_escalation_thresholds_destroy":
+        return client.api_resilience_escalation_thresholds_destroy(**kwargs)
+    elif action == "api_resilience_escalation_thresholds_cascade_info_retrieve":
+        return client.api_resilience_escalation_thresholds_cascade_info_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_escalation_thresholds_object_retrieve":
+        return client.api_resilience_escalation_thresholds_object_retrieve(**kwargs)
+    elif action == "api_resilience_escalation_thresholds_quali_impact_retrieve":
+        return client.api_resilience_escalation_thresholds_quali_impact_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_escalation_thresholds_risk_matrix_retrieve":
+        return client.api_resilience_escalation_thresholds_risk_matrix_retrieve(
+            **kwargs
+        )
+    elif action == "api_resilience_escalation_thresholds_batch_action_create":
+        return client.api_resilience_escalation_thresholds_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_resilience_16(action, kwargs, client):
+    # api_resilience_escalation_thresholds_quant_unit_retrieve .. api_resilience_escalation_thresholds_quant_unit_retrieve (1 actions)
+    if action == "api_resilience_escalation_thresholds_quant_unit_retrieve":
+        return client.api_resilience_escalation_thresholds_quant_unit_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_RESILIENCE_DISPATCHERS = (
+    _dispatch_resilience_1,
+    _dispatch_resilience_2,
+    _dispatch_resilience_3,
+    _dispatch_resilience_4,
+    _dispatch_resilience_5,
+    _dispatch_resilience_6,
+    _dispatch_resilience_7,
+    _dispatch_resilience_8,
+    _dispatch_resilience_9,
+    _dispatch_resilience_10,
+    _dispatch_resilience_11,
+    _dispatch_resilience_12,
+    _dispatch_resilience_13,
+    _dispatch_resilience_14,
+    _dispatch_resilience_15,
+    _dispatch_resilience_16,
+)
+
 
 def register_resilience_tools(mcp: FastMCP):
     @mcp.tool(tags={"resilience"})
@@ -37,407 +488,8 @@ def register_resilience_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_pmbok_accreditations_list":
-            return client.api_pmbok_accreditations_list(**kwargs)
-        elif action == "api_pmbok_accreditations_create":
-            return client.api_pmbok_accreditations_create(**kwargs)
-        elif action == "api_pmbok_accreditations_retrieve":
-            return client.api_pmbok_accreditations_retrieve(**kwargs)
-        elif action == "api_pmbok_accreditations_update":
-            return client.api_pmbok_accreditations_update(**kwargs)
-        elif action == "api_pmbok_accreditations_partial_update":
-            return client.api_pmbok_accreditations_partial_update(**kwargs)
-        elif action == "api_pmbok_accreditations_destroy":
-            return client.api_pmbok_accreditations_destroy(**kwargs)
-        elif action == "api_pmbok_accreditations_cascade_info_retrieve":
-            return client.api_pmbok_accreditations_cascade_info_retrieve(**kwargs)
-        elif action == "api_pmbok_accreditations_object_retrieve":
-            return client.api_pmbok_accreditations_object_retrieve(**kwargs)
-        elif action == "api_pmbok_accreditations_batch_action_create":
-            return client.api_pmbok_accreditations_batch_action_create(**kwargs)
-        elif action == "api_pmbok_accreditations_category_retrieve":
-            return client.api_pmbok_accreditations_category_retrieve(**kwargs)
-        elif action == "api_pmbok_accreditations_status_retrieve":
-            return client.api_pmbok_accreditations_status_retrieve(**kwargs)
-        elif action == "api_pmbok_generic_collections_list":
-            return client.api_pmbok_generic_collections_list(**kwargs)
-        elif action == "api_pmbok_generic_collections_create":
-            return client.api_pmbok_generic_collections_create(**kwargs)
-        elif action == "api_pmbok_generic_collections_retrieve":
-            return client.api_pmbok_generic_collections_retrieve(**kwargs)
-        elif action == "api_pmbok_generic_collections_update":
-            return client.api_pmbok_generic_collections_update(**kwargs)
-        elif action == "api_pmbok_generic_collections_partial_update":
-            return client.api_pmbok_generic_collections_partial_update(**kwargs)
-        elif action == "api_pmbok_generic_collections_destroy":
-            return client.api_pmbok_generic_collections_destroy(**kwargs)
-        elif action == "api_pmbok_generic_collections_cascade_info_retrieve":
-            return client.api_pmbok_generic_collections_cascade_info_retrieve(**kwargs)
-        elif action == "api_pmbok_generic_collections_object_retrieve":
-            return client.api_pmbok_generic_collections_object_retrieve(**kwargs)
-        elif action == "api_pmbok_generic_collections_batch_action_create":
-            return client.api_pmbok_generic_collections_batch_action_create(**kwargs)
-        elif action == "api_pmbok_generic_collections_status_retrieve":
-            return client.api_pmbok_generic_collections_status_retrieve(**kwargs)
-        elif action == "api_pmbok_projects_list":
-            return client.api_pmbok_projects_list(**kwargs)
-        elif action == "api_pmbok_projects_create":
-            return client.api_pmbok_projects_create(**kwargs)
-        elif action == "api_pmbok_projects_retrieve":
-            return client.api_pmbok_projects_retrieve(**kwargs)
-        elif action == "api_pmbok_projects_update":
-            return client.api_pmbok_projects_update(**kwargs)
-        elif action == "api_pmbok_projects_partial_update":
-            return client.api_pmbok_projects_partial_update(**kwargs)
-        elif action == "api_pmbok_projects_destroy":
-            return client.api_pmbok_projects_destroy(**kwargs)
-        elif action == "api_pmbok_projects_cascade_info_retrieve":
-            return client.api_pmbok_projects_cascade_info_retrieve(**kwargs)
-        elif action == "api_pmbok_projects_object_retrieve":
-            return client.api_pmbok_projects_object_retrieve(**kwargs)
-        elif action == "api_pmbok_projects_batch_action_create":
-            return client.api_pmbok_projects_batch_action_create(**kwargs)
-        elif action == "api_pmbok_projects_currencies_retrieve":
-            return client.api_pmbok_projects_currencies_retrieve(**kwargs)
-        elif action == "api_pmbok_projects_kind_retrieve":
-            return client.api_pmbok_projects_kind_retrieve(**kwargs)
-        elif action == "api_pmbok_projects_priority_retrieve":
-            return client.api_pmbok_projects_priority_retrieve(**kwargs)
-        elif action == "api_pmbok_responsibility_assignments_list":
-            return client.api_pmbok_responsibility_assignments_list(**kwargs)
-        elif action == "api_pmbok_responsibility_assignments_retrieve":
-            return client.api_pmbok_responsibility_assignments_retrieve(**kwargs)
-        elif action == "api_pmbok_responsibility_assignments_cascade_info_retrieve":
-            return client.api_pmbok_responsibility_assignments_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_pmbok_responsibility_assignments_object_retrieve":
-            return client.api_pmbok_responsibility_assignments_object_retrieve(**kwargs)
-        elif action == "api_pmbok_responsibility_matrices_list":
-            return client.api_pmbok_responsibility_matrices_list(**kwargs)
-        elif action == "api_pmbok_responsibility_matrices_create":
-            return client.api_pmbok_responsibility_matrices_create(**kwargs)
-        elif action == "api_pmbok_responsibility_matrices_retrieve":
-            return client.api_pmbok_responsibility_matrices_retrieve(**kwargs)
-        elif action == "api_pmbok_responsibility_matrices_update":
-            return client.api_pmbok_responsibility_matrices_update(**kwargs)
-        elif action == "api_pmbok_responsibility_matrices_partial_update":
-            return client.api_pmbok_responsibility_matrices_partial_update(**kwargs)
-        elif action == "api_pmbok_responsibility_matrices_destroy":
-            return client.api_pmbok_responsibility_matrices_destroy(**kwargs)
-        elif action == "api_pmbok_responsibility_matrices_cascade_info_retrieve":
-            return client.api_pmbok_responsibility_matrices_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_pmbok_responsibility_matrices_cycle_cell_create":
-            return client.api_pmbok_responsibility_matrices_cycle_cell_create(**kwargs)
-        elif action == "api_pmbok_responsibility_matrices_object_retrieve":
-            return client.api_pmbok_responsibility_matrices_object_retrieve(**kwargs)
-        elif action == "api_pmbok_responsibility_matrices_reorder_activities_create":
-            return client.api_pmbok_responsibility_matrices_reorder_activities_create(
-                **kwargs
-            )
-        elif action == "api_pmbok_responsibility_matrices_reorder_actors_create":
-            return client.api_pmbok_responsibility_matrices_reorder_actors_create(
-                **kwargs
-            )
-        elif action == "api_pmbok_responsibility_matrices_batch_action_create":
-            return client.api_pmbok_responsibility_matrices_batch_action_create(
-                **kwargs
-            )
-        elif action == "api_pmbok_responsibility_matrices_preset_retrieve":
-            return client.api_pmbok_responsibility_matrices_preset_retrieve(**kwargs)
-        elif action == "api_pmbok_responsibility_matrix_activities_list":
-            return client.api_pmbok_responsibility_matrix_activities_list(**kwargs)
-        elif action == "api_pmbok_responsibility_matrix_activities_create":
-            return client.api_pmbok_responsibility_matrix_activities_create(**kwargs)
-        elif action == "api_pmbok_responsibility_matrix_activities_retrieve":
-            return client.api_pmbok_responsibility_matrix_activities_retrieve(**kwargs)
-        elif action == "api_pmbok_responsibility_matrix_activities_update":
-            return client.api_pmbok_responsibility_matrix_activities_update(**kwargs)
-        elif action == "api_pmbok_responsibility_matrix_activities_partial_update":
-            return client.api_pmbok_responsibility_matrix_activities_partial_update(
-                **kwargs
-            )
-        elif action == "api_pmbok_responsibility_matrix_activities_destroy":
-            return client.api_pmbok_responsibility_matrix_activities_destroy(**kwargs)
-        elif (
-            action == "api_pmbok_responsibility_matrix_activities_cascade_info_retrieve"
-        ):
-            return (
-                client.api_pmbok_responsibility_matrix_activities_cascade_info_retrieve(
-                    **kwargs
-                )
-            )
-        elif action == "api_pmbok_responsibility_matrix_activities_object_retrieve":
-            return client.api_pmbok_responsibility_matrix_activities_object_retrieve(
-                **kwargs
-            )
-        elif action == "api_pmbok_responsibility_matrix_activities_batch_action_create":
-            return (
-                client.api_pmbok_responsibility_matrix_activities_batch_action_create(
-                    **kwargs
-                )
-            )
-        elif action == "api_pmbok_responsibility_matrix_actors_list":
-            return client.api_pmbok_responsibility_matrix_actors_list(**kwargs)
-        elif action == "api_pmbok_responsibility_matrix_actors_create":
-            return client.api_pmbok_responsibility_matrix_actors_create(**kwargs)
-        elif action == "api_pmbok_responsibility_matrix_actors_retrieve":
-            return client.api_pmbok_responsibility_matrix_actors_retrieve(**kwargs)
-        elif action == "api_pmbok_responsibility_matrix_actors_update":
-            return client.api_pmbok_responsibility_matrix_actors_update(**kwargs)
-        elif action == "api_pmbok_responsibility_matrix_actors_partial_update":
-            return client.api_pmbok_responsibility_matrix_actors_partial_update(
-                **kwargs
-            )
-        elif action == "api_pmbok_responsibility_matrix_actors_destroy":
-            return client.api_pmbok_responsibility_matrix_actors_destroy(**kwargs)
-        elif action == "api_pmbok_responsibility_matrix_actors_cascade_info_retrieve":
-            return client.api_pmbok_responsibility_matrix_actors_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_pmbok_responsibility_matrix_actors_object_retrieve":
-            return client.api_pmbok_responsibility_matrix_actors_object_retrieve(
-                **kwargs
-            )
-        elif action == "api_pmbok_responsibility_matrix_actors_batch_action_create":
-            return client.api_pmbok_responsibility_matrix_actors_batch_action_create(
-                **kwargs
-            )
-        elif action == "api_pmbok_responsibility_roles_list":
-            return client.api_pmbok_responsibility_roles_list(**kwargs)
-        elif action == "api_pmbok_responsibility_roles_retrieve":
-            return client.api_pmbok_responsibility_roles_retrieve(**kwargs)
-        elif action == "api_pmbok_responsibility_roles_cascade_info_retrieve":
-            return client.api_pmbok_responsibility_roles_cascade_info_retrieve(**kwargs)
-        elif action == "api_pmbok_responsibility_roles_object_retrieve":
-            return client.api_pmbok_responsibility_roles_object_retrieve(**kwargs)
-        elif action == "api_pmbok_responsibility_roles_taxonomy_retrieve":
-            return client.api_pmbok_responsibility_roles_taxonomy_retrieve(**kwargs)
-        elif action == "api_resilience_asset_assessments_list":
-            return client.api_resilience_asset_assessments_list(**kwargs)
-        elif action == "api_resilience_asset_assessments_create":
-            return client.api_resilience_asset_assessments_create(**kwargs)
-        elif action == "api_resilience_asset_assessments_retrieve":
-            return client.api_resilience_asset_assessments_retrieve(**kwargs)
-        elif action == "api_resilience_asset_assessments_update":
-            return client.api_resilience_asset_assessments_update(**kwargs)
-        elif action == "api_resilience_asset_assessments_partial_update":
-            return client.api_resilience_asset_assessments_partial_update(**kwargs)
-        elif action == "api_resilience_asset_assessments_destroy":
-            return client.api_resilience_asset_assessments_destroy(**kwargs)
-        elif action == "api_resilience_asset_assessments_cascade_info_retrieve":
-            return client.api_resilience_asset_assessments_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_asset_assessments_dependency_graph_retrieve":
-            return client.api_resilience_asset_assessments_dependency_graph_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_asset_assessments_metrics_retrieve":
-            return client.api_resilience_asset_assessments_metrics_retrieve(**kwargs)
-        elif action == "api_resilience_asset_assessments_object_retrieve":
-            return client.api_resilience_asset_assessments_object_retrieve(**kwargs)
-        elif action == "api_resilience_asset_assessments_quali_impact_retrieve":
-            return client.api_resilience_asset_assessments_quali_impact_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_asset_assessments_risk_matrix_retrieve":
-            return client.api_resilience_asset_assessments_risk_matrix_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_asset_assessments_batch_action_create":
-            return client.api_resilience_asset_assessments_batch_action_create(**kwargs)
-        elif action == "api_resilience_business_impact_analysis_list":
-            return client.api_resilience_business_impact_analysis_list(**kwargs)
-        elif action == "api_resilience_business_impact_analysis_create":
-            return client.api_resilience_business_impact_analysis_create(**kwargs)
-        elif action == "api_resilience_business_impact_analysis_retrieve":
-            return client.api_resilience_business_impact_analysis_retrieve(**kwargs)
-        elif action == "api_resilience_business_impact_analysis_update":
-            return client.api_resilience_business_impact_analysis_update(**kwargs)
-        elif action == "api_resilience_business_impact_analysis_partial_update":
-            return client.api_resilience_business_impact_analysis_partial_update(
-                **kwargs
-            )
-        elif action == "api_resilience_business_impact_analysis_destroy":
-            return client.api_resilience_business_impact_analysis_destroy(**kwargs)
-        elif action == "api_resilience_business_impact_analysis_build_table_retrieve":
-            return client.api_resilience_business_impact_analysis_build_table_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_business_impact_analysis_cascade_info_retrieve":
-            return client.api_resilience_business_impact_analysis_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_business_impact_analysis_metrics_retrieve":
-            return client.api_resilience_business_impact_analysis_metrics_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_business_impact_analysis_object_retrieve":
-            return client.api_resilience_business_impact_analysis_object_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_business_impact_analysis_xlsx_retrieve":
-            return client.api_resilience_business_impact_analysis_xlsx_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_business_impact_analysis_batch_action_create":
-            return client.api_resilience_business_impact_analysis_batch_action_create(
-                **kwargs
-            )
-        elif action == "api_resilience_business_impact_analysis_export_csv_retrieve":
-            return client.api_resilience_business_impact_analysis_export_csv_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_business_impact_analysis_export_xlsx_retrieve":
-            return client.api_resilience_business_impact_analysis_export_xlsx_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_business_impact_analysis_status_retrieve":
-            return client.api_resilience_business_impact_analysis_status_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_dora_incident_reports_list":
-            return client.api_resilience_dora_incident_reports_list(**kwargs)
-        elif action == "api_resilience_dora_incident_reports_create":
-            return client.api_resilience_dora_incident_reports_create(**kwargs)
-        elif action == "api_resilience_dora_incident_reports_retrieve":
-            return client.api_resilience_dora_incident_reports_retrieve(**kwargs)
-        elif action == "api_resilience_dora_incident_reports_update":
-            return client.api_resilience_dora_incident_reports_update(**kwargs)
-        elif action == "api_resilience_dora_incident_reports_partial_update":
-            return client.api_resilience_dora_incident_reports_partial_update(**kwargs)
-        elif action == "api_resilience_dora_incident_reports_destroy":
-            return client.api_resilience_dora_incident_reports_destroy(**kwargs)
-        elif action == "api_resilience_dora_incident_reports_cascade_info_retrieve":
-            return client.api_resilience_dora_incident_reports_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_dora_incident_reports_export_json_retrieve":
-            return client.api_resilience_dora_incident_reports_export_json_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_dora_incident_reports_object_retrieve":
-            return client.api_resilience_dora_incident_reports_object_retrieve(**kwargs)
-        elif action == "api_resilience_dora_incident_reports_validate_report_retrieve":
-            return client.api_resilience_dora_incident_reports_validate_report_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_dora_incident_reports_batch_action_create":
-            return client.api_resilience_dora_incident_reports_batch_action_create(
-                **kwargs
-            )
-        elif (
-            action
-            == "api_resilience_dora_incident_reports_classification_criterion_retrieve"
-        ):
-            return client.api_resilience_dora_incident_reports_classification_criterion_retrieve(
-                **kwargs
-            )
-        elif (
-            action
-            == "api_resilience_dora_incident_reports_incident_classification_retrieve"
-        ):
-            return client.api_resilience_dora_incident_reports_incident_classification_retrieve(
-                **kwargs
-            )
-        elif (
-            action == "api_resilience_dora_incident_reports_incident_discovery_retrieve"
-        ):
-            return (
-                client.api_resilience_dora_incident_reports_incident_discovery_retrieve(
-                    **kwargs
-                )
-            )
-        elif (
-            action
-            == "api_resilience_dora_incident_reports_incident_submission_retrieve"
-        ):
-            return client.api_resilience_dora_incident_reports_incident_submission_retrieve(
-                **kwargs
-            )
-        elif (
-            action
-            == "api_resilience_dora_incident_reports_info_duration_service_downtime_actual_or_estimate_retrieve"
-        ):
-            return client.api_resilience_dora_incident_reports_info_duration_service_downtime_actual_or_estimate_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_dora_incident_reports_main_entity_retrieve":
-            return client.api_resilience_dora_incident_reports_main_entity_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_dora_incident_reports_report_currency_retrieve":
-            return client.api_resilience_dora_incident_reports_report_currency_retrieve(
-                **kwargs
-            )
-        elif (
-            action
-            == "api_resilience_dora_incident_reports_reporting_authority_retrieve"
-        ):
-            return client.api_resilience_dora_incident_reports_reporting_authority_retrieve(
-                **kwargs
-            )
-        elif (
-            action
-            == "api_resilience_dora_incident_reports_root_cause_additional_retrieve"
-        ):
-            return client.api_resilience_dora_incident_reports_root_cause_additional_retrieve(
-                **kwargs
-            )
-        elif (
-            action
-            == "api_resilience_dora_incident_reports_root_cause_detailed_retrieve"
-        ):
-            return client.api_resilience_dora_incident_reports_root_cause_detailed_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_dora_incident_reports_root_cause_hl_retrieve":
-            return client.api_resilience_dora_incident_reports_root_cause_hl_retrieve(
-                **kwargs
-            )
-        elif (
-            action == "api_resilience_dora_incident_reports_threat_techniques_retrieve"
-        ):
-            return (
-                client.api_resilience_dora_incident_reports_threat_techniques_retrieve(
-                    **kwargs
-                )
-            )
-        elif action == "api_resilience_escalation_thresholds_list":
-            return client.api_resilience_escalation_thresholds_list(**kwargs)
-        elif action == "api_resilience_escalation_thresholds_create":
-            return client.api_resilience_escalation_thresholds_create(**kwargs)
-        elif action == "api_resilience_escalation_thresholds_retrieve":
-            return client.api_resilience_escalation_thresholds_retrieve(**kwargs)
-        elif action == "api_resilience_escalation_thresholds_update":
-            return client.api_resilience_escalation_thresholds_update(**kwargs)
-        elif action == "api_resilience_escalation_thresholds_partial_update":
-            return client.api_resilience_escalation_thresholds_partial_update(**kwargs)
-        elif action == "api_resilience_escalation_thresholds_destroy":
-            return client.api_resilience_escalation_thresholds_destroy(**kwargs)
-        elif action == "api_resilience_escalation_thresholds_cascade_info_retrieve":
-            return client.api_resilience_escalation_thresholds_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_escalation_thresholds_object_retrieve":
-            return client.api_resilience_escalation_thresholds_object_retrieve(**kwargs)
-        elif action == "api_resilience_escalation_thresholds_quali_impact_retrieve":
-            return client.api_resilience_escalation_thresholds_quali_impact_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_escalation_thresholds_risk_matrix_retrieve":
-            return client.api_resilience_escalation_thresholds_risk_matrix_retrieve(
-                **kwargs
-            )
-        elif action == "api_resilience_escalation_thresholds_batch_action_create":
-            return client.api_resilience_escalation_thresholds_batch_action_create(
-                **kwargs
-            )
-        elif action == "api_resilience_escalation_thresholds_quant_unit_retrieve":
-            return client.api_resilience_escalation_thresholds_quant_unit_retrieve(
-                **kwargs
-            )
+        for _dispatch in _RESILIENCE_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
