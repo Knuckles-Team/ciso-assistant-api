@@ -8,6 +8,182 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_chat_1(action, kwargs, client):
+    # api_chat_agent_actions_list .. api_chat_agent_runs_list (9 actions)
+    if action == "api_chat_agent_actions_list":
+        return client.api_chat_agent_actions_list(**kwargs)
+    elif action == "api_chat_agent_actions_create":
+        return client.api_chat_agent_actions_create(**kwargs)
+    elif action == "api_chat_agent_actions_retrieve":
+        return client.api_chat_agent_actions_retrieve(**kwargs)
+    elif action == "api_chat_agent_actions_approve_create":
+        return client.api_chat_agent_actions_approve_create(**kwargs)
+    elif action == "api_chat_agent_actions_cascade_info_retrieve":
+        return client.api_chat_agent_actions_cascade_info_retrieve(**kwargs)
+    elif action == "api_chat_agent_actions_object_retrieve":
+        return client.api_chat_agent_actions_object_retrieve(**kwargs)
+    elif action == "api_chat_agent_actions_reject_create":
+        return client.api_chat_agent_actions_reject_create(**kwargs)
+    elif action == "api_chat_agent_actions_batch_action_create":
+        return client.api_chat_agent_actions_batch_action_create(**kwargs)
+    elif action == "api_chat_agent_runs_list":
+        return client.api_chat_agent_runs_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_chat_2(action, kwargs, client):
+    # api_chat_agent_runs_create .. api_chat_documents_create (9 actions)
+    if action == "api_chat_agent_runs_create":
+        return client.api_chat_agent_runs_create(**kwargs)
+    elif action == "api_chat_agent_runs_retrieve":
+        return client.api_chat_agent_runs_retrieve(**kwargs)
+    elif action == "api_chat_agent_runs_cancel_create":
+        return client.api_chat_agent_runs_cancel_create(**kwargs)
+    elif action == "api_chat_agent_runs_cascade_info_retrieve":
+        return client.api_chat_agent_runs_cascade_info_retrieve(**kwargs)
+    elif action == "api_chat_agent_runs_object_retrieve":
+        return client.api_chat_agent_runs_object_retrieve(**kwargs)
+    elif action == "api_chat_agent_runs_batch_action_create":
+        return client.api_chat_agent_runs_batch_action_create(**kwargs)
+    elif action == "api_chat_agent_runs_start_questionnaire_prefill_create":
+        return client.api_chat_agent_runs_start_questionnaire_prefill_create(**kwargs)
+    elif action == "api_chat_documents_list":
+        return client.api_chat_documents_list(**kwargs)
+    elif action == "api_chat_documents_create":
+        return client.api_chat_documents_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_chat_3(action, kwargs, client):
+    # api_chat_documents_retrieve .. api_chat_questionnaire_questions_list (9 actions)
+    if action == "api_chat_documents_retrieve":
+        return client.api_chat_documents_retrieve(**kwargs)
+    elif action == "api_chat_documents_update":
+        return client.api_chat_documents_update(**kwargs)
+    elif action == "api_chat_documents_partial_update":
+        return client.api_chat_documents_partial_update(**kwargs)
+    elif action == "api_chat_documents_destroy":
+        return client.api_chat_documents_destroy(**kwargs)
+    elif action == "api_chat_documents_cascade_info_retrieve":
+        return client.api_chat_documents_cascade_info_retrieve(**kwargs)
+    elif action == "api_chat_documents_object_retrieve":
+        return client.api_chat_documents_object_retrieve(**kwargs)
+    elif action == "api_chat_documents_batch_action_create":
+        return client.api_chat_documents_batch_action_create(**kwargs)
+    elif action == "api_chat_ollama_models_retrieve":
+        return client.api_chat_ollama_models_retrieve(**kwargs)
+    elif action == "api_chat_questionnaire_questions_list":
+        return client.api_chat_questionnaire_questions_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_chat_4(action, kwargs, client):
+    # api_chat_questionnaire_questions_create .. api_chat_questionnaire_questions_retry_with_control_create (9 actions)
+    if action == "api_chat_questionnaire_questions_create":
+        return client.api_chat_questionnaire_questions_create(**kwargs)
+    elif action == "api_chat_questionnaire_questions_retrieve":
+        return client.api_chat_questionnaire_questions_retrieve(**kwargs)
+    elif action == "api_chat_questionnaire_questions_update":
+        return client.api_chat_questionnaire_questions_update(**kwargs)
+    elif action == "api_chat_questionnaire_questions_partial_update":
+        return client.api_chat_questionnaire_questions_partial_update(**kwargs)
+    elif action == "api_chat_questionnaire_questions_destroy":
+        return client.api_chat_questionnaire_questions_destroy(**kwargs)
+    elif action == "api_chat_questionnaire_questions_cascade_info_retrieve":
+        return client.api_chat_questionnaire_questions_cascade_info_retrieve(**kwargs)
+    elif action == "api_chat_questionnaire_questions_create_and_retry_create":
+        return client.api_chat_questionnaire_questions_create_and_retry_create(**kwargs)
+    elif action == "api_chat_questionnaire_questions_object_retrieve":
+        return client.api_chat_questionnaire_questions_object_retrieve(**kwargs)
+    elif action == "api_chat_questionnaire_questions_retry_with_control_create":
+        return client.api_chat_questionnaire_questions_retry_with_control_create(
+            **kwargs
+        )
+    return _UNHANDLED
+
+
+def _dispatch_chat_5(action, kwargs, client):
+    # api_chat_questionnaire_questions_suggest_control_create .. api_chat_questionnaire_runs_cascade_info_retrieve (9 actions)
+    if action == "api_chat_questionnaire_questions_suggest_control_create":
+        return client.api_chat_questionnaire_questions_suggest_control_create(**kwargs)
+    elif action == "api_chat_questionnaire_questions_batch_action_create":
+        return client.api_chat_questionnaire_questions_batch_action_create(**kwargs)
+    elif action == "api_chat_questionnaire_runs_list":
+        return client.api_chat_questionnaire_runs_list(**kwargs)
+    elif action == "api_chat_questionnaire_runs_create":
+        return client.api_chat_questionnaire_runs_create(**kwargs)
+    elif action == "api_chat_questionnaire_runs_retrieve":
+        return client.api_chat_questionnaire_runs_retrieve(**kwargs)
+    elif action == "api_chat_questionnaire_runs_update":
+        return client.api_chat_questionnaire_runs_update(**kwargs)
+    elif action == "api_chat_questionnaire_runs_partial_update":
+        return client.api_chat_questionnaire_runs_partial_update(**kwargs)
+    elif action == "api_chat_questionnaire_runs_destroy":
+        return client.api_chat_questionnaire_runs_destroy(**kwargs)
+    elif action == "api_chat_questionnaire_runs_cascade_info_retrieve":
+        return client.api_chat_questionnaire_runs_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_chat_6(action, kwargs, client):
+    # api_chat_questionnaire_runs_export_retrieve .. api_chat_sessions_retrieve (9 actions)
+    if action == "api_chat_questionnaire_runs_export_retrieve":
+        return client.api_chat_questionnaire_runs_export_retrieve(**kwargs)
+    elif action == "api_chat_questionnaire_runs_extract_questions_create":
+        return client.api_chat_questionnaire_runs_extract_questions_create(**kwargs)
+    elif action == "api_chat_questionnaire_runs_mapping_partial_update":
+        return client.api_chat_questionnaire_runs_mapping_partial_update(**kwargs)
+    elif action == "api_chat_questionnaire_runs_object_retrieve":
+        return client.api_chat_questionnaire_runs_object_retrieve(**kwargs)
+    elif action == "api_chat_questionnaire_runs_batch_action_create":
+        return client.api_chat_questionnaire_runs_batch_action_create(**kwargs)
+    elif action == "api_chat_questionnaire_runs_upload_create":
+        return client.api_chat_questionnaire_runs_upload_create(**kwargs)
+    elif action == "api_chat_sessions_list":
+        return client.api_chat_sessions_list(**kwargs)
+    elif action == "api_chat_sessions_create":
+        return client.api_chat_sessions_create(**kwargs)
+    elif action == "api_chat_sessions_retrieve":
+        return client.api_chat_sessions_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_chat_7(action, kwargs, client):
+    # api_chat_sessions_update .. api_chat_status_retrieve (9 actions)
+    if action == "api_chat_sessions_update":
+        return client.api_chat_sessions_update(**kwargs)
+    elif action == "api_chat_sessions_partial_update":
+        return client.api_chat_sessions_partial_update(**kwargs)
+    elif action == "api_chat_sessions_destroy":
+        return client.api_chat_sessions_destroy(**kwargs)
+    elif action == "api_chat_sessions_cascade_info_retrieve":
+        return client.api_chat_sessions_cascade_info_retrieve(**kwargs)
+    elif action == "api_chat_sessions_message_create":
+        return client.api_chat_sessions_message_create(**kwargs)
+    elif action == "api_chat_sessions_object_retrieve":
+        return client.api_chat_sessions_object_retrieve(**kwargs)
+    elif action == "api_chat_sessions_upload_create":
+        return client.api_chat_sessions_upload_create(**kwargs)
+    elif action == "api_chat_sessions_batch_action_create":
+        return client.api_chat_sessions_batch_action_create(**kwargs)
+    elif action == "api_chat_status_retrieve":
+        return client.api_chat_status_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_CHAT_DISPATCHERS = (
+    _dispatch_chat_1,
+    _dispatch_chat_2,
+    _dispatch_chat_3,
+    _dispatch_chat_4,
+    _dispatch_chat_5,
+    _dispatch_chat_6,
+    _dispatch_chat_7,
+)
+
 
 def register_chat_tools(mcp: FastMCP):
     @mcp.tool(tags={"chat"})
@@ -37,140 +213,8 @@ def register_chat_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_chat_agent_actions_list":
-            return client.api_chat_agent_actions_list(**kwargs)
-        elif action == "api_chat_agent_actions_create":
-            return client.api_chat_agent_actions_create(**kwargs)
-        elif action == "api_chat_agent_actions_retrieve":
-            return client.api_chat_agent_actions_retrieve(**kwargs)
-        elif action == "api_chat_agent_actions_approve_create":
-            return client.api_chat_agent_actions_approve_create(**kwargs)
-        elif action == "api_chat_agent_actions_cascade_info_retrieve":
-            return client.api_chat_agent_actions_cascade_info_retrieve(**kwargs)
-        elif action == "api_chat_agent_actions_object_retrieve":
-            return client.api_chat_agent_actions_object_retrieve(**kwargs)
-        elif action == "api_chat_agent_actions_reject_create":
-            return client.api_chat_agent_actions_reject_create(**kwargs)
-        elif action == "api_chat_agent_actions_batch_action_create":
-            return client.api_chat_agent_actions_batch_action_create(**kwargs)
-        elif action == "api_chat_agent_runs_list":
-            return client.api_chat_agent_runs_list(**kwargs)
-        elif action == "api_chat_agent_runs_create":
-            return client.api_chat_agent_runs_create(**kwargs)
-        elif action == "api_chat_agent_runs_retrieve":
-            return client.api_chat_agent_runs_retrieve(**kwargs)
-        elif action == "api_chat_agent_runs_cancel_create":
-            return client.api_chat_agent_runs_cancel_create(**kwargs)
-        elif action == "api_chat_agent_runs_cascade_info_retrieve":
-            return client.api_chat_agent_runs_cascade_info_retrieve(**kwargs)
-        elif action == "api_chat_agent_runs_object_retrieve":
-            return client.api_chat_agent_runs_object_retrieve(**kwargs)
-        elif action == "api_chat_agent_runs_batch_action_create":
-            return client.api_chat_agent_runs_batch_action_create(**kwargs)
-        elif action == "api_chat_agent_runs_start_questionnaire_prefill_create":
-            return client.api_chat_agent_runs_start_questionnaire_prefill_create(
-                **kwargs
-            )
-        elif action == "api_chat_documents_list":
-            return client.api_chat_documents_list(**kwargs)
-        elif action == "api_chat_documents_create":
-            return client.api_chat_documents_create(**kwargs)
-        elif action == "api_chat_documents_retrieve":
-            return client.api_chat_documents_retrieve(**kwargs)
-        elif action == "api_chat_documents_update":
-            return client.api_chat_documents_update(**kwargs)
-        elif action == "api_chat_documents_partial_update":
-            return client.api_chat_documents_partial_update(**kwargs)
-        elif action == "api_chat_documents_destroy":
-            return client.api_chat_documents_destroy(**kwargs)
-        elif action == "api_chat_documents_cascade_info_retrieve":
-            return client.api_chat_documents_cascade_info_retrieve(**kwargs)
-        elif action == "api_chat_documents_object_retrieve":
-            return client.api_chat_documents_object_retrieve(**kwargs)
-        elif action == "api_chat_documents_batch_action_create":
-            return client.api_chat_documents_batch_action_create(**kwargs)
-        elif action == "api_chat_ollama_models_retrieve":
-            return client.api_chat_ollama_models_retrieve(**kwargs)
-        elif action == "api_chat_questionnaire_questions_list":
-            return client.api_chat_questionnaire_questions_list(**kwargs)
-        elif action == "api_chat_questionnaire_questions_create":
-            return client.api_chat_questionnaire_questions_create(**kwargs)
-        elif action == "api_chat_questionnaire_questions_retrieve":
-            return client.api_chat_questionnaire_questions_retrieve(**kwargs)
-        elif action == "api_chat_questionnaire_questions_update":
-            return client.api_chat_questionnaire_questions_update(**kwargs)
-        elif action == "api_chat_questionnaire_questions_partial_update":
-            return client.api_chat_questionnaire_questions_partial_update(**kwargs)
-        elif action == "api_chat_questionnaire_questions_destroy":
-            return client.api_chat_questionnaire_questions_destroy(**kwargs)
-        elif action == "api_chat_questionnaire_questions_cascade_info_retrieve":
-            return client.api_chat_questionnaire_questions_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_chat_questionnaire_questions_create_and_retry_create":
-            return client.api_chat_questionnaire_questions_create_and_retry_create(
-                **kwargs
-            )
-        elif action == "api_chat_questionnaire_questions_object_retrieve":
-            return client.api_chat_questionnaire_questions_object_retrieve(**kwargs)
-        elif action == "api_chat_questionnaire_questions_retry_with_control_create":
-            return client.api_chat_questionnaire_questions_retry_with_control_create(
-                **kwargs
-            )
-        elif action == "api_chat_questionnaire_questions_suggest_control_create":
-            return client.api_chat_questionnaire_questions_suggest_control_create(
-                **kwargs
-            )
-        elif action == "api_chat_questionnaire_questions_batch_action_create":
-            return client.api_chat_questionnaire_questions_batch_action_create(**kwargs)
-        elif action == "api_chat_questionnaire_runs_list":
-            return client.api_chat_questionnaire_runs_list(**kwargs)
-        elif action == "api_chat_questionnaire_runs_create":
-            return client.api_chat_questionnaire_runs_create(**kwargs)
-        elif action == "api_chat_questionnaire_runs_retrieve":
-            return client.api_chat_questionnaire_runs_retrieve(**kwargs)
-        elif action == "api_chat_questionnaire_runs_update":
-            return client.api_chat_questionnaire_runs_update(**kwargs)
-        elif action == "api_chat_questionnaire_runs_partial_update":
-            return client.api_chat_questionnaire_runs_partial_update(**kwargs)
-        elif action == "api_chat_questionnaire_runs_destroy":
-            return client.api_chat_questionnaire_runs_destroy(**kwargs)
-        elif action == "api_chat_questionnaire_runs_cascade_info_retrieve":
-            return client.api_chat_questionnaire_runs_cascade_info_retrieve(**kwargs)
-        elif action == "api_chat_questionnaire_runs_export_retrieve":
-            return client.api_chat_questionnaire_runs_export_retrieve(**kwargs)
-        elif action == "api_chat_questionnaire_runs_extract_questions_create":
-            return client.api_chat_questionnaire_runs_extract_questions_create(**kwargs)
-        elif action == "api_chat_questionnaire_runs_mapping_partial_update":
-            return client.api_chat_questionnaire_runs_mapping_partial_update(**kwargs)
-        elif action == "api_chat_questionnaire_runs_object_retrieve":
-            return client.api_chat_questionnaire_runs_object_retrieve(**kwargs)
-        elif action == "api_chat_questionnaire_runs_batch_action_create":
-            return client.api_chat_questionnaire_runs_batch_action_create(**kwargs)
-        elif action == "api_chat_questionnaire_runs_upload_create":
-            return client.api_chat_questionnaire_runs_upload_create(**kwargs)
-        elif action == "api_chat_sessions_list":
-            return client.api_chat_sessions_list(**kwargs)
-        elif action == "api_chat_sessions_create":
-            return client.api_chat_sessions_create(**kwargs)
-        elif action == "api_chat_sessions_retrieve":
-            return client.api_chat_sessions_retrieve(**kwargs)
-        elif action == "api_chat_sessions_update":
-            return client.api_chat_sessions_update(**kwargs)
-        elif action == "api_chat_sessions_partial_update":
-            return client.api_chat_sessions_partial_update(**kwargs)
-        elif action == "api_chat_sessions_destroy":
-            return client.api_chat_sessions_destroy(**kwargs)
-        elif action == "api_chat_sessions_cascade_info_retrieve":
-            return client.api_chat_sessions_cascade_info_retrieve(**kwargs)
-        elif action == "api_chat_sessions_message_create":
-            return client.api_chat_sessions_message_create(**kwargs)
-        elif action == "api_chat_sessions_object_retrieve":
-            return client.api_chat_sessions_object_retrieve(**kwargs)
-        elif action == "api_chat_sessions_upload_create":
-            return client.api_chat_sessions_upload_create(**kwargs)
-        elif action == "api_chat_sessions_batch_action_create":
-            return client.api_chat_sessions_batch_action_create(**kwargs)
-        elif action == "api_chat_status_retrieve":
-            return client.api_chat_status_retrieve(**kwargs)
+        for _dispatch in _CHAT_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
