@@ -8,6 +8,348 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_risk_management_1(action, kwargs, client):
+    # api_cwes_list .. api_cwes_autocomplete_retrieve (9 actions)
+    if action == "api_cwes_list":
+        return client.api_cwes_list(**kwargs)
+    elif action == "api_cwes_create":
+        return client.api_cwes_create(**kwargs)
+    elif action == "api_cwes_retrieve":
+        return client.api_cwes_retrieve(**kwargs)
+    elif action == "api_cwes_update":
+        return client.api_cwes_update(**kwargs)
+    elif action == "api_cwes_partial_update":
+        return client.api_cwes_partial_update(**kwargs)
+    elif action == "api_cwes_destroy":
+        return client.api_cwes_destroy(**kwargs)
+    elif action == "api_cwes_cascade_info_retrieve":
+        return client.api_cwes_cascade_info_retrieve(**kwargs)
+    elif action == "api_cwes_object_retrieve":
+        return client.api_cwes_object_retrieve(**kwargs)
+    elif action == "api_cwes_autocomplete_retrieve":
+        return client.api_cwes_autocomplete_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_2(action, kwargs, client):
+    # api_cwes_batch_action_create .. api_risk_acceptances_accept_create (9 actions)
+    if action == "api_cwes_batch_action_create":
+        return client.api_cwes_batch_action_create(**kwargs)
+    elif action == "api_cwes_sync_catalog_create":
+        return client.api_cwes_sync_catalog_create(**kwargs)
+    elif action == "api_risk_acceptances_list":
+        return client.api_risk_acceptances_list(**kwargs)
+    elif action == "api_risk_acceptances_create":
+        return client.api_risk_acceptances_create(**kwargs)
+    elif action == "api_risk_acceptances_retrieve":
+        return client.api_risk_acceptances_retrieve(**kwargs)
+    elif action == "api_risk_acceptances_update":
+        return client.api_risk_acceptances_update(**kwargs)
+    elif action == "api_risk_acceptances_partial_update":
+        return client.api_risk_acceptances_partial_update(**kwargs)
+    elif action == "api_risk_acceptances_destroy":
+        return client.api_risk_acceptances_destroy(**kwargs)
+    elif action == "api_risk_acceptances_accept_create":
+        return client.api_risk_acceptances_accept_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_3(action, kwargs, client):
+    # api_risk_acceptances_cascade_info_retrieve .. api_risk_acceptances_to_review_retrieve (9 actions)
+    if action == "api_risk_acceptances_cascade_info_retrieve":
+        return client.api_risk_acceptances_cascade_info_retrieve(**kwargs)
+    elif action == "api_risk_acceptances_draft_create":
+        return client.api_risk_acceptances_draft_create(**kwargs)
+    elif action == "api_risk_acceptances_object_retrieve":
+        return client.api_risk_acceptances_object_retrieve(**kwargs)
+    elif action == "api_risk_acceptances_reject_create":
+        return client.api_risk_acceptances_reject_create(**kwargs)
+    elif action == "api_risk_acceptances_revoke_create":
+        return client.api_risk_acceptances_revoke_create(**kwargs)
+    elif action == "api_risk_acceptances_submit_create":
+        return client.api_risk_acceptances_submit_create(**kwargs)
+    elif action == "api_risk_acceptances_batch_action_create":
+        return client.api_risk_acceptances_batch_action_create(**kwargs)
+    elif action == "api_risk_acceptances_state_retrieve":
+        return client.api_risk_acceptances_state_retrieve(**kwargs)
+    elif action == "api_risk_acceptances_to_review_retrieve":
+        return client.api_risk_acceptances_to_review_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_4(action, kwargs, client):
+    # api_risk_acceptances_waiting_retrieve .. api_risk_assessments_action_plan_budget_overview_list (9 actions)
+    if action == "api_risk_acceptances_waiting_retrieve":
+        return client.api_risk_acceptances_waiting_retrieve(**kwargs)
+    elif action == "api_risk_assessments_list":
+        return client.api_risk_assessments_list(**kwargs)
+    elif action == "api_risk_assessments_create":
+        return client.api_risk_assessments_create(**kwargs)
+    elif action == "api_risk_assessments_retrieve":
+        return client.api_risk_assessments_retrieve(**kwargs)
+    elif action == "api_risk_assessments_update":
+        return client.api_risk_assessments_update(**kwargs)
+    elif action == "api_risk_assessments_partial_update":
+        return client.api_risk_assessments_partial_update(**kwargs)
+    elif action == "api_risk_assessments_destroy":
+        return client.api_risk_assessments_destroy(**kwargs)
+    elif action == "api_risk_assessments_action_plan_list":
+        return client.api_risk_assessments_action_plan_list(**kwargs)
+    elif action == "api_risk_assessments_action_plan_budget_overview_list":
+        return client.api_risk_assessments_action_plan_budget_overview_list(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_5(action, kwargs, client):
+    # api_risk_assessments_action_plan_excel_retrieve .. api_risk_assessments_risk_assessment_csv_retrieve (9 actions)
+    if action == "api_risk_assessments_action_plan_excel_retrieve":
+        return client.api_risk_assessments_action_plan_excel_retrieve(**kwargs)
+    elif action == "api_risk_assessments_action_plan_pdf_retrieve":
+        return client.api_risk_assessments_action_plan_pdf_retrieve(**kwargs)
+    elif action == "api_risk_assessments_cascade_info_retrieve":
+        return client.api_risk_assessments_cascade_info_retrieve(**kwargs)
+    elif action == "api_risk_assessments_convert_to_quantitative_create":
+        return client.api_risk_assessments_convert_to_quantitative_create(**kwargs)
+    elif action == "api_risk_assessments_duplicate_create":
+        return client.api_risk_assessments_duplicate_create(**kwargs)
+    elif action == "api_risk_assessments_object_retrieve":
+        return client.api_risk_assessments_object_retrieve(**kwargs)
+    elif action == "api_risk_assessments_quality_check_retrieve_2":
+        return client.api_risk_assessments_quality_check_retrieve_2(**kwargs)
+    elif action == "api_risk_assessments_risk_analytics_retrieve":
+        return client.api_risk_assessments_risk_analytics_retrieve(**kwargs)
+    elif action == "api_risk_assessments_risk_assessment_csv_retrieve":
+        return client.api_risk_assessments_risk_assessment_csv_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_6(action, kwargs, client):
+    # api_risk_assessments_risk_assessment_pdf_retrieve .. api_risk_assessments_quality_check_retrieve (9 actions)
+    if action == "api_risk_assessments_risk_assessment_pdf_retrieve":
+        return client.api_risk_assessments_risk_assessment_pdf_retrieve(**kwargs)
+    elif action == "api_risk_assessments_risk_assessment_xlsx_retrieve":
+        return client.api_risk_assessments_risk_assessment_xlsx_retrieve(**kwargs)
+    elif action == "api_risk_assessments_risk_timeline_retrieve":
+        return client.api_risk_assessments_risk_timeline_retrieve(**kwargs)
+    elif action == "api_risk_assessments_sync_to_actions_create":
+        return client.api_risk_assessments_sync_to_actions_create(**kwargs)
+    elif action == "api_risk_assessments_sync_from_ebios_rm_create":
+        return client.api_risk_assessments_sync_from_ebios_rm_create(**kwargs)
+    elif action == "api_risk_assessments_sync_preview_retrieve":
+        return client.api_risk_assessments_sync_preview_retrieve(**kwargs)
+    elif action == "api_risk_assessments_batch_action_create":
+        return client.api_risk_assessments_batch_action_create(**kwargs)
+    elif action == "api_risk_assessments_per_status_retrieve":
+        return client.api_risk_assessments_per_status_retrieve(**kwargs)
+    elif action == "api_risk_assessments_quality_check_retrieve":
+        return client.api_risk_assessments_quality_check_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_7(action, kwargs, client):
+    # api_risk_assessments_status_retrieve .. api_risk_matrices_create_draft_from_create (9 actions)
+    if action == "api_risk_assessments_status_retrieve":
+        return client.api_risk_assessments_status_retrieve(**kwargs)
+    elif action == "api_risk_matrices_list":
+        return client.api_risk_matrices_list(**kwargs)
+    elif action == "api_risk_matrices_create":
+        return client.api_risk_matrices_create(**kwargs)
+    elif action == "api_risk_matrices_retrieve":
+        return client.api_risk_matrices_retrieve(**kwargs)
+    elif action == "api_risk_matrices_update":
+        return client.api_risk_matrices_update(**kwargs)
+    elif action == "api_risk_matrices_partial_update":
+        return client.api_risk_matrices_partial_update(**kwargs)
+    elif action == "api_risk_matrices_destroy":
+        return client.api_risk_matrices_destroy(**kwargs)
+    elif action == "api_risk_matrices_cascade_info_retrieve":
+        return client.api_risk_matrices_cascade_info_retrieve(**kwargs)
+    elif action == "api_risk_matrices_create_draft_from_create":
+        return client.api_risk_matrices_create_draft_from_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_8(action, kwargs, client):
+    # api_risk_matrices_discard_draft_create .. api_risk_matrices_create_draft_create (9 actions)
+    if action == "api_risk_matrices_discard_draft_create":
+        return client.api_risk_matrices_discard_draft_create(**kwargs)
+    elif action == "api_risk_matrices_export_yaml_retrieve":
+        return client.api_risk_matrices_export_yaml_retrieve(**kwargs)
+    elif action == "api_risk_matrices_object_retrieve":
+        return client.api_risk_matrices_object_retrieve(**kwargs)
+    elif action == "api_risk_matrices_publish_draft_create":
+        return client.api_risk_matrices_publish_draft_create(**kwargs)
+    elif action == "api_risk_matrices_save_draft_partial_update":
+        return client.api_risk_matrices_save_draft_partial_update(**kwargs)
+    elif action == "api_risk_matrices_start_editing_create":
+        return client.api_risk_matrices_start_editing_create(**kwargs)
+    elif action == "api_risk_matrices_batch_action_create":
+        return client.api_risk_matrices_batch_action_create(**kwargs)
+    elif action == "api_risk_matrices_colors_retrieve":
+        return client.api_risk_matrices_colors_retrieve(**kwargs)
+    elif action == "api_risk_matrices_create_draft_create":
+        return client.api_risk_matrices_create_draft_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_9(action, kwargs, client):
+    # api_risk_matrices_ids_retrieve .. api_risk_scenarios_create (9 actions)
+    if action == "api_risk_matrices_ids_retrieve":
+        return client.api_risk_matrices_ids_retrieve(**kwargs)
+    elif action == "api_risk_matrices_impact_retrieve":
+        return client.api_risk_matrices_impact_retrieve(**kwargs)
+    elif action == "api_risk_matrices_import_yaml_create":
+        return client.api_risk_matrices_import_yaml_create(**kwargs)
+    elif action == "api_risk_matrices_probability_retrieve":
+        return client.api_risk_matrices_probability_retrieve(**kwargs)
+    elif action == "api_risk_matrices_provider_retrieve":
+        return client.api_risk_matrices_provider_retrieve(**kwargs)
+    elif action == "api_risk_matrices_risk_retrieve":
+        return client.api_risk_matrices_risk_retrieve(**kwargs)
+    elif action == "api_risk_matrices_used_retrieve":
+        return client.api_risk_matrices_used_retrieve(**kwargs)
+    elif action == "api_risk_scenarios_list":
+        return client.api_risk_scenarios_list(**kwargs)
+    elif action == "api_risk_scenarios_create":
+        return client.api_risk_scenarios_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_10(action, kwargs, client):
+    # api_risk_scenarios_retrieve .. api_risk_scenarios_strength_of_knowledge_retrieve (9 actions)
+    if action == "api_risk_scenarios_retrieve":
+        return client.api_risk_scenarios_retrieve(**kwargs)
+    elif action == "api_risk_scenarios_update":
+        return client.api_risk_scenarios_update(**kwargs)
+    elif action == "api_risk_scenarios_partial_update":
+        return client.api_risk_scenarios_partial_update(**kwargs)
+    elif action == "api_risk_scenarios_destroy":
+        return client.api_risk_scenarios_destroy(**kwargs)
+    elif action == "api_risk_scenarios_cascade_info_retrieve":
+        return client.api_risk_scenarios_cascade_info_retrieve(**kwargs)
+    elif action == "api_risk_scenarios_impact_retrieve":
+        return client.api_risk_scenarios_impact_retrieve(**kwargs)
+    elif action == "api_risk_scenarios_object_retrieve":
+        return client.api_risk_scenarios_object_retrieve(**kwargs)
+    elif action == "api_risk_scenarios_probability_retrieve":
+        return client.api_risk_scenarios_probability_retrieve(**kwargs)
+    elif action == "api_risk_scenarios_strength_of_knowledge_retrieve":
+        return client.api_risk_scenarios_strength_of_knowledge_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_11(action, kwargs, client):
+    # api_risk_scenarios_sync_to_actions_create .. api_risk_scenarios_treatment_retrieve (9 actions)
+    if action == "api_risk_scenarios_sync_to_actions_create":
+        return client.api_risk_scenarios_sync_to_actions_create(**kwargs)
+    elif action == "api_risk_scenarios_batch_action_create":
+        return client.api_risk_scenarios_batch_action_create(**kwargs)
+    elif action == "api_risk_scenarios_count_per_level_retrieve":
+        return client.api_risk_scenarios_count_per_level_retrieve(**kwargs)
+    elif action == "api_risk_scenarios_default_ref_id_retrieve":
+        return client.api_risk_scenarios_default_ref_id_retrieve(**kwargs)
+    elif action == "api_risk_scenarios_export_csv_retrieve":
+        return client.api_risk_scenarios_export_csv_retrieve(**kwargs)
+    elif action == "api_risk_scenarios_export_xlsx_retrieve":
+        return client.api_risk_scenarios_export_xlsx_retrieve(**kwargs)
+    elif action == "api_risk_scenarios_per_status_retrieve":
+        return client.api_risk_scenarios_per_status_retrieve(**kwargs)
+    elif action == "api_risk_scenarios_qualifications_count_retrieve":
+        return client.api_risk_scenarios_qualifications_count_retrieve(**kwargs)
+    elif action == "api_risk_scenarios_treatment_retrieve":
+        return client.api_risk_scenarios_treatment_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_12(action, kwargs, client):
+    # api_threats_list .. api_threats_batch_action_create (9 actions)
+    if action == "api_threats_list":
+        return client.api_threats_list(**kwargs)
+    elif action == "api_threats_create":
+        return client.api_threats_create(**kwargs)
+    elif action == "api_threats_retrieve":
+        return client.api_threats_retrieve(**kwargs)
+    elif action == "api_threats_update":
+        return client.api_threats_update(**kwargs)
+    elif action == "api_threats_partial_update":
+        return client.api_threats_partial_update(**kwargs)
+    elif action == "api_threats_destroy":
+        return client.api_threats_destroy(**kwargs)
+    elif action == "api_threats_cascade_info_retrieve":
+        return client.api_threats_cascade_info_retrieve(**kwargs)
+    elif action == "api_threats_object_retrieve":
+        return client.api_threats_object_retrieve(**kwargs)
+    elif action == "api_threats_batch_action_create":
+        return client.api_threats_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_13(action, kwargs, client):
+    # api_threats_ids_retrieve .. api_vulnerabilities_destroy (9 actions)
+    if action == "api_threats_ids_retrieve":
+        return client.api_threats_ids_retrieve(**kwargs)
+    elif action == "api_threats_provider_retrieve":
+        return client.api_threats_provider_retrieve(**kwargs)
+    elif action == "api_threats_threats_count_retrieve":
+        return client.api_threats_threats_count_retrieve(**kwargs)
+    elif action == "api_vulnerabilities_list":
+        return client.api_vulnerabilities_list(**kwargs)
+    elif action == "api_vulnerabilities_create":
+        return client.api_vulnerabilities_create(**kwargs)
+    elif action == "api_vulnerabilities_retrieve":
+        return client.api_vulnerabilities_retrieve(**kwargs)
+    elif action == "api_vulnerabilities_update":
+        return client.api_vulnerabilities_update(**kwargs)
+    elif action == "api_vulnerabilities_partial_update":
+        return client.api_vulnerabilities_partial_update(**kwargs)
+    elif action == "api_vulnerabilities_destroy":
+        return client.api_vulnerabilities_destroy(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_risk_management_14(action, kwargs, client):
+    # api_vulnerabilities_cascade_info_retrieve .. api_vulnerabilities_treemap_data_retrieve (9 actions)
+    if action == "api_vulnerabilities_cascade_info_retrieve":
+        return client.api_vulnerabilities_cascade_info_retrieve(**kwargs)
+    elif action == "api_vulnerabilities_object_retrieve":
+        return client.api_vulnerabilities_object_retrieve(**kwargs)
+    elif action == "api_vulnerabilities_autocomplete_retrieve":
+        return client.api_vulnerabilities_autocomplete_retrieve(**kwargs)
+    elif action == "api_vulnerabilities_batch_action_create":
+        return client.api_vulnerabilities_batch_action_create(**kwargs)
+    elif action == "api_vulnerabilities_refresh_due_dates_create":
+        return client.api_vulnerabilities_refresh_due_dates_create(**kwargs)
+    elif action == "api_vulnerabilities_sankey_data_retrieve":
+        return client.api_vulnerabilities_sankey_data_retrieve(**kwargs)
+    elif action == "api_vulnerabilities_severity_retrieve":
+        return client.api_vulnerabilities_severity_retrieve(**kwargs)
+    elif action == "api_vulnerabilities_status_retrieve":
+        return client.api_vulnerabilities_status_retrieve(**kwargs)
+    elif action == "api_vulnerabilities_treemap_data_retrieve":
+        return client.api_vulnerabilities_treemap_data_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_RISK_MANAGEMENT_DISPATCHERS = (
+    _dispatch_risk_management_1,
+    _dispatch_risk_management_2,
+    _dispatch_risk_management_3,
+    _dispatch_risk_management_4,
+    _dispatch_risk_management_5,
+    _dispatch_risk_management_6,
+    _dispatch_risk_management_7,
+    _dispatch_risk_management_8,
+    _dispatch_risk_management_9,
+    _dispatch_risk_management_10,
+    _dispatch_risk_management_11,
+    _dispatch_risk_management_12,
+    _dispatch_risk_management_13,
+    _dispatch_risk_management_14,
+)
+
 
 def register_risk_management_tools(mcp: FastMCP):
     @mcp.tool(tags={"risk-management"})
@@ -37,258 +379,8 @@ def register_risk_management_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_cwes_list":
-            return client.api_cwes_list(**kwargs)
-        elif action == "api_cwes_create":
-            return client.api_cwes_create(**kwargs)
-        elif action == "api_cwes_retrieve":
-            return client.api_cwes_retrieve(**kwargs)
-        elif action == "api_cwes_update":
-            return client.api_cwes_update(**kwargs)
-        elif action == "api_cwes_partial_update":
-            return client.api_cwes_partial_update(**kwargs)
-        elif action == "api_cwes_destroy":
-            return client.api_cwes_destroy(**kwargs)
-        elif action == "api_cwes_cascade_info_retrieve":
-            return client.api_cwes_cascade_info_retrieve(**kwargs)
-        elif action == "api_cwes_object_retrieve":
-            return client.api_cwes_object_retrieve(**kwargs)
-        elif action == "api_cwes_autocomplete_retrieve":
-            return client.api_cwes_autocomplete_retrieve(**kwargs)
-        elif action == "api_cwes_batch_action_create":
-            return client.api_cwes_batch_action_create(**kwargs)
-        elif action == "api_cwes_sync_catalog_create":
-            return client.api_cwes_sync_catalog_create(**kwargs)
-        elif action == "api_risk_acceptances_list":
-            return client.api_risk_acceptances_list(**kwargs)
-        elif action == "api_risk_acceptances_create":
-            return client.api_risk_acceptances_create(**kwargs)
-        elif action == "api_risk_acceptances_retrieve":
-            return client.api_risk_acceptances_retrieve(**kwargs)
-        elif action == "api_risk_acceptances_update":
-            return client.api_risk_acceptances_update(**kwargs)
-        elif action == "api_risk_acceptances_partial_update":
-            return client.api_risk_acceptances_partial_update(**kwargs)
-        elif action == "api_risk_acceptances_destroy":
-            return client.api_risk_acceptances_destroy(**kwargs)
-        elif action == "api_risk_acceptances_accept_create":
-            return client.api_risk_acceptances_accept_create(**kwargs)
-        elif action == "api_risk_acceptances_cascade_info_retrieve":
-            return client.api_risk_acceptances_cascade_info_retrieve(**kwargs)
-        elif action == "api_risk_acceptances_draft_create":
-            return client.api_risk_acceptances_draft_create(**kwargs)
-        elif action == "api_risk_acceptances_object_retrieve":
-            return client.api_risk_acceptances_object_retrieve(**kwargs)
-        elif action == "api_risk_acceptances_reject_create":
-            return client.api_risk_acceptances_reject_create(**kwargs)
-        elif action == "api_risk_acceptances_revoke_create":
-            return client.api_risk_acceptances_revoke_create(**kwargs)
-        elif action == "api_risk_acceptances_submit_create":
-            return client.api_risk_acceptances_submit_create(**kwargs)
-        elif action == "api_risk_acceptances_batch_action_create":
-            return client.api_risk_acceptances_batch_action_create(**kwargs)
-        elif action == "api_risk_acceptances_state_retrieve":
-            return client.api_risk_acceptances_state_retrieve(**kwargs)
-        elif action == "api_risk_acceptances_to_review_retrieve":
-            return client.api_risk_acceptances_to_review_retrieve(**kwargs)
-        elif action == "api_risk_acceptances_waiting_retrieve":
-            return client.api_risk_acceptances_waiting_retrieve(**kwargs)
-        elif action == "api_risk_assessments_list":
-            return client.api_risk_assessments_list(**kwargs)
-        elif action == "api_risk_assessments_create":
-            return client.api_risk_assessments_create(**kwargs)
-        elif action == "api_risk_assessments_retrieve":
-            return client.api_risk_assessments_retrieve(**kwargs)
-        elif action == "api_risk_assessments_update":
-            return client.api_risk_assessments_update(**kwargs)
-        elif action == "api_risk_assessments_partial_update":
-            return client.api_risk_assessments_partial_update(**kwargs)
-        elif action == "api_risk_assessments_destroy":
-            return client.api_risk_assessments_destroy(**kwargs)
-        elif action == "api_risk_assessments_action_plan_list":
-            return client.api_risk_assessments_action_plan_list(**kwargs)
-        elif action == "api_risk_assessments_action_plan_budget_overview_list":
-            return client.api_risk_assessments_action_plan_budget_overview_list(
-                **kwargs
-            )
-        elif action == "api_risk_assessments_action_plan_excel_retrieve":
-            return client.api_risk_assessments_action_plan_excel_retrieve(**kwargs)
-        elif action == "api_risk_assessments_action_plan_pdf_retrieve":
-            return client.api_risk_assessments_action_plan_pdf_retrieve(**kwargs)
-        elif action == "api_risk_assessments_cascade_info_retrieve":
-            return client.api_risk_assessments_cascade_info_retrieve(**kwargs)
-        elif action == "api_risk_assessments_convert_to_quantitative_create":
-            return client.api_risk_assessments_convert_to_quantitative_create(**kwargs)
-        elif action == "api_risk_assessments_duplicate_create":
-            return client.api_risk_assessments_duplicate_create(**kwargs)
-        elif action == "api_risk_assessments_object_retrieve":
-            return client.api_risk_assessments_object_retrieve(**kwargs)
-        elif action == "api_risk_assessments_quality_check_retrieve_2":
-            return client.api_risk_assessments_quality_check_retrieve_2(**kwargs)
-        elif action == "api_risk_assessments_risk_analytics_retrieve":
-            return client.api_risk_assessments_risk_analytics_retrieve(**kwargs)
-        elif action == "api_risk_assessments_risk_assessment_csv_retrieve":
-            return client.api_risk_assessments_risk_assessment_csv_retrieve(**kwargs)
-        elif action == "api_risk_assessments_risk_assessment_pdf_retrieve":
-            return client.api_risk_assessments_risk_assessment_pdf_retrieve(**kwargs)
-        elif action == "api_risk_assessments_risk_assessment_xlsx_retrieve":
-            return client.api_risk_assessments_risk_assessment_xlsx_retrieve(**kwargs)
-        elif action == "api_risk_assessments_risk_timeline_retrieve":
-            return client.api_risk_assessments_risk_timeline_retrieve(**kwargs)
-        elif action == "api_risk_assessments_sync_to_actions_create":
-            return client.api_risk_assessments_sync_to_actions_create(**kwargs)
-        elif action == "api_risk_assessments_sync_from_ebios_rm_create":
-            return client.api_risk_assessments_sync_from_ebios_rm_create(**kwargs)
-        elif action == "api_risk_assessments_sync_preview_retrieve":
-            return client.api_risk_assessments_sync_preview_retrieve(**kwargs)
-        elif action == "api_risk_assessments_batch_action_create":
-            return client.api_risk_assessments_batch_action_create(**kwargs)
-        elif action == "api_risk_assessments_per_status_retrieve":
-            return client.api_risk_assessments_per_status_retrieve(**kwargs)
-        elif action == "api_risk_assessments_quality_check_retrieve":
-            return client.api_risk_assessments_quality_check_retrieve(**kwargs)
-        elif action == "api_risk_assessments_status_retrieve":
-            return client.api_risk_assessments_status_retrieve(**kwargs)
-        elif action == "api_risk_matrices_list":
-            return client.api_risk_matrices_list(**kwargs)
-        elif action == "api_risk_matrices_create":
-            return client.api_risk_matrices_create(**kwargs)
-        elif action == "api_risk_matrices_retrieve":
-            return client.api_risk_matrices_retrieve(**kwargs)
-        elif action == "api_risk_matrices_update":
-            return client.api_risk_matrices_update(**kwargs)
-        elif action == "api_risk_matrices_partial_update":
-            return client.api_risk_matrices_partial_update(**kwargs)
-        elif action == "api_risk_matrices_destroy":
-            return client.api_risk_matrices_destroy(**kwargs)
-        elif action == "api_risk_matrices_cascade_info_retrieve":
-            return client.api_risk_matrices_cascade_info_retrieve(**kwargs)
-        elif action == "api_risk_matrices_create_draft_from_create":
-            return client.api_risk_matrices_create_draft_from_create(**kwargs)
-        elif action == "api_risk_matrices_discard_draft_create":
-            return client.api_risk_matrices_discard_draft_create(**kwargs)
-        elif action == "api_risk_matrices_export_yaml_retrieve":
-            return client.api_risk_matrices_export_yaml_retrieve(**kwargs)
-        elif action == "api_risk_matrices_object_retrieve":
-            return client.api_risk_matrices_object_retrieve(**kwargs)
-        elif action == "api_risk_matrices_publish_draft_create":
-            return client.api_risk_matrices_publish_draft_create(**kwargs)
-        elif action == "api_risk_matrices_save_draft_partial_update":
-            return client.api_risk_matrices_save_draft_partial_update(**kwargs)
-        elif action == "api_risk_matrices_start_editing_create":
-            return client.api_risk_matrices_start_editing_create(**kwargs)
-        elif action == "api_risk_matrices_batch_action_create":
-            return client.api_risk_matrices_batch_action_create(**kwargs)
-        elif action == "api_risk_matrices_colors_retrieve":
-            return client.api_risk_matrices_colors_retrieve(**kwargs)
-        elif action == "api_risk_matrices_create_draft_create":
-            return client.api_risk_matrices_create_draft_create(**kwargs)
-        elif action == "api_risk_matrices_ids_retrieve":
-            return client.api_risk_matrices_ids_retrieve(**kwargs)
-        elif action == "api_risk_matrices_impact_retrieve":
-            return client.api_risk_matrices_impact_retrieve(**kwargs)
-        elif action == "api_risk_matrices_import_yaml_create":
-            return client.api_risk_matrices_import_yaml_create(**kwargs)
-        elif action == "api_risk_matrices_probability_retrieve":
-            return client.api_risk_matrices_probability_retrieve(**kwargs)
-        elif action == "api_risk_matrices_provider_retrieve":
-            return client.api_risk_matrices_provider_retrieve(**kwargs)
-        elif action == "api_risk_matrices_risk_retrieve":
-            return client.api_risk_matrices_risk_retrieve(**kwargs)
-        elif action == "api_risk_matrices_used_retrieve":
-            return client.api_risk_matrices_used_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_list":
-            return client.api_risk_scenarios_list(**kwargs)
-        elif action == "api_risk_scenarios_create":
-            return client.api_risk_scenarios_create(**kwargs)
-        elif action == "api_risk_scenarios_retrieve":
-            return client.api_risk_scenarios_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_update":
-            return client.api_risk_scenarios_update(**kwargs)
-        elif action == "api_risk_scenarios_partial_update":
-            return client.api_risk_scenarios_partial_update(**kwargs)
-        elif action == "api_risk_scenarios_destroy":
-            return client.api_risk_scenarios_destroy(**kwargs)
-        elif action == "api_risk_scenarios_cascade_info_retrieve":
-            return client.api_risk_scenarios_cascade_info_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_impact_retrieve":
-            return client.api_risk_scenarios_impact_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_object_retrieve":
-            return client.api_risk_scenarios_object_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_probability_retrieve":
-            return client.api_risk_scenarios_probability_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_strength_of_knowledge_retrieve":
-            return client.api_risk_scenarios_strength_of_knowledge_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_sync_to_actions_create":
-            return client.api_risk_scenarios_sync_to_actions_create(**kwargs)
-        elif action == "api_risk_scenarios_batch_action_create":
-            return client.api_risk_scenarios_batch_action_create(**kwargs)
-        elif action == "api_risk_scenarios_count_per_level_retrieve":
-            return client.api_risk_scenarios_count_per_level_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_default_ref_id_retrieve":
-            return client.api_risk_scenarios_default_ref_id_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_export_csv_retrieve":
-            return client.api_risk_scenarios_export_csv_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_export_xlsx_retrieve":
-            return client.api_risk_scenarios_export_xlsx_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_per_status_retrieve":
-            return client.api_risk_scenarios_per_status_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_qualifications_count_retrieve":
-            return client.api_risk_scenarios_qualifications_count_retrieve(**kwargs)
-        elif action == "api_risk_scenarios_treatment_retrieve":
-            return client.api_risk_scenarios_treatment_retrieve(**kwargs)
-        elif action == "api_threats_list":
-            return client.api_threats_list(**kwargs)
-        elif action == "api_threats_create":
-            return client.api_threats_create(**kwargs)
-        elif action == "api_threats_retrieve":
-            return client.api_threats_retrieve(**kwargs)
-        elif action == "api_threats_update":
-            return client.api_threats_update(**kwargs)
-        elif action == "api_threats_partial_update":
-            return client.api_threats_partial_update(**kwargs)
-        elif action == "api_threats_destroy":
-            return client.api_threats_destroy(**kwargs)
-        elif action == "api_threats_cascade_info_retrieve":
-            return client.api_threats_cascade_info_retrieve(**kwargs)
-        elif action == "api_threats_object_retrieve":
-            return client.api_threats_object_retrieve(**kwargs)
-        elif action == "api_threats_batch_action_create":
-            return client.api_threats_batch_action_create(**kwargs)
-        elif action == "api_threats_ids_retrieve":
-            return client.api_threats_ids_retrieve(**kwargs)
-        elif action == "api_threats_provider_retrieve":
-            return client.api_threats_provider_retrieve(**kwargs)
-        elif action == "api_threats_threats_count_retrieve":
-            return client.api_threats_threats_count_retrieve(**kwargs)
-        elif action == "api_vulnerabilities_list":
-            return client.api_vulnerabilities_list(**kwargs)
-        elif action == "api_vulnerabilities_create":
-            return client.api_vulnerabilities_create(**kwargs)
-        elif action == "api_vulnerabilities_retrieve":
-            return client.api_vulnerabilities_retrieve(**kwargs)
-        elif action == "api_vulnerabilities_update":
-            return client.api_vulnerabilities_update(**kwargs)
-        elif action == "api_vulnerabilities_partial_update":
-            return client.api_vulnerabilities_partial_update(**kwargs)
-        elif action == "api_vulnerabilities_destroy":
-            return client.api_vulnerabilities_destroy(**kwargs)
-        elif action == "api_vulnerabilities_cascade_info_retrieve":
-            return client.api_vulnerabilities_cascade_info_retrieve(**kwargs)
-        elif action == "api_vulnerabilities_object_retrieve":
-            return client.api_vulnerabilities_object_retrieve(**kwargs)
-        elif action == "api_vulnerabilities_autocomplete_retrieve":
-            return client.api_vulnerabilities_autocomplete_retrieve(**kwargs)
-        elif action == "api_vulnerabilities_batch_action_create":
-            return client.api_vulnerabilities_batch_action_create(**kwargs)
-        elif action == "api_vulnerabilities_refresh_due_dates_create":
-            return client.api_vulnerabilities_refresh_due_dates_create(**kwargs)
-        elif action == "api_vulnerabilities_sankey_data_retrieve":
-            return client.api_vulnerabilities_sankey_data_retrieve(**kwargs)
-        elif action == "api_vulnerabilities_severity_retrieve":
-            return client.api_vulnerabilities_severity_retrieve(**kwargs)
-        elif action == "api_vulnerabilities_status_retrieve":
-            return client.api_vulnerabilities_status_retrieve(**kwargs)
-        elif action == "api_vulnerabilities_treemap_data_retrieve":
-            return client.api_vulnerabilities_treemap_data_retrieve(**kwargs)
+        for _dispatch in _RISK_MANAGEMENT_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
