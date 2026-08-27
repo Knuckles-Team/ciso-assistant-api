@@ -8,6 +8,336 @@ from pydantic import Field
 
 from ciso_assistant_api.auth import get_client
 
+_UNHANDLED = object()
+
+
+def _dispatch_ebios_rm_1(action, kwargs, client):
+    # api_ebios_rm_attack_paths_list .. api_ebios_rm_attack_paths_batch_action_create (9 actions)
+    if action == "api_ebios_rm_attack_paths_list":
+        return client.api_ebios_rm_attack_paths_list(**kwargs)
+    elif action == "api_ebios_rm_attack_paths_create":
+        return client.api_ebios_rm_attack_paths_create(**kwargs)
+    elif action == "api_ebios_rm_attack_paths_retrieve":
+        return client.api_ebios_rm_attack_paths_retrieve(**kwargs)
+    elif action == "api_ebios_rm_attack_paths_update":
+        return client.api_ebios_rm_attack_paths_update(**kwargs)
+    elif action == "api_ebios_rm_attack_paths_partial_update":
+        return client.api_ebios_rm_attack_paths_partial_update(**kwargs)
+    elif action == "api_ebios_rm_attack_paths_destroy":
+        return client.api_ebios_rm_attack_paths_destroy(**kwargs)
+    elif action == "api_ebios_rm_attack_paths_cascade_info_retrieve":
+        return client.api_ebios_rm_attack_paths_cascade_info_retrieve(**kwargs)
+    elif action == "api_ebios_rm_attack_paths_object_retrieve":
+        return client.api_ebios_rm_attack_paths_object_retrieve(**kwargs)
+    elif action == "api_ebios_rm_attack_paths_batch_action_create":
+        return client.api_ebios_rm_attack_paths_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_2(action, kwargs, client):
+    # api_ebios_rm_elementary_actions_list .. api_ebios_rm_elementary_actions_attack_stage_retrieve (9 actions)
+    if action == "api_ebios_rm_elementary_actions_list":
+        return client.api_ebios_rm_elementary_actions_list(**kwargs)
+    elif action == "api_ebios_rm_elementary_actions_create":
+        return client.api_ebios_rm_elementary_actions_create(**kwargs)
+    elif action == "api_ebios_rm_elementary_actions_retrieve":
+        return client.api_ebios_rm_elementary_actions_retrieve(**kwargs)
+    elif action == "api_ebios_rm_elementary_actions_update":
+        return client.api_ebios_rm_elementary_actions_update(**kwargs)
+    elif action == "api_ebios_rm_elementary_actions_partial_update":
+        return client.api_ebios_rm_elementary_actions_partial_update(**kwargs)
+    elif action == "api_ebios_rm_elementary_actions_destroy":
+        return client.api_ebios_rm_elementary_actions_destroy(**kwargs)
+    elif action == "api_ebios_rm_elementary_actions_cascade_info_retrieve":
+        return client.api_ebios_rm_elementary_actions_cascade_info_retrieve(**kwargs)
+    elif action == "api_ebios_rm_elementary_actions_object_retrieve":
+        return client.api_ebios_rm_elementary_actions_object_retrieve(**kwargs)
+    elif action == "api_ebios_rm_elementary_actions_attack_stage_retrieve":
+        return client.api_ebios_rm_elementary_actions_attack_stage_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_3(action, kwargs, client):
+    # api_ebios_rm_elementary_actions_batch_action_create .. api_ebios_rm_feared_events_cascade_info_retrieve (9 actions)
+    if action == "api_ebios_rm_elementary_actions_batch_action_create":
+        return client.api_ebios_rm_elementary_actions_batch_action_create(**kwargs)
+    elif action == "api_ebios_rm_elementary_actions_icon_retrieve":
+        return client.api_ebios_rm_elementary_actions_icon_retrieve(**kwargs)
+    elif action == "api_ebios_rm_feared_events_list":
+        return client.api_ebios_rm_feared_events_list(**kwargs)
+    elif action == "api_ebios_rm_feared_events_create":
+        return client.api_ebios_rm_feared_events_create(**kwargs)
+    elif action == "api_ebios_rm_feared_events_retrieve":
+        return client.api_ebios_rm_feared_events_retrieve(**kwargs)
+    elif action == "api_ebios_rm_feared_events_update":
+        return client.api_ebios_rm_feared_events_update(**kwargs)
+    elif action == "api_ebios_rm_feared_events_partial_update":
+        return client.api_ebios_rm_feared_events_partial_update(**kwargs)
+    elif action == "api_ebios_rm_feared_events_destroy":
+        return client.api_ebios_rm_feared_events_destroy(**kwargs)
+    elif action == "api_ebios_rm_feared_events_cascade_info_retrieve":
+        return client.api_ebios_rm_feared_events_cascade_info_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_4(action, kwargs, client):
+    # api_ebios_rm_feared_events_gravity_retrieve .. api_ebios_rm_kill_chains_update (9 actions)
+    if action == "api_ebios_rm_feared_events_gravity_retrieve":
+        return client.api_ebios_rm_feared_events_gravity_retrieve(**kwargs)
+    elif action == "api_ebios_rm_feared_events_object_retrieve":
+        return client.api_ebios_rm_feared_events_object_retrieve(**kwargs)
+    elif action == "api_ebios_rm_feared_events_risk_matrix_retrieve":
+        return client.api_ebios_rm_feared_events_risk_matrix_retrieve(**kwargs)
+    elif action == "api_ebios_rm_feared_events_batch_action_create":
+        return client.api_ebios_rm_feared_events_batch_action_create(**kwargs)
+    elif action == "api_ebios_rm_feared_events_batch_create_create":
+        return client.api_ebios_rm_feared_events_batch_create_create(**kwargs)
+    elif action == "api_ebios_rm_kill_chains_list":
+        return client.api_ebios_rm_kill_chains_list(**kwargs)
+    elif action == "api_ebios_rm_kill_chains_create":
+        return client.api_ebios_rm_kill_chains_create(**kwargs)
+    elif action == "api_ebios_rm_kill_chains_retrieve":
+        return client.api_ebios_rm_kill_chains_retrieve(**kwargs)
+    elif action == "api_ebios_rm_kill_chains_update":
+        return client.api_ebios_rm_kill_chains_update(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_5(action, kwargs, client):
+    # api_ebios_rm_kill_chains_partial_update .. api_ebios_rm_operating_modes_retrieve (9 actions)
+    if action == "api_ebios_rm_kill_chains_partial_update":
+        return client.api_ebios_rm_kill_chains_partial_update(**kwargs)
+    elif action == "api_ebios_rm_kill_chains_destroy":
+        return client.api_ebios_rm_kill_chains_destroy(**kwargs)
+    elif action == "api_ebios_rm_kill_chains_cascade_info_retrieve":
+        return client.api_ebios_rm_kill_chains_cascade_info_retrieve(**kwargs)
+    elif action == "api_ebios_rm_kill_chains_object_retrieve":
+        return client.api_ebios_rm_kill_chains_object_retrieve(**kwargs)
+    elif action == "api_ebios_rm_kill_chains_batch_action_create":
+        return client.api_ebios_rm_kill_chains_batch_action_create(**kwargs)
+    elif action == "api_ebios_rm_kill_chains_logic_operator_retrieve":
+        return client.api_ebios_rm_kill_chains_logic_operator_retrieve(**kwargs)
+    elif action == "api_ebios_rm_operating_modes_list":
+        return client.api_ebios_rm_operating_modes_list(**kwargs)
+    elif action == "api_ebios_rm_operating_modes_create":
+        return client.api_ebios_rm_operating_modes_create(**kwargs)
+    elif action == "api_ebios_rm_operating_modes_retrieve":
+        return client.api_ebios_rm_operating_modes_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_6(action, kwargs, client):
+    # api_ebios_rm_operating_modes_update .. api_ebios_rm_operating_modes_batch_action_create (9 actions)
+    if action == "api_ebios_rm_operating_modes_update":
+        return client.api_ebios_rm_operating_modes_update(**kwargs)
+    elif action == "api_ebios_rm_operating_modes_partial_update":
+        return client.api_ebios_rm_operating_modes_partial_update(**kwargs)
+    elif action == "api_ebios_rm_operating_modes_destroy":
+        return client.api_ebios_rm_operating_modes_destroy(**kwargs)
+    elif action == "api_ebios_rm_operating_modes_build_graph_retrieve":
+        return client.api_ebios_rm_operating_modes_build_graph_retrieve(**kwargs)
+    elif action == "api_ebios_rm_operating_modes_cascade_info_retrieve":
+        return client.api_ebios_rm_operating_modes_cascade_info_retrieve(**kwargs)
+    elif action == "api_ebios_rm_operating_modes_likelihood_retrieve":
+        return client.api_ebios_rm_operating_modes_likelihood_retrieve(**kwargs)
+    elif action == "api_ebios_rm_operating_modes_object_retrieve":
+        return client.api_ebios_rm_operating_modes_object_retrieve(**kwargs)
+    elif action == "api_ebios_rm_operating_modes_save_graph_create":
+        return client.api_ebios_rm_operating_modes_save_graph_create(**kwargs)
+    elif action == "api_ebios_rm_operating_modes_batch_action_create":
+        return client.api_ebios_rm_operating_modes_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_7(action, kwargs, client):
+    # api_ebios_rm_operating_modes_default_ref_id_retrieve .. api_ebios_rm_operational_scenarios_likelihood_retrieve (9 actions)
+    if action == "api_ebios_rm_operating_modes_default_ref_id_retrieve":
+        return client.api_ebios_rm_operating_modes_default_ref_id_retrieve(**kwargs)
+    elif action == "api_ebios_rm_operational_scenarios_list":
+        return client.api_ebios_rm_operational_scenarios_list(**kwargs)
+    elif action == "api_ebios_rm_operational_scenarios_create":
+        return client.api_ebios_rm_operational_scenarios_create(**kwargs)
+    elif action == "api_ebios_rm_operational_scenarios_retrieve":
+        return client.api_ebios_rm_operational_scenarios_retrieve(**kwargs)
+    elif action == "api_ebios_rm_operational_scenarios_update":
+        return client.api_ebios_rm_operational_scenarios_update(**kwargs)
+    elif action == "api_ebios_rm_operational_scenarios_partial_update":
+        return client.api_ebios_rm_operational_scenarios_partial_update(**kwargs)
+    elif action == "api_ebios_rm_operational_scenarios_destroy":
+        return client.api_ebios_rm_operational_scenarios_destroy(**kwargs)
+    elif action == "api_ebios_rm_operational_scenarios_cascade_info_retrieve":
+        return client.api_ebios_rm_operational_scenarios_cascade_info_retrieve(**kwargs)
+    elif action == "api_ebios_rm_operational_scenarios_likelihood_retrieve":
+        return client.api_ebios_rm_operational_scenarios_likelihood_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_8(action, kwargs, client):
+    # api_ebios_rm_operational_scenarios_object_retrieve .. api_ebios_rm_ro_to_destroy (9 actions)
+    if action == "api_ebios_rm_operational_scenarios_object_retrieve":
+        return client.api_ebios_rm_operational_scenarios_object_retrieve(**kwargs)
+    elif action == "api_ebios_rm_operational_scenarios_risk_matrix_retrieve":
+        return client.api_ebios_rm_operational_scenarios_risk_matrix_retrieve(**kwargs)
+    elif action == "api_ebios_rm_operational_scenarios_batch_action_create":
+        return client.api_ebios_rm_operational_scenarios_batch_action_create(**kwargs)
+    elif action == "api_ebios_rm_ro_to_list":
+        return client.api_ebios_rm_ro_to_list(**kwargs)
+    elif action == "api_ebios_rm_ro_to_create":
+        return client.api_ebios_rm_ro_to_create(**kwargs)
+    elif action == "api_ebios_rm_ro_to_retrieve":
+        return client.api_ebios_rm_ro_to_retrieve(**kwargs)
+    elif action == "api_ebios_rm_ro_to_update":
+        return client.api_ebios_rm_ro_to_update(**kwargs)
+    elif action == "api_ebios_rm_ro_to_partial_update":
+        return client.api_ebios_rm_ro_to_partial_update(**kwargs)
+    elif action == "api_ebios_rm_ro_to_destroy":
+        return client.api_ebios_rm_ro_to_destroy(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_9(action, kwargs, client):
+    # api_ebios_rm_ro_to_cascade_info_retrieve .. api_ebios_rm_stakeholders_create (9 actions)
+    if action == "api_ebios_rm_ro_to_cascade_info_retrieve":
+        return client.api_ebios_rm_ro_to_cascade_info_retrieve(**kwargs)
+    elif action == "api_ebios_rm_ro_to_object_retrieve":
+        return client.api_ebios_rm_ro_to_object_retrieve(**kwargs)
+    elif action == "api_ebios_rm_ro_to_activity_retrieve":
+        return client.api_ebios_rm_ro_to_activity_retrieve(**kwargs)
+    elif action == "api_ebios_rm_ro_to_batch_action_create":
+        return client.api_ebios_rm_ro_to_batch_action_create(**kwargs)
+    elif action == "api_ebios_rm_ro_to_motivation_retrieve":
+        return client.api_ebios_rm_ro_to_motivation_retrieve(**kwargs)
+    elif action == "api_ebios_rm_ro_to_pertinence_retrieve":
+        return client.api_ebios_rm_ro_to_pertinence_retrieve(**kwargs)
+    elif action == "api_ebios_rm_ro_to_resources_retrieve":
+        return client.api_ebios_rm_ro_to_resources_retrieve(**kwargs)
+    elif action == "api_ebios_rm_stakeholders_list":
+        return client.api_ebios_rm_stakeholders_list(**kwargs)
+    elif action == "api_ebios_rm_stakeholders_create":
+        return client.api_ebios_rm_stakeholders_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_10(action, kwargs, client):
+    # api_ebios_rm_stakeholders_retrieve .. api_ebios_rm_stakeholders_chart_data_retrieve (9 actions)
+    if action == "api_ebios_rm_stakeholders_retrieve":
+        return client.api_ebios_rm_stakeholders_retrieve(**kwargs)
+    elif action == "api_ebios_rm_stakeholders_update":
+        return client.api_ebios_rm_stakeholders_update(**kwargs)
+    elif action == "api_ebios_rm_stakeholders_partial_update":
+        return client.api_ebios_rm_stakeholders_partial_update(**kwargs)
+    elif action == "api_ebios_rm_stakeholders_destroy":
+        return client.api_ebios_rm_stakeholders_destroy(**kwargs)
+    elif action == "api_ebios_rm_stakeholders_cascade_info_retrieve":
+        return client.api_ebios_rm_stakeholders_cascade_info_retrieve(**kwargs)
+    elif action == "api_ebios_rm_stakeholders_object_retrieve":
+        return client.api_ebios_rm_stakeholders_object_retrieve(**kwargs)
+    elif action == "api_ebios_rm_stakeholders_batch_action_create":
+        return client.api_ebios_rm_stakeholders_batch_action_create(**kwargs)
+    elif action == "api_ebios_rm_stakeholders_category_retrieve":
+        return client.api_ebios_rm_stakeholders_category_retrieve(**kwargs)
+    elif action == "api_ebios_rm_stakeholders_chart_data_retrieve":
+        return client.api_ebios_rm_stakeholders_chart_data_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_11(action, kwargs, client):
+    # api_ebios_rm_strategic_scenarios_list .. api_ebios_rm_strategic_scenarios_batch_action_create (9 actions)
+    if action == "api_ebios_rm_strategic_scenarios_list":
+        return client.api_ebios_rm_strategic_scenarios_list(**kwargs)
+    elif action == "api_ebios_rm_strategic_scenarios_create":
+        return client.api_ebios_rm_strategic_scenarios_create(**kwargs)
+    elif action == "api_ebios_rm_strategic_scenarios_retrieve":
+        return client.api_ebios_rm_strategic_scenarios_retrieve(**kwargs)
+    elif action == "api_ebios_rm_strategic_scenarios_update":
+        return client.api_ebios_rm_strategic_scenarios_update(**kwargs)
+    elif action == "api_ebios_rm_strategic_scenarios_partial_update":
+        return client.api_ebios_rm_strategic_scenarios_partial_update(**kwargs)
+    elif action == "api_ebios_rm_strategic_scenarios_destroy":
+        return client.api_ebios_rm_strategic_scenarios_destroy(**kwargs)
+    elif action == "api_ebios_rm_strategic_scenarios_cascade_info_retrieve":
+        return client.api_ebios_rm_strategic_scenarios_cascade_info_retrieve(**kwargs)
+    elif action == "api_ebios_rm_strategic_scenarios_object_retrieve":
+        return client.api_ebios_rm_strategic_scenarios_object_retrieve(**kwargs)
+    elif action == "api_ebios_rm_strategic_scenarios_batch_action_create":
+        return client.api_ebios_rm_strategic_scenarios_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_12(action, kwargs, client):
+    # api_ebios_rm_studies_list .. api_ebios_rm_studies_ecosystem_circular_chart_data_retrieve (9 actions)
+    if action == "api_ebios_rm_studies_list":
+        return client.api_ebios_rm_studies_list(**kwargs)
+    elif action == "api_ebios_rm_studies_create":
+        return client.api_ebios_rm_studies_create(**kwargs)
+    elif action == "api_ebios_rm_studies_retrieve":
+        return client.api_ebios_rm_studies_retrieve(**kwargs)
+    elif action == "api_ebios_rm_studies_update":
+        return client.api_ebios_rm_studies_update(**kwargs)
+    elif action == "api_ebios_rm_studies_partial_update":
+        return client.api_ebios_rm_studies_partial_update(**kwargs)
+    elif action == "api_ebios_rm_studies_destroy":
+        return client.api_ebios_rm_studies_destroy(**kwargs)
+    elif action == "api_ebios_rm_studies_cascade_info_retrieve":
+        return client.api_ebios_rm_studies_cascade_info_retrieve(**kwargs)
+    elif action == "api_ebios_rm_studies_ecosystem_chart_data_retrieve":
+        return client.api_ebios_rm_studies_ecosystem_chart_data_retrieve(**kwargs)
+    elif action == "api_ebios_rm_studies_ecosystem_circular_chart_data_retrieve":
+        return client.api_ebios_rm_studies_ecosystem_circular_chart_data_retrieve(
+            **kwargs
+        )
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_13(action, kwargs, client):
+    # api_ebios_rm_studies_export_xlsx_retrieve .. api_ebios_rm_studies_batch_action_create (9 actions)
+    if action == "api_ebios_rm_studies_export_xlsx_retrieve":
+        return client.api_ebios_rm_studies_export_xlsx_retrieve(**kwargs)
+    elif action == "api_ebios_rm_studies_gravity_retrieve":
+        return client.api_ebios_rm_studies_gravity_retrieve(**kwargs)
+    elif action == "api_ebios_rm_studies_likelihood_retrieve":
+        return client.api_ebios_rm_studies_likelihood_retrieve(**kwargs)
+    elif action == "api_ebios_rm_studies_object_retrieve":
+        return client.api_ebios_rm_studies_object_retrieve(**kwargs)
+    elif action == "api_ebios_rm_studies_report_data_retrieve":
+        return client.api_ebios_rm_studies_report_data_retrieve(**kwargs)
+    elif action == "api_ebios_rm_studies_risk_matrix_retrieve":
+        return client.api_ebios_rm_studies_risk_matrix_retrieve(**kwargs)
+    elif action == "api_ebios_rm_studies_visual_analysis_retrieve":
+        return client.api_ebios_rm_studies_visual_analysis_retrieve(**kwargs)
+    elif action == "api_ebios_rm_studies_workshop_step_partial_update":
+        return client.api_ebios_rm_studies_workshop_step_partial_update(**kwargs)
+    elif action == "api_ebios_rm_studies_batch_action_create":
+        return client.api_ebios_rm_studies_batch_action_create(**kwargs)
+    return _UNHANDLED
+
+
+def _dispatch_ebios_rm_14(action, kwargs, client):
+    # api_ebios_rm_studies_quotation_method_retrieve .. api_ebios_rm_studies_status_retrieve (2 actions)
+    if action == "api_ebios_rm_studies_quotation_method_retrieve":
+        return client.api_ebios_rm_studies_quotation_method_retrieve(**kwargs)
+    elif action == "api_ebios_rm_studies_status_retrieve":
+        return client.api_ebios_rm_studies_status_retrieve(**kwargs)
+    return _UNHANDLED
+
+
+_EBIOS_RM_DISPATCHERS = (
+    _dispatch_ebios_rm_1,
+    _dispatch_ebios_rm_2,
+    _dispatch_ebios_rm_3,
+    _dispatch_ebios_rm_4,
+    _dispatch_ebios_rm_5,
+    _dispatch_ebios_rm_6,
+    _dispatch_ebios_rm_7,
+    _dispatch_ebios_rm_8,
+    _dispatch_ebios_rm_9,
+    _dispatch_ebios_rm_10,
+    _dispatch_ebios_rm_11,
+    _dispatch_ebios_rm_12,
+    _dispatch_ebios_rm_13,
+    _dispatch_ebios_rm_14,
+)
+
 
 def register_ebios_rm_tools(mcp: FastMCP):
     @mcp.tool(tags={"ebios-rm"})
@@ -37,258 +367,8 @@ def register_ebios_rm_tools(mcp: FastMCP):
             return {"error": "params_json must decode to a JSON object"}
         kwargs = {k: v for k, v in kwargs.items() if v is not None}
 
-        if action == "api_ebios_rm_attack_paths_list":
-            return client.api_ebios_rm_attack_paths_list(**kwargs)
-        elif action == "api_ebios_rm_attack_paths_create":
-            return client.api_ebios_rm_attack_paths_create(**kwargs)
-        elif action == "api_ebios_rm_attack_paths_retrieve":
-            return client.api_ebios_rm_attack_paths_retrieve(**kwargs)
-        elif action == "api_ebios_rm_attack_paths_update":
-            return client.api_ebios_rm_attack_paths_update(**kwargs)
-        elif action == "api_ebios_rm_attack_paths_partial_update":
-            return client.api_ebios_rm_attack_paths_partial_update(**kwargs)
-        elif action == "api_ebios_rm_attack_paths_destroy":
-            return client.api_ebios_rm_attack_paths_destroy(**kwargs)
-        elif action == "api_ebios_rm_attack_paths_cascade_info_retrieve":
-            return client.api_ebios_rm_attack_paths_cascade_info_retrieve(**kwargs)
-        elif action == "api_ebios_rm_attack_paths_object_retrieve":
-            return client.api_ebios_rm_attack_paths_object_retrieve(**kwargs)
-        elif action == "api_ebios_rm_attack_paths_batch_action_create":
-            return client.api_ebios_rm_attack_paths_batch_action_create(**kwargs)
-        elif action == "api_ebios_rm_elementary_actions_list":
-            return client.api_ebios_rm_elementary_actions_list(**kwargs)
-        elif action == "api_ebios_rm_elementary_actions_create":
-            return client.api_ebios_rm_elementary_actions_create(**kwargs)
-        elif action == "api_ebios_rm_elementary_actions_retrieve":
-            return client.api_ebios_rm_elementary_actions_retrieve(**kwargs)
-        elif action == "api_ebios_rm_elementary_actions_update":
-            return client.api_ebios_rm_elementary_actions_update(**kwargs)
-        elif action == "api_ebios_rm_elementary_actions_partial_update":
-            return client.api_ebios_rm_elementary_actions_partial_update(**kwargs)
-        elif action == "api_ebios_rm_elementary_actions_destroy":
-            return client.api_ebios_rm_elementary_actions_destroy(**kwargs)
-        elif action == "api_ebios_rm_elementary_actions_cascade_info_retrieve":
-            return client.api_ebios_rm_elementary_actions_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_ebios_rm_elementary_actions_object_retrieve":
-            return client.api_ebios_rm_elementary_actions_object_retrieve(**kwargs)
-        elif action == "api_ebios_rm_elementary_actions_attack_stage_retrieve":
-            return client.api_ebios_rm_elementary_actions_attack_stage_retrieve(
-                **kwargs
-            )
-        elif action == "api_ebios_rm_elementary_actions_batch_action_create":
-            return client.api_ebios_rm_elementary_actions_batch_action_create(**kwargs)
-        elif action == "api_ebios_rm_elementary_actions_icon_retrieve":
-            return client.api_ebios_rm_elementary_actions_icon_retrieve(**kwargs)
-        elif action == "api_ebios_rm_feared_events_list":
-            return client.api_ebios_rm_feared_events_list(**kwargs)
-        elif action == "api_ebios_rm_feared_events_create":
-            return client.api_ebios_rm_feared_events_create(**kwargs)
-        elif action == "api_ebios_rm_feared_events_retrieve":
-            return client.api_ebios_rm_feared_events_retrieve(**kwargs)
-        elif action == "api_ebios_rm_feared_events_update":
-            return client.api_ebios_rm_feared_events_update(**kwargs)
-        elif action == "api_ebios_rm_feared_events_partial_update":
-            return client.api_ebios_rm_feared_events_partial_update(**kwargs)
-        elif action == "api_ebios_rm_feared_events_destroy":
-            return client.api_ebios_rm_feared_events_destroy(**kwargs)
-        elif action == "api_ebios_rm_feared_events_cascade_info_retrieve":
-            return client.api_ebios_rm_feared_events_cascade_info_retrieve(**kwargs)
-        elif action == "api_ebios_rm_feared_events_gravity_retrieve":
-            return client.api_ebios_rm_feared_events_gravity_retrieve(**kwargs)
-        elif action == "api_ebios_rm_feared_events_object_retrieve":
-            return client.api_ebios_rm_feared_events_object_retrieve(**kwargs)
-        elif action == "api_ebios_rm_feared_events_risk_matrix_retrieve":
-            return client.api_ebios_rm_feared_events_risk_matrix_retrieve(**kwargs)
-        elif action == "api_ebios_rm_feared_events_batch_action_create":
-            return client.api_ebios_rm_feared_events_batch_action_create(**kwargs)
-        elif action == "api_ebios_rm_feared_events_batch_create_create":
-            return client.api_ebios_rm_feared_events_batch_create_create(**kwargs)
-        elif action == "api_ebios_rm_kill_chains_list":
-            return client.api_ebios_rm_kill_chains_list(**kwargs)
-        elif action == "api_ebios_rm_kill_chains_create":
-            return client.api_ebios_rm_kill_chains_create(**kwargs)
-        elif action == "api_ebios_rm_kill_chains_retrieve":
-            return client.api_ebios_rm_kill_chains_retrieve(**kwargs)
-        elif action == "api_ebios_rm_kill_chains_update":
-            return client.api_ebios_rm_kill_chains_update(**kwargs)
-        elif action == "api_ebios_rm_kill_chains_partial_update":
-            return client.api_ebios_rm_kill_chains_partial_update(**kwargs)
-        elif action == "api_ebios_rm_kill_chains_destroy":
-            return client.api_ebios_rm_kill_chains_destroy(**kwargs)
-        elif action == "api_ebios_rm_kill_chains_cascade_info_retrieve":
-            return client.api_ebios_rm_kill_chains_cascade_info_retrieve(**kwargs)
-        elif action == "api_ebios_rm_kill_chains_object_retrieve":
-            return client.api_ebios_rm_kill_chains_object_retrieve(**kwargs)
-        elif action == "api_ebios_rm_kill_chains_batch_action_create":
-            return client.api_ebios_rm_kill_chains_batch_action_create(**kwargs)
-        elif action == "api_ebios_rm_kill_chains_logic_operator_retrieve":
-            return client.api_ebios_rm_kill_chains_logic_operator_retrieve(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_list":
-            return client.api_ebios_rm_operating_modes_list(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_create":
-            return client.api_ebios_rm_operating_modes_create(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_retrieve":
-            return client.api_ebios_rm_operating_modes_retrieve(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_update":
-            return client.api_ebios_rm_operating_modes_update(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_partial_update":
-            return client.api_ebios_rm_operating_modes_partial_update(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_destroy":
-            return client.api_ebios_rm_operating_modes_destroy(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_build_graph_retrieve":
-            return client.api_ebios_rm_operating_modes_build_graph_retrieve(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_cascade_info_retrieve":
-            return client.api_ebios_rm_operating_modes_cascade_info_retrieve(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_likelihood_retrieve":
-            return client.api_ebios_rm_operating_modes_likelihood_retrieve(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_object_retrieve":
-            return client.api_ebios_rm_operating_modes_object_retrieve(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_save_graph_create":
-            return client.api_ebios_rm_operating_modes_save_graph_create(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_batch_action_create":
-            return client.api_ebios_rm_operating_modes_batch_action_create(**kwargs)
-        elif action == "api_ebios_rm_operating_modes_default_ref_id_retrieve":
-            return client.api_ebios_rm_operating_modes_default_ref_id_retrieve(**kwargs)
-        elif action == "api_ebios_rm_operational_scenarios_list":
-            return client.api_ebios_rm_operational_scenarios_list(**kwargs)
-        elif action == "api_ebios_rm_operational_scenarios_create":
-            return client.api_ebios_rm_operational_scenarios_create(**kwargs)
-        elif action == "api_ebios_rm_operational_scenarios_retrieve":
-            return client.api_ebios_rm_operational_scenarios_retrieve(**kwargs)
-        elif action == "api_ebios_rm_operational_scenarios_update":
-            return client.api_ebios_rm_operational_scenarios_update(**kwargs)
-        elif action == "api_ebios_rm_operational_scenarios_partial_update":
-            return client.api_ebios_rm_operational_scenarios_partial_update(**kwargs)
-        elif action == "api_ebios_rm_operational_scenarios_destroy":
-            return client.api_ebios_rm_operational_scenarios_destroy(**kwargs)
-        elif action == "api_ebios_rm_operational_scenarios_cascade_info_retrieve":
-            return client.api_ebios_rm_operational_scenarios_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_ebios_rm_operational_scenarios_likelihood_retrieve":
-            return client.api_ebios_rm_operational_scenarios_likelihood_retrieve(
-                **kwargs
-            )
-        elif action == "api_ebios_rm_operational_scenarios_object_retrieve":
-            return client.api_ebios_rm_operational_scenarios_object_retrieve(**kwargs)
-        elif action == "api_ebios_rm_operational_scenarios_risk_matrix_retrieve":
-            return client.api_ebios_rm_operational_scenarios_risk_matrix_retrieve(
-                **kwargs
-            )
-        elif action == "api_ebios_rm_operational_scenarios_batch_action_create":
-            return client.api_ebios_rm_operational_scenarios_batch_action_create(
-                **kwargs
-            )
-        elif action == "api_ebios_rm_ro_to_list":
-            return client.api_ebios_rm_ro_to_list(**kwargs)
-        elif action == "api_ebios_rm_ro_to_create":
-            return client.api_ebios_rm_ro_to_create(**kwargs)
-        elif action == "api_ebios_rm_ro_to_retrieve":
-            return client.api_ebios_rm_ro_to_retrieve(**kwargs)
-        elif action == "api_ebios_rm_ro_to_update":
-            return client.api_ebios_rm_ro_to_update(**kwargs)
-        elif action == "api_ebios_rm_ro_to_partial_update":
-            return client.api_ebios_rm_ro_to_partial_update(**kwargs)
-        elif action == "api_ebios_rm_ro_to_destroy":
-            return client.api_ebios_rm_ro_to_destroy(**kwargs)
-        elif action == "api_ebios_rm_ro_to_cascade_info_retrieve":
-            return client.api_ebios_rm_ro_to_cascade_info_retrieve(**kwargs)
-        elif action == "api_ebios_rm_ro_to_object_retrieve":
-            return client.api_ebios_rm_ro_to_object_retrieve(**kwargs)
-        elif action == "api_ebios_rm_ro_to_activity_retrieve":
-            return client.api_ebios_rm_ro_to_activity_retrieve(**kwargs)
-        elif action == "api_ebios_rm_ro_to_batch_action_create":
-            return client.api_ebios_rm_ro_to_batch_action_create(**kwargs)
-        elif action == "api_ebios_rm_ro_to_motivation_retrieve":
-            return client.api_ebios_rm_ro_to_motivation_retrieve(**kwargs)
-        elif action == "api_ebios_rm_ro_to_pertinence_retrieve":
-            return client.api_ebios_rm_ro_to_pertinence_retrieve(**kwargs)
-        elif action == "api_ebios_rm_ro_to_resources_retrieve":
-            return client.api_ebios_rm_ro_to_resources_retrieve(**kwargs)
-        elif action == "api_ebios_rm_stakeholders_list":
-            return client.api_ebios_rm_stakeholders_list(**kwargs)
-        elif action == "api_ebios_rm_stakeholders_create":
-            return client.api_ebios_rm_stakeholders_create(**kwargs)
-        elif action == "api_ebios_rm_stakeholders_retrieve":
-            return client.api_ebios_rm_stakeholders_retrieve(**kwargs)
-        elif action == "api_ebios_rm_stakeholders_update":
-            return client.api_ebios_rm_stakeholders_update(**kwargs)
-        elif action == "api_ebios_rm_stakeholders_partial_update":
-            return client.api_ebios_rm_stakeholders_partial_update(**kwargs)
-        elif action == "api_ebios_rm_stakeholders_destroy":
-            return client.api_ebios_rm_stakeholders_destroy(**kwargs)
-        elif action == "api_ebios_rm_stakeholders_cascade_info_retrieve":
-            return client.api_ebios_rm_stakeholders_cascade_info_retrieve(**kwargs)
-        elif action == "api_ebios_rm_stakeholders_object_retrieve":
-            return client.api_ebios_rm_stakeholders_object_retrieve(**kwargs)
-        elif action == "api_ebios_rm_stakeholders_batch_action_create":
-            return client.api_ebios_rm_stakeholders_batch_action_create(**kwargs)
-        elif action == "api_ebios_rm_stakeholders_category_retrieve":
-            return client.api_ebios_rm_stakeholders_category_retrieve(**kwargs)
-        elif action == "api_ebios_rm_stakeholders_chart_data_retrieve":
-            return client.api_ebios_rm_stakeholders_chart_data_retrieve(**kwargs)
-        elif action == "api_ebios_rm_strategic_scenarios_list":
-            return client.api_ebios_rm_strategic_scenarios_list(**kwargs)
-        elif action == "api_ebios_rm_strategic_scenarios_create":
-            return client.api_ebios_rm_strategic_scenarios_create(**kwargs)
-        elif action == "api_ebios_rm_strategic_scenarios_retrieve":
-            return client.api_ebios_rm_strategic_scenarios_retrieve(**kwargs)
-        elif action == "api_ebios_rm_strategic_scenarios_update":
-            return client.api_ebios_rm_strategic_scenarios_update(**kwargs)
-        elif action == "api_ebios_rm_strategic_scenarios_partial_update":
-            return client.api_ebios_rm_strategic_scenarios_partial_update(**kwargs)
-        elif action == "api_ebios_rm_strategic_scenarios_destroy":
-            return client.api_ebios_rm_strategic_scenarios_destroy(**kwargs)
-        elif action == "api_ebios_rm_strategic_scenarios_cascade_info_retrieve":
-            return client.api_ebios_rm_strategic_scenarios_cascade_info_retrieve(
-                **kwargs
-            )
-        elif action == "api_ebios_rm_strategic_scenarios_object_retrieve":
-            return client.api_ebios_rm_strategic_scenarios_object_retrieve(**kwargs)
-        elif action == "api_ebios_rm_strategic_scenarios_batch_action_create":
-            return client.api_ebios_rm_strategic_scenarios_batch_action_create(**kwargs)
-        elif action == "api_ebios_rm_studies_list":
-            return client.api_ebios_rm_studies_list(**kwargs)
-        elif action == "api_ebios_rm_studies_create":
-            return client.api_ebios_rm_studies_create(**kwargs)
-        elif action == "api_ebios_rm_studies_retrieve":
-            return client.api_ebios_rm_studies_retrieve(**kwargs)
-        elif action == "api_ebios_rm_studies_update":
-            return client.api_ebios_rm_studies_update(**kwargs)
-        elif action == "api_ebios_rm_studies_partial_update":
-            return client.api_ebios_rm_studies_partial_update(**kwargs)
-        elif action == "api_ebios_rm_studies_destroy":
-            return client.api_ebios_rm_studies_destroy(**kwargs)
-        elif action == "api_ebios_rm_studies_cascade_info_retrieve":
-            return client.api_ebios_rm_studies_cascade_info_retrieve(**kwargs)
-        elif action == "api_ebios_rm_studies_ecosystem_chart_data_retrieve":
-            return client.api_ebios_rm_studies_ecosystem_chart_data_retrieve(**kwargs)
-        elif action == "api_ebios_rm_studies_ecosystem_circular_chart_data_retrieve":
-            return client.api_ebios_rm_studies_ecosystem_circular_chart_data_retrieve(
-                **kwargs
-            )
-        elif action == "api_ebios_rm_studies_export_xlsx_retrieve":
-            return client.api_ebios_rm_studies_export_xlsx_retrieve(**kwargs)
-        elif action == "api_ebios_rm_studies_gravity_retrieve":
-            return client.api_ebios_rm_studies_gravity_retrieve(**kwargs)
-        elif action == "api_ebios_rm_studies_likelihood_retrieve":
-            return client.api_ebios_rm_studies_likelihood_retrieve(**kwargs)
-        elif action == "api_ebios_rm_studies_object_retrieve":
-            return client.api_ebios_rm_studies_object_retrieve(**kwargs)
-        elif action == "api_ebios_rm_studies_report_data_retrieve":
-            return client.api_ebios_rm_studies_report_data_retrieve(**kwargs)
-        elif action == "api_ebios_rm_studies_risk_matrix_retrieve":
-            return client.api_ebios_rm_studies_risk_matrix_retrieve(**kwargs)
-        elif action == "api_ebios_rm_studies_visual_analysis_retrieve":
-            return client.api_ebios_rm_studies_visual_analysis_retrieve(**kwargs)
-        elif action == "api_ebios_rm_studies_workshop_step_partial_update":
-            return client.api_ebios_rm_studies_workshop_step_partial_update(**kwargs)
-        elif action == "api_ebios_rm_studies_batch_action_create":
-            return client.api_ebios_rm_studies_batch_action_create(**kwargs)
-        elif action == "api_ebios_rm_studies_quotation_method_retrieve":
-            return client.api_ebios_rm_studies_quotation_method_retrieve(**kwargs)
-        elif action == "api_ebios_rm_studies_status_retrieve":
-            return client.api_ebios_rm_studies_status_retrieve(**kwargs)
+        for _dispatch in _EBIOS_RM_DISPATCHERS:
+            _result = _dispatch(action, kwargs, client)
+            if _result is not _UNHANDLED:
+                return _result
         raise ValueError(f"Unknown action: {action}")
