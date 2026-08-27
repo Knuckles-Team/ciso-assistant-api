@@ -8,7 +8,7 @@
     "ciso_assistant_api/ontology/mappings/source.yaml": "1f2315d0dabc6d92f5a593c24c0ba60cea5a6b1337afbacf82fe57c6d770f361",
     "ciso_assistant_api/ontology/migrations/manifest.json": "c5d5d30b62a340e13e4b165154988f3f316224c1eb8676351cbc3c9f13498787",
     "ciso_assistant_api/ontology/shapes/connector.shacl.ttl": "1939cad7bbc7148ffe0bf2fbec519e7e12a297f4a2a36e06339be711881afb7b",
-    "connector_manifest.yml": "a8105b39f7a69857ec5211a565eb8eb50fdb9333b442eeadeb09908dd11ff4c2"
+    "connector_manifest.yml": "10109481d49c77de2eba572d5c029e9ac5446feac96a6e91abf9c79b3011cd30"
   },
   "checks": {
     "declared_tool_schema": "passed",
@@ -18,9 +18,9 @@
     "synthetic_fixture_contract": "passed"
   },
   "compatibility": {
-    "agent_utilities": ">=2.4.0,<3",
+    "agent_utilities": ">=2.5.0,<3",
     "bundle_schema": "2",
-    "epistemic_graph": ">=2.26.0,<3"
+    "epistemic_graph": ">=2.27.0,<3"
   },
   "connector": "ciso-assistant-api",
   "kind": "ConnectorSourceAttestation",
@@ -32,5 +32,5 @@
   "signer": "UNSIGNED-PREVIEW",
   "signing_public_key": "",
   "status": "source-validated",
-  "validated_at": "2026-08-21T04:30:39Z"
+  "validated_at": "2026-08-26T13:42:55Z"
 }
