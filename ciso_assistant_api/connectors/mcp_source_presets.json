@@ -10,7 +10,7 @@
     "text_field": "description",
     "updated_field": "updated_at",
     "pagination": "page",
-    "page_kind": "page",
+    "page_kind": "number",
     "page_param": "page",
     "page_size_param": "limit",
     "doc_type": "risk_scenario"
@@ -25,7 +25,7 @@
     "text_field": "description",
     "updated_field": "updated_at",
     "pagination": "page",
-    "page_kind": "page",
+    "page_kind": "number",
     "page_param": "page",
     "page_size_param": "limit",
     "doc_type": "compliance_assessment"
