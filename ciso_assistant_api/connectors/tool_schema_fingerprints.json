@@ -1,9 +1,9 @@
 {
-  "algorithm": "agent-utilities:mcp-tool-schema-compat:v1",
+  "algorithm": "agent-connector-sdk:mcp-tool-contract-compat:v2",
   "connector": "ciso-assistant-api",
   "schema_version": "1",
   "tools": {
-    "ciso_assistant_compliance": "d01dcd132f1277a672d99153e1216b4423d57824e386f5da3673cb3742f7ed03",
-    "ciso_assistant_risk_management": "0ad2ad7f208632c1f5ddfe5bbc3fb57f47acd13f3f39381e69a60afbe9dd7319"
+    "ciso_assistant_compliance": "387fd214c94c7902bce0b5f97c5b5569c7f2d5979982c7384aafaeb2799578ec",
+    "ciso_assistant_risk_management": "185d776a0c11d50f994e76a2c3337ff229c2c427c7c74eb3de5693af1c9cd918"
   }
 }

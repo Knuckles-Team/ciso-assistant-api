@@ -224,7 +224,7 @@ sync:
   updated_field: updated_at
   pagination: page
   doc_type: compliance_assessment
-  tool_schema_sha256: d01dcd132f1277a672d99153e1216b4423d57824e386f5da3673cb3742f7ed03
+  tool_schema_sha256: 387fd214c94c7902bce0b5f97c5b5569c7f2d5979982c7384aafaeb2799578ec
   raw:
     server: ciso-assistant-mcp
     tool: ciso_assistant_compliance
@@ -250,7 +250,7 @@ sync:
   updated_field: updated_at
   pagination: page
   doc_type: risk_scenario
-  tool_schema_sha256: 0ad2ad7f208632c1f5ddfe5bbc3fb57f47acd13f3f39381e69a60afbe9dd7319
+  tool_schema_sha256: 185d776a0c11d50f994e76a2c3337ff229c2c427c7c74eb3de5693af1c9cd918
   raw:
     server: ciso-assistant-mcp
     tool: ciso_assistant_risk_management
