@@ -560,7 +560,18 @@ _COMPLIANCE_DISPATCHERS = (
 
 
 def register_compliance_tools(mcp: FastMCP):
-    @mcp.tool(tags={"compliance"})
+    @mcp.tool(
+        tags={"compliance"},
+        annotations={
+            "readOnlyHint": False,
+            "destructiveHint": True,
+            "idempotentHint": False,
+            "openWorldHint": True,
+        },
+        meta={
+            "eg.annotations": {"modalities_in": ["text"], "modalities_out": ["text"]}
+        },
+    )
     async def ciso_assistant_compliance(
         action: Literal[
             "api_applied_controls_analytics_retrieve",

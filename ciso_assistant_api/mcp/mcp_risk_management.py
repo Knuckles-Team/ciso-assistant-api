@@ -352,7 +352,18 @@ _RISK_MANAGEMENT_DISPATCHERS = (
 
 
 def register_risk_management_tools(mcp: FastMCP):
-    @mcp.tool(tags={"risk-management"})
+    @mcp.tool(
+        tags={"risk-management"},
+        annotations={
+            "readOnlyHint": False,
+            "destructiveHint": True,
+            "idempotentHint": False,
+            "openWorldHint": True,
+        },
+        meta={
+            "eg.annotations": {"modalities_in": ["text"], "modalities_out": ["text"]}
+        },
+    )
     async def ciso_assistant_risk_management(
         action: Literal[
             "api_cwes_autocomplete_retrieve",
