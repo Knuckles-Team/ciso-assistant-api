@@ -15,7 +15,6 @@ CORE_MODULES = [
 ]
 
 OPTIONAL_MODULES = {
-    "ciso_assistant_api.agent_server": "agent",
     "ciso_assistant_api.mcp_server": "mcp",
 }
 

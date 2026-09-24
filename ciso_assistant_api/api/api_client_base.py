@@ -23,17 +23,15 @@ from typing import Any, TypeVar
 from urllib.parse import quote, urlparse
 
 import requests
-from agent_utilities.base_utilities import get_logger
-from agent_utilities.core.exceptions import (
+from agent_connector_sdk.exceptions import (
     AuthError,
     MissingParameterError,
     ParameterError,
     UnauthorizedError,
 )
-from agent_utilities.core.transport_security import (
-    ResolvedTLSProfile,
-    resolve_configured_tls_profile,
-)
+from agent_connector_sdk.tls.profile import ResolvedTLSProfile
+from agent_connector_sdk.tls.resolve import resolve_tls_profile
+from agent_connector_sdk.utilities import get_logger
 from pydantic import ValidationError
 
 from ciso_assistant_api.ciso_assistant_models import Response
@@ -75,9 +73,7 @@ class CisoAssistantApiBase:
         parsed = urlparse(self.url)
         self.hostname = parsed.hostname or ""
         self._origin = (parsed.scheme.casefold(), parsed.netloc.casefold())
-        self.tls_profile = tls_profile or resolve_configured_tls_profile(
-            "CISO_ASSISTANT"
-        )
+        self.tls_profile = tls_profile or resolve_tls_profile("CISO_ASSISTANT")
         self._session = self.tls_profile.configure_requests_session(requests.Session())
 
     @staticmethod
