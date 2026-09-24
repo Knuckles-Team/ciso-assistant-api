@@ -1802,12 +1802,9 @@ docker run -d \
 ```
 
 > The `:mcp` tag is the **engine-enabled MCP-server image** (built from
-> `docker/Dockerfile --target mcp`, installing `ciso-assistant-api[mcp]`). The default
-> the immutable agent image is the **full agent image** (`--target agent`, `ciso-assistant-api[agent]`)
-> which adds the Pydantic AI agent and observability runtime — use it when you run
-> `ciso-assistant-agent` (the agent), not just the MCP server. Both targets carry
+> `docker/Dockerfile`, installing `ciso-assistant-api[mcp]`), which carries
 > `epistemic-graph[full]` through the Agent Utilities base dependency. See
-> [Container images](#container-images-mcp-vs-agent).
+> [Container images](#container-images-mcp).
 
 ### Deploy with Docker Compose
 
@@ -1828,9 +1825,7 @@ services:
 #### Configure `mcp.json` for AI Integration (e.g. Claude Desktop)
 
 > **Install the `[mcp]` extra.** It includes FastMCP; the Agent Utilities base
-> dependency guarantees `epistemic-graph[full]` for native graph
-> ingestion. Use `[agent]` when the same process also needs the integrated
-> Pydantic AI and observability runtime (see
+> dependency guarantees `epistemic-graph[full]` for native graph ingestion (see
 > [Installation](#install-python-package)).
 
 ```json
@@ -1859,40 +1854,29 @@ Pick the extra that matches what you want to run:
 | Extra | Installs | Use when |
 |-------|----------|----------|
 | `ciso-assistant-api[mcp]` | MCP server plus `agent-utilities[mcp]`; the Agent Utilities base dependency includes `epistemic-graph[full]` | You run the **MCP server** with native graph ingestion |
-| `ciso-assistant-api[agent]` | Full agent runtime (`agent-utilities[agent-runtime,logfire]` — Pydantic AI, observability, and the full epistemic-graph engine) | You run the **integrated agent** |
-| `ciso-assistant-api[all]` | Everything (`mcp` + `agent`) | Development / both surfaces |
 
 ```bash
 # MCP server with the full epistemic-graph engine contract
 uv pip install "ciso-assistant-api[mcp]"
-
-# Full agent runtime (Pydantic AI + epistemic-graph engine)
-uv pip install "ciso-assistant-api[agent]"
-
-# Everything (development)
-uv pip install "ciso-assistant-api[all]"      # or: python -m pip install "ciso-assistant-api[all]"
 ```
 
-### Container images (`:mcp` vs `:agent`)
+### Container images (`:mcp`)
 
-One multi-stage `docker/Dockerfile` builds two right-sized images, selected by `--target`:
+One `docker/Dockerfile` builds a single slim image:
 
-| Image tag | Build target | Contents | Entrypoint |
-|-----------|--------------|----------|------------|
-| `${CISO_ASSISTANT_MCP_IMAGE}` | `--target mcp` | `ciso-assistant-api[mcp]` — MCP + `epistemic-graph[full]`, no agent runtime | `ciso-assistant-mcp` |
-| `${CISO_ASSISTANT_AGENT_IMAGE}` | `--target agent` (default) | `ciso-assistant-api[agent]` — **full** agent runtime + epistemic-graph engine | `ciso-assistant-agent` |
+| Image tag | Contents | Entrypoint |
+|-----------|----------|------------|
+| `${CISO_ASSISTANT_MCP_IMAGE}` | `ciso-assistant-api[mcp]` — MCP + `epistemic-graph[full]` | `ciso-assistant-mcp` |
 
 ```bash
-docker build --target mcp -t "${CISO_ASSISTANT_MCP_IMAGE}" docker/
-docker build --target agent -t "${CISO_ASSISTANT_AGENT_IMAGE}" docker/
+docker build -t "${CISO_ASSISTANT_MCP_IMAGE}" docker/
 ```
 
-`docker/mcp.compose.yml` runs the engine-enabled `:mcp` server; `docker/agent.compose.yml` runs the
-agent (`immutable agent digest`) with a co-located `:mcp` sidecar.
+`docker/mcp.compose.yml` runs the engine-enabled `:mcp` server.
 
 ### Knowledge-graph database (`epistemic-graph`)
 
-Both `[mcp]` and `[agent]` embed the **full epistemic-graph** engine contract
+The `[mcp]` extra embeds the **full epistemic-graph** engine contract
 (pulled in transitively through the Agent Utilities engine extra). For production — or to
 share one knowledge graph across multiple agents — run **epistemic-graph as its own database
 container** and point the provider at it instead of embedding it. Deployment recipes
@@ -1928,7 +1912,7 @@ to **"deploy `ciso-assistant-api` with agent-utilities-deployment"**.
 | Install mode | Command |
 |------|---------|
 | Installed package | `uv tool install "ciso-assistant-api[mcp]"`, then run `ciso-assistant-mcp` |
-| Editable source | `uv pip install -e ".[agent]"`, then run `ciso-assistant-mcp` |
+| Editable source | `uv pip install -e ".[mcp]"`, then run `ciso-assistant-mcp` |
 | Immutable container | deploy `registry.example.invalid/ciso-assistant-api@sha256:<digest>` through the operator-selected orchestrator |
 
 The repository embeds no deployment profile, credential value, certificate path, or
