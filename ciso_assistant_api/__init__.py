@@ -50,6 +50,10 @@ for module_name, extra_name in OPTIONAL_MODULES.items():
     if module is not None:
         _expose_members(module)
 
+# agent_server.py retired (EH-480): no "agent" entry in OPTIONAL_MODULES any more,
+# so no _AGENT_AVAILABLE global gets set by the loop above. Kept as a permanently
+# False flag for backward compatibility with anything still checking it.
+_AGENT_AVAILABLE = False
 __all__.extend(["_MCP_AVAILABLE", "_AGENT_AVAILABLE"])
 
 
