@@ -32,7 +32,7 @@ services:
 
 ## Scoping the tool surface
 
-Disable domains you do not need with `{TAG}TOOL=False` (for example,
+Disable domains the operator do not need with `{TAG}TOOL=False` (for example,
 `CHATTOOL=False` or `INTEGRATIONSTOOL=False`). All domains default to `True`.
 
 See [Configuration](configuration.md) for AgentConfig, secret, TLS, privacy, and
