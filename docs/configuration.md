@@ -3,7 +3,7 @@
 `ciso-assistant-api` resolves deployment values through the shared
 `AgentConfig` boundary. Endpoints, secret references, TLS profiles, and
 observability destinations belong in the operator-owned XDG configuration or
-launch environment, never in this repository, MCP arguments, skill content, or
+start environment, never in this repository, MCP arguments, skill content, or
 generated reports.
 
 ## Endpoint and authentication
@@ -69,9 +69,9 @@ Before enabling the provider:
 
 1. Validate AgentConfig and confirm every required secret reference resolves
    without printing its value.
-2. Verify the complete certificate chain and hostname with verification enabled.
+2. Check the complete certificate chain and hostname with verification enabled.
 3. Start the condensed MCP surface and run one least-privilege read action.
-4. If KG ingestion is enabled, ingest a bounded sample and verify provenance and
+4. If KG ingestion is enabled, ingest a bounded sample and check provenance and
    access-policy fields.
 5. Confirm telemetry is metadata-only and contains no endpoint, identity,
    credential, local-path, or record-content fields.

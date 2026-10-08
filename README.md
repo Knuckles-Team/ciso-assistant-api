@@ -73,7 +73,7 @@ and TLS verification is mandatory.
 
 The MCP Server runs in `stdio` (local) or `streamable-http` (networked) mode.
 Each domain is a tool gated by a `{TAG}TOOL` environment variable (default `True`),
-so you can scope the surface (e.g. set `CHATTOOL=False` to drop the chat domain).
+so the operator can scope the surface (e.g. set `CHATTOOL=False` to drop the chat domain).
 
 #### Environment Variables
 
@@ -1804,7 +1804,7 @@ docker run -d \
 > The `:mcp` tag is the **engine-enabled MCP-server image** (built from
 > `docker/Dockerfile --target mcp`, installing `ciso-assistant-api[mcp]`). The default
 > the immutable agent image is the **full agent image** (`--target agent`, `ciso-assistant-api[agent]`)
-> which adds the Pydantic AI agent and observability runtime — use it when you run
+> which adds the Pydantic AI agent and observability runtime — use it when the operator run
 > `ciso-assistant-agent` (the agent), not just the MCP server. Both targets carry
 > `epistemic-graph[full]` through the Agent Utilities base dependency. See
 > [Container images](#container-images-mcp-vs-agent).
@@ -1854,12 +1854,12 @@ services:
 
 ## Install Python Package
 
-Pick the extra that matches what you want to run:
+Pick the extra that matches what the operator want to run:
 
 | Extra | Installs | Use when |
 |-------|----------|----------|
-| `ciso-assistant-api[mcp]` | MCP server plus `agent-utilities[mcp]`; the Agent Utilities base dependency includes `epistemic-graph[full]` | You run the **MCP server** with native graph ingestion |
-| `ciso-assistant-api[agent]` | Full agent runtime (`agent-utilities[agent-runtime,logfire]` — Pydantic AI, observability, and the full epistemic-graph engine) | You run the **integrated agent** |
+| `ciso-assistant-api[mcp]` | MCP server plus `agent-utilities[mcp]`; the Agent Utilities base dependency includes `epistemic-graph[full]` | The operator run the **MCP server** with native graph ingestion |
+| `ciso-assistant-api[agent]` | Full agent runtime (`agent-utilities[agent-runtime,logfire]` — Pydantic AI, observability, and the full epistemic-graph engine) | The operator run the **integrated agent** |
 | `ciso-assistant-api[all]` | Everything (`mcp` + `agent`) | Development / both surfaces |
 
 ```bash
