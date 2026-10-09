@@ -1,29 +1,24 @@
-"""Native epistemic-graph typed-node ingestion — Wire-First coverage.
+"""Epistemic-graph typed-node ingestion — Wire-First coverage.
 
 Exercises the real ``ingest_entities`` / ``ingest_documents`` seam and the CISO
-Assistant record → typed-node mappers with a fake ChangeEnvelope-capable engine
-client (no engine required), asserting the committed nodes/edges and the
-class/id mapping. CONCEPT:AU-KG.ingest.enterprise-source-extractor.
+Assistant record → typed-node mappers against a fake ``agent_connector_sdk.ingest``
+transport (no engine required), asserting the committed records/relationships and
+the class/id mapping. CONCEPT:AU-KG.ingest.enterprise-source-extractor.
 
-The fake client mirrors agent-utilities' own sanctioned test double
-(``agent-utilities/tests/knowledge_graph/test_native_ingest.py``) — the ``txn``-only
-fake is retired; ``native_ingest`` now hard-requires an injected client exposing
-``.changes``/``.nodes``/``.rdf``/``.supports()``. Unlike most fleet connectors,
-``ciso_assistant_api.kg_ingest`` is a **best-effort** surface (its MCP tools must
-never raise when the KG stack is down), so it converts ``NativeIngestError`` into
-``None`` rather than propagating it — those semantics are exercised explicitly
-below.
+Unlike most fleet connectors, ``ciso_assistant_api.kg_ingest`` is a **best-effort**
+surface (its MCP tools must never raise when the KG stack is down), so it converts
+``IngestError`` into ``None`` rather than propagating it -- those semantics are
+exercised explicitly below.
 """
 
 from __future__ import annotations
 
+from types import SimpleNamespace
 from typing import Any
 
-import msgpack
 import pytest
-from agent_utilities.knowledge_graph.core.session import GraphSession, use_session
-from agent_utilities.security.actor_identity import ActorType
-from agent_utilities.security.brain_context import ActorContext, use_actor
+from agent_connector_sdk.ingest import KnowledgeIngest
+from epistemic_graph.generated.source_ingestion import SourceIngestionRequest
 
 from ciso_assistant_api.kg_ingest import (
     ingest_applied_controls,
@@ -39,114 +34,74 @@ from ciso_assistant_api.kg_ingest import (
 )
 
 
-@pytest.fixture(autouse=True)
-def _governed_session():
-    actor = ActorContext(
-        actor_id="subject:opaque:synthetic",
-        actor_type=ActorType.AUTOMATED_SERVICE,
-        roles=(),
-        tenant_id="tenant:opaque:synthetic",
-        authenticated=True,
-    )
-    session = GraphSession(
-        actor=actor,
-        tenant=actor.tenant_id,
-        scopes=frozenset({"kg:write"}),
-        graph="graph:opaque:synthetic",
-        policy_version="policy:opaque:synthetic",
-        audience="epistemic-graph",
-    )
-    with use_actor(actor), use_session(session):
-        yield
+class _FakeTransport:
+    """Records every submitted request; no epistemic-graph engine required."""
 
-
-class _FakeNodes:
     def __init__(self) -> None:
-        self.values: dict[str, dict[str, Any]] = {}
+        self.requests: list[SourceIngestionRequest] = []
 
-    def properties(self, node_id: str) -> dict[str, Any] | None:
-        return self.values.get(node_id)
+    async def source_status(self, _connector: str, _stream: str) -> Any:
+        return SimpleNamespace(accepted_checkpoint=None)
 
-    def list(self) -> list[tuple[str, dict[str, Any]]]:
-        return list(self.values.items())
+    async def submit(self, request: SourceIngestionRequest) -> Any:
+        self.requests.append(request)
+        return SimpleNamespace(
+            affected_count=len(request.records),
+            relationship_count=len(request.relationships),
+        )
 
-
-class _FakeChanges:
-    def __init__(self, nodes: _FakeNodes) -> None:
-        self.nodes = nodes
-        self.edges: list[tuple[str, str, dict[str, Any]]] = []
-        self.applied: list[dict[str, Any]] = []
-        self.records: dict[str, dict[str, Any]] = {}
-        self.versions: dict[str, dict[str, Any]] = {}
-
-    def get(self, envelope_id: str) -> dict[str, Any] | None:
-        return self.records.get(envelope_id)
-
-    def content_version(self, object_id: str) -> dict[str, Any] | None:
-        return self.versions.get(object_id)
-
-    def cursor(self, _source: str, _partition: str = "") -> None:
-        return None
-
-    def apply(self, envelope: dict[str, Any]) -> dict[str, Any]:
-        self.applied.append(envelope)
-        mutation = envelope["mutation"]
-        for operation in mutation["operations"]:
-            method = operation["method"]
-            params = method["params"]
-            properties = msgpack.unpackb(params["properties_msgpack"], raw=False)
-            if method["method"] == "AddNode":
-                self.nodes.values[params["node_id"]] = properties
-            elif method["method"] == "AddEdge":
-                self.edges.append(
-                    (params["source_id"], params["target_id"], properties)
-                )
-        version = envelope["content_version"]
-        self.versions[version["object_id"]] = version
-        self.records[envelope["envelope_id"]] = envelope
-        return {
-            "batch_id": mutation["batch_id"],
-            "replayed": False,
-            "projection_pending": False,
-        }
+    async def store_blob(self, _data: bytes) -> str:
+        raise AssertionError("this test exercises node/document ingestion only")
 
 
-class _FakeRdf:
-    def validate_shacl(self, _shapes: str, _data_graph: str) -> dict[str, Any]:
-        return {"conforms": True, "results": []}
+class _UnavailableTransport:
+    """Simulates no reachable engine for the best-effort no-op assertions."""
+
+    async def source_status(self, _connector: str, _stream: str) -> Any:
+        raise RuntimeError("epistemic-graph is unreachable")
+
+    async def submit(self, _request: Any) -> Any:
+        raise RuntimeError("epistemic-graph is unreachable")
+
+    async def store_blob(self, _data: bytes) -> str:
+        raise RuntimeError("epistemic-graph is unreachable")
 
 
-class _FakeClient:
-    def __init__(self) -> None:
-        self.nodes = _FakeNodes()
-        self.changes = _FakeChanges(self.nodes)
-        self.rdf = _FakeRdf()
-
-    @staticmethod
-    def supports(operation: str) -> bool:
-        return operation == "ApplyChangeEnvelope"
+@pytest.fixture
+def ingest() -> tuple[KnowledgeIngest, _FakeTransport]:
+    transport = _FakeTransport()
+    return KnowledgeIngest(transport, loop=None), transport
 
 
-def test_ingest_entities_writes_nodes_and_edges():
-    c = _FakeClient()
-    res = ingest_entities(
+@pytest.fixture
+def unavailable_ingest() -> KnowledgeIngest:
+    return KnowledgeIngest(_UnavailableTransport(), loop=None)
+
+
+@pytest.mark.asyncio
+async def test_ingest_entities_writes_nodes_and_edges(ingest):
+    service, transport = ingest
+    res = await ingest_entities(
         [
             {"id": "a", "node_type": "RiskScenario", "name": "s"},
             {"id": "b", "node_type": "Control"},
         ],
         [{"source": "a", "target": "b", "relationship": "mitigatedBy"}],
-        client=c,
+        ingest=service,
     )
     assert res == {"nodes": 2, "edges": 1}
-    assert set(c.nodes.values) == {"a", "b"}
-    assert c.nodes.values["a"]["source"] == "ciso-assistant-api"
-    assert c.nodes.values["a"]["domain"] == "ciso"
-    assert c.changes.edges == [("a", "b", {"relationship": "mitigatedBy"})]
+    request = transport.requests[0]
+    record_ids = {record.record_id for record in request.records}
+    assert record_ids == {"a", "b"}
+    assert request.relationships[0].relation_reference.endswith(
+        "resources/RiskScenario/relations/mitigatedBy"
+    )
 
 
-def test_ingest_risk_scenarios_maps_class_and_links():
-    c = _FakeClient()
-    res = ingest_risk_scenarios(
+@pytest.mark.asyncio
+async def test_ingest_risk_scenarios_maps_class_and_links(ingest):
+    service, transport = ingest
+    res = await ingest_risk_scenarios(
         [
             {
                 "id": "rs-1",
@@ -159,47 +114,38 @@ def test_ingest_risk_scenarios_maps_class_and_links():
                 "assets": [{"id": "as-1"}],
             }
         ],
-        client=c,
+        ingest=service,
     )
     assert res == {"nodes": 1, "edges": 3}
-    node = c.nodes.values["ciso:riskscenario:rs-1"]
-    assert node["node_type"] == "RiskScenario"
-    assert node["refId"] == "R.1"
-    assert node["riskTreatment"] == "mitigate"
-    assert node["externalToolId"] == "rs-1"
-    assert (
-        "ciso:riskscenario:rs-1",
-        "ciso:threat:t-1",
-        {"relationship": "hasThreat"},
-    ) in c.changes.edges
-    assert (
-        "ciso:riskscenario:rs-1",
-        "ciso:control:c-1",
-        {"relationship": "mitigatedBy"},
-    ) in c.changes.edges
-    assert (
-        "ciso:riskscenario:rs-1",
-        "ciso:asset:as-1",
-        {"relationship": "affectsAsset"},
-    ) in c.changes.edges
+    request = transport.requests[0]
+    node = next(r for r in request.records if r.record_id == "ciso:riskscenario:rs-1")
+    assert node.payload["refId"] == "R.1"
+    assert node.payload["riskTreatment"] == "mitigate"
+    assert node.payload["externalToolId"] == "rs-1"
+    relation_refs = {r.relation_reference for r in request.relationships}
+    assert any(ref.endswith("relations/hasThreat") for ref in relation_refs)
+    assert any(ref.endswith("relations/mitigatedBy") for ref in relation_refs)
+    assert any(ref.endswith("relations/affectsAsset") for ref in relation_refs)
 
 
-def test_ingest_applied_controls_maps_control():
-    c = _FakeClient()
-    res = ingest_applied_controls(
+@pytest.mark.asyncio
+async def test_ingest_applied_controls_maps_control(ingest):
+    service, transport = ingest
+    res = await ingest_applied_controls(
         [{"id": "c-9", "name": "MFA", "status": "active", "priority": "P1"}],
-        client=c,
+        ingest=service,
     )
     assert res == {"nodes": 1, "edges": 0}
-    node = c.nodes.values["ciso:control:c-9"]
-    assert node["node_type"] == "Control"
-    assert node["controlStatus"] == "active"
-    assert node["controlPriority"] == "P1"
+    node = transport.requests[0].records[0]
+    assert node.record_id == "ciso:control:c-9"
+    assert node.payload["controlStatus"] == "active"
+    assert node.payload["controlPriority"] == "P1"
 
 
-def test_ingest_compliance_assessments_links_framework():
-    c = _FakeClient()
-    res = ingest_compliance_assessments(
+@pytest.mark.asyncio
+async def test_ingest_compliance_assessments_links_framework(ingest):
+    service, transport = ingest
+    res = await ingest_compliance_assessments(
         [
             {
                 "id": "a-1",
@@ -209,72 +155,73 @@ def test_ingest_compliance_assessments_links_framework():
                 "framework": {"id": "fw-1"},
             }
         ],
-        client=c,
+        ingest=service,
     )
     assert res == {"nodes": 1, "edges": 1}
-    node = c.nodes.values["ciso:audit:a-1"]
-    assert node["node_type"] == "Audit"
-    assert node["complianceProgress"] == 42
-    assert (
-        "ciso:audit:a-1",
-        "ciso:framework:fw-1",
-        {"relationship": "assessesFramework"},
-    ) in c.changes.edges
+    node = transport.requests[0].records[0]
+    assert node.record_id == "ciso:audit:a-1"
+    assert node.payload["complianceProgress"] == 42
+    assert transport.requests[0].relationships[0].relation_reference.endswith(
+        "resources/Audit/relations/assessesFramework"
+    )
 
 
-def test_ingest_incidents_and_assets_and_vulns():
-    c = _FakeClient()
-    assert ingest_incidents(
+@pytest.mark.asyncio
+async def test_ingest_incidents_and_assets_and_vulns(ingest):
+    service, transport = ingest
+    assert await ingest_incidents(
         [{"id": "i-1", "name": "Breach", "severity": "1", "assets": ["as-2"]}],
-        client=c,
+        ingest=service,
     ) == {"nodes": 1, "edges": 1}
-    assert c.nodes.values["ciso:incident:i-1"]["node_type"] == "Incident"
+    assert transport.requests[0].records[0].record_id == "ciso:incident:i-1"
 
-    c2 = _FakeClient()
-    assert ingest_assets(
-        [{"id": "as-3", "name": "DB", "type": "primary"}], client=c2
+    service2 = KnowledgeIngest(_FakeTransport(), loop=None)
+    assert await ingest_assets(
+        [{"id": "as-3", "name": "DB", "type": "primary"}], ingest=service2
     ) == {"nodes": 1, "edges": 0}
-    assert c2.nodes.values["ciso:asset:as-3"]["asset_type"] == "primary"
 
-    c3 = _FakeClient()
-    assert ingest_vulnerabilities(
+    service3 = KnowledgeIngest(_FakeTransport(), loop=None)
+    assert await ingest_vulnerabilities(
         [{"id": "v-1", "name": "CVE", "severity": "high", "applied_controls": ["c-1"]}],
-        client=c3,
+        ingest=service3,
     ) == {"nodes": 1, "edges": 1}
-    assert c3.nodes.values["ciso:vulnerability:v-1"]["node_type"] == "Vulnerability"
 
 
-def test_ingest_risk_assessments_links_scenarios():
-    c = _FakeClient()
-    res = ingest_risk_assessments(
+@pytest.mark.asyncio
+async def test_ingest_risk_assessments_links_scenarios(ingest):
+    service, transport = ingest
+    res = await ingest_risk_assessments(
         [{"id": "ra-1", "name": "Q3", "risk_scenarios": ["rs-1", "rs-2"]}],
-        client=c,
+        ingest=service,
     )
     assert res == {"nodes": 1, "edges": 2}
-    assert c.nodes.values["ciso:riskassessment:ra-1"]["node_type"] == "RiskAssessment"
+    assert transport.requests[0].records[0].record_id == "ciso:riskassessment:ra-1"
 
 
-def test_ingest_evidences_as_documents():
-    c = _FakeClient()
-    res = ingest_evidences(
+@pytest.mark.asyncio
+async def test_ingest_evidences_as_documents(ingest):
+    service, transport = ingest
+    res = await ingest_evidences(
         [{"id": "e-1", "name": "Pentest report", "description": "2024 scope"}],
-        client=c,
+        ingest=service,
     )
     assert res == {"nodes": 1, "edges": 0}
-    node = c.nodes.values["ciso:evidence:e-1"]
-    assert node["node_type"] == "Document"
-    assert "Pentest report" in node["text"]
+    node = transport.requests[0].records[0]
+    assert node.record_id == "ciso:evidence:e-1"
+    assert "Pentest report" in node.payload["text"]
 
 
-def test_ingest_documents_requires_text():
-    c = _FakeClient()
-    assert ingest_documents([{"id": "d-1"}], client=c) is None
-    assert c.changes.applied == []
+@pytest.mark.asyncio
+async def test_ingest_documents_requires_text(ingest):
+    service, transport = ingest
+    assert await ingest_documents([{"id": "d-1"}], ingest=service) is None
+    assert transport.requests == []
 
 
-def test_ingest_redacts_personal_data_and_locations():
-    c = _FakeClient()
-    result = ingest_documents(
+@pytest.mark.asyncio
+async def test_ingest_redacts_personal_data_and_locations(ingest):
+    service, transport = ingest
+    result = await ingest_documents(
         [
             {
                 "id": "d-2",
@@ -282,30 +229,39 @@ def test_ingest_redacts_personal_data_and_locations():
                 "source_uri": "https://private.example.invalid/record/2",
             }
         ],
-        client=c,
+        ingest=service,
     )
     assert result == {"nodes": 1, "edges": 0}
-    node = c.nodes.values["d-2"]
-    assert "[REDACTED_EMAIL]" in node["text"]
-    assert node["source_uri"] == "[REDACTED_LOCATION]"
-    assert node["privacy_redactions"] == 2
+    node = transport.requests[0].records[0]
+    assert "[REDACTED_EMAIL]" in node.payload["text"]
+    assert node.payload["source_uri"] == "[REDACTED_LOCATION]"
+    assert node.payload["privacy_redactions"] == 2
 
 
-def test_ingest_noops_without_engine():
-    # No injected client + no reachable engine -> clean no-op (best-effort surface).
-    assert ingest_entities([{"id": "a", "node_type": "Control"}]) is None
+@pytest.mark.asyncio
+async def test_ingest_noops_without_engine(unavailable_ingest):
+    # No reachable engine -> clean no-op (best-effort surface).
+    assert (
+        await ingest_entities(
+            [{"id": "a", "node_type": "Control"}], ingest=unavailable_ingest
+        )
+        is None
+    )
 
 
-def test_ingest_rejects_retired_structural_alias_as_noop():
+@pytest.mark.asyncio
+async def test_ingest_rejects_retired_structural_alias_as_noop(ingest):
     # ciso_assistant_api's tool surface is best-effort (never raises): a malformed
     # record (the retired ``type`` alias instead of canonical ``node_type``) is
-    # reported back as a clean no-op rather than propagating NativeIngestError.
-    c = _FakeClient()
-    assert ingest_entities([{"id": "a", "type": "Control"}], client=c) is None
-    assert c.changes.applied == []
+    # reported back as a clean no-op rather than propagating IngestError.
+    service, transport = ingest
+    assert await ingest_entities([{"id": "a", "type": "Control"}], ingest=service) is None
+    assert transport.requests == []
 
 
-def test_ingest_empty_is_noop():
-    assert ingest_entities([], client=_FakeClient()) is None
-    assert ingest_risk_scenarios([], client=_FakeClient()) is None
-    assert ingest_assets([], client=_FakeClient()) is None
+@pytest.mark.asyncio
+async def test_ingest_empty_is_noop(ingest):
+    service, _ = ingest
+    assert await ingest_entities([], ingest=service) is None
+    assert await ingest_risk_scenarios([], ingest=service) is None
+    assert await ingest_assets([], ingest=service) is None

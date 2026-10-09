@@ -1,19 +1,18 @@
-"""Native epistemic-graph ingestion for CISO Assistant GRC records (typed graph nodes).
+"""Epistemic-graph ingestion for CISO Assistant GRC records (typed graph nodes).
 
 CONCEPT:AU-KG.ingest.enterprise-source-extractor. This is the record-source twin of
-media-downloader's blob ingestion: the package natively pushes its governance-risk-
+media-downloader's blob ingestion: the package pushes its governance-risk-
 compliance data into the ONE epistemic-graph knowledge graph as **typed OWL nodes**
 (``:RiskAssessment``, ``:RiskScenario``, ``:Control``, ``:Audit``, ``:Incident``,
 ``:Asset``, ``:Vulnerability`` …) + links, matching the classes federated by
 ``ciso_assistant_api.ontology`` (``ciso.ttl``).
 
-The write path rides the shared, required primitive
-``agent_utilities.knowledge_graph.memory.native_ingest`` — the one connector write
-path; there is no self-contained fallback transaction here. The MCP tool surface
+The write path is ``agent_connector_sdk.ingest`` -- the generated ``SourceIngest``
+client, not a local ingestion helper. The MCP tool surface
 (``ciso_assistant_api.mcp.mcp_kg_ingest``) exposes these as best-effort tools that
 must never raise on an unreachable/misconfigured KG stack, so ``ingest_entities`` /
 ``ingest_documents`` stay **best-effort**: they return ``None`` (never raise) for
-empty input or when the shared primitive reports :class:`NativeIngestError` (no
+empty input or when the SDK's ingest facade reports :class:`IngestError` (no
 reachable engine, or a malformed record). Node ids follow
 ``ciso:<class>:<externalId>``.
 """
@@ -23,18 +22,24 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from agent_utilities.knowledge_graph.memory.native_ingest import (
-    NativeIngestError,
-    ingest_documents as _native_ingest_documents,
-    ingest_entities as _native_ingest_entities,
-    media_store as _native_media_store,
+from agent_connector_sdk.ingest import (
+    ChangeSet,
+    Document,
+    Entity,
+    IngestBinding,
+    IngestError,
+    KnowledgeIngest,
+    Relationship,
+    current_ingest,
 )
-from agent_utilities.security.persistence_privacy import sanitize_for_persistence
+from agent_connector_sdk.privacy import sanitize_for_persistence
 
 logger = logging.getLogger("ciso_assistant_api.kg")
 
-_SOURCE = "ciso-assistant-api"
-_DOMAIN = "ciso"
+_BINDING = IngestBinding(connector="ciso-assistant-api", stream="ciso")
+
+_ENTITY_RESERVED_KEYS = frozenset({"id", "node_type"})
+_RELATIONSHIP_RESERVED_KEYS = frozenset({"source", "target", "relationship"})
 
 
 def _privacy_safe(value: Any) -> Any:
@@ -45,23 +50,48 @@ def _privacy_safe(value: Any) -> Any:
     return clean
 
 
+def _to_entity(record: dict[str, Any]) -> Entity:
+    return Entity(
+        id=record.get("id"),
+        node_type=record.get("node_type"),
+        properties={
+            key: value
+            for key, value in record.items()
+            if key not in _ENTITY_RESERVED_KEYS
+        },
+    )
+
+
+def _to_relationship(record: dict[str, Any]) -> Relationship:
+    properties = {
+        key: value
+        for key, value in record.items()
+        if key not in _RELATIONSHIP_RESERVED_KEYS
+    }
+    return Relationship(
+        source=record["source"],
+        target=record["target"],
+        relationship=record["relationship"],
+        properties=properties or None,
+    )
+
+
 # ------------------------------------------------------------------ public API
-def ingest_entities(
+async def ingest_entities(
     entities: list[dict[str, Any]],
     relationships: list[dict[str, Any]] | None = None,
     *,
-    source: str = _SOURCE,
-    domain: str = _DOMAIN,
-    client: Any | None = None,
-    graph: str | None = None,
+    source: str = "ciso-assistant-api",
+    domain: str = "ciso",
+    ingest: KnowledgeIngest | None = None,
 ) -> dict[str, int] | None:
     """Write typed OWL nodes (+ edges) into epistemic-graph. Best-effort, never raises.
 
     ``entities``: ``[{"id":..., "node_type":<owl:Class>, ...props}]``.
     ``relationships``: ``[{"source":id, "target":id, "relationship":<link>}]``.
     Returns ``{"nodes":n, "edges":m}`` or ``None`` (empty input / no reachable engine /
-    malformed record; never raises). ``client``/``graph`` may be injected (tests);
-    otherwise the process-owned governed authority is resolved on demand.
+    malformed record; never raises). ``ingest`` may be injected (tests); otherwise the
+    process-owned governed authority is resolved on demand.
     """
     entities = [
         safe
@@ -79,26 +109,26 @@ def ingest_entities(
     if not entities:
         return None
     try:
-        return _native_ingest_entities(
-            entities,
-            relationships,
-            source=source,
-            domain=domain,
-            client=client,
-            graph=graph,
+        change_set = ChangeSet(
+            entities=tuple(_to_entity(entity) for entity in entities),
+            relationships=tuple(
+                _to_relationship(relationship) for relationship in relationships
+            ),
         )
-    except NativeIngestError as exc:
+        service = ingest or current_ingest()
+        receipt = await service.submit(_BINDING, change_set)
+        return {"nodes": receipt.affected_count, "edges": receipt.relationship_count}
+    except IngestError as exc:
         logger.debug("KG ingest unavailable/failed: %s", exc)
         return None
 
 
-def ingest_documents(
+async def ingest_documents(
     documents: list[dict[str, Any]],
     *,
-    source: str = _SOURCE,
-    domain: str = _DOMAIN,
-    client: Any | None = None,
-    graph: str | None = None,
+    source: str = "ciso-assistant-api",
+    domain: str = "ciso",
+    ingest: KnowledgeIngest | None = None,
 ) -> dict[str, int] | None:
     """Write text records as ``:Document`` nodes (semantic-search fodder). Best-effort.
 
@@ -114,20 +144,27 @@ def ingest_documents(
     if not documents:
         return None
     try:
-        return _native_ingest_documents(
-            documents, source=source, domain=domain, client=client, graph=graph
+        change_set = ChangeSet(
+            documents=tuple(
+                Document(
+                    id=doc.get("id"),
+                    text=doc.get("text", ""),
+                    title=doc.get("title"),
+                    source_uri=doc.get("source_uri"),
+                    properties={
+                        key: value
+                        for key, value in doc.items()
+                        if key not in {"id", "text", "title", "source_uri"}
+                    },
+                )
+                for doc in documents
+            )
         )
-    except NativeIngestError as exc:
+        service = ingest or current_ingest()
+        receipt = await service.submit(_BINDING, change_set)
+        return {"nodes": receipt.affected_count, "edges": receipt.relationship_count}
+    except IngestError as exc:
         logger.debug("KG ingest unavailable/failed: %s", exc)
-        return None
-
-
-def media_store() -> Any | None:
-    """Return a ``MediaStore`` over a live engine (raw-blob ingestion), or ``None``."""
-    try:
-        return _native_media_store()
-    except NativeIngestError as exc:
-        logger.debug("KG media store unavailable: %s", exc)
         return None
 
 
@@ -145,11 +182,10 @@ def _rel_ids(record: dict[str, Any], field: str) -> list[str]:
     return out
 
 
-def ingest_risk_assessments(
+async def ingest_risk_assessments(
     assessments: list[dict[str, Any]],
     *,
-    client: Any | None = None,
-    graph: str | None = None,
+    ingest: KnowledgeIngest | None = None,
 ) -> dict[str, int] | None:
     """Map risk-assessment records → ``:RiskAssessment`` nodes (+ scenario links)."""
     entities: list[dict[str, Any]] = []
@@ -180,14 +216,13 @@ def ingest_risk_assessments(
                     "relationship": "includesScenario",
                 }
             )
-    return ingest_entities(entities, relationships, client=client, graph=graph)
+    return await ingest_entities(entities, relationships, ingest=ingest)
 
 
-def ingest_risk_scenarios(
+async def ingest_risk_scenarios(
     scenarios: list[dict[str, Any]],
     *,
-    client: Any | None = None,
-    graph: str | None = None,
+    ingest: KnowledgeIngest | None = None,
 ) -> dict[str, int] | None:
     """Map risk-scenario records → ``:RiskScenario`` nodes (+ threat/control/asset links)."""
     entities: list[dict[str, Any]] = []
@@ -235,14 +270,13 @@ def ingest_risk_scenarios(
                     "relationship": "affectsAsset",
                 }
             )
-    return ingest_entities(entities, relationships, client=client, graph=graph)
+    return await ingest_entities(entities, relationships, ingest=ingest)
 
 
-def ingest_applied_controls(
+async def ingest_applied_controls(
     controls: list[dict[str, Any]],
     *,
-    client: Any | None = None,
-    graph: str | None = None,
+    ingest: KnowledgeIngest | None = None,
 ) -> dict[str, int] | None:
     """Map applied-control records → ``:Control`` nodes (+ asset links)."""
     entities: list[dict[str, Any]] = []
@@ -276,14 +310,13 @@ def ingest_applied_controls(
                     "relationship": "affectsAsset",
                 }
             )
-    return ingest_entities(entities, relationships, client=client, graph=graph)
+    return await ingest_entities(entities, relationships, ingest=ingest)
 
 
-def ingest_compliance_assessments(
+async def ingest_compliance_assessments(
     audits: list[dict[str, Any]],
     *,
-    client: Any | None = None,
-    graph: str | None = None,
+    ingest: KnowledgeIngest | None = None,
 ) -> dict[str, int] | None:
     """Map compliance-assessment records → ``:Audit`` nodes (+ framework links)."""
     entities: list[dict[str, Any]] = []
@@ -317,14 +350,13 @@ def ingest_compliance_assessments(
                     "relationship": "assessesFramework",
                 }
             )
-    return ingest_entities(entities, relationships, client=client, graph=graph)
+    return await ingest_entities(entities, relationships, ingest=ingest)
 
 
-def ingest_incidents(
+async def ingest_incidents(
     incidents: list[dict[str, Any]],
     *,
-    client: Any | None = None,
-    graph: str | None = None,
+    ingest: KnowledgeIngest | None = None,
 ) -> dict[str, int] | None:
     """Map incident records → ``:Incident`` nodes (+ asset/control links)."""
     entities: list[dict[str, Any]] = []
@@ -365,14 +397,13 @@ def ingest_incidents(
                     "relationship": "mitigatedBy",
                 }
             )
-    return ingest_entities(entities, relationships, client=client, graph=graph)
+    return await ingest_entities(entities, relationships, ingest=ingest)
 
 
-def ingest_assets(
+async def ingest_assets(
     assets: list[dict[str, Any]],
     *,
-    client: Any | None = None,
-    graph: str | None = None,
+    ingest: KnowledgeIngest | None = None,
 ) -> dict[str, int] | None:
     """Map asset records → ``:Asset`` nodes."""
     entities: list[dict[str, Any]] = []
@@ -393,14 +424,13 @@ def ingest_assets(
                 "externalToolId": str(rid),
             }
         )
-    return ingest_entities(entities, None, client=client, graph=graph)
+    return await ingest_entities(entities, None, ingest=ingest)
 
 
-def ingest_vulnerabilities(
+async def ingest_vulnerabilities(
     vulnerabilities: list[dict[str, Any]],
     *,
-    client: Any | None = None,
-    graph: str | None = None,
+    ingest: KnowledgeIngest | None = None,
 ) -> dict[str, int] | None:
     """Map vulnerability records → ``:Vulnerability`` nodes (+ control/asset links)."""
     entities: list[dict[str, Any]] = []
@@ -440,14 +470,13 @@ def ingest_vulnerabilities(
                     "relationship": "affectsAsset",
                 }
             )
-    return ingest_entities(entities, relationships, client=client, graph=graph)
+    return await ingest_entities(entities, relationships, ingest=ingest)
 
 
-def ingest_evidences(
+async def ingest_evidences(
     evidences: list[dict[str, Any]],
     *,
-    client: Any | None = None,
-    graph: str | None = None,
+    ingest: KnowledgeIngest | None = None,
 ) -> dict[str, int] | None:
     """Map evidence records → ``:Document`` nodes (text = name + description).
 
@@ -478,4 +507,4 @@ def ingest_evidences(
                 "externalToolId": str(rid),
             }
         )
-    return ingest_documents(docs, client=client, graph=graph)
+    return await ingest_documents(docs, ingest=ingest)

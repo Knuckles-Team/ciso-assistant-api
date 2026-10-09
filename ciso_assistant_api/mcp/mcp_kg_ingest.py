@@ -99,18 +99,18 @@ def register_kg_ingest_tools(mcp: FastMCP):
         list_method, mapper_name = _KIND_MAP[kind]
         resp = getattr(client, list_method)(**kwargs)
         records = _records(resp)
-        result = getattr(kg_ingest, mapper_name)(records)
+        result = await getattr(kg_ingest, mapper_name)(records)
 
         out: dict[str, Any] = {"kind": kind, "listed": len(records), "ingested": result}
 
         if kind == "evidences" and ingest_attachments:
-            out["attachments"] = _ingest_evidence_blobs(client, records)
+            out["attachments"] = await _ingest_evidence_blobs(client, records)
         return out
 
     return None
 
 
-def _ingest_evidence_blobs(
+async def _ingest_evidence_blobs(
     client: Any, records: list[dict[str, Any]]
 ) -> dict[str, int]:
     """Fetch each evidence's attachment bytes and store them as KG blobs."""
@@ -131,7 +131,7 @@ def _ingest_evidence_blobs(
         mime = "application/octet-stream"
         if raw is not None:
             mime = (raw.headers or {}).get("Content-Type", mime).split(";")[0]
-        result = ingest_evidence_attachment(
+        result = await ingest_evidence_attachment(
             data,
             evidence_id=rid,
             name=rec.get("attachment") or rec.get("name"),
