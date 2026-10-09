@@ -1,7 +1,7 @@
 """Authentication factory tests."""
 
 import pytest
-from agent_utilities.core.exceptions import MissingParameterError, ParameterError
+from agent_connector_sdk.exceptions import MissingParameterError, ParameterError
 
 from ciso_assistant_api.api_client import Api
 

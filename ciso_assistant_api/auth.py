@@ -12,24 +12,21 @@ Authentication priority:
 See ``docs/guides/oauth_sso.md`` in agent-utilities for full details.
 """
 
+import logging
 import threading
 
-from agent_utilities.base_utilities import get_logger
-from agent_utilities.core.config import setting
-from agent_utilities.core.exceptions import AuthError, UnauthorizedError
-from agent_utilities.core.transport_security import (
-    ResolvedTLSProfile,
-    resolve_configured_tls_profile,
-)
-from agent_utilities.security.cli_secrets import (
-    RuntimeSecretReferenceError,
-    resolve_runtime_secret_reference,
-)
+from agent_connector_sdk.config import setting
+from agent_connector_sdk.credentials.references import SecretReferenceError
+from agent_connector_sdk.credentials.resolution import resolve_secret_reference
+from agent_connector_sdk.credentials.resolver import CredentialUnavailableError
+from agent_connector_sdk.exceptions import AuthError, UnauthorizedError
+from agent_connector_sdk.tls.profile import ResolvedTLSProfile
+from agent_connector_sdk.tls.resolve import resolve_tls_profile
 
 local = threading.local()
 from ciso_assistant_api.api_client import Api
 
-logger = get_logger(__name__)
+logger = logging.getLogger(__name__)
 
 
 def get_client(
@@ -56,7 +53,7 @@ def get_client(
     if password is None:
         password = _resolve_optional_secret(setting("CISO_ASSISTANT_PASSWORD_REF"))
     if tls_profile is None:
-        tls_profile = resolve_configured_tls_profile(
+        tls_profile = resolve_tls_profile(
             "CISO_ASSISTANT",
             profile_name=setting("CISO_ASSISTANT_TLS_PROFILE"),
             profile_ref=setting("CISO_ASSISTANT_TLS_PROFILE_REF"),
@@ -105,6 +102,6 @@ def _resolve_optional_secret(reference: str | None) -> str | None:
     if not reference:
         return None
     try:
-        return resolve_runtime_secret_reference(reference)
-    except RuntimeSecretReferenceError:
+        return resolve_secret_reference(reference)
+    except (SecretReferenceError, CredentialUnavailableError):
         raise RuntimeError("CISO Assistant runtime secret is unavailable") from None
