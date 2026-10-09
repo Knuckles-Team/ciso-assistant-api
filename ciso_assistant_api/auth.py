@@ -29,6 +29,27 @@ from ciso_assistant_api.api_client import Api
 logger = logging.getLogger(__name__)
 
 
+def _exchange_delegated_token() -> str:
+    """RFC 8693 Token Exchange via ``agent_connector_sdk.auth.delegation``."""
+    import httpx
+    from agent_connector_sdk.auth.delegation import (
+        DelegationSettings,
+        current_user_token,
+        exchange_token,
+    )
+    from agent_connector_sdk.exceptions import LoginRequiredError
+
+    settings = DelegationSettings.from_settings()
+    subject_token = current_user_token()
+    if not subject_token:
+        raise LoginRequiredError("no verified caller token to delegate")
+    with httpx.Client(timeout=30) as http_client:
+        access_token = exchange_token(
+            settings, subject_token=subject_token, http_client=http_client
+        )
+    return access_token.value
+
+
 def get_client(
     instance: str | None = None,
     token: str | None = None,
@@ -59,19 +80,17 @@ def get_client(
             profile_ref=setting("CISO_ASSISTANT_TLS_PROFILE_REF"),
         )
 
-    from agent_utilities.mcp.delegated_auth import (
-        get_delegated_token,
-        is_delegation_enabled,
-    )
+    from agent_connector_sdk.auth.delegation import DelegationSettings
 
     # --- Path 1: OIDC Delegation (RFC 8693 Token Exchange) ---
-    if is_delegation_enabled(config):
+    delegated = (
+        bool(config.get("enable_delegation", False))
+        if config is not None
+        else DelegationSettings.from_settings().enabled
+    )
+    if delegated:
         try:
-            delegated_token = get_delegated_token(
-                config=config,
-                audience=(config or {}).get("audience", instance or "ciso-assistant"),
-                scopes=(config or {}).get("delegated_scopes", "api"),
-            )
+            delegated_token = _exchange_delegated_token()
             logger.info("Using OIDC delegated authentication for CISO Assistant")
             return Api(url=instance, token=delegated_token, tls_profile=tls_profile)
         except Exception as exc:
