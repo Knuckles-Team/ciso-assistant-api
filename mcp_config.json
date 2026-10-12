@@ -7,7 +7,6 @@
         "ciso-assistant-mcp"
       ],
       "env": {
-        "MCP_TOOL_MODE": "intent",
         "ANALYTICS_METROLOGYTOOL": "True",
         "ASSETSTOOL": "True",
         "AUTH_USERSTOOL": "True",

@@ -161,8 +161,10 @@ async def test_ingest_compliance_assessments_links_framework(ingest):
     node = transport.requests[0].records[0]
     assert node.record_id == "ciso:audit:a-1"
     assert node.payload["complianceProgress"] == 42
-    assert transport.requests[0].relationships[0].relation_reference.endswith(
-        "resources/Audit/relations/assessesFramework"
+    assert (
+        transport.requests[0]
+        .relationships[0]
+        .relation_reference.endswith("resources/Audit/relations/assessesFramework")
     )
 
 
@@ -255,7 +257,9 @@ async def test_ingest_rejects_retired_structural_alias_as_noop(ingest):
     # record (the retired ``type`` alias instead of canonical ``node_type``) is
     # reported back as a clean no-op rather than propagating IngestError.
     service, transport = ingest
-    assert await ingest_entities([{"id": "a", "type": "Control"}], ingest=service) is None
+    assert (
+        await ingest_entities([{"id": "a", "type": "Control"}], ingest=service) is None
+    )
     assert transport.requests == []
 
 

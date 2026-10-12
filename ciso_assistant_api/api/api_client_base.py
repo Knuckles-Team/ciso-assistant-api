@@ -72,9 +72,7 @@ class CisoAssistantApiBase:
         parsed = urlparse(self.url)
         self.hostname = parsed.hostname or ""
         self._origin = (parsed.scheme.casefold(), parsed.netloc.casefold())
-        self.tls_profile = tls_profile or resolve_tls_profile(
-            "CISO_ASSISTANT"
-        )
+        self.tls_profile = tls_profile or resolve_tls_profile("CISO_ASSISTANT")
         self._session = self.tls_profile.configure_requests_session(requests.Session())
 
     @staticmethod
