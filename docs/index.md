@@ -17,3 +17,8 @@ vendored spec and verified by a coverage test.
 ```bash
 pip install "ciso-assistant-api[all]"
 ```
+
+## Spec delivery
+
+[Spec delivery dashboard](spec-delivery/). No owned specs are recorded yet.
+Missing requirement and code mappings remain unknown.

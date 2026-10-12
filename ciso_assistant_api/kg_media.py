@@ -68,7 +68,9 @@ async def ingest_evidence_attachment(
     # reveal environment topology, so it never crosses the durable media boundary.
     display_name = name or f"evidence-{evidence_id}"
 
-    asset = MediaAsset(data=data, mime_type=mime_type, name=display_name, properties=extra)
+    asset = MediaAsset(
+        data=data, mime_type=mime_type, name=display_name, properties=extra
+    )
     change_set = ChangeSet(media=(asset,))
     try:
         service = ingest or current_ingest()
