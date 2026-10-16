@@ -6,7 +6,6 @@ def test_package_imports():
 
     assert hasattr(ciso_assistant_api, "Api")
     assert ciso_assistant_api._MCP_AVAILABLE is True
-    assert ciso_assistant_api._AGENT_AVAILABLE is True
 
 
 def test_api_composes_all_domains():

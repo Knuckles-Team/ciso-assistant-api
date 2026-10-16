@@ -63,7 +63,7 @@ and TLS verification is mandatory.
   Timeline, and Third-Party Risk Management.
 - **Knox token auth** — a referenced pre-minted Knox token *or* referenced
   username/password pair exchanged at `POST /api/iam/login/`, plus OIDC
-  delegation (RFC 8693) through `agent-utilities`.
+  delegation (RFC 8693) through `agent-connector-sdk`.
 - **Resilient** — honours `429` `Retry-After`, retries transient `5xx`, and
   transparently follows DRF `next` pagination links.
 
@@ -89,7 +89,7 @@ so the operator can scope the surface (e.g. set `CHATTOOL=False` to drop the cha
 | `CISO_ASSISTANT_PASSWORD_REF` | `secret://connectors/ciso-assistant/password` |  |
 | `CISO_ASSISTANT_TLS_PROFILE` | `enterprise-ca` | ─── TLS profile selectors ──────────────────────────────────────── Select a profile from AgentConfig, or reference one JSON TLS profile. |
 | `CISO_ASSISTANT_TLS_PROFILE_REF` | `secret://connectors/ciso-assistant/tls-profile` |  |
-| `FASTMCP_LOG_LEVEL` | `INFO` | ─── MCP transport / auth (agent-utilities) ──────────────────────────── |
+| `FASTMCP_LOG_LEVEL` | `INFO` | ─── MCP transport / auth (agent-connector-sdk) ──────────────────────────── |
 | `TRANSPORT` | `stdio` |  |
 | `AUTH_TYPE` | `none` |  |
 | `ANALYTICS_METROLOGYTOOL` | `True` | analytics-metrology tools |
@@ -116,7 +116,7 @@ so the operator can scope the surface (e.g. set `CHATTOOL=False` to drop the cha
 | `CISO_ASSISTANT_MCP_IMAGE` | — | Deployment image references must be operator-approved immutable digests. Leave unset until configuring an actual deployment; no image is implied here. |
 | `CISO_ASSISTANT_AGENT_IMAGE` | — |  |
 
-#### Inherited agent-utilities variables (apply to every connector)
+#### Inherited agent-connector-sdk variables (apply to every connector)
 
 | Variable | Example | Description |
 |----------|---------|-------------|
@@ -143,7 +143,7 @@ so the operator can scope the surface (e.g. set `CHATTOOL=False` to drop the cha
 | `MODEL_ID` | — | Operator-configured model id for the agent |
 | `ENABLE_WEB_UI` | `True` | Serve the AG-UI web interface |
 
-_32 package + 22 inherited variable(s). Auto-generated from `.env.example` + the shared agent-utilities set — do not edit._
+_32 package + 22 inherited variable(s). Auto-generated from `.env.example` + the shared agent-connector-sdk set — do not edit._
 <!-- ENV-VARS-TABLE:END -->
 
 See [Configuration](docs/configuration.md) for AgentConfig, runtime secret, TLS,
@@ -232,7 +232,7 @@ docker run -d \
 > the immutable agent image is the **full agent image** (`--target agent`, `ciso-assistant-api[agent]`)
 > which adds the Pydantic AI agent and observability runtime — use it when the operator run
 > `ciso-assistant-agent` (the agent), not just the MCP server. Both targets carry
-> `epistemic-graph[full]` through the Agent Utilities base dependency. See
+> `epistemic-graph[full]` through the Agent Connector SDK base dependency. See
 > [Container images](#container-images-mcp-vs-agent).
 
 ### Deploy with Docker Compose
@@ -253,7 +253,7 @@ services:
 
 #### Configure `mcp.json` for AI Integration (e.g. Claude Desktop)
 
-> **Install the `[mcp]` extra.** It includes FastMCP; the Agent Utilities base
+> **Install the `[mcp]` extra.** It includes FastMCP; the Agent Connector SDK base
 > dependency guarantees `epistemic-graph[full]` for native graph
 > ingestion. Use `[agent]` when the same process also needs the integrated
 > Pydantic AI and observability runtime (see
@@ -284,8 +284,8 @@ Pick the extra that matches what the operator want to run:
 
 | Extra | Installs | Use when |
 |-------|----------|----------|
-| `ciso-assistant-api[mcp]` | MCP server plus `agent-utilities[mcp]`; the Agent Utilities base dependency includes `epistemic-graph[full]` | The operator run the **MCP server** with native graph ingestion |
-| `ciso-assistant-api[agent]` | Full agent runtime (`agent-utilities[agent-runtime,logfire]` — Pydantic AI, observability, and the full epistemic-graph engine) | The operator run the **integrated agent** |
+| `ciso-assistant-api[mcp]` | MCP server plus `agent-connector-sdk`; the Agent Connector SDK base dependency includes `epistemic-graph[full]` | The operator run the **MCP server** with native graph ingestion |
+| `ciso-assistant-api[agent]` | Full agent runtime (`agent-connector-sdk` — Pydantic AI, observability, and the full epistemic-graph engine) | The operator run the **integrated agent** |
 | `ciso-assistant-api[all]` | Everything (`mcp` + `agent`) | Development / both surfaces |
 
 ```bash
@@ -319,7 +319,7 @@ agent (`immutable agent digest`) with a co-located `:mcp` sidecar.
 ### Knowledge-graph database (`epistemic-graph`)
 
 Both `[mcp]` and `[agent]` embed the **full epistemic-graph** engine contract
-(pulled in transitively through the Agent Utilities engine extra). For production — or to
+(pulled in transitively through the Agent Connector SDK engine extra). For production — or to
 share one knowledge graph across multiple agents — run **epistemic-graph as its own database
 container** and point the provider at it instead of embedding it. Deployment recipes
 (single-node + Raft HA), connection
@@ -341,15 +341,15 @@ the source of truth for installation, usage, and deployment.
 | [Usage (API / CLI / MCP)](https://knuckles-team.github.io/ciso-assistant-api/usage/) | the MCP tools, the `Api` client, the CLI |
 | [Deployment](https://knuckles-team.github.io/ciso-assistant-api/deployment/) | run the MCP and agent servers, Compose, env config |
 
-<!-- BEGIN agent-utilities-deployment (generated; do not edit between markers) -->
+<!-- BEGIN agent-connector-sdk-deployment (generated; do not edit between markers) -->
 
-## Deploy with `agent-utilities-deployment`
+## Deploy with `agent-connector-sdk-deployment`
 
-Provision this package with the consolidated **`agent-utilities-deployment`**
+Provision this package with the consolidated **`agent-connector-sdk-deployment`**
 workflow. It selects an installed-package, editable-source, or immutable-container
 path; records only runtime secret and TLS-profile references in `AgentConfig`; and
 runs doctor, registration, policy, observability, and rollback gates. Ask your agent
-to **"deploy `ciso-assistant-api` with agent-utilities-deployment"**.
+to **"deploy `ciso-assistant-api` with agent-connector-sdk-deployment"**.
 
 | Install mode | Command |
 |------|---------|
@@ -361,4 +361,4 @@ The repository embeds no deployment profile, credential value, certificate path,
 environment-specific endpoint. Supply those at runtime through `AgentConfig` and the
 configured secret provider.
 
-<!-- END agent-utilities-deployment -->
+<!-- END agent-connector-sdk-deployment -->

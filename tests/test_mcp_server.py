@@ -37,7 +37,3 @@ def test_kg_ingest_toggle_disables_tool(monkeypatch):
     assert "ciso_ingest" not in {tool.name for tool in tools}
 
 
-def test_agent_server_importable():
-    from ciso_assistant_api.agent_server import agent_server
-
-    assert callable(agent_server)

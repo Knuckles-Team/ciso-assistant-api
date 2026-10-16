@@ -7,8 +7,8 @@ and its bidirectional integration with the KG hub.
 | Concept ID | Title | Where |
 | --- | --- | --- |
 | `AU-ECO.connector.ciso-assistant` | CISO Assistant API client + MCP server + A2A agent (100% codegen coverage) | this package |
-| `CISO-002` | CISO Assistant GRC → Knowledge Graph extractor (`domain="ciso_assistant"`) | `agent-utilities` `AU-KG.enrichment.ciso-assistant-extraction` |
-| `CISO-003` | Knowledge Graph → CISO Assistant writeback sink (`CISO_ASSISTANT_ENABLE_WRITE`) | `agent-utilities` `AU-KG.enrichment.ciso-2` |
+| `CISO-002` | CISO Assistant GRC → Knowledge Graph extractor (`domain="ciso_assistant"`) | `agent-connector-sdk` `AU-KG.enrichment.ciso-assistant-extraction` |
+| `CISO-003` | Knowledge Graph → CISO Assistant writeback sink (`CISO_ASSISTANT_ENABLE_WRITE`) | `agent-connector-sdk` `AU-KG.enrichment.ciso-2` |
 
 ## Ecosystem bridge
 
@@ -19,5 +19,5 @@ process). Reconciliation across systems is by GUID via `ALIGNED_WITH` equivalenc
 edges, so a CISO control aligned to an egeria policy or a camunda process is
 resolved into one logical concept by the OWL reasoner.
 
-See `agent-utilities` `docs/architecture/ciso_assistant_kg_integration.md` for the
+See `agent-connector-sdk` `docs/architecture/ciso_assistant_kg_integration.md` for the
 full bidirectional data-flow.

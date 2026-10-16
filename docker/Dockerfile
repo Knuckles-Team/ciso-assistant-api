@@ -8,7 +8,7 @@
 #                              default tags: latest / main / <version>.
 #
 #   --target mcp               installs ciso-assistant-api[mcp] = MCP server plus the
-#                              agent-utilities engine contract, which guarantees the
+#                              agent-connector-sdk engine contract, which guarantees the
 #                              epistemic-graph[full] runtime used by native ingestion.
 #                              Push as the :mcp / :mcp-<version> tag.
 #
