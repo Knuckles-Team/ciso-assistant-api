@@ -29,19 +29,9 @@ hand. The single source of truth is the vendored OpenAPI specs under
 - Key principles: Functional patterns, Pydantic for data validation, asynchronous tool execution.
 - Architecture:
     - `mcp_server.py`: Main MCP server entry point and tool registration.
-    - `agent_server.py`: Pydantic AI agent definition and logic.
     - `skills/`: Directory containing modular agent skills (if applicable).
 
 ### Architecture Diagram
-```mermaid
-graph TD
-    User([User/A2A]) --> Server[A2A Server / FastAPI]
-    Server --> Agent[Pydantic AI Agent]
-    Agent --> Skills[Modular Skills]
-    Agent --> MCP[MCP Server / FastMCP]
-    MCP --> Client[API Client / Wrapper]
-    Client --> ExternalAPI([External Service API])
-```
 
 ### Workflow Diagram
 ```mermaid
@@ -77,33 +67,10 @@ ciso-assistant-agent
 
 ## Project Structure Quick Reference
 - MCP Entry Point → `mcp_server.py`
-- Agent Entry Point → `agent_server.py`
 - Source Code → ciso_assistant_api/
 - Skills → `skills/` (if exists)
 
 ### File Tree
-```text
-├── .bumpversion.cfg
-├── .dockerignore
-├── .env
-├── .gitattributes
-├── .gitignore
-├── .pre-commit-config.yaml
-├── AGENTS.md
-├── Dockerfile
-├── LICENSE
-├── MANIFEST.in
-├── README.md
-├── compose.yml
-├── debug.Dockerfile
-├── ciso_assistant_api
-│   ├── __init__.py
-│   ├── agent_server.py
-│   ├── auth.py
-│   └── mcp_server.py
-├── pyproject.toml
-└── requirements.txt
-```
 
 ## Code Style & Conventions
 **Always:**
@@ -142,7 +109,6 @@ async def my_tool(param: str) -> str:
 - Use `agent-connector-sdk` base classes.
 
 **Ask first:**
-- Major refactors of `mcp_server.py` or `agent_server.py`.
 - Deleting or renaming public tool functions.
 
 **Never do:**

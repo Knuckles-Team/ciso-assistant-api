@@ -6,7 +6,6 @@ and its bidirectional integration with the KG hub.
 
 | Concept ID | Title | Where |
 | --- | --- | --- |
-| `AU-ECO.connector.ciso-assistant` | CISO Assistant API client + MCP server + A2A agent (100% codegen coverage) | this package |
 | `CISO-002` | CISO Assistant GRC → Knowledge Graph extractor (`domain="ciso_assistant"`) | `agent-connector-sdk` `AU-KG.enrichment.ciso-assistant-extraction` |
 | `CISO-003` | Knowledge Graph → CISO Assistant writeback sink (`CISO_ASSISTANT_ENABLE_WRITE`) | `agent-connector-sdk` `AU-KG.enrichment.ciso-2` |
 
