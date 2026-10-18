@@ -1,7 +1,6 @@
 # Overview
 
 `ciso-assistant-api` exposes the CISO Assistant public REST API as a composite
-Python client, an action-routed MCP server, and an optional A2A agent.
 
 ## Generated API and MCP surface
 

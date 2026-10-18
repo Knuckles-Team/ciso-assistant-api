@@ -69,13 +69,3 @@ bounded sample and state the target graph before invoking it:
 Supported kinds include risk scenarios, risk assessments, applied controls,
 vulnerabilities, compliance assessments, incidents, and evidence metadata. The
 MCP ingestion boundary never persists raw evidence attachment bytes.
-
-## A2A agent
-
-```bash
-ciso-assistant-agent --provider <configured-provider> --model-id <configured-model>
-```
-
-The agent discovers the local MCP entrypoint from the packaged MCP config.
-Configure model credentials through AgentConfig secret references, not command
-arguments.

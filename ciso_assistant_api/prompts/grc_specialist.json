@@ -4,7 +4,7 @@
   "schema_version": "1.0",
   "prompt_version": "0.1.0",
   "source": "ciso-assistant-api",
-  "extends": "agent-utilities:base",
+  "extends": "agent-connector-sdk:base",
   "compose": "append",
   "description": "CISO Assistant GRC specialist: risk management, compliance audits, and incident/evidence handling over the ciso-assistant-api MCP server.",
   "metadata": {

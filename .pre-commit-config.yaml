@@ -3,7 +3,7 @@
 default_install_hook_types: [pre-commit, pre-push]
 default_language_version:
   python: python3
-# Phase 0 dev-velocity contract (graph-os-completion-program): a hook with no
+# Phase 0 dev-velocity contract (arbora-completion-program): a hook with no
 # explicit `stages:` below is commit-only, never both.
 default_stages: [pre-commit]
 exclude: 'dotnet'
@@ -14,7 +14,7 @@ ci:
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: 3e8a8703264a2f4a69428a0aa4dcb512790b2c8c # v6.0.0
+    rev: v6.0.0 # v6.0.0
     hooks:
     - id: check-added-large-files
       exclude: '(ciso_assistant_api/skills/.*-docs/|ciso_assistant_api/specs/.*|ciso_assistant_api/api/_operation_manifest\.py)'
@@ -32,18 +32,18 @@ repos:
     - id: end-of-file-fixer
     - id: no-commit-to-branch
   - repo: https://github.com/psf/black
-    rev: 6305bf1ae645ab7541be4f5028a86239316178eb # 26.1.0
+    rev: 26.10.1 # 26.1.0
     hooks:
     - id: black
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: a27a2e47c7751b639d2b5badf0ef6ff11fee893f # v0.15.4
+    rev: v0.17.1 # v0.15.4
     hooks:
       - id: ruff
         exclude: ^(tests/|test/|scripts/|script/)
         types_or: [ python, pyi, jupyter ]
         args: ["--fix", "--ignore=E402"]
   - repo: https://github.com/codespell-project/codespell
-    rev: 63c8f8312b7559622c0d82815639671ae42132ac # v2.4.1
+    rev: v2.4.3 # v2.4.1
     hooks:
       - id: codespell
         args: ["-L", "ans,linar,nam,tread,ot,"]
@@ -55,36 +55,15 @@ repos:
               ciso_assistant_api/specs/.*
             )$
   - repo: https://github.com/nbQA-dev/nbQA
-    rev: d31b7eae1767c43460afb3ba130e0a6602933abe # 1.9.1
+    rev: 1.9.1 # 1.9.1
     hooks:
       - id: nbqa-black
         exclude: ^(tests/|test/|scripts/|script/)
   - repo: local
     hooks:
-      - id: mcp-readme-table
-        name: sync MCP tools table in README
-        entry: |-
-          bash -c 'if [ -f uv.lock ]; then uv run python -m agent_utilities.mcp.readme_tools; else python -m agent_utilities.mcp.readme_tools; fi'
-        language: system
-        files: ^(README\.md|.*/mcp_server\.py|.*/mcp/.*\.py)$
-        pass_filenames: false
-      - id: readme-env-vars
-        name: sync env-vars table in README
-        entry: |-
-          bash -c 'if [ -f uv.lock ]; then uv run python -m agent_utilities.mcp.readme_env_vars; else python -m agent_utilities.mcp.readme_env_vars; fi'
-        language: system
-        files: ^(README\.md|\.env\.example)$
-        pass_filenames: false
-      - id: readme-mcp-examples
-        name: sync mcp_config examples in README + env blocks
-        entry: |-
-          bash -c 'if [ -f uv.lock ]; then uv run python -m agent_utilities.mcp.readme_mcp_examples; else python -m agent_utilities.mcp.readme_mcp_examples; fi'
-        language: system
-        files: ^(README\.md|\.env\.example|mcp_config.*\.json|.*/mcp_config.*\.json|.*/mcp_server\.py)$
-        pass_filenames: false
       - id: env-var-drift
         name: check env-var/config drift
-        entry: bash -c 'if [ -f uv.lock ]; then uv run python -m agent_utilities.mcp.check_env_var_drift --check; else python -m agent_utilities.mcp.check_env_var_drift --check; fi'
+        entry: bash -c 'if [ -f uv.lock ]; then uv run python -m agent_connector_sdk.mcp.env_drift --check; else python -m agent_connector_sdk.mcp.env_drift --check; fi'
         language: system
         pass_filenames: false
         files: ^(README\.md|\.env\.example|mcp_config.*\.json|.*/mcp_config.*\.json|docker/.*compose.*\.ya?ml|.*/auth\.py|.*/mcp_server\.py)$

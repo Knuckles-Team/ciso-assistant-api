@@ -22,6 +22,6 @@ COPY . /app
 RUN apt-get update \
     && apt-get install -y --no-install-recommends default-jre ripgrep tree fd-find curl nano \
     && rm -rf /var/lib/apt/lists/* \
-    && uv pip install --system --upgrade --verbose --no-cache --break-system-packages --prerelease=allow ".[agent]"
+    && uv pip install --system --upgrade --verbose --no-cache --break-system-packages --prerelease=allow ".[mcp]"
 
 CMD ["ciso-assistant-mcp"]

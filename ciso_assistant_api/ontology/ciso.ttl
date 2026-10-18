@@ -156,6 +156,6 @@
     rdfs:comment """CISO Assistant governance-risk-compliance model — risk assessments and
     scenarios, applied controls, compliance audits and frameworks, threats,
     vulnerabilities, incidents, assets and evidence — with their treatment, mitigation
-    and attestation relationships, federated into the agent-utilities knowledge-graph
+    and attestation relationships, federated into the agent-connector-sdk knowledge-graph
     hub. Reuses the shared :Document / :Blob / :MediaAsset / :Person classes.""" ;
     owl:imports <http://knuckles.team/kg/enterprise> .

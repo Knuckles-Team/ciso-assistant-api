@@ -9,7 +9,7 @@ Authentication priority:
    username/password pair from the configured runtime secret backend. Secret
    values are never part of durable provider configuration.
 
-See ``docs/guides/oauth_sso.md`` in agent-utilities for full details.
+See ``docs/guides/oauth_sso.md`` in agent-connector-sdk for full details.
 """
 
 import logging
