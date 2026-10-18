@@ -3,7 +3,7 @@
 import asyncio
 import sys
 
-from ciso_assistant_api.api._operation_manifest import DOMAINS
+from ciso_assistant_api.api._operation_manifest import OPERATIONS
 
 
 def test_mcp_server_lists_all_tools(monkeypatch):
@@ -11,11 +11,13 @@ def test_mcp_server_lists_all_tools(monkeypatch):
     from ciso_assistant_api.mcp_server import get_mcp_instance
 
     mcp, args, middlewares, tags = get_mcp_instance()
-    # One consolidated tool per domain + the custom_api escape hatch.
-    assert len(tags) == len(DOMAINS) + 1
     tools = asyncio.run(mcp.list_tools())
-    # Generated domain tools + custom API + the governed native KG ingest tool.
-    assert len(tools) == len(DOMAINS) + 2
+    # One typed tool per API operation + the custom API escape hatch + the
+    # governed native KG ingest tool.
+    assert len(tools) == len(OPERATIONS) + 2
+    assert all(
+        "action" not in (t.parameters or {}).get("properties", {}) for t in tools
+    )
 
 
 def test_tool_toggles_disable_domains(monkeypatch):
@@ -35,5 +37,3 @@ def test_kg_ingest_toggle_disables_tool(monkeypatch):
     mcp, _args, _mw, _tags = get_mcp_instance()
     tools = asyncio.run(mcp.list_tools())
     assert "ciso_ingest" not in {tool.name for tool in tools}
-
-

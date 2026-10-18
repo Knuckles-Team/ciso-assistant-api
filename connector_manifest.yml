@@ -215,8 +215,8 @@ schema_mappings:
 sync:
 - preset: ciso-compliance-assessments
   server: ciso-assistant-mcp
-  tool: ciso_assistant_compliance
-  action: api_compliance_assessments_list
+  tool: ciso_assistant_api_compliance_assessments_list
+  action: null
   records_path: data
   id_field: id
   title_field: name
@@ -224,25 +224,24 @@ sync:
   updated_field: updated_at
   pagination: page
   doc_type: compliance_assessment
-  tool_schema_sha256: 883ad92a54825e6ff188fbac178e9d495b96546b4f4ed614b2688b53d09bdf96
+  tool_schema_sha256: d4a18b678d636950329cd4d037c285c2c0e4201750778d48d7f3c62d33d90c8d
   raw:
     server: ciso-assistant-mcp
-    tool: ciso_assistant_compliance
-    action: api_compliance_assessments_list
+    tool: ciso_assistant_api_compliance_assessments_list
     records_path: data
     id_field: id
     title_field: name
     text_field: description
     updated_field: updated_at
     pagination: page
-    page_kind: page
+    page_kind: number
     page_param: page
     page_size_param: limit
     doc_type: compliance_assessment
 - preset: ciso-risk-scenarios
   server: ciso-assistant-mcp
-  tool: ciso_assistant_risk_management
-  action: api_risk_scenarios_list
+  tool: ciso_assistant_api_risk_scenarios_list
+  action: null
   records_path: data
   id_field: id
   title_field: name
@@ -250,18 +249,17 @@ sync:
   updated_field: updated_at
   pagination: page
   doc_type: risk_scenario
-  tool_schema_sha256: 8d8886e52130724f5f67a79778e2b9837b75cde47de116c8b2498904dea4f823
+  tool_schema_sha256: 883840d2f1db6b3fee54701d0c8a0bb67a945aa04c953c6c2db8e3c14c2aa6f4
   raw:
     server: ciso-assistant-mcp
-    tool: ciso_assistant_risk_management
-    action: api_risk_scenarios_list
+    tool: ciso_assistant_api_risk_scenarios_list
     records_path: data
     id_field: id
     title_field: name
     text_field: description
     updated_field: updated_at
     pagination: page
-    page_kind: page
+    page_kind: number
     page_param: page
     page_size_param: limit
     doc_type: risk_scenario
