@@ -12,7 +12,7 @@ The shared connector SDK owns credential reference resolution.
 The shared pipelines repository owns quality gates and delivery rendering.
 
 Component: Connector integration
-Code: ../../pyproject.toml ../../ciso_assistant_api/auth.py ../../tests/test_credential_refs.py
+Code: ../../pyproject.toml ../../ciso_assistant_api/auth.py ../../ciso_assistant_api/api/api_client_base.py ../../tests/test_auth.py ../../tests/test_credential_refs.py
 
 ## Non-goals
 
