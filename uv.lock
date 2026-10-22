@@ -262,7 +262,7 @@ wheels = [
 
 [[package]]
 name = "ciso-assistant-api"
-version = "2.3.2"
+version = "2.3.3"
 source = { editable = "." }
 dependencies = [
     { name = "agent-connector-sdk", extra = ["mcp"] },
