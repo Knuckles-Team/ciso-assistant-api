@@ -54,3 +54,47 @@ def test_cross_origin_pagination_is_rejected():
     api = Api(url="https://service.example.invalid", token="x")
     with pytest.raises(ParameterError, match="configured origin"):
         api._resolve_url("https://other.example.invalid/api/items", {})
+
+
+class _Resp:
+    def __init__(self, status=200, body=None):
+        self.status_code = status
+        self.ok = status < 400
+        self._body = body
+
+    def json(self):
+        return self._body
+
+
+def _login_api(monkeypatch, username, resp):
+    api = Api(url="https://service.example.invalid", username=username, password="pw")
+    calls = []
+
+    def fake_post(**kw):
+        calls.append(kw)
+        return resp
+
+    monkeypatch.setattr(api._session, "post", fake_post)
+    return api, calls
+
+
+def test_headless_login_returns_access_token(monkeypatch):
+    body = {"status": 200, "meta": {"session_token": "s", "access_token": "knox"}}
+    api, calls = _login_api(monkeypatch, "op@example.invalid", _Resp(200, body))
+    assert api._ensure_token() == "knox"
+    assert calls[0]["url"].endswith("/api/_allauth/app/v1/auth/login")
+    assert "/api/iam/login" not in calls[0]["url"]
+    assert calls[0]["json"] == {"email": "op@example.invalid", "password": "pw"}
+    api2, calls2 = _login_api(monkeypatch, "operator", _Resp(200, body))
+    api2._ensure_token()
+    assert calls2[0]["json"] == {"username": "operator", "password": "pw"}
+
+
+def test_configured_token_skips_login(monkeypatch):
+    api = Api(url="https://service.example.invalid", token="cfg")
+
+    def boom(**kw):
+        raise AssertionError("login must not be called")
+
+    monkeypatch.setattr(api._session, "post", boom)
+    assert api._ensure_token() == "cfg"

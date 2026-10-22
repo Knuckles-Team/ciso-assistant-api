@@ -114,17 +114,19 @@ class CisoAssistantApiBase:
 
     # ------------------------------------------------------------------ auth
     def _ensure_token(self) -> str:
-        """Return a valid Knox token, logging in with credentials if needed."""
+        """Return a Knox API token: the configured one, else the access_token
+        from the headless allauth app login (``meta.access_token``)."""
         if self._token:
             return self._token
         with self._token_lock:
             if self._token:
                 return self._token
-            login_url = f"{self.url}/api/iam/login/"
+            login_url = f"{self.url}/api/_allauth/app/v1/auth/login"
+            identity_key = "email" if "@" in (self._username or "") else "username"
             try:
                 resp = self._session.post(
                     url=login_url,
-                    json={"username": self._username, "password": self._password},
+                    json={identity_key: self._username, "password": self._password},
                     headers={"Accept": "application/json"},
                     timeout=30,
                 )
@@ -140,7 +142,9 @@ class CisoAssistantApiBase:
                 payload = resp.json()
             except ValueError:
                 raise AuthError("CISO Assistant login response was invalid") from None
-            self._token = payload.get("token") or payload.get("key")
+            meta = payload.get("meta") if isinstance(payload, dict) else None
+            meta = meta if isinstance(meta, dict) else {}
+            self._token = meta.get("access_token")
             if not self._token:
                 raise AuthError("CISO Assistant login response contained no token.")
             return self._token
