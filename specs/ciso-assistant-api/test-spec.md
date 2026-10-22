@@ -15,3 +15,4 @@ A blank `OPENBAO_TOKEN_REF` behaves as unset.
 ## Quality and release proof
 
 Run `pytest tests/test_credential_refs.py`. Run `pipelines-hook spec-standard`.
+| T-004 | `CONN-CISO-ASSISTANT-API-R004` | `tests/test_fleet_name.py::test_connector_name_is_the_fleet_name` | Every connector name in the package is `ciso-assistant-mcp`. |
