@@ -30,7 +30,7 @@ from agent_connector_sdk.ingest import (
 
 logger = logging.getLogger("ciso_assistant_api.kg_media")
 
-_BINDING = IngestBinding(connector="ciso-assistant-api", stream="ciso")
+_BINDING = IngestBinding(connector="ciso-assistant-mcp", stream="ciso")
 
 
 async def ingest_evidence_attachment(

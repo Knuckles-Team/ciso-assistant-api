@@ -36,7 +36,7 @@ from agent_connector_sdk.privacy import sanitize_for_persistence
 
 logger = logging.getLogger("ciso_assistant_api.kg")
 
-_BINDING = IngestBinding(connector="ciso-assistant-api", stream="ciso")
+_BINDING = IngestBinding(connector="ciso-assistant-mcp", stream="ciso")
 
 _ENTITY_RESERVED_KEYS = frozenset({"id", "node_type"})
 _RELATIONSHIP_RESERVED_KEYS = frozenset({"source", "target", "relationship"})

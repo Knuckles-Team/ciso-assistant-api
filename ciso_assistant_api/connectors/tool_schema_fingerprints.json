@@ -1,6 +1,6 @@
 {
   "schema_version": "1",
-  "connector": "ciso-assistant-api",
+  "connector": "ciso-assistant-mcp",
   "algorithm": "agent-connector-sdk:mcp-tool-contract-compat:v2",
   "tools": {
     "ciso_assistant_api_risk_scenarios_list": "0000000000000000000000000000000000000000000000000000000000000000",

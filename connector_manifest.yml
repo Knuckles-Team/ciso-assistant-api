@@ -1,4 +1,4 @@
-connector: ciso-assistant-api
+connector: ciso-assistant-mcp
 ontology_source: ciso
 schema_version: '1'
 resources:
