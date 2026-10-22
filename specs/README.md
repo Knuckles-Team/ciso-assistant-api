@@ -12,4 +12,4 @@ Read the existing specs first. Extend the spec that owns the behavior. Create a 
 
 ## Local specifications
 
-This repository has no local spec yet.
+[`CONN-CISO-ASSISTANT-API`](ciso-assistant-api/spec.md) — Credential reference resolution and the SDK floor.
