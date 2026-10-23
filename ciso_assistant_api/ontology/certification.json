@@ -1,14 +1,11 @@
 {
   "api_version": "arbora.io/v1",
   "artifacts": {
-    "ciso_assistant_api/connectors/mcp_source_presets.json": "e855a860bcad179f422160046c79e0efd3586ab314a3e09c12f9608332f6dfc3",
-    "ciso_assistant_api/connectors/tool_schema_fingerprints.json": "aa797283e09e76dab1d82703417c8c1d76ae7bfa10284d39dd3882f2f639b676",
     "ciso_assistant_api/ontology/ciso.ttl": "86950476d3601e78a68ff36fa7cc5f6c87f8a35f1f18b43af4ec3a6a9113245d",
     "ciso_assistant_api/ontology/fixtures/records.json": "1a0ec217364be9ee03e042a6f91e0b8b746872fe49dc5a6529f1d96739981a95",
     "ciso_assistant_api/ontology/mappings/source.yaml": "1f2315d0dabc6d92f5a593c24c0ba60cea5a6b1337afbacf82fe57c6d770f361",
     "ciso_assistant_api/ontology/migrations/manifest.json": "c5d5d30b62a340e13e4b165154988f3f316224c1eb8676351cbc3c9f13498787",
-    "ciso_assistant_api/ontology/shapes/connector.shacl.ttl": "1939cad7bbc7148ffe0bf2fbec519e7e12a297f4a2a36e06339be711881afb7b",
-    "connector_manifest.yml": "adec163cf489953ac51505119fca039e3d258991b0635a487f66300c4d93f0bb"
+    "ciso_assistant_api/ontology/shapes/connector.shacl.ttl": "1939cad7bbc7148ffe0bf2fbec519e7e12a297f4a2a36e06339be711881afb7b"
   },
   "checks": {
     "declared_tool_schema": "passed",

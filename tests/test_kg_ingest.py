@@ -94,7 +94,7 @@ async def test_ingest_entities_writes_nodes_and_edges(ingest):
     record_ids = {record.record_id for record in request.records}
     assert record_ids == {"a", "b"}
     assert request.relationships[0].relation_reference.endswith(
-        "resources/RiskScenario/relations/mitigatedBy"
+        "relations/RiskScenario/mitigatedBy"
     )
 
 
@@ -123,9 +123,9 @@ async def test_ingest_risk_scenarios_maps_class_and_links(ingest):
     assert node.payload["riskTreatment"] == "mitigate"
     assert node.payload["externalToolId"] == "rs-1"
     relation_refs = {r.relation_reference for r in request.relationships}
-    assert any(ref.endswith("relations/hasThreat") for ref in relation_refs)
-    assert any(ref.endswith("relations/mitigatedBy") for ref in relation_refs)
-    assert any(ref.endswith("relations/affectsAsset") for ref in relation_refs)
+    assert any(ref.endswith("/hasThreat") for ref in relation_refs)
+    assert any(ref.endswith("/mitigatedBy") for ref in relation_refs)
+    assert any(ref.endswith("/affectsAsset") for ref in relation_refs)
 
 
 @pytest.mark.asyncio
@@ -164,7 +164,7 @@ async def test_ingest_compliance_assessments_links_framework(ingest):
     assert (
         transport.requests[0]
         .relationships[0]
-        .relation_reference.endswith("resources/Audit/relations/assessesFramework")
+        .relation_reference.endswith("relations/Audit/assessesFramework")
     )
 
 
