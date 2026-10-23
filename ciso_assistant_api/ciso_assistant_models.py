@@ -6,12 +6,12 @@ hundreds of brittle per-schema Pydantic models, the client passes
 request/response payloads through as plain ``dict``/``list`` and wraps every
 result in :class:`Response` — a thin wrapper (mirroring the fleet convention used
 by ``gitlab-api``/``servicenow-api``) that exposes the parsed JSON alongside the
-original ``requests.Response`` metadata (status code, headers).
+original ``httpx.Response`` metadata (status code, headers).
 """
 
 from typing import Generic, TypeVar
 
-import requests
+import httpx
 from pydantic import BaseModel, ConfigDict, Field
 
 T = TypeVar("T")
@@ -26,9 +26,9 @@ class Response(BaseModel, Generic[T]):
 
     model_config = ConfigDict(extra="allow", arbitrary_types_allowed=True)
     base_type: str | None = Field(default="Response")
-    response: requests.Response = Field(  # type: ignore[assignment]
+    response: httpx.Response = Field(  # type: ignore[assignment]
         default=None,
-        description="The original requests.Response object",
+        description="The original httpx.Response object",
         exclude=True,
     )
     data: T | list[T] | None = Field(

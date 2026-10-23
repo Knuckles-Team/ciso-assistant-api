@@ -3,6 +3,7 @@
 ## Outcome
 
 The connector must resolve `env://` credential references when `OPENBAO_ADDR` is set and `OPENBAO_TOKEN_REF` is not.
+The connector must send every request through the SDK governed HTTP client and take its retries from the SDK policy.
 The connector must start in a pod that carries the fleet-wide `OPENBAO_ADDR` without a per-service workaround.
 
 ## Scope and owner
@@ -12,7 +13,7 @@ The shared connector SDK owns credential reference resolution.
 The shared pipelines repository owns quality gates and delivery rendering.
 
 Component: Connector integration
-Code: ../../pyproject.toml ../../ciso_assistant_api/auth.py ../../ciso_assistant_api/api/api_client_base.py ../../tests/test_auth.py ../../tests/test_credential_refs.py
+Code: ../../pyproject.toml ../../ciso_assistant_api/auth.py ../../ciso_assistant_api/api/api_client_base.py ../../tests/test_auth.py ../../tests/test_credential_refs.py ../../ciso_assistant_api/ciso_assistant_models.py ../../tests/test_sdk_centralization.py
 
 ## Non-goals
 
