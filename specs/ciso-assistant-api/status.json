@@ -7,7 +7,9 @@
     "CONN-CISO-ASSISTANT-API-R001",
     "CONN-CISO-ASSISTANT-API-R002",
     "CONN-CISO-ASSISTANT-API-R003",
-    "CONN-CISO-ASSISTANT-API-R004"
+    "CONN-CISO-ASSISTANT-API-R004",
+    "CONN-CISO-ASSISTANT-API-R005",
+    "CONN-CISO-ASSISTANT-API-R006"
   ],
   "requirements": [
     {
@@ -45,6 +47,27 @@
       ],
       "verified_by": [
         "tests/test_fleet_name.py:35"
+      ]
+    },
+    {
+      "id": "CONN-CISO-ASSISTANT-API-R005",
+      "title": "Governed client",
+      "delivery_state": "SPECIFIED",
+      "landed_in": [],
+      "verified_by": [
+        "tests/test_sdk_centralization.py:30",
+        "tests/test_sdk_centralization.py:46",
+        "tests/test_sdk_centralization.py:52"
+      ]
+    },
+    {
+      "id": "CONN-CISO-ASSISTANT-API-R006",
+      "title": "Error contract",
+      "delivery_state": "SPECIFIED",
+      "landed_in": [],
+      "verified_by": [
+        "tests/test_sdk_centralization.py:63",
+        "tests/test_sdk_centralization.py:73"
       ]
     }
   ]
