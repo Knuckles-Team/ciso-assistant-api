@@ -59,7 +59,6 @@ def test_cross_origin_pagination_is_rejected():
 class _Resp:
     def __init__(self, status=200, body=None):
         self.status_code = status
-        self.ok = status < 400
         self._body = body
 
     def json(self):
@@ -74,7 +73,7 @@ def _login_api(monkeypatch, username, resp):
         calls.append(kw)
         return resp
 
-    monkeypatch.setattr(api._session, "post", fake_post)
+    monkeypatch.setattr(api._http, "post", fake_post)
     return api, calls
 
 
@@ -96,5 +95,5 @@ def test_configured_token_skips_login(monkeypatch):
     def boom(**kw):
         raise AssertionError("login must not be called")
 
-    monkeypatch.setattr(api._session, "post", boom)
+    monkeypatch.setattr(api._http, "post", boom)
     assert api._ensure_token() == "cfg"

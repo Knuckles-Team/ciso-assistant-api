@@ -11,24 +11,28 @@ Handles the cross-cutting concerns shared by every generated domain client:
 * **Pagination** — DRF list endpoints (``page`` / ``limit`` + ``offset``) return
   ``{"count", "next", "previous", "results"}``; this base transparently follows the
   ``next`` links and concatenates ``results``.
-* **Rate limiting / transient errors** — honours ``429`` ``Retry-After`` and retries
-  ``429``/``502``/``503``/``504`` with bounded exponential backoff.
+* **Rate limiting / transient errors** — the SDK governed client honours ``429``
+  ``Retry-After`` and retries ``429``/``502``/``503``/``504`` under its shared
+  ``RetryPolicy`` (bounded exponential backoff).
 """
 
 import ipaddress
 import logging
 import threading
-import time
 from typing import Any, TypeVar
 from urllib.parse import quote, urlparse
 
-import requests
+import httpx
 from agent_connector_sdk.exceptions import (
+    ApiError,
     AuthError,
     MissingParameterError,
     ParameterError,
     UnauthorizedError,
 )
+from agent_connector_sdk.http.client import create_http_client
+from agent_connector_sdk.http.options import HttpClientOptions
+from agent_connector_sdk.http.retry import RetryPolicy
 from agent_connector_sdk.tls.profile import ResolvedTLSProfile
 from agent_connector_sdk.tls.resolve import resolve_tls_profile
 from pydantic import ValidationError
@@ -38,6 +42,9 @@ from ciso_assistant_api.ciso_assistant_models import Response
 logger = logging.getLogger(__name__)
 
 T = TypeVar("T")
+
+_TIMEOUT_S = 60.0
+_RETRY_STATUSES = frozenset({429, 502, 503, 504})
 
 
 class CisoAssistantApiBase:
@@ -73,7 +80,32 @@ class CisoAssistantApiBase:
         self.hostname = parsed.hostname or ""
         self._origin = (parsed.scheme.casefold(), parsed.netloc.casefold())
         self.tls_profile = tls_profile or resolve_tls_profile("CISO_ASSISTANT")
-        self._session = self.tls_profile.configure_requests_session(requests.Session())
+        self._http = self._build_http_client()
+
+    def _build_http_client(self) -> httpx.Client:
+        """Governed SDK client: TLS profile, bounded retries, pinned egress."""
+        profile = self.tls_profile
+        pin_egress = not profile.proxy_url and not profile.trust_env
+        try:
+            return create_http_client(
+                HttpClientOptions(
+                    base_url=self.url,
+                    timeout=_TIMEOUT_S,
+                    retry=RetryPolicy(
+                        max_attempts=max(1, min(int(self.max_retries) + 1, 10)),
+                        backoff_base=1.0,
+                        max_retry_after=60.0,
+                        retry_statuses=_RETRY_STATUSES,
+                    ),
+                    tls=profile,
+                    pin_egress=pin_egress,
+                    allowed_private_hosts=(self.hostname,) if pin_egress else (),
+                    allow_loopback=pin_egress,
+                )
+            )
+        except Exception:
+            profile.cleanup()
+            raise
 
     @staticmethod
     def _normalize_base_url(url: str | None) -> str:
@@ -109,7 +141,7 @@ class CisoAssistantApiBase:
 
     def close(self) -> None:
         """Release transport resources and runtime-only TLS material."""
-        self._session.close()
+        self._http.close()
         self.tls_profile.cleanup()
 
     # ------------------------------------------------------------------ auth
@@ -124,19 +156,19 @@ class CisoAssistantApiBase:
             login_url = f"{self.url}/api/_allauth/app/v1/auth/login"
             identity_key = "email" if "@" in (self._username or "") else "username"
             try:
-                resp = self._session.post(
+                resp = self._http.post(
                     url=login_url,
                     json={identity_key: self._username, "password": self._password},
                     headers={"Accept": "application/json"},
                     timeout=30,
                 )
-            except requests.RequestException:
+            except (httpx.HTTPError, ApiError):
                 raise AuthError("CISO Assistant login request failed") from None
             if resp.status_code in (401, 403):
                 raise UnauthorizedError(
                     f"CISO Assistant credentials rejected ({resp.status_code})."
                 )
-            if not resp.ok:
+            if resp.status_code >= 400:
                 raise AuthError(f"CISO Assistant login failed ({resp.status_code})")
             try:
                 payload = resp.json()
@@ -194,55 +226,32 @@ class CisoAssistantApiBase:
         json: Any | None = None,
         data: Any | None = None,
         headers: dict | None = None,
-    ) -> requests.Response:
-        """Perform an HTTP request with rate-limit / transient-error retries."""
+    ) -> httpx.Response:
+        """Perform one request through the governed client (retries live in the SDK)."""
         request_headers = headers or self._auth_headers()
-        attempt = 0
-        while True:
-            try:
-                response = self._session.request(
-                    method=method.upper(),
-                    url=url,
-                    params=params or None,
-                    json=json,
-                    data=data,
-                    headers=request_headers,
-                    timeout=60,
-                )
-            except requests.RequestException as exc:
-                logger.error(
-                    "CISO Assistant request failed (exception_type=%s)",
-                    type(exc).__name__,
-                )
-                raise RuntimeError("CISO Assistant request failed") from None
-            if response.status_code == 429 and attempt < self.max_retries:
-                delay = self._retry_delay(response, attempt)
-                logger.debug("Rate limited (429); sleeping %.1fs", delay)
-                time.sleep(delay)
-                attempt += 1
-                continue
-            if response.status_code in (502, 503, 504) and attempt < self.max_retries:
-                time.sleep(self._retry_delay(response, attempt))
-                attempt += 1
-                continue
-            if response.status_code in (401, 403):
-                raise (AuthError if response.status_code == 401 else UnauthorizedError)(
-                    f"CISO Assistant request was rejected ({response.status_code})"
-                )
-            return response
+        try:
+            response = self._http.request(
+                method=method.upper(),
+                url=url,
+                params=params or None,
+                json=json,
+                data=data,
+                headers=request_headers,
+            )
+        except (httpx.HTTPError, ApiError) as exc:
+            logger.error(
+                "CISO Assistant request failed (exception_type=%s)",
+                type(exc).__name__,
+            )
+            raise RuntimeError("CISO Assistant request failed") from None
+        if response.status_code in (401, 403):
+            raise (AuthError if response.status_code == 401 else UnauthorizedError)(
+                f"CISO Assistant request was rejected ({response.status_code})"
+            )
+        return response
 
     @staticmethod
-    def _retry_delay(response: requests.Response, attempt: int) -> float:
-        retry_after = response.headers.get("Retry-After")
-        if retry_after:
-            try:
-                return min(float(retry_after), 60.0)
-            except ValueError:
-                pass
-        return min(2.0**attempt, 30.0)
-
-    @staticmethod
-    def _decode(response: requests.Response) -> Any:
+    def _decode(response: httpx.Response) -> Any:
         if not response.content:
             return None
         if "application/json" in response.headers.get("Content-Type", ""):
@@ -255,7 +264,7 @@ class CisoAssistantApiBase:
     # -------------------------------------------------------------- pagination
     def _fetch_all_pages(
         self, method: str, url: str, params: dict, max_pages: int
-    ) -> tuple[requests.Response, list]:
+    ) -> tuple[httpx.Response, list]:
         """Follow DRF ``next`` links, concatenating ``results`` across pages."""
         params = dict(params or {})
         first = self._request(method, url, params=params)
@@ -322,7 +331,7 @@ class CisoAssistantApiBase:
             raise
         except ValidationError as e:
             raise ParameterError(f"Invalid parameters: {e.errors()}") from e
-        except requests.RequestException as exc:
+        except (httpx.HTTPError, ApiError) as exc:
             logger.error(
                 "CISO Assistant request failed (exception_type=%s)", type(exc).__name__
             )

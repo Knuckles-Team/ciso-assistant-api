@@ -12,6 +12,10 @@ The fix raises the SDK floor. It adds no code and no second resolver.
 SDK 0.3.10 serves `env://` references when `OPENBAO_TOKEN_REF` is unset or blank.
 The connector image rebuilds on that release, so the deployment secret drops its `OPENBAO_ADDR=""` workaround.
 
+## Governed client
+
+The SDK owns the governed client and its retry policy (`SDK-CENTRALIZED-CAPABILITIES-R001`). The base builds one client with `create_http_client` and drops its `requests` session and retry loop.
+
 ## Interfaces and data model
 
 No wire, schema, or tool change. Log lines carry no credential values.

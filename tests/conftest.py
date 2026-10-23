@@ -1,8 +1,8 @@
-import json
+import dataclasses
 from unittest.mock import patch
 
+import httpx
 import pytest
-import requests
 
 reason = "Unit tests using mocks"
 
@@ -15,27 +15,31 @@ def mock_env(monkeypatch):
     monkeypatch.delenv("ENABLE_DELEGATION", raising=False)
 
 
-def _make_response(payload=None, status=200):
-    # A real requests.Response — the Response model validates isinstance.
-    resp = requests.Response()
-    resp.status_code = status
-    body = payload if payload is not None else {"id": 1, "name": "test", "content": []}
-    resp._content = json.dumps(body).encode()
-    resp.headers["Content-Type"] = "application/json"
-    resp.headers["X-Total-Pages"] = "1"
-    return resp
+def _make_payload(payload=None):
+    return payload if payload is not None else {"id": 1, "name": "test", "content": []}
 
 
 @pytest.fixture(autouse=True)
 def mock_session():
-    """Patch requests.Session so the client never touches the network."""
-    with patch("requests.Session") as mock_cls:
-        session = mock_cls.return_value
-        resp = _make_response()
-        session.request.return_value = resp
-        session.get.return_value = resp
-        session.post.return_value = resp
-        session.put.return_value = resp
-        session.delete.return_value = resp
-        session.patch.return_value = resp
-        yield session
+    """Route the governed client through an in-process transport (no network)."""
+    from agent_connector_sdk.http.client import create_http_client
+
+    calls = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        calls.append(request)
+        return httpx.Response(
+            200,
+            json=_make_payload(),
+            headers={"X-Total-Pages": "1"},
+        )
+
+    def build(options, transport=None):
+        # No DNS pinning for the in-process transport: hosts are fictional.
+        plain = dataclasses.replace(
+            options, pin_egress=False, allowed_private_hosts=(), allow_loopback=False
+        )
+        return create_http_client(plain, transport=httpx.MockTransport(handler))
+
+    with patch("ciso_assistant_api.api.api_client_base.create_http_client", build):
+        yield calls
