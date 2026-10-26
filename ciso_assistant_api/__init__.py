@@ -60,3 +60,20 @@ Python CISO Assistant API client + MCP server + A2A agent with 100% API coverage
 
 CONCEPT:AU-ECO.connector.ciso-assistant — CISO Assistant GRC connector (api-client + MCP + A2A).
 """
+
+
+from agent_connector_sdk.connector import Connector
+from agent_connector_sdk.connector_hooks import RegistrationContext
+
+
+def _register_legacy_surface(context: RegistrationContext) -> None:
+    """Reuse the existing server registrations through the public SDK hook."""
+    from ciso_assistant_api.mcp_server import register_server_surface
+
+    context.settings._ciso_registered_tags = register_server_surface(context.server)
+
+
+connector = Connector(
+    instructions="CISO Assistant MCP Server",
+    extra_registrations=(_register_legacy_surface,),
+)

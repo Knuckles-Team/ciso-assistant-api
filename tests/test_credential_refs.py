@@ -11,12 +11,10 @@ from ciso_assistant_api.api_client import Api
 @pytest.mark.spec("CONN-CISO-ASSISTANT-API-R001")
 def test_sdk_floor_is_declared():
     text = (Path(__file__).parent.parent / "pyproject.toml").read_text()
-    floors = re.findall(
-        r"agent-connector-sdk(?:\[[^\]]*\])?>=(\d+)\.(\d+)\.(\d+)", text
-    )
+    floors = re.findall(r"scion-sdk(?:\[[^\]]*\])?>=(\d+)\.(\d+)\.(\d+)", text)
     assert floors
     for floor in floors:
-        assert tuple(map(int, floor)) >= (0, 3, 10)
+        assert tuple(map(int, floor)) >= (0, 5, 6)
 
 
 @pytest.mark.spec("CONN-CISO-ASSISTANT-API-R002")

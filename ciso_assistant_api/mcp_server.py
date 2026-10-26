@@ -2,10 +2,11 @@
 
 import logging
 import sys
-from typing import Any
+from typing import Any, NamedTuple
 
 from agent_connector_sdk.config import load_config, setting
-from agent_connector_sdk.mcp.server import create_mcp_server
+from agent_connector_sdk.connector import build_server
+from agent_connector_sdk.connector_identity import connector_version
 from agent_connector_sdk.mcp.tool_surface import register_tool_surface
 from fastmcp import FastMCP
 from fastmcp.utilities.logging import get_logger
@@ -14,7 +15,7 @@ from ciso_assistant_api.api._operation_manifest import OPERATIONS
 from ciso_assistant_api.api_client import Api
 from ciso_assistant_api.auth import get_client
 
-__version__ = "2.3.6"
+__version__ = connector_version("ciso_assistant_api")
 
 # Redirect logging to stderr to prevent MCP stdout corruption
 logger = get_logger(name="ciso_assistant_mcp")
@@ -28,16 +29,8 @@ def register_prompts(mcp: FastMCP):
         return f"Please help with '{query}' using CISO Assistant"
 
 
-def get_mcp_instance() -> tuple[Any, Any, Any, Any]:
-    """Initialize and return the CISO Assistant MCP instance, args, and middlewares."""
-    load_config()
-
-    args, mcp, middlewares = create_mcp_server(
-        name="CISO Assistant MCP",
-        version=__version__,
-        instructions="CISO Assistant MCP Server",
-    )
-
+def register_server_surface(mcp: FastMCP):
+    """Register the existing API, ingestion and prompt surface unchanged."""
     # One central call selects the surface per MCP_TOOL_MODE: condensed gates each
     # generated TOOL_REGISTRY domain via setting("<TAG>TOOL", True); verbose adds
     # the fully-typed 1:1 tools sourced from the OpenAPI manifest (OPERATIONS).
@@ -64,10 +57,23 @@ def get_mcp_instance() -> tuple[Any, Any, Any, Any]:
 
     register_prompts(mcp)
 
-    for mw in middlewares:
-        mcp.add_middleware(mw)
+    return registered_tags
 
-    return mcp, args, middlewares, registered_tags
+
+class ServerComponents(NamedTuple):
+    """Preserve the legacy startup tuple while naming its collaborators."""
+
+    server: FastMCP[Any]
+    args: Any
+    middlewares: list[Any]
+    registered_tags: Any
+
+
+def get_mcp_instance(*, command_args=None) -> ServerComponents:
+    """Build the declared SDK server after loading the legacy CLI configuration."""
+    load_config()
+    args, mcp = build_server("ciso_assistant_api", command_args=command_args)
+    return ServerComponents(mcp, args, list(mcp.middleware), args._ciso_registered_tags)
 
 
 def mcp_server():
