@@ -25,7 +25,7 @@
       "delivery_state": "SPECIFIED",
       "landed_in": [],
       "verified_by": [
-        "tests/test_credential_refs.py:22"
+        "tests/test_credential_refs.py:20"
       ]
     },
     {
@@ -44,7 +44,7 @@
         "e8d176cf25c8"
       ],
       "verified_by": [
-        "tests/test_fleet_name.py:35"
+        "tests/test_fleet_name.py:34"
       ]
     }
   ]
