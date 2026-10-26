@@ -13,8 +13,10 @@
     {
       "id": "CONN-CISO-ASSISTANT-API-R001",
       "title": "SDK floor",
-      "delivery_state": "SPECIFIED",
-      "landed_in": [],
+      "delivery_state": "VERIFIED",
+      "landed_in": [
+        "262cb1a5cdaf"
+      ],
       "verified_by": [
         "tests/test_credential_refs.py:11"
       ]
