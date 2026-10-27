@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Added the packaged `ciso-assistant-api-development` skill with the standard
+  rapid-delivery contract.
 - Consolidated the three overlapping provider skills into the canonical
   `ciso-assistant-operations` skill.
 - Replaced durable credential values and boolean TLS verification with runtime

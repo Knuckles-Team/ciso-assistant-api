@@ -13,3 +13,4 @@ Read the existing specs first. Extend the spec that owns the behavior. Create a 
 ## Local specifications
 
 [`CONN-CISO-ASSISTANT-API`](ciso-assistant-api/spec.md) — Credential reference resolution and the SDK floor.
+[`CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT`](connector-content/spec.md) — Packaged connector skills, prompts, and ontology content.

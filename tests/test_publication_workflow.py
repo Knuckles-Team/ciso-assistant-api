@@ -86,6 +86,23 @@ def test_release_hook_inherits_catalogue_policy():
     assert hook == {"id": "dependency-readiness"}
 
 
+def test_spec_delivery_uses_canonical_aggregate_and_development_skill():
+    config = yaml.safe_load((ROOT / ".pre-commit-config.yaml").read_text())
+    pipelines = next(
+        repo
+        for repo in config["repos"]
+        if repo["repo"] == "https://github.com/Knuckles-Team/pipelines"
+    )
+    assert pipelines["rev"] == CONTRACT
+    assert [hook["id"] for hook in pipelines["hooks"]].count("spec") == 1
+
+    skill = (
+        ROOT / "ciso_assistant_api/skills/ciso-assistant-api-development/SKILL.md"
+    ).read_text()
+    assert "name: ciso-assistant-api-development" in skill
+    assert "## Rapid delivery: the 5-minute contract" in skill
+
+
 @pytest.mark.parametrize(
     "path, expected",
     [

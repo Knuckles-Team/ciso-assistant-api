@@ -70,4 +70,7 @@ repos:
   - repo: https://github.com/Knuckles-Team/pipelines
     rev: main
     hooks:
+    # The canonical aggregate runs the standard, decomposition, status and
+    # trailer checks at the shared pre-push stage.
+    - id: spec
     - id: dependency-readiness
