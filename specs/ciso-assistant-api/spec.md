@@ -22,7 +22,7 @@ The connector must not log credential values.
 ## Why a new spec
 
 The repository holds no local spec. The search of `specs/` found only the template.
-The SDK owns the resolver rule (`SDK-CONNECTOR-CONTROL-R035`); this connector owns only its floor on that release.
+The SDK owns the resolver rule (`SCION-CONNECTOR-CONTROL-R035`); this connector owns only its floor on that release.
 
 ## Requirements
 
