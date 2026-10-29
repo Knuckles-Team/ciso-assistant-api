@@ -1,6 +1,6 @@
 # CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT — The connector serves its packaged content
 
-Owner: ciso-assistant-api. Cross-repo IDs: `SDK-CONNECTOR-CONTROL-R071`, `SDK-CONNECTOR-CONTROL-R073`.
+Owner: ciso-assistant-api. Cross-repo IDs: `SCION-CONNECTOR-CONTROL-R071`, `SCION-CONNECTOR-CONTROL-R073`.
 
 ## Purpose and user stories
 
