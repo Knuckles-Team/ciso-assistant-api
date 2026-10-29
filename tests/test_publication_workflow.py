@@ -22,12 +22,6 @@ def _push_matches(workflow, ref):
     return any(fnmatchcase(name, pattern) for pattern in filters)
 
 
-
-
-
-
-
-
 def test_release_hook_inherits_catalogue_policy():
     config = yaml.safe_load((ROOT / ".pre-commit-config.yaml").read_text())
     matches = [
@@ -58,5 +52,3 @@ def test_spec_delivery_uses_canonical_aggregate_and_development_skill():
     ).read_text()
     assert "name: ciso-assistant-api-development" in skill
     assert "## Rapid delivery: the 5-minute contract" in skill
-
-
