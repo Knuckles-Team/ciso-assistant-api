@@ -106,5 +106,5 @@ def test_public_sdk_floor_supports_the_served_descriptor_protocol():
     ]
     assert requirements
     for requirement in requirements:
-        assert requirement.specifier.contains("0.5.6")
+        assert requirement.specifier.contains("0.5.9")
         assert not requirement.specifier.contains("0.5.5")
