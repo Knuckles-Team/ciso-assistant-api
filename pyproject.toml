@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ciso-assistant-api"
-version = "2.3.8"
+version = "2.3.9"
 description = "CISO Assistant API + MCP Server — 100% API coverage"
 readme = "README.md"
 classifiers = [ "Development Status :: 4 - Beta", "License :: OSI Approved :: MIT License", "Environment :: Console", "Operating System :: POSIX :: Linux", "Programming Language :: Python :: 3",]
 requires-python = ">=3.12, <3.15"
-dependencies = [ "scion-sdk[mcp]>=0.6.0,<0.7.0", "python-dotenv>=1.2.4", "requests>=2.34.2",]
+dependencies = [ "scion-sdk[mcp]>=0.6.2,<0.7.0", "python-dotenv>=1.2.4", "requests>=2.34.2",]
 [[project.authors]]
 name = "Knuckles-Team"
 
@@ -17,8 +17,8 @@ name = "Knuckles-Team"
 text = "MIT"
 
 [project.optional-dependencies]
-mcp = [ "scion-sdk[mcp]>=0.6.0,<0.7.0",]
-all = [ "scion-sdk[mcp]>=0.6.0,<0.7.0",]
+mcp = [ "scion-sdk[mcp]>=0.6.2,<0.7.0",]
+all = [ "scion-sdk[mcp]>=0.6.2,<0.7.0",]
 test = [
     "pytest-xdist>=3.8.0", "pytest>=9.1.1", "pytest-asyncio>=1.4.0", "pytest-cov>=7.1.0",]
 
