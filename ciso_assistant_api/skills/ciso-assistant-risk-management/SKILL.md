@@ -14,7 +14,7 @@ description: >-
 license: MIT
 tags: [ciso-assistant, grc, risk, controls, mcp]
 metadata:
-  author: Genius
+  author: Knuckles-Team
   version: '0.1.0'
 ---
 # CISO Assistant Risk Management

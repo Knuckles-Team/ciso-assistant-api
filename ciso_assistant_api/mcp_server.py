@@ -4,12 +4,12 @@ import logging
 import sys
 from typing import Any, NamedTuple
 
-from agent_connector_sdk.config import load_config, setting
-from agent_connector_sdk.connector import build_server
-from agent_connector_sdk.connector_identity import connector_version
-from agent_connector_sdk.mcp.tool_surface import register_tool_surface
 from fastmcp import FastMCP
 from fastmcp.utilities.logging import get_logger
+from scion_sdk.config import load_config, setting
+from scion_sdk.connector import build_server
+from scion_sdk.connector_identity import connector_version
+from scion_sdk.mcp.tool_surface import register_tool_surface
 
 from ciso_assistant_api.api._operation_manifest import OPERATIONS
 from ciso_assistant_api.api_client import Api

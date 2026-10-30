@@ -4,7 +4,7 @@ CONCEPT:AU-KG.ingest.list-durable-media. Evidence in a GRC program is only as go
 its attached artifact (a scan, a signed policy PDF, an exported report). When a live
 epistemic-graph engine is reachable, an evidence attachment's raw bytes are stored as a
 content-addressed **blob** with a ``:MediaAsset`` graph node (carrying its evidence
-metadata) in ONE cross-modal ACID commit, via ``agent_connector_sdk.ingest``'s
+metadata) in ONE cross-modal ACID commit, via ``scion_sdk.ingest``'s
 ``ChangeSet(media=(MediaAsset(...),))`` + ``KnowledgeIngest.submit``.
 
 Entirely best-effort and dependency-/engine-guarded: with no KG stack or no reachable
@@ -19,7 +19,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from agent_connector_sdk.ingest import (
+from scion_sdk.ingest import (
     ChangeSet,
     IngestBinding,
     IngestError,

@@ -7,7 +7,7 @@ compliance data into the ONE epistemic-graph knowledge graph as **typed OWL node
 ``:Asset``, ``:Vulnerability`` …) + links, matching the classes federated by
 ``ciso_assistant_api.ontology`` (``ciso.ttl``).
 
-The write path is ``agent_connector_sdk.ingest`` -- the generated ``SourceIngest``
+The write path is ``scion_sdk.ingest`` -- the generated ``SourceIngest``
 client, not a local ingestion helper. The MCP tool surface
 (``ciso_assistant_api.mcp.mcp_kg_ingest``) exposes these as best-effort tools that
 must never raise on an unreachable/misconfigured KG stack, so ``ingest_entities`` /
@@ -22,7 +22,7 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from agent_connector_sdk.ingest import (
+from scion_sdk.ingest import (
     ChangeSet,
     Document,
     Entity,
@@ -32,7 +32,7 @@ from agent_connector_sdk.ingest import (
     Relationship,
     current_ingest,
 )
-from agent_connector_sdk.privacy import sanitize_for_persistence
+from scion_sdk.privacy import sanitize_for_persistence
 
 logger = logging.getLogger("ciso_assistant_api.kg")
 

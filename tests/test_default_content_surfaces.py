@@ -70,10 +70,10 @@ def test_production_pack_binds_packaged_ontology_and_shapes():
     import hashlib
     from importlib.metadata import version
 
-    from agent_connector_sdk.artifacts.pack import build_content_pack
-    from agent_connector_sdk.artifacts.resources import ResourceArtifactKind
-    from agent_connector_sdk.ports.session import TransportEndpoint
-    from agent_connector_sdk.transports.mcp import McpTransport
+    from scion_sdk.artifacts.pack import build_content_pack
+    from scion_sdk.artifacts.resources import ResourceArtifactKind
+    from scion_sdk.ports.session import TransportEndpoint
+    from scion_sdk.transports.mcp import McpTransport
 
     async def capture():
         async with McpTransport().session(
@@ -106,5 +106,5 @@ def test_public_sdk_floor_supports_the_served_descriptor_protocol():
     ]
     assert requirements
     for requirement in requirements:
-        assert requirement.specifier.contains("0.5.9")
-        assert not requirement.specifier.contains("0.5.5")
+        assert requirement.specifier.contains("0.6.0")
+        assert not requirement.specifier.contains("0.5.9")
