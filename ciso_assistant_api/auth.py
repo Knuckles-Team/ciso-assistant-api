@@ -9,19 +9,19 @@ Authentication priority:
    username/password pair from the configured runtime secret backend. Secret
    values are never part of durable provider configuration.
 
-See ``docs/guides/oauth_sso.md`` in agent-connector-sdk for full details.
+See ``docs/guides/oauth_sso.md`` in scion-sdk for full details.
 """
 
 import logging
 import threading
 
-from agent_connector_sdk.config import setting
-from agent_connector_sdk.credentials.references import SecretReferenceError
-from agent_connector_sdk.credentials.resolution import resolve_secret_reference
-from agent_connector_sdk.credentials.resolver import CredentialUnavailableError
-from agent_connector_sdk.exceptions import AuthError, UnauthorizedError
-from agent_connector_sdk.tls.profile import ResolvedTLSProfile
-from agent_connector_sdk.tls.resolve import resolve_tls_profile
+from scion_sdk.config import setting
+from scion_sdk.credentials.references import SecretReferenceError
+from scion_sdk.credentials.resolution import resolve_secret_reference
+from scion_sdk.credentials.resolver import CredentialUnavailableError
+from scion_sdk.exceptions import AuthError, UnauthorizedError
+from scion_sdk.tls.profile import ResolvedTLSProfile
+from scion_sdk.tls.resolve import resolve_tls_profile
 
 local = threading.local()
 from ciso_assistant_api.api_client import Api
@@ -30,14 +30,14 @@ logger = logging.getLogger(__name__)
 
 
 def _exchange_delegated_token() -> str:
-    """RFC 8693 Token Exchange via ``agent_connector_sdk.auth.delegation``."""
+    """RFC 8693 Token Exchange via ``scion_sdk.auth.delegation``."""
     import httpx
-    from agent_connector_sdk.auth.delegation import (
+    from scion_sdk.auth.delegation import (
         DelegationSettings,
         current_user_token,
         exchange_token,
     )
-    from agent_connector_sdk.exceptions import LoginRequiredError
+    from scion_sdk.exceptions import LoginRequiredError
 
     settings = DelegationSettings.from_settings()
     subject_token = current_user_token()
@@ -80,7 +80,7 @@ def get_client(
             profile_ref=setting("CISO_ASSISTANT_TLS_PROFILE_REF"),
         )
 
-    from agent_connector_sdk.auth.delegation import DelegationSettings
+    from scion_sdk.auth.delegation import DelegationSettings
 
     # --- Path 1: OIDC Delegation (RFC 8693 Token Exchange) ---
     delegated = (

@@ -1,6 +1,6 @@
 """Epistemic-graph blob ingestion for evidence attachments — Wire-First coverage.
 
-Exercises ``ingest_evidence_attachment`` against a fake ``agent_connector_sdk.ingest``
+Exercises ``ingest_evidence_attachment`` against a fake ``scion_sdk.ingest``
 transport (no engine required), asserting the stored media asset's bytes, mime type,
 evidence provenance, and that missing bytes / absent policy approval / no reachable
 engine all no-op cleanly. CONCEPT:AU-KG.ingest.list-durable-media.
@@ -12,7 +12,7 @@ from types import SimpleNamespace
 from typing import Any
 
 import pytest
-from agent_connector_sdk.ingest import KnowledgeIngest
+from scion_sdk.ingest import KnowledgeIngest
 
 from ciso_assistant_api.kg_media import ingest_evidence_attachment
 

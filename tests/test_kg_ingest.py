@@ -1,7 +1,7 @@
 """Epistemic-graph typed-node ingestion — Wire-First coverage.
 
 Exercises the real ``ingest_entities`` / ``ingest_documents`` seam and the CISO
-Assistant record → typed-node mappers against a fake ``agent_connector_sdk.ingest``
+Assistant record → typed-node mappers against a fake ``scion_sdk.ingest``
 transport (no engine required), asserting the committed records/relationships and
 the class/id mapping. CONCEPT:AU-KG.ingest.enterprise-source-extractor.
 
@@ -17,8 +17,8 @@ from types import SimpleNamespace
 from typing import Any
 
 import pytest
-from agent_connector_sdk.ingest import KnowledgeIngest
 from epistemic_graph.generated.source_ingestion import SourceIngestionRequest
+from scion_sdk.ingest import KnowledgeIngest
 
 from ciso_assistant_api.kg_ingest import (
     ingest_applied_controls,
