@@ -106,5 +106,9 @@ def test_public_sdk_floor_supports_the_served_descriptor_protocol():
     ]
     assert requirements
     for requirement in requirements:
-        assert requirement.specifier.contains("0.6.3")
+        from packaging.version import Version
+
+        floor = max(Version(s.version) for s in requirement.specifier if s.operator == ">=")
+        assert floor >= Version("0.6.3")
+        assert not requirement.specifier.contains("0.7.0")
         assert not requirement.specifier.contains("0.5.9")
