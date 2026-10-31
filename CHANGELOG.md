@@ -23,6 +23,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Raised the Agent Utilities floor to the current TLS/privacy contract and
   enabled the Langfuse-capable observability extra for the full agent runtime.
 
+## [2.3.10] - 2026-10-30
+
+### Changed
+- Require `scion-sdk>=0.6.4,<0.7.0`; `uv.lock` relocked.
+
 ## [0.1.0] - 2026-06-15
 
 ### Added
