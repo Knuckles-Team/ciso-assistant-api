@@ -17,7 +17,7 @@ from types import SimpleNamespace
 from typing import Any
 
 import pytest
-from epistemic_graph.generated.source_ingestion import SourceIngestionRequest
+from medulla.generated.source_ingestion import SourceIngestionRequest
 from scion_sdk.ingest import KnowledgeIngest
 
 from ciso_assistant_api.kg_ingest import (
