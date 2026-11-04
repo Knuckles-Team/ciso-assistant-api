@@ -50,13 +50,13 @@ class _FakeTransport:
 
 class _UnavailableTransport:
     async def source_status(self, _connector: str, _stream: str) -> Any:
-        raise RuntimeError("epistemic-graph is unreachable")
+        raise RuntimeError("medulla is unreachable")
 
     async def submit(self, _request: Any) -> Any:
-        raise RuntimeError("epistemic-graph is unreachable")
+        raise RuntimeError("medulla is unreachable")
 
     async def store_blob(self, _data: bytes) -> str:
-        raise RuntimeError("epistemic-graph is unreachable")
+        raise RuntimeError("medulla is unreachable")
 
 
 @pytest.fixture

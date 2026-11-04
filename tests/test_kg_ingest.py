@@ -17,7 +17,7 @@ from types import SimpleNamespace
 from typing import Any
 
 import pytest
-from epistemic_graph.generated.source_ingestion import SourceIngestionRequest
+from medulla.generated.source_ingestion import SourceIngestionRequest
 from scion_sdk.ingest import KnowledgeIngest
 
 from ciso_assistant_api.kg_ingest import (
@@ -35,7 +35,7 @@ from ciso_assistant_api.kg_ingest import (
 
 
 class _FakeTransport:
-    """Records every submitted request; no epistemic-graph engine required."""
+    """Records every submitted request; no medulla engine required."""
 
     def __init__(self) -> None:
         self.requests: list[SourceIngestionRequest] = []
@@ -60,13 +60,13 @@ class _UnavailableTransport:
     """Simulates no reachable engine for the best-effort no-op assertions."""
 
     async def source_status(self, _connector: str, _stream: str) -> Any:
-        raise RuntimeError("epistemic-graph is unreachable")
+        raise RuntimeError("medulla is unreachable")
 
     async def submit(self, _request: Any) -> Any:
-        raise RuntimeError("epistemic-graph is unreachable")
+        raise RuntimeError("medulla is unreachable")
 
     async def store_blob(self, _data: bytes) -> str:
-        raise RuntimeError("epistemic-graph is unreachable")
+        raise RuntimeError("medulla is unreachable")
 
 
 @pytest.fixture

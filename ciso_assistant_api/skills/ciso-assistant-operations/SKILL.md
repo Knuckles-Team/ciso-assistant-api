@@ -1,7 +1,7 @@
 ---
 name: ciso-assistant-operations
 skill_type: skill
-description: Operate CISO Assistant governance, risk, compliance, incident, evidence, control, framework, and knowledge-graph workflows through the ciso-assistant-api MCP server. Use when an agent needs to inspect or correlate risk scenarios, assessments, controls, audits, incidents, evidence, frameworks, threats, or vulnerabilities; ingest supported records into epistemic-graph; or plan a governed mutation after explicit approval.
+description: Operate CISO Assistant governance, risk, compliance, incident, evidence, control, framework, and knowledge-graph workflows through the ciso-assistant-api MCP server. Use when an agent needs to inspect or correlate risk scenarios, assessments, controls, audits, incidents, evidence, frameworks, threats, or vulnerabilities; ingest supported records into medulla; or plan a governed mutation after explicit approval.
 ---
 
 # CISO Assistant Operations

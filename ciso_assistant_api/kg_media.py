@@ -2,7 +2,7 @@
 
 CONCEPT:AU-KG.ingest.list-durable-media. Evidence in a GRC program is only as good as
 its attached artifact (a scan, a signed policy PDF, an exported report). When a live
-epistemic-graph engine is reachable, an evidence attachment's raw bytes are stored as a
+medulla engine is reachable, an evidence attachment's raw bytes are stored as a
 content-addressed **blob** with a ``:MediaAsset`` graph node (carrying its evidence
 metadata) in ONE cross-modal ACID commit, via ``scion_sdk.ingest``'s
 ``ChangeSet(media=(MediaAsset(...),))`` + ``KnowledgeIngest.submit``.

@@ -3,7 +3,7 @@
 ```bash
 pip install ciso-assistant-api[all]      # client + MCP + agent
 # or scoped:
-pip install ciso-assistant-api[mcp]      # client + MCP + epistemic-graph[full]
+pip install ciso-assistant-api[mcp]      # client + MCP + medulla
 pip install ciso-assistant-api           # client only
 ```
 
