@@ -1,7 +1,7 @@
 """Wire-First native KG ingestion tool for CISO Assistant (CONCEPT:AU-KG.ingest.enterprise-source-extractor).
 
 Exposes ``ciso_ingest`` — one MCP tool that lists a GRC record kind via the real
-``Api`` client and pushes it into the epistemic-graph knowledge graph as typed OWL nodes
+``Api`` client and pushes it into the medulla knowledge graph as typed OWL nodes
 (and, for evidence, ``:Document`` nodes plus ``:Blob`` / ``:MediaAsset`` attachment
 blobs). It is registered by ``mcp_server`` alongside the generated domain-tool surface.
 Best-effort: with no reachable engine the ingest is a clean no-op (``"ingested": null``).
@@ -75,7 +75,7 @@ def register_kg_ingest_tools(mcp: FastMCP):
             default=None, description="MCP context for progress reporting"
         ),
     ) -> Any:
-        """List a CISO Assistant GRC record kind and natively ingest it into epistemic-graph.
+        """List a CISO Assistant GRC record kind and natively ingest it into medulla.
 
         Maps records to typed OWL nodes (``:RiskScenario`` / ``:Control`` / ``:Audit`` /
         ``:Incident`` / ``:Asset`` / ``:Vulnerability``) or, for evidences, ``:Document``

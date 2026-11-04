@@ -48,7 +48,7 @@ Connect via the `mcp-client` skill against the **`ciso-assistant-api`** MCP serv
 | `CISO_ASSISTANT_SSL_VERIFY` | optional | TLS verification toggle |
 
 \* Provide the token **or** the username/password pair. Blob ingestion also needs a
-reachable epistemic-graph engine (best-effort; no-ops without one).
+reachable medulla engine (best-effort; no-ops without one).
 
 ## Tools & actions
 Prefer the **condensed** tool; it takes `action` + a `params_json` **JSON string**.

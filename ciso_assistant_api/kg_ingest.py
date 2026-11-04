@@ -2,7 +2,7 @@
 
 CONCEPT:AU-KG.ingest.enterprise-source-extractor. This is the record-source twin of
 media-downloader's blob ingestion: the package pushes its governance-risk-
-compliance data into the ONE epistemic-graph knowledge graph as **typed OWL nodes**
+compliance data into the ONE medulla knowledge graph as **typed OWL nodes**
 (``:RiskAssessment``, ``:RiskScenario``, ``:Control``, ``:Audit``, ``:Incident``,
 ``:Asset``, ``:Vulnerability`` …) + links, matching the classes federated by
 ``ciso_assistant_api.ontology`` (``ciso.ttl``).
@@ -85,7 +85,7 @@ async def ingest_entities(
     domain: str = "ciso",
     ingest: KnowledgeIngest | None = None,
 ) -> dict[str, int] | None:
-    """Write typed OWL nodes (+ edges) into epistemic-graph. Best-effort, never raises.
+    """Write typed OWL nodes (+ edges) into medulla. Best-effort, never raises.
 
     ``entities``: ``[{"id":..., "node_type":<owl:Class>, ...props}]``.
     ``relationships``: ``[{"source":id, "target":id, "relationship":<link>}]``.
