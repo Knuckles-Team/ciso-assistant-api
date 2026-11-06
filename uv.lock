@@ -284,7 +284,7 @@ wheels = [
 
 [[package]]
 name = "ciso-assistant-api"
-version = "2.3.10"
+version = "2.3.11"
 source = { editable = "." }
 dependencies = [
     { name = "python-dotenv" },
