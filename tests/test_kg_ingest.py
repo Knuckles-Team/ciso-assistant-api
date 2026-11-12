@@ -1,4 +1,4 @@
-"""Epistemic-graph typed-node ingestion — Wire-First coverage.
+"""Medulla typed-node ingestion — Wire-First coverage.
 
 Exercises the real ``ingest_entities`` / ``ingest_documents`` seam and the CISO
 Assistant record → typed-node mappers against a fake ``scion_sdk.ingest``

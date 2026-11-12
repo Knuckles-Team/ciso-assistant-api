@@ -1,4 +1,4 @@
-"""Epistemic-graph blob ingestion for CISO Assistant evidence attachments.
+"""Medulla blob ingestion for CISO Assistant evidence attachments.
 
 CONCEPT:AU-KG.ingest.list-durable-media. Evidence in a GRC program is only as good as
 its attached artifact (a scan, a signed policy PDF, an exported report). When a live
