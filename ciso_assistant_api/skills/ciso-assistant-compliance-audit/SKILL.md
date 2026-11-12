@@ -32,8 +32,7 @@ KG mapping. Prefer these tools over raw HTTP; they return the records the ontolo
 ## When NOT to use
 - Risk assessments, scenarios, treatment decisions → `ciso-assistant-risk-management`.
 - Incidents, evidence records and their attachments → `ciso-assistant-incident-evidence`.
-- Arbitrary endpoints the condensed tools don't cover → the verbose 1:1 tools
-  (set `MCP_TOOL_MODE=verbose`).
+- Endpoints with no dedicated tool → `ciso_assistant_api_request`.
 
 ## Prerequisites & environment
 Connect via the `mcp-client` skill against the **`ciso-assistant-api`** MCP server.
@@ -45,17 +44,15 @@ Connect via the `mcp-client` skill against the **`ciso-assistant-api`** MCP serv
 | `CISO_ASSISTANT_USERNAME` / `CISO_ASSISTANT_PASSWORD` | ✅* | Login flow exchanged at `POST /api/iam/login/` |
 | `CISO_ASSISTANT_SSL_VERIFY` | optional | TLS verification toggle |
 
-\* Provide the token **or** the username/password pair. `MCP_TOOL_MODE`
-(`condensed`|`verbose`|`both`) selects the condensed surface (used below) vs. the
-one-to-one verbose tools.
+\* Provide the token **or** the username/password pair.
 
 ## Tools & actions
-Prefer the **condensed** tool; it takes `action` + a `params_json` **JSON string**.
+Each tool is one API operation and takes that operation's parameters directly.
 
-| Condensed tool | Key actions |
+| Tool group | Tools |
 |----------------|-------------|
-| `ciso_assistant_compliance` | `api_compliance_assessments_list`, `api_compliance_assessments_retrieve`, `api_applied_controls_list`, `api_requirement_assessments_list` |
-| `ciso_assistant_frameworks_libraries` | `api_frameworks_list`, `api_frameworks_retrieve` |
+| Typed tools | `ciso_assistant_api_compliance_assessments_list`, `ciso_assistant_api_compliance_assessments_retrieve`, `ciso_assistant_api_applied_controls_list`, `ciso_assistant_api_requirement_assessments_list` |
+| Typed tools | `ciso_assistant_api_frameworks_list`, `ciso_assistant_api_frameworks_retrieve` |
 | `ciso_ingest` | native KG push: `kind` = `compliance_assessments` \| `applied_controls` |
 
 ## Recipes (`params_json`)
@@ -67,7 +64,7 @@ Read one assessment (with framework + progress + outcome):
 ```json
 {"id":"<assessment_uuid>"}
 ```
-List frameworks (via `ciso_assistant_frameworks_libraries`):
+List frameworks :
 ```json
 {"limit":100}
 ```

@@ -24,8 +24,7 @@ hand. The single source of truth is the vendored OpenAPI specs under
 - **Do not hand-edit generated files.** These are emitted by
   `scripts/generate_from_openapi.py` and will be overwritten:
   `ciso_assistant_api/api/api_client_<domain>.py`, `ciso_assistant_api/api_client.py`,
-  `ciso_assistant_api/api/_operation_manifest.py`, `ciso_assistant_api/mcp/mcp_<domain>.py`,
-  and `ciso_assistant_api/mcp/__init__.py`. Change the **generator** instead, then
+  `ciso_assistant_api/api/_operation_manifest.py`, Change the **generator** instead, then
   re-run it and `ruff format .`.
 - **Hand-authored core** (safe to edit): `ciso_assistant_api/api/api_client_base.py`
   (auth, pagination, retry, URL resolution), `ciso_assistant_api/auth.py`,
@@ -33,7 +32,7 @@ hand. The single source of truth is the vendored OpenAPI specs under
 - **Refresh flow** when CISO Assistant changes a spec: re-download specs →
   `python scripts/generate_from_openapi.py` → `ruff format .` →
   `pytest` (the coverage keystone in `tests/test_ciso_assistant_coverage.py` proves
-  spec operations == client methods == MCP actions).
+  spec operations == manifest == client methods).
 
 ## Tech Stack & Architecture
 - Language/Version: Python 3.10+

@@ -34,8 +34,7 @@ GRC-shaped records the ontology (`:RiskScenario`, `:Control`, `:Threat`,
 ## When NOT to use
 - Compliance assessments (audits), frameworks, requirements → `ciso-assistant-compliance-audit`.
 - Incidents, evidence records and their attachments → `ciso-assistant-incident-evidence`.
-- Arbitrary endpoints the condensed tools don't cover → the verbose 1:1 tools
-  (set `MCP_TOOL_MODE=verbose`).
+- Endpoints with no dedicated tool → `ciso_assistant_api_request`.
 
 ## Prerequisites & environment
 Connect via the `mcp-client` skill against the **`ciso-assistant-api`** MCP server.
@@ -50,17 +49,13 @@ Connect via the `mcp-client` skill against the **`ciso-assistant-api`** MCP serv
 \* Provide the token **or** the username/password pair. OIDC delegation is used
 automatically when `ENABLE_DELEGATION` is active.
 
-`MCP_TOOL_MODE` (`condensed`|`verbose`|`both`) selects the condensed surface (used
-below) vs. the one-to-one verbose tools.
-
 ## Tools & actions
-Prefer the **condensed** tool; it takes `action` + a `params_json` **JSON string**
-whose keys are passed straight to the client method.
+Each tool is one API operation and takes that operation's parameters directly.
 
-| Condensed tool | Key actions |
+| Tool group | Tools |
 |----------------|-------------|
-| `ciso_assistant_risk_management` | `api_risk_assessments_list`, `api_risk_scenarios_list`, `api_risk_scenarios_retrieve`, `api_threats_list`, `api_vulnerabilities_list` |
-| `ciso_assistant_compliance` | `api_applied_controls_list`, `api_applied_controls_retrieve` (controls live under the compliance client) |
+| Typed tools | `ciso_assistant_api_risk_assessments_list`, `ciso_assistant_api_risk_scenarios_list`, `ciso_assistant_api_risk_scenarios_retrieve`, `ciso_assistant_api_threats_list`, `ciso_assistant_api_vulnerabilities_list` |
+| Typed tools | `ciso_assistant_api_applied_controls_list`, `ciso_assistant_api_applied_controls_retrieve` (controls live under the compliance client) |
 | `ciso_ingest` | native KG push: `kind` = `risk_scenarios` \| `applied_controls` \| `risk_assessments` \| `vulnerabilities` |
 
 ## Recipes (`params_json`)
@@ -72,7 +67,7 @@ Read one risk scenario by id (with its threats/controls/assets):
 ```json
 {"id":"<scenario_uuid>"}
 ```
-List applied controls that are still to-do (via `ciso_assistant_compliance`):
+List applied controls that are still to-do :
 ```json
 {"status":"to_do","ordering":"priority"}
 ```
@@ -85,7 +80,7 @@ Ingest risk scenarios into the KG as typed `:RiskScenario` nodes (`ciso_ingest`)
 - Object ids are **UUID strings**, not ints — pass them as strings.
 - List endpoints paginate DRF-style (`limit`/`offset`); the client follows `next`
   automatically and concatenates `results` into `Response.data`.
-- Applied controls are served by the **compliance** client (`ciso_assistant_compliance`),
+- Applied controls are served by the **compliance** client (the compliance tools),
   not the risk-management tool — a common mismatch.
 - A scenario carries `current_level` / `residual_level`; do not call a risk mitigated
   unless it has a linked `applied_controls` entry.

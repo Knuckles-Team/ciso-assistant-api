@@ -56,7 +56,7 @@ The repository pre-commit hooks apply: `ruff`. Each row names its proving test. 
 ## Production caller chain
 
 1. `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R001`: the `ciso-assistant-mcp = ciso_assistant_api:connector` entry point in `pyproject.toml` -> `ciso_assistant_api/__init__.py::connector` (line 76) -> SDK `build_server("ciso_assistant_api")` called by `ciso_assistant_api/mcp_server.py::get_mcp_instance` (line 72), serving the packaged skills, prompts and ontology.
-2. `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R002`: arbora `fleet.call` -> condensed domain tools from `register_server_surface` (`ciso_assistant_api/mcp_server.py` line 32, `TOOL_REGISTRY`) with actions `api_applied_controls_list` and `api_risk_scenarios_list` -> `ciso_assistant_api/api/` client; the new `ontology/access_contracts.ttl` does not exist yet.
+2. `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R002`: arbora `fleet.call` -> typed tools `ciso_assistant_api_applied_controls_list` and `ciso_assistant_api_risk_scenarios_list` registered by `register_server_surface` (`ciso_assistant_api/mcp_server.py`) -> `ciso_assistant_api/api/` client; the new `ontology/access_contracts.ttl` does not exist yet.
 
 ## Cross-repo seams
 

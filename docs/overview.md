@@ -9,9 +9,9 @@ across 19 domains. `scripts/generate_from_openapi.py` emits:
 
 - one generated client mixin per domain;
 - the operation manifest used for coverage checks;
-- one condensed action router per domain and an optional verbose tool per
-  operation;
-- the README tool inventory.
+- the composite client.
+
+The MCP server registers one typed tool per manifest operation.
 
 Generated clients, operation manifests, and MCP modules must be regenerated
 together. The hand-authored base client owns authentication, mandatory TLS,
@@ -28,9 +28,8 @@ same-origin URL enforcement, pagination, retries, and response decoding.
 | Privacy | `privacy` |
 | Platform operations | `auth_users`, `analytics_metrology`, `chat`, `integrations`, `settings`, `tasks_timeline` |
 
-`MCP_TOOL_MODE=condensed` is the intended delegated surface. Operator policy can
-disable individual domains and should expose the arbitrary-request tool only
-when its expanded access is explicitly required.
+Operator policy should expose the arbitrary-request tool only when its expanded
+access is explicitly required.
 
 ## Provider contributions
 

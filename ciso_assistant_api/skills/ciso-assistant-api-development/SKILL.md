@@ -3,7 +3,7 @@ name: ciso-assistant-api-development
 skill_type: skill
 description: >-
   Develop and verify ciso-assistant-api as a connector-owned package while
-  preserving its generated CISO Assistant client, action-routed MCP tools,
+  preserving its generated CISO Assistant client, typed per-operation MCP tools,
   SDK authentication boundary, packaged content, and spec-delivery contract.
 ---
 
@@ -23,9 +23,9 @@ Pipelines hooks.
   `api/api_client_base.py`, `auth.py`, and `mcp/mcp_custom_api.py` contain the
   hand-authored client, authentication, and custom surface. Preserve the SDK
   `Connector` registration in `__init__.py`.
-- `mcp_server.py` registers the action-routed generated tool domains, typed
+- `mcp_server.py` registers one typed tool per manifest operation, typed
   verbose operations, opt-in KG ingestion, and prompts. Keep the
-  `MCP_TOOL_MODE` and `KG_INGESTTOOL` boundaries intact when changing tools.
+  the `KG_INGESTTOOL` boundary intact when changing tools.
 - `ciso_assistant_api/ontology/`, `prompts/`, and `skills/` are packaged
   connector content. The package-data table includes these trees; inspect a
   built wheel when changing them.

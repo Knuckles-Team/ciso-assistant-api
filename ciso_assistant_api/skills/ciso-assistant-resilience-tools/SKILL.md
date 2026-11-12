@@ -1,0 +1,179 @@
+---
+name: ciso-assistant-resilience-tools
+skill_type: skill
+description: >-
+  Operate the resilience area of CISO Assistant through the ciso-assistant-api MCP server: find, read, create, update and delete its records with one typed tool per API operation. Use when the task needs the resilience records of a governance, risk and compliance program. Do NOT use for areas owned by the other ciso-assistant skills.
+license: MIT
+tags: [ciso-assistant, grc, resilience, mcp]
+metadata:
+  author: Knuckles-Team
+  version: '1.0.0'
+---
+# CISO Assistant: resilience
+
+Each tool maps to exactly one API operation and takes that operation's parameters. Read first (list, then retrieve), and ask for approval before any create, update or delete.
+
+## Rules
+- Scope work to one folder or perimeter and cite record ids.
+- Never print credentials, tokens or attachment bytes.
+- Delete tools (names ending in `_destroy`) need explicit approval and a stated reason.
+
+## Pmbok Accreditations
+- `ciso_assistant_api_pmbok_accreditations_list`
+- `ciso_assistant_api_pmbok_accreditations_cascade_info_retrieve`
+- `ciso_assistant_api_pmbok_accreditations_category_retrieve`
+- `ciso_assistant_api_pmbok_accreditations_object_retrieve`
+- `ciso_assistant_api_pmbok_accreditations_retrieve`
+- `ciso_assistant_api_pmbok_accreditations_status_retrieve`
+- `ciso_assistant_api_pmbok_accreditations_batch_action_create`
+- `ciso_assistant_api_pmbok_accreditations_create`
+- `ciso_assistant_api_pmbok_accreditations_update`
+- `ciso_assistant_api_pmbok_accreditations_partial_update`
+- `ciso_assistant_api_pmbok_accreditations_destroy`
+
+## Pmbok Generic Collections
+- `ciso_assistant_api_pmbok_generic_collections_list`
+- `ciso_assistant_api_pmbok_generic_collections_cascade_info_retrieve`
+- `ciso_assistant_api_pmbok_generic_collections_object_retrieve`
+- `ciso_assistant_api_pmbok_generic_collections_retrieve`
+- `ciso_assistant_api_pmbok_generic_collections_status_retrieve`
+- `ciso_assistant_api_pmbok_generic_collections_batch_action_create`
+- `ciso_assistant_api_pmbok_generic_collections_create`
+- `ciso_assistant_api_pmbok_generic_collections_update`
+- `ciso_assistant_api_pmbok_generic_collections_partial_update`
+- `ciso_assistant_api_pmbok_generic_collections_destroy`
+
+## Pmbok Projects
+- `ciso_assistant_api_pmbok_projects_list`
+- `ciso_assistant_api_pmbok_projects_cascade_info_retrieve`
+- `ciso_assistant_api_pmbok_projects_currencies_retrieve`
+- `ciso_assistant_api_pmbok_projects_kind_retrieve`
+- `ciso_assistant_api_pmbok_projects_object_retrieve`
+- `ciso_assistant_api_pmbok_projects_priority_retrieve`
+- `ciso_assistant_api_pmbok_projects_retrieve`
+- `ciso_assistant_api_pmbok_projects_batch_action_create`
+- `ciso_assistant_api_pmbok_projects_create`
+- `ciso_assistant_api_pmbok_projects_update`
+- `ciso_assistant_api_pmbok_projects_partial_update`
+- `ciso_assistant_api_pmbok_projects_destroy`
+
+## Pmbok Responsibility Assignments
+- `ciso_assistant_api_pmbok_responsibility_assignments_list`
+- `ciso_assistant_api_pmbok_responsibility_assignments_cascade_info_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_assignments_object_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_assignments_retrieve`
+
+## Pmbok Responsibility Matrices
+- `ciso_assistant_api_pmbok_responsibility_matrices_list`
+- `ciso_assistant_api_pmbok_responsibility_matrices_cascade_info_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_matrices_object_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_matrices_preset_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_matrices_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_matrices_batch_action_create`
+- `ciso_assistant_api_pmbok_responsibility_matrices_create`
+- `ciso_assistant_api_pmbok_responsibility_matrices_cycle_cell_create`
+- `ciso_assistant_api_pmbok_responsibility_matrices_reorder_activities_create`
+- `ciso_assistant_api_pmbok_responsibility_matrices_reorder_actors_create`
+- `ciso_assistant_api_pmbok_responsibility_matrices_update`
+- `ciso_assistant_api_pmbok_responsibility_matrices_partial_update`
+- `ciso_assistant_api_pmbok_responsibility_matrices_destroy`
+
+## Pmbok Responsibility Matrix Activities
+- `ciso_assistant_api_pmbok_responsibility_matrix_activities_list`
+- `ciso_assistant_api_pmbok_responsibility_matrix_activities_cascade_info_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_matrix_activities_object_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_matrix_activities_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_matrix_activities_batch_action_create`
+- `ciso_assistant_api_pmbok_responsibility_matrix_activities_create`
+- `ciso_assistant_api_pmbok_responsibility_matrix_activities_update`
+- `ciso_assistant_api_pmbok_responsibility_matrix_activities_partial_update`
+- `ciso_assistant_api_pmbok_responsibility_matrix_activities_destroy`
+
+## Pmbok Responsibility Matrix Actors
+- `ciso_assistant_api_pmbok_responsibility_matrix_actors_list`
+- `ciso_assistant_api_pmbok_responsibility_matrix_actors_cascade_info_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_matrix_actors_object_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_matrix_actors_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_matrix_actors_batch_action_create`
+- `ciso_assistant_api_pmbok_responsibility_matrix_actors_create`
+- `ciso_assistant_api_pmbok_responsibility_matrix_actors_update`
+- `ciso_assistant_api_pmbok_responsibility_matrix_actors_partial_update`
+- `ciso_assistant_api_pmbok_responsibility_matrix_actors_destroy`
+
+## Pmbok Responsibility Roles
+- `ciso_assistant_api_pmbok_responsibility_roles_list`
+- `ciso_assistant_api_pmbok_responsibility_roles_cascade_info_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_roles_object_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_roles_retrieve`
+- `ciso_assistant_api_pmbok_responsibility_roles_taxonomy_retrieve`
+
+## Resilience Asset Assessments
+- `ciso_assistant_api_resilience_asset_assessments_list`
+- `ciso_assistant_api_resilience_asset_assessments_cascade_info_retrieve`
+- `ciso_assistant_api_resilience_asset_assessments_dependency_graph_retrieve`
+- `ciso_assistant_api_resilience_asset_assessments_metrics_retrieve`
+- `ciso_assistant_api_resilience_asset_assessments_object_retrieve`
+- `ciso_assistant_api_resilience_asset_assessments_quali_impact_retrieve`
+- `ciso_assistant_api_resilience_asset_assessments_retrieve`
+- `ciso_assistant_api_resilience_asset_assessments_risk_matrix_retrieve`
+- `ciso_assistant_api_resilience_asset_assessments_batch_action_create`
+- `ciso_assistant_api_resilience_asset_assessments_create`
+- `ciso_assistant_api_resilience_asset_assessments_update`
+- `ciso_assistant_api_resilience_asset_assessments_partial_update`
+- `ciso_assistant_api_resilience_asset_assessments_destroy`
+
+## Resilience Business Impact Analysis
+- `ciso_assistant_api_resilience_business_impact_analysis_list`
+- `ciso_assistant_api_resilience_business_impact_analysis_build_table_retrieve`
+- `ciso_assistant_api_resilience_business_impact_analysis_cascade_info_retrieve`
+- `ciso_assistant_api_resilience_business_impact_analysis_export_csv_retrieve`
+- `ciso_assistant_api_resilience_business_impact_analysis_export_xlsx_retrieve`
+- `ciso_assistant_api_resilience_business_impact_analysis_metrics_retrieve`
+- `ciso_assistant_api_resilience_business_impact_analysis_object_retrieve`
+- `ciso_assistant_api_resilience_business_impact_analysis_retrieve`
+- `ciso_assistant_api_resilience_business_impact_analysis_status_retrieve`
+- `ciso_assistant_api_resilience_business_impact_analysis_xlsx_retrieve`
+- `ciso_assistant_api_resilience_business_impact_analysis_batch_action_create`
+- `ciso_assistant_api_resilience_business_impact_analysis_create`
+- `ciso_assistant_api_resilience_business_impact_analysis_update`
+- `ciso_assistant_api_resilience_business_impact_analysis_partial_update`
+- `ciso_assistant_api_resilience_business_impact_analysis_destroy`
+
+## Resilience Dora Incident Reports
+- `ciso_assistant_api_resilience_dora_incident_reports_list`
+- `ciso_assistant_api_resilience_dora_incident_reports_cascade_info_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_classification_criterion_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_export_json_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_incident_classification_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_incident_discovery_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_incident_submission_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_info_duration_service_downtime_actual_or_estimate_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_main_entity_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_object_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_report_currency_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_reporting_authority_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_root_cause_additional_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_root_cause_detailed_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_root_cause_hl_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_threat_techniques_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_validate_report_retrieve`
+- `ciso_assistant_api_resilience_dora_incident_reports_batch_action_create`
+- `ciso_assistant_api_resilience_dora_incident_reports_create`
+- `ciso_assistant_api_resilience_dora_incident_reports_update`
+- `ciso_assistant_api_resilience_dora_incident_reports_partial_update`
+- `ciso_assistant_api_resilience_dora_incident_reports_destroy`
+
+## Resilience Escalation Thresholds
+- `ciso_assistant_api_resilience_escalation_thresholds_list`
+- `ciso_assistant_api_resilience_escalation_thresholds_cascade_info_retrieve`
+- `ciso_assistant_api_resilience_escalation_thresholds_object_retrieve`
+- `ciso_assistant_api_resilience_escalation_thresholds_quali_impact_retrieve`
+- `ciso_assistant_api_resilience_escalation_thresholds_quant_unit_retrieve`
+- `ciso_assistant_api_resilience_escalation_thresholds_retrieve`
+- `ciso_assistant_api_resilience_escalation_thresholds_risk_matrix_retrieve`
+- `ciso_assistant_api_resilience_escalation_thresholds_batch_action_create`
+- `ciso_assistant_api_resilience_escalation_thresholds_create`
+- `ciso_assistant_api_resilience_escalation_thresholds_update`
+- `ciso_assistant_api_resilience_escalation_thresholds_partial_update`
+- `ciso_assistant_api_resilience_escalation_thresholds_destroy`

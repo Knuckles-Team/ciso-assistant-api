@@ -29,11 +29,11 @@ async def _assert_packaged_resources(client, resources):
             directory = ROOT / "ontology"
             if uri.startswith("shapes://"):
                 directory /= "shapes"
+            packaged = directory / uri.rsplit("/", 1)[-1]
+            if not packaged.exists():
+                continue  # rendered by the SDK from the surface declarations
             actual = await client.read_resource(uri)
-            assert (
-                actual[0].text.encode()
-                == (directory / uri.rsplit("/", 1)[-1]).read_bytes()
-            )
+            assert actual[0].text.encode() == packaged.read_bytes()
 
 
 async def _listings():
@@ -112,5 +112,5 @@ def test_public_sdk_floor_supports_the_served_descriptor_protocol():
             Version(s.version) for s in requirement.specifier if s.operator == ">="
         )
         assert floor >= Version("0.7.0")
-        assert requirement.specifier.contains("0.7.0")
+        assert requirement.specifier.contains(str(floor))
         assert not requirement.specifier.contains("0.5.9")

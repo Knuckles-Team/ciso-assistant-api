@@ -22,18 +22,10 @@ logger = get_logger(name="ciso_assistant_mcp")
 logger.setLevel(logging.INFO)
 
 
-def register_prompts(mcp: FastMCP):
-    @mcp.prompt(name="example_prompt", description="Example prompt for CISO Assistant.")
-    def example_prompt(query: str) -> str:
-        """Example prompt."""
-        return f"Please help with '{query}' using CISO Assistant"
-
-
 def register_server_surface(mcp: FastMCP):
     """Register the existing API, ingestion and prompt surface unchanged."""
-    # One central call selects the surface per MCP_TOOL_MODE: condensed gates each
-    # generated TOOL_REGISTRY domain via setting("<TAG>TOOL", True); verbose adds
-    # the fully-typed 1:1 tools sourced from the OpenAPI manifest (OPERATIONS).
+    # One central call registers one typed tool per OpenAPI operation (OPERATIONS)
+    # plus the hand-written registrars in TOOL_REGISTRY.
     from ciso_assistant_api.mcp import TOOL_REGISTRY
 
     registered_tags = register_tool_surface(
@@ -54,8 +46,6 @@ def register_server_surface(mcp: FastMCP):
         toggles = dict(getattr(mcp, "_condensed_tool_toggles", {}) or {})
         toggles["ciso_ingest"] = "KG_INGESTTOOL"
         mcp._condensed_tool_toggles = toggles
-
-    register_prompts(mcp)
 
     return registered_tags
 

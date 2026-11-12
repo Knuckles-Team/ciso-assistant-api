@@ -22,11 +22,11 @@ def test_mcp_server_lists_all_tools(monkeypatch):
 
 def test_tool_toggles_disable_domains(monkeypatch):
     monkeypatch.setattr(sys, "argv", ["ciso-assistant-mcp", "--transport", "stdio"])
-    monkeypatch.setenv("INCIDENTSTOOL", "False")
+    monkeypatch.setenv("CUSTOM_APITOOL", "False")
     from ciso_assistant_api.mcp_server import get_mcp_instance
 
     _mcp, _args, _mw, tags = get_mcp_instance()
-    assert "incidents" not in tags
+    assert "custom-api" not in tags
 
 
 def test_kg_ingest_toggle_disables_tool(monkeypatch):
