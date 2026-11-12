@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.3.13] - 2026-11-12
+
+### Changed
+
+- Declared the full connector surface: tool-use contracts for every tool, links from
+  each skill and prompt to its tasks, data locations, business roles, one skill per
+  API area, an operator prompt and five business-role agent prompts.
+- Removed the generated action-routed domain tools; each API operation is one typed
+  tool (1,567 tools in total). The domain-switch toggles for those routers are gone.
+- Rooted the audit, control and threat ontology classes in core classes.
+- Raised scion-sdk to >=0.10.1.
+
 ### Changed
 
 - Added the packaged `ciso-assistant-api-development` skill with the standard

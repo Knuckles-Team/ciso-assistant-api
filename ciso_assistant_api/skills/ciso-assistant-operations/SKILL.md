@@ -6,9 +6,8 @@ description: Operate CISO Assistant governance, risk, compliance, incident, evid
 
 # CISO Assistant Operations
 
-Use the action-routed `ciso-assistant-api` MCP tools. Prefer the condensed surface
-and treat the generated operation catalog as authoritative when an action is not
-listed below.
+Use the typed `ciso-assistant-api` MCP tools: one tool per API operation, named
+`ciso_assistant_api_<resource>_<verb>`. The per-area `*-tools` skills list every tool.
 
 ## Establish the boundary
 
@@ -26,15 +25,14 @@ listed below.
 
 | Need | Tool | Representative actions |
 | --- | --- | --- |
-| Risks, threats, vulnerabilities | `ciso_assistant_risk_management` | `api_risk_assessments_list`, `api_risk_scenarios_list`, `api_risk_scenarios_retrieve`, `api_threats_list`, `api_vulnerabilities_list` |
-| Audits, controls, requirements | `ciso_assistant_compliance` | `api_compliance_assessments_list`, `api_compliance_assessments_retrieve`, `api_applied_controls_list`, `api_requirement_assessments_list` |
-| Frameworks | `ciso_assistant_frameworks_libraries` | `api_frameworks_list`, `api_frameworks_retrieve` |
-| Incidents and timelines | `ciso_assistant_incidents` | `api_incidents_list`, `api_incidents_retrieve`, `api_timeline_entries_list` |
-| Evidence and attachments | `ciso_assistant_evidence` | `api_evidences_list`, `api_evidences_retrieve`, `api_evidences_attachment_retrieve` |
+| Risks, threats, vulnerabilities | Typed tools | `ciso_assistant_api_risk_assessments_list`, `ciso_assistant_api_risk_scenarios_list`, `ciso_assistant_api_risk_scenarios_retrieve`, `ciso_assistant_api_threats_list`, `ciso_assistant_api_vulnerabilities_list` |
+| Audits, controls, requirements | Typed tools | `ciso_assistant_api_compliance_assessments_list`, `ciso_assistant_api_compliance_assessments_retrieve`, `ciso_assistant_api_applied_controls_list`, `ciso_assistant_api_requirement_assessments_list` |
+| Frameworks | Typed tools | `ciso_assistant_api_frameworks_list`, `ciso_assistant_api_frameworks_retrieve` |
+| Incidents and timelines | Typed tools | `ciso_assistant_api_incidents_list`, `ciso_assistant_api_incidents_retrieve`, `ciso_assistant_api_timeline_entries_list` |
+| Evidence and attachments | Typed tools | `ciso_assistant_api_evidences_list`, `ciso_assistant_api_evidences_retrieve`, `ciso_assistant_api_evidences_attachment_retrieve` |
 | Governed KG materialization | `ciso_ingest` | `risk_scenarios`, `risk_assessments`, `applied_controls`, `vulnerabilities`, `compliance_assessments`, `incidents`, `evidences` |
 
-Pass tool parameters as the action router requires. For condensed tools this is
-normally an `action` plus a JSON-encoded `params_json` string.
+Pass each tool its operation parameters directly; only `ciso_ingest` takes a `kind` plus a JSON `params_json` string.
 
 ## Execute safely
 

@@ -34,8 +34,7 @@ land as reusable `:Blob` / `:MediaAsset` nodes.
 ## When NOT to use
 - Risk assessments, scenarios, treatment decisions → `ciso-assistant-risk-management`.
 - Compliance assessments (audits), frameworks → `ciso-assistant-compliance-audit`.
-- Arbitrary endpoints the condensed tools don't cover → the verbose 1:1 tools
-  (set `MCP_TOOL_MODE=verbose`).
+- Endpoints with no dedicated tool → `ciso_assistant_api_request`.
 
 ## Prerequisites & environment
 Connect via the `mcp-client` skill against the **`ciso-assistant-api`** MCP server.
@@ -51,12 +50,12 @@ Connect via the `mcp-client` skill against the **`ciso-assistant-api`** MCP serv
 reachable medulla engine (best-effort; no-ops without one).
 
 ## Tools & actions
-Prefer the **condensed** tool; it takes `action` + a `params_json` **JSON string**.
+Each tool is one API operation and takes that operation's parameters directly.
 
-| Condensed tool | Key actions |
+| Tool group | Tools |
 |----------------|-------------|
-| `ciso_assistant_incidents` | `api_incidents_list`, `api_incidents_retrieve`, `api_incidents_severity_retrieve`, `api_timeline_entries_list` |
-| `ciso_assistant_evidence` | `api_evidences_list`, `api_evidences_retrieve`, `api_evidences_attachment_retrieve` |
+| Typed tools | `ciso_assistant_api_incidents_list`, `ciso_assistant_api_incidents_retrieve`, `ciso_assistant_api_incidents_severity_retrieve`, `ciso_assistant_api_timeline_entries_list` |
+| Typed tools | `ciso_assistant_api_evidences_list`, `ciso_assistant_api_evidences_retrieve`, `ciso_assistant_api_evidences_attachment_retrieve` |
 | `ciso_ingest` | native KG push: `kind` = `incidents` \| `evidences` (evidences also stores attachment blobs when `ingest_attachments=true`) |
 
 ## Recipes (`params_json`)
@@ -84,7 +83,7 @@ Ingest evidences AND store their attachment file blobs (`ciso_ingest`):
 ## Gotchas
 - Incident `severity` and `status` are enum codes (e.g. severity `1` = highest),
   not display strings.
-- Evidence bytes come from `api_evidences_attachment_retrieve` (id) — only records
+- Evidence bytes come from `ciso_assistant_api_evidences_attachment_retrieve` (id) — only records
   whose `attachment` field is set have a file; skip the rest.
 - Blob ingestion is content-addressed and deduped; re-ingesting the same file is a
   cheap no-op, not a duplicate.

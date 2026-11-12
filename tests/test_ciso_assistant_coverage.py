@@ -8,14 +8,10 @@ what guarantees nothing silently drops.
 """
 
 import json
-import re
 from pathlib import Path
-
-import pytest
 
 from ciso_assistant_api.api._operation_manifest import (
     ACTIONS_BY_DOMAIN,
-    DOMAINS,
     OPERATIONS,
 )
 from ciso_assistant_api.api_client import Api
@@ -52,9 +48,9 @@ def test_every_operation_has_callable_client_method():
     missing = [
         op for op in OPERATIONS if not callable(getattr(Api, op["method"], None))
     ]
-    assert (
-        not missing
-    ), f"{len(missing)} operations without a client method: {missing[:5]}"
+    assert not missing, (
+        f"{len(missing)} operations without a client method: {missing[:5]}"
+    )
 
 
 def test_method_names_globally_unique():
@@ -65,17 +61,6 @@ def test_method_names_globally_unique():
 def test_actions_unique_within_each_domain():
     for domain, actions in ACTIONS_BY_DOMAIN.items():
         assert len(actions) == len(set(actions)), f"duplicate actions in {domain}"
-
-
-@pytest.mark.parametrize("domain", sorted(DOMAINS))
-def test_every_action_is_routed_in_its_mcp_tool(domain):
-    """Spec operations == manifest actions == actions routed in the generated tool."""
-    src = (MCP / f"mcp_{domain}.py").read_text()
-    # Whitespace-tolerant: the formatter wraps long ``elif action == "..."`` lines.
-    routed = set(re.findall(r'action\s*==\s*"([^"]+)"', src))
-    expected = set(ACTIONS_BY_DOMAIN[domain])
-    assert routed == expected, f"{domain}: {routed ^ expected}"
-    assert f"def ciso_assistant_{domain}(" in src
 
 
 def test_custom_api_escape_hatch_present():

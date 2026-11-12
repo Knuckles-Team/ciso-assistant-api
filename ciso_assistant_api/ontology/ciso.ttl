@@ -158,3 +158,6 @@
 # ontology-codemod R4
 <http://knuckles.team/kg#Asset> rdfs:subClassOf <http://knuckles.team/kg#Resource> .
 <http://knuckles.team/kg#RiskAssessment> rdfs:subClassOf <http://knuckles.team/kg#Assessment> .
+<http://knuckles.team/kg#Audit> rdfs:subClassOf <http://knuckles.team/kg#Assessment> .
+<http://knuckles.team/kg#Control> rdfs:subClassOf <http://knuckles.team/kg#Concept> .
+<http://knuckles.team/kg#Threat> rdfs:subClassOf <http://knuckles.team/kg#Concept> .

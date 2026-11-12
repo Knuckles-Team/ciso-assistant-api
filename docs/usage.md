@@ -25,34 +25,32 @@ Durable deployments must use secret-reference settings instead.
 
 ## MCP server
 
-Run the condensed surface locally:
+Run the MCP server locally:
 
 ```bash
 ciso-assistant-mcp --transport stdio
 ```
 
-Each domain router accepts an `action` and a JSON-encoded `params_json` string.
-For example, invoke `ciso_assistant_incidents` with:
+Each API operation is one typed tool that takes the operation parameters directly.
+For example, invoke `ciso_assistant_api_incidents_list` with:
 
 ```json
 {
-  "action": "api_incidents_list",
-  "params_json": "{\"status\":\"open\",\"limit\":25}"
+  "limit": 25
 }
 ```
 
 Retrieve exact source objects before correlating them:
 
+Invoke `ciso_assistant_api_risk_scenarios_retrieve` with:
+
 ```json
 {
-  "action": "api_risk_scenarios_retrieve",
-  "params_json": "{\"id\":\"<source_uuid>\"}"
+  "id": "<source_uuid>"
 }
 ```
 
-The generated operation inventory in the README is authoritative for available
-actions. Keep `MCP_TOOL_MODE=condensed` for delegated agents; enable verbose
-per-operation tools only for an approved diagnostic need.
+The packaged skills list every tool by area.
 
 ## Knowledge-graph ingestion
 

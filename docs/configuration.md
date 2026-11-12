@@ -39,9 +39,8 @@ to compensate for an incomplete server chain.
 
 ## MCP and tool policy
 
-`MCP_TOOL_MODE=condensed` is the current delegated surface. Domain switches such
-as `COMPLIANCETOOL`, `INCIDENTSTOOL`, and `RISK_MANAGEMENTTOOL` can reduce the
-surface further. Enable only the domains required by deployment policy. The
+The server registers one typed tool per API operation. Gate the catalog by tool
+policy at the gateway. The
 arbitrary-request tool should remain disabled unless policy explicitly permits
 its broader endpoint access.
 
@@ -70,7 +69,7 @@ Before enabling the provider:
 1. Validate AgentConfig and confirm every required secret reference resolves
    without printing its value.
 2. Check the complete certificate chain and hostname with verification enabled.
-3. Start the condensed MCP surface and run one least-privilege read action.
+3. Start the MCP server and run one least-privilege read action.
 4. If KG ingestion is enabled, ingest a bounded sample and check provenance and
    access-policy fields.
 5. Confirm telemetry is metadata-only and contains no endpoint, identity,
