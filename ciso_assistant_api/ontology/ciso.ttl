@@ -1,7 +1,8 @@
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix core: <https://knuckles-team.github.io/ontology/core#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix dc: <http://purl.org/dc/terms/> .
-@prefix : <http://knuckles.team/kg#> .
+@prefix : <https://knuckles-team.github.io/ontology/connector/ciso-assistant#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
@@ -19,6 +20,7 @@
     rdfs:comment "A scoped risk study evaluating scenarios against a risk matrix (api_risk_assessments)." .
 
 :RiskScenario a owl:Class ;
+    rdfs:subClassOf core:RiskScenario ;
     rdfs:label "Risk Scenario" ;
     rdfs:comment "A single risk within an assessment, scored inherent/current/residual (api_risk_scenarios)." .
 
@@ -30,24 +32,28 @@
     rdfs:label "Compliance Assessment" ;
     rdfs:comment "An assessment (audit) of compliance against a framework, with progress and outcome (api_compliance_assessments)." .
 
-:Framework a owl:Class .
+:Framework a owl:Class ;
+    rdfs:subClassOf core:Framework .
 
 
 :Threat a owl:Class ;
     rdfs:label "Threat" ;
     rdfs:comment "A catalogued threat that can be realized against assets (api_threats)." .
 
-:Vulnerability a owl:Class .
+:Vulnerability a owl:Class ;
+    rdfs:subClassOf core:Vulnerability .
 
 
-:Incident a owl:Class .
+:Incident a owl:Class ;
+    rdfs:subClassOf core:Incident .
 
 
 :Asset a owl:Class ;
     rdfs:label "Asset" ;
     rdfs:comment "A primary or supporting asset under protection (api_assets)." .
 
-:Evidence a owl:Class .
+:Evidence a owl:Class ;
+    rdfs:subClassOf core:Evidence .
 
 
 # --- links (owl:ObjectProperty) ---
@@ -89,12 +95,12 @@
     rdfs:label "has attachment" ;
     rdfs:comment "Links an Evidence record to the stored :Blob / :MediaAsset holding its file bytes." ;
     rdfs:domain :Evidence ;
-    rdfs:range :MediaAsset .
+    rdfs:range core:MediaFile .
 
 :ownedBy a owl:ObjectProperty ;
     rdfs:label "owned by" ;
     rdfs:comment "Links a Control, RiskScenario, Asset, or Evidence to the Person accountable for it." ;
-    rdfs:range :Person .
+    rdfs:range core:Person .
 
 # --- fields (owl:DatatypeProperty) ---
 
@@ -147,7 +153,7 @@
     rdfs:comment "Workflow status of an Audit (planned, in_progress, in_review, done, deprecated)." ;
     rdfs:range xsd:string .
 
-<http://knuckles.team/kg/ciso> a owl:Ontology ;
+<https://knuckles-team.github.io/ontology/connector/ciso> a owl:Ontology ;
     rdfs:label "CISO Assistant GRC Ontology" ;
     rdfs:comment """CISO Assistant governance-risk-compliance model — risk assessments and
     scenarios, applied controls, compliance audits and frameworks, threats,
@@ -156,8 +162,8 @@
     hub. Reuses the shared :Document / :Blob / :MediaAsset / :Person classes.""" .
 
 # ontology-codemod R4
-<http://knuckles.team/kg#Asset> rdfs:subClassOf <http://knuckles.team/kg#Resource> .
-<http://knuckles.team/kg#RiskAssessment> rdfs:subClassOf <http://knuckles.team/kg#Assessment> .
-<http://knuckles.team/kg#Audit> rdfs:subClassOf <http://knuckles.team/kg#Assessment> .
-<http://knuckles.team/kg#Control> rdfs:subClassOf <http://knuckles.team/kg#Concept> .
-<http://knuckles.team/kg#Threat> rdfs:subClassOf <http://knuckles.team/kg#Concept> .
+<https://knuckles-team.github.io/ontology/connector/ciso-assistant#Asset> rdfs:subClassOf <https://knuckles-team.github.io/ontology/core#Resource> .
+<https://knuckles-team.github.io/ontology/connector/ciso-assistant#RiskAssessment> rdfs:subClassOf <https://knuckles-team.github.io/ontology/core#Assessment> .
+<https://knuckles-team.github.io/ontology/connector/ciso-assistant#Audit> rdfs:subClassOf <https://knuckles-team.github.io/ontology/core#Assessment> .
+<https://knuckles-team.github.io/ontology/connector/ciso-assistant#Control> rdfs:subClassOf <https://knuckles-team.github.io/ontology/core#Concept> .
+<https://knuckles-team.github.io/ontology/connector/ciso-assistant#Threat> rdfs:subClassOf <https://knuckles-team.github.io/ontology/core#Concept> .
