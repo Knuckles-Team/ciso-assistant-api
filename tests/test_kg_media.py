@@ -1,4 +1,4 @@
-"""Epistemic-graph blob ingestion for evidence attachments — Wire-First coverage.
+"""Medulla blob ingestion for evidence attachments — Wire-First coverage.
 
 Exercises ``ingest_evidence_attachment`` against a fake ``scion_sdk.ingest``
 transport (no engine required), asserting the stored media asset's bytes, mime type,
