@@ -121,6 +121,18 @@
     rdfs:domain :RiskScenario ;
     rdfs:range xsd:string .
 
+:riskScenarioId a owl:DatatypeProperty ;
+    rdfs:label "risk scenario id" ;
+    rdfs:comment "Identifier of a RiskScenario an applied Control treats, as listed on the applied control." ;
+    rdfs:domain :Control ;
+    rdfs:range xsd:string .
+
+:serviceRef a owl:DatatypeProperty ;
+    rdfs:label "service reference" ;
+    rdfs:comment "Reference to the service or asset a RiskScenario concerns, as listed on the risk scenario." ;
+    rdfs:domain :RiskScenario ;
+    rdfs:range xsd:string .
+
 :controlStatus a owl:DatatypeProperty ;
     rdfs:label "control status" ;
     rdfs:comment "Lifecycle status of a Control (to_do, in_progress, active, on_hold, deprecated)." ;

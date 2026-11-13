@@ -1,0 +1,15 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": "6f1c2a3e-0000-4000-8000-000000000001",
+      "name": "Fixture control",
+      "status": "active",
+      "risk_scenarios": [
+        {"id": "6f1c2a3e-0000-4000-8000-000000000002", "str": "Fixture scenario"}
+      ]
+    }
+  ]
+}
