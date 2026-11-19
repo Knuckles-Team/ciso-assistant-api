@@ -1,0 +1,41 @@
+@prefix ac: <https://knuckles-team.github.io/agent-connector-sdk/access#> .
+@prefix kg: <http://knuckles.team/kg#> .
+@prefix ca: <http://knuckles.team/kg/ciso-access#> .
+
+ca:appliedControlAccess a ac:AccessContract ;
+    ac:classIri kg:Control ;
+    ac:sourceId "ciso-assistant-api" ;
+    ac:entity "applied_control" ;
+    ac:keyField "id" ;
+    ac:accessKind "mcp_tool" ;
+    ac:operation "ciso_assistant_api_applied_controls_list" ;
+    ac:pagination "page" ;
+    ac:recordsPath "data" ;
+    ac:paginationParam "page" ;
+    ac:pageSizeParam "limit" ;
+    ac:freshnessSeconds 300 ;
+    ac:costHint "low" .
+
+ca:appliedControlStatus a ac:PropertyBinding ;
+    ac:contract ca:appliedControlAccess ; ac:property kg:controlStatus ; ac:field "status" .
+ca:appliedControlRiskScenarioId a ac:PropertyBinding ;
+    ac:contract ca:appliedControlAccess ; ac:property kg:riskScenarioId ; ac:field "risk_scenarios" .
+
+ca:riskScenarioAccess a ac:AccessContract ;
+    ac:classIri kg:RiskScenario ;
+    ac:sourceId "ciso-assistant-api" ;
+    ac:entity "risk_scenario" ;
+    ac:keyField "id" ;
+    ac:accessKind "mcp_tool" ;
+    ac:operation "ciso_assistant_api_risk_scenarios_list" ;
+    ac:pagination "page" ;
+    ac:recordsPath "data" ;
+    ac:paginationParam "page" ;
+    ac:pageSizeParam "limit" ;
+    ac:freshnessSeconds 300 ;
+    ac:costHint "low" .
+
+ca:riskScenarioServiceRef a ac:PropertyBinding ;
+    ac:contract ca:riskScenarioAccess ; ac:property kg:serviceRef ; ac:field "assets" .
+ca:riskScenarioName a ac:PropertyBinding ;
+    ac:contract ca:riskScenarioAccess ; ac:property kg:name ; ac:field "name" .
