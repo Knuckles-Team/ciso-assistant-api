@@ -1,9 +1,9 @@
-@prefix ac: <https://knuckles-team.github.io/agent-connector-sdk/access#> .
-@prefix kg: <http://knuckles.team/kg#> .
-@prefix ca: <http://knuckles.team/kg/ciso-access#> .
+@prefix ac: <https://knuckles-team.github.io/ontology/access#> .
+@prefix : <https://knuckles-team.github.io/ontology/connector/ciso-assistant#> .
+@prefix ca: <https://knuckles-team.github.io/ontology/connector/ciso-assistant/access#> .
 
 ca:appliedControlAccess a ac:AccessContract ;
-    ac:classIri kg:Control ;
+    ac:classIri :Control ;
     ac:sourceId "ciso-assistant-api" ;
     ac:entity "applied_control" ;
     ac:keyField "id" ;
@@ -17,12 +17,12 @@ ca:appliedControlAccess a ac:AccessContract ;
     ac:costHint "low" .
 
 ca:appliedControlStatus a ac:PropertyBinding ;
-    ac:contract ca:appliedControlAccess ; ac:property kg:controlStatus ; ac:field "status" .
+    ac:contract ca:appliedControlAccess ; ac:property :controlStatus ; ac:field "status" .
 ca:appliedControlRiskScenarioId a ac:PropertyBinding ;
-    ac:contract ca:appliedControlAccess ; ac:property kg:riskScenarioId ; ac:field "risk_scenarios" .
+    ac:contract ca:appliedControlAccess ; ac:property :riskScenarioId ; ac:field "risk_scenarios" .
 
 ca:riskScenarioAccess a ac:AccessContract ;
-    ac:classIri kg:RiskScenario ;
+    ac:classIri :RiskScenario ;
     ac:sourceId "ciso-assistant-api" ;
     ac:entity "risk_scenario" ;
     ac:keyField "id" ;
@@ -36,6 +36,6 @@ ca:riskScenarioAccess a ac:AccessContract ;
     ac:costHint "low" .
 
 ca:riskScenarioServiceRef a ac:PropertyBinding ;
-    ac:contract ca:riskScenarioAccess ; ac:property kg:serviceRef ; ac:field "assets" .
+    ac:contract ca:riskScenarioAccess ; ac:property :serviceRef ; ac:field "assets" .
 ca:riskScenarioName a ac:PropertyBinding ;
-    ac:contract ca:riskScenarioAccess ; ac:property kg:name ; ac:field "name" .
+    ac:contract ca:riskScenarioAccess ; ac:property :name ; ac:field "name" .
