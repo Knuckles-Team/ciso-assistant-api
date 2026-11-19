@@ -45,7 +45,7 @@ graph TD
     Client --> Boundary[Auth, TLS, origin, retry, pagination]
     Boundary --> Service[CISO Assistant REST API]
     Router --> Ingest[Governed KG ingestion]
-    Ingest --> Graph[Epistemic graph]
+    Ingest --> Graph[Medulla]
 ```
 
 See [Configuration](configuration.md) for the runtime trust and privacy contract.
