@@ -6,3 +6,4 @@ Each task line reads `- [ ] T001 [P] [US1] <ID>-R012.4 description`. Order is pr
 
 - [x] T001 [US1] CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R001 Default content.
 - [x] T002 [US1] CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R002 Declare access contracts for the competency reads of ciso-assistant-api.
+- [x] T003 [US1] CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R003 Pack extends only the core ontology.

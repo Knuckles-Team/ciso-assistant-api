@@ -1,3 +1,4 @@
+@prefix core: <https://knuckles-team.github.io/ontology/core#> .
 @prefix ac: <https://knuckles-team.github.io/ontology/access#> .
 @prefix : <https://knuckles-team.github.io/ontology/connector/ciso-assistant#> .
 @prefix ca: <https://knuckles-team.github.io/ontology/connector/ciso-assistant/access#> .
@@ -22,7 +23,7 @@ ca:appliedControlRiskScenarioId a ac:PropertyBinding ;
     ac:contract ca:appliedControlAccess ; ac:property :riskScenarioId ; ac:field "risk_scenarios" .
 
 ca:riskScenarioAccess a ac:AccessContract ;
-    ac:classIri :RiskScenario ;
+    ac:classIri core:RiskScenario ;
     ac:sourceId "ciso-assistant-api" ;
     ac:entity "risk_scenario" ;
     ac:keyField "id" ;

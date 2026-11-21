@@ -1,3 +1,4 @@
+@prefix cat: <https://knuckles-team.github.io/ontology/catalog#> .
 @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
 @prefix core: <https://knuckles-team.github.io/ontology/core#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
@@ -19,11 +20,6 @@
     rdfs:label "Risk Assessment" ;
     rdfs:comment "A scoped risk study evaluating scenarios against a risk matrix (api_risk_assessments)." .
 
-:RiskScenario a owl:Class ;
-    rdfs:subClassOf core:RiskScenario ;
-    rdfs:label "Risk Scenario" ;
-    rdfs:comment "A single risk within an assessment, scored inherent/current/residual (api_risk_scenarios)." .
-
 :Control a owl:Class ;
     rdfs:label "Applied Control" ;
     rdfs:comment "A security measure applied to treat risk or satisfy a requirement (api_applied_controls)." .
@@ -32,29 +28,9 @@
     rdfs:label "Compliance Assessment" ;
     rdfs:comment "An assessment (audit) of compliance against a framework, with progress and outcome (api_compliance_assessments)." .
 
-:Framework a owl:Class ;
-    rdfs:subClassOf core:Framework .
-
-
 :Threat a owl:Class ;
     rdfs:label "Threat" ;
     rdfs:comment "A catalogued threat that can be realized against assets (api_threats)." .
-
-:Vulnerability a owl:Class ;
-    rdfs:subClassOf core:Vulnerability .
-
-
-:Incident a owl:Class ;
-    rdfs:subClassOf core:Incident .
-
-
-:Asset a owl:Class ;
-    rdfs:label "Asset" ;
-    rdfs:comment "A primary or supporting asset under protection (api_assets)." .
-
-:Evidence a owl:Class ;
-    rdfs:subClassOf core:Evidence .
-
 
 # --- links (owl:ObjectProperty) ---
 
@@ -62,45 +38,35 @@
     rdfs:label "includes scenario" ;
     rdfs:comment "Links a RiskAssessment to a RiskScenario it contains." ;
     rdfs:domain :RiskAssessment ;
-    rdfs:range :RiskScenario .
-
-:mitigatedBy a owl:ObjectProperty ;
-    rdfs:label "mitigated by" ;
-    rdfs:comment "Links a RiskScenario or Vulnerability to a Control that treats it." ;
-    rdfs:range :Control .
+    rdfs:range core:RiskScenario .
 
 :hasThreat a owl:ObjectProperty ;
     rdfs:label "has threat" ;
     rdfs:comment "Links a RiskScenario to a Threat it realizes." ;
-    rdfs:domain :RiskScenario ;
+    rdfs:domain core:RiskScenario ;
     rdfs:range :Threat .
 
 :affectsAsset a owl:ObjectProperty ;
     rdfs:label "affects asset" ;
     rdfs:comment "Links a RiskScenario, Incident, or Vulnerability to an Asset it impacts." ;
-    rdfs:range :Asset .
+    rdfs:range cat:Asset .
 
 :assessesFramework a owl:ObjectProperty ;
     rdfs:label "assesses framework" ;
     rdfs:comment "Links a compliance Audit to the Framework it is scored against." ;
     rdfs:domain :Audit ;
-    rdfs:range :Framework .
+    rdfs:range core:Framework .
 
 :evidencedBy a owl:ObjectProperty ;
     rdfs:label "evidenced by" ;
     rdfs:comment "Links a Control or Audit to an Evidence record substantiating it." ;
-    rdfs:range :Evidence .
+    rdfs:range core:Evidence .
 
 :hasAttachment a owl:ObjectProperty ;
     rdfs:label "has attachment" ;
     rdfs:comment "Links an Evidence record to the stored :Blob / :MediaAsset holding its file bytes." ;
-    rdfs:domain :Evidence ;
+    rdfs:domain core:Evidence ;
     rdfs:range core:MediaFile .
-
-:ownedBy a owl:ObjectProperty ;
-    rdfs:label "owned by" ;
-    rdfs:comment "Links a Control, RiskScenario, Asset, or Evidence to the Person accountable for it." ;
-    rdfs:range core:Person .
 
 # --- fields (owl:DatatypeProperty) ---
 
@@ -112,19 +78,19 @@
 :riskTreatment a owl:DatatypeProperty ;
     rdfs:label "risk treatment" ;
     rdfs:comment "Treatment decision for a RiskScenario (open, mitigate, accept, avoid, transfer)." ;
-    rdfs:domain :RiskScenario ;
+    rdfs:domain core:RiskScenario ;
     rdfs:range xsd:string .
 
 :residualLevel a owl:DatatypeProperty ;
     rdfs:label "residual level" ;
     rdfs:comment "Residual risk level of a RiskScenario after applied controls." ;
-    rdfs:domain :RiskScenario ;
+    rdfs:domain core:RiskScenario ;
     rdfs:range xsd:string .
 
 :currentLevel a owl:DatatypeProperty ;
     rdfs:label "current level" ;
     rdfs:comment "Current risk level of a RiskScenario given existing controls." ;
-    rdfs:domain :RiskScenario ;
+    rdfs:domain core:RiskScenario ;
     rdfs:range xsd:string .
 
 :riskScenarioId a owl:DatatypeProperty ;
@@ -136,7 +102,7 @@
 :serviceRef a owl:DatatypeProperty ;
     rdfs:label "service reference" ;
     rdfs:comment "Reference to the service or asset a RiskScenario concerns, as listed on the risk scenario." ;
-    rdfs:domain :RiskScenario ;
+    rdfs:domain core:RiskScenario ;
     rdfs:range xsd:string .
 
 :controlStatus a owl:DatatypeProperty ;
@@ -149,21 +115,11 @@
     rdfs:comment "Priority ranking of a Control (P1-P4)." ;
     rdfs:range xsd:string .
 
-:severity a owl:DatatypeProperty ;
-    rdfs:label "severity" ;
-    rdfs:comment "Severity of an Incident or Vulnerability." ;
-    rdfs:range xsd:string .
-
 :complianceProgress a owl:DatatypeProperty ;
     rdfs:label "compliance progress" ;
     rdfs:comment "Percent completion of a compliance Audit." ;
     rdfs:domain :Audit ;
     rdfs:range xsd:integer .
-
-:complianceStatus a owl:DatatypeProperty ;
-    rdfs:label "compliance status" ;
-    rdfs:comment "Workflow status of an Audit (planned, in_progress, in_review, done, deprecated)." ;
-    rdfs:range xsd:string .
 
 <https://knuckles-team.github.io/ontology/connector/ciso> a owl:Ontology ;
     rdfs:label "CISO Assistant GRC Ontology" ;
@@ -174,7 +130,7 @@
     hub. Reuses the shared :Document / :Blob / :MediaAsset / :Person classes.""" .
 
 # ontology-codemod R4
-<https://knuckles-team.github.io/ontology/connector/ciso-assistant#Asset> rdfs:subClassOf <https://knuckles-team.github.io/ontology/core#Resource> .
+
 <https://knuckles-team.github.io/ontology/connector/ciso-assistant#RiskAssessment> rdfs:subClassOf <https://knuckles-team.github.io/ontology/core#Assessment> .
 <https://knuckles-team.github.io/ontology/connector/ciso-assistant#Audit> rdfs:subClassOf <https://knuckles-team.github.io/ontology/core#Assessment> .
 <https://knuckles-team.github.io/ontology/connector/ciso-assistant#Control> rdfs:subClassOf <https://knuckles-team.github.io/ontology/core#Concept> .
