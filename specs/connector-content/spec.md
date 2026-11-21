@@ -24,21 +24,25 @@ The `ciso-assistant-mcp` server serves its packaged skills, prompts and ontology
 
 1. **Given** the connector is configured, **When** the behaviour of row `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R001` (default content) is exercised, **Then** `resources/list` includes `skill://` and `ontology://`; `prompts/list` includes each packaged prompt. Test: `tests/test_default_content_surfaces.py::test_default_content_surfaces`.
 2. **Given** the connector is configured, **When** the behaviour of row `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R002` (declare access contracts for the competency reads of ciso-assistant-api) is exercised, **Then** declare access contracts for the competency reads of ciso-assistant-api.
+3. **Given** the connector is configured, **When** the behaviour of row `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R003` (pack extends only the core ontology) is exercised, **Then** no core class or property is redeclared and no retired IRI base remains. Test: `tests/test_pack_extends_core.py::test_pack_declares_no_core_term`.
 
 ### Edge Cases
 
 - If `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R001` is not met, its proving test fails: default content.
 - If `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R002` is not met, its proving test fails: declare access contracts for the competency reads of ciso-assistant-api.
+- If `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R003` is not met, its proving test fails: pack extends only the core ontology.
 
 ## Requirements
 
 - **FR-001**: Default content. Rows: `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R001`.
 - **FR-002**: Declare access contracts for the competency reads of ciso-assistant-api. Rows: `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R002`.
+- **FR-003**: Pack extends only the core ontology. Rows: `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R003`.
 
 ## Success Criteria
 
 - **SC-001**: `resources/list` includes `skill://` and `ontology://`; `prompts/list` includes each packaged prompt. Rows: `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R001`.
 - **SC-002**: Declare access contracts for the competency reads of ciso-assistant-api. Rows: `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R002`.
+- **SC-003**: No pack term redeclares a core term and no retired IRI base remains. Rows: `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R003`.
 
 ## Assumptions
 
@@ -51,3 +55,4 @@ The `ciso-assistant-mcp` server serves its packaged skills, prompts and ontology
 |---|---|---|---|---|
 | FR-001 | `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R001` | [plan.md](plan.md) | T-001 | [test-spec.md](test-spec.md) |
 | FR-002 | `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R002` | [plan.md](plan.md) | T-002 | [test-spec.md](test-spec.md) |
+| FR-003 | `CONN-CISO-ASSISTANT-API-CONNECTOR-CONTENT-R003` | [plan.md](plan.md) | T-002 | [test-spec.md](test-spec.md) |
