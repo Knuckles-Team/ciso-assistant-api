@@ -2,15 +2,7 @@
 name: ciso-assistant-incident-evidence
 skill_type: skill
 description: >-
-  Incident response and evidence handling on the CISO Assistant platform via the
-  ciso-assistant-api MCP server — list and read security incidents (severity,
-  status, detection and resolution timeline) and evidence records, ingest
-  incidents into the knowledge graph as typed :Incident nodes, and store evidence
-  attachment file bytes as content-addressed :Blob / :MediaAsset. Use when the
-  agent must triage incidents, link affected assets/controls, or make evidence
-  files durable and queryable in the KG. Do NOT use for risk scenarios/treatment
-  (use ciso-assistant-risk-management) or compliance audits/frameworks (use
-  ciso-assistant-compliance-audit).
+  Handle CISO Assistant incidents and evidence via the ciso-assistant-api MCP server: read incidents (severity, status, timeline) and evidence, ingest :Incident nodes, store attachments as :Blob. Use to triage incidents or make evidence queryable. Do NOT use for risk (ciso-assistant-risk-management) or audits (ciso-assistant-compliance-audit).
 license: MIT
 tags: [ciso-assistant, grc, incident, evidence, blob, mcp]
 metadata:
@@ -18,6 +10,8 @@ metadata:
   version: '0.1.0'
 ---
 # CISO Assistant Incident & Evidence
+
+Scope: Incident response and evidence handling on the CISO Assistant platform via the ciso-assistant-api MCP server — list and read security incidents (severity, status, detection and resolution timeline) and evidence records, ingest incidents into the knowledge graph as typed :Incident nodes, and store evidence attachment file bytes as content-addressed :Blob / :MediaAsset. Use when the agent must triage incidents, link affected assets/controls, or make evidence files durable and queryable in the KG. Do NOT use for risk scenarios/treatment (use ciso-assistant-risk-management) or compliance audits/frameworks (use ciso-assistant-compliance-audit).
 
 Domain-typed access to the CISO Assistant **incident** and **evidence** surfaces —
 security incidents plus their evidence records and file attachments — for response
@@ -35,6 +29,23 @@ land as reusable `:Blob` / `:MediaAsset` nodes.
 - Risk assessments, scenarios, treatment decisions → `ciso-assistant-risk-management`.
 - Compliance assessments (audits), frameworks → `ciso-assistant-compliance-audit`.
 - Endpoints with no dedicated tool → `ciso_assistant_api_request`.
+
+## Steps
+
+1. List the incidents in scope with `ciso_assistant_api_incidents_list`, for example `{"severity":"1","status":"open","ordering":"-reported_at"}`. Verify each row has a severity code and a status code.
+2. Read one incident with `ciso_assistant_api_incidents_retrieve` and its UUID. Verify the detection and resolution times are present, using `ciso_assistant_api_timeline_entries_list` if the incident omits them.
+3. List evidence with `ciso_assistant_api_evidences_list`. Verify which records have an `attachment` field set, since only those have a file.
+4. Fetch an attachment with `ciso_assistant_api_evidences_attachment_retrieve` and the evidence id. Verify the response carries file content for that record.
+5. Persist records with `ciso_ingest`, using `{"kind":"incidents"}` or `{"kind":"evidences","ingest_attachments":true}`. Verify the result shows non-null `ingested` and `stored` counts.
+
+## Failure recovery
+
+| Failure | Cause | Recovery |
+| --- | --- | --- |
+| Authentication error from any tool | `CISO_ASSISTANT_URL` is wrong, or neither the token nor the username/password pair is set | Set `CISO_ASSISTANT_URL` and either `CISO_ASSISTANT_TOKEN` or the username/password pair, then call `ciso_assistant_api_incidents_list` to confirm. |
+| Incident list is empty | Severity or status was passed as a display string instead of the enum code | Call `ciso_assistant_api_incidents_list` with `{"limit":50}` and reuse the severity and status codes shown in the rows. |
+| Attachment fetch returns no file | The evidence record has no `attachment` set | Skip that record and pick one from `ciso_assistant_api_evidences_list` whose `attachment` is present. |
+| `ciso_ingest` returns `"ingested": null` or `"stored": 0` | No reachable KG engine | Report that nothing was persisted; do not claim graph state until the engine is reachable and `ciso_ingest` returns a count. |
 
 ## Prerequisites & environment
 Connect via the `mcp-client` skill against the **`ciso-assistant-api`** MCP server.

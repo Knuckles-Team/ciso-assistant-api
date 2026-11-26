@@ -14,6 +14,22 @@ owns CISO Assistant API calls, mappings, MCP tools, and connector content; it
 does not own the connector SDK, Arbora admission, the shared Pages renderer, or
 Pipelines hooks.
 
+## Steps
+
+1. Read the owning `specs/` row and `AGENTS.md`, for example with `grep -rn CONN-CISO-ASSISTANT-API specs`. Verify the change maps to an existing row before editing.
+2. Make the smallest connector-owned change, editing the source spec or `scripts/generate_from_openapi.py` for generated surfaces and regenerating. Verify with `git diff --stat` that generated files changed only through the generator.
+3. Run the focused tests with `uv run --locked --extra test pytest -q tests/test_publication_workflow.py tests/test_default_content_surfaces.py tests/test_mcp_server.py`. Verify the run reports no failures.
+4. Run the gates with `uvx pre-commit run --all-files`. Verify every hook reports Passed with no bypass flags.
+5. After merge, probe Pages with `curl -fsS https://knuckles-team.github.io/ciso-assistant-api/spec-delivery/snapshot.json`. Verify the snapshot revision equals the merged main SHA.
+
+## Failure recovery
+
+| Failure | Cause | Recovery |
+| --- | --- | --- |
+| Generated client differs after regeneration | The source spec or generator changed unintentionally | Revert the generated files with `git checkout -- <path>`, fix the spec or `scripts/generate_from_openapi.py`, then regenerate and compare with `git diff --stat`. |
+| Skill or content tests fail | A packaged skill or package-data entry is missing | Inspect `tests/test_default_content_surfaces.py` output and restore the missing file under `ciso_assistant_api/skills`. |
+| Pages probe returns an old revision | The Pages run for the merged SHA has not finished | Open the Pages workflow run for the exact main SHA and probe `snapshot.json` again once it succeeds. |
+
 ## Repository map and runtime boundary
 
 - `ciso_assistant_api/specs/*.json` are the vendored OpenAPI sources. The
