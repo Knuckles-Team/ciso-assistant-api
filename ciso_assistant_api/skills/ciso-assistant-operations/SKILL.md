@@ -1,10 +1,13 @@
 ---
 name: ciso-assistant-operations
 skill_type: skill
-description: Operate CISO Assistant governance, risk, compliance, incident, evidence, control, framework, and knowledge-graph workflows through the ciso-assistant-api MCP server. Use when an agent needs to inspect or correlate risk scenarios, assessments, controls, audits, incidents, evidence, frameworks, threats, or vulnerabilities; ingest supported records into medulla; or plan a governed mutation after explicit approval.
+description: >-
+  Operate CISO Assistant risk, compliance, incident, evidence, control and framework workflows through the ciso-assistant-api MCP server. Use to inspect or correlate records, ingest them into medulla, or plan a governed mutation after explicit approval.
 ---
 
 # CISO Assistant Operations
+
+Scope: Operate CISO Assistant governance, risk, compliance, incident, evidence, control, framework, and knowledge-graph workflows through the ciso-assistant-api MCP server. Use when an agent needs to inspect or correlate risk scenarios, assessments, controls, audits, incidents, evidence, frameworks, threats, or vulnerabilities; ingest supported records into medulla; or plan a governed mutation after explicit approval.
 
 Use the typed `ciso-assistant-api` MCP tools: one tool per API operation, named
 `ciso_assistant_api_<resource>_<verb>`. The per-area `*-tools` skills list every tool.
@@ -20,6 +23,22 @@ Use the typed `ciso-assistant-api` MCP tools: one tool per API operation, named
    update, delete, treatment, acceptance, or status-transition actions.
 5. Keep credentials, raw identity attributes, local paths, and attachment bytes
    out of prompts, logs, traces, graph properties, and reports.
+
+## Steps
+
+1. Check the target instance with `ciso_assistant_api_frameworks_list` using `{"limit":1}`. Verify the configured `CISO_ASSISTANT_URL` is the intended instance before any other call.
+2. Run a bounded read such as `ciso_assistant_api_risk_scenarios_list` with `{"ordering":"-updated_at","limit":25}`. Verify the response returns rows rather than an authentication error.
+3. Retrieve exact records with the matching `_retrieve` tool, for example `ciso_assistant_api_incidents_retrieve`. Verify each UUID you cite appears in the returned object.
+4. Before proposing any create, update or delete, read the current record with `ciso_assistant_api_risk_scenarios_retrieve` and wait for explicit operator approval. Verify the approval names the record ids and the action.
+5. Materialize records with `ciso_ingest` and `{"kind":"risk_scenarios","params_json":"{\"limit\":100}"}`. Verify the returned counts and sample relationships match the source.
+
+## Failure recovery
+
+| Failure | Cause | Recovery |
+| --- | --- | --- |
+| Authentication error from any tool | Instance URL or credential references are missing | Set `CISO_ASSISTANT_URL` and `CISO_ASSISTANT_TOKEN_REF` (or both username and password references), then call `ciso_assistant_api_risk_scenarios_list` to confirm. |
+| List result is empty | Filters exclude every record | Call the same list tool with only `{"limit":25}` and tighten the filters one at a time. |
+| `ciso_ingest` returns a null or zero count | The graph engine is unavailable, not the source empty | Report the engine as unavailable and do not claim persistence; confirm the source with the matching `_list` tool. |
 
 ## Select the workflow
 
